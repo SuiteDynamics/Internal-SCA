@@ -1,0 +1,52 @@
+{
+    "type": "object",
+	"subtab": {
+      "id": "SearchResultsModule_subtab",
+      "title": "Saved Searches In My Account",
+      "group": "extensions"
+    },
+    "properties": {
+		"savedSearches.suiteletUrl": {
+            "group": "extensions",
+            "subtab": "SearchResultsModule_subtab",
+            "type": "string",
+            "title": "Suitelet Url",
+            "description": "Enter the URL of the script deployment of the suitelet named \"AG Get Saved Search Data\".  You can find this deployment record if you navigate to Customization > Scripting > Script Deployments.  The value you need is in the \"URL\" body field on the deployment record.  It will begin with /app and look something like this: \"/app/site/hosting/scriptlet.nl?script=915&deploy=1\""
+        },
+		"savedSearchesMyaccount": {
+			"group": "extensions",
+			"subtab": "SearchResultsModule_subtab",
+			"type": "array",
+			"title": "Saved Searches",
+			"items": {
+				"type": "object",
+				"properties": {
+					"savedSearchId": {
+                    	"type": "number",
+                    	"title": "Saved search id"
+                    },
+					"drillDownField": {
+                        "type": "string",
+                    	"title": "Drill down field ID"
+                    },
+					"urlField": {
+                        "type": "string",
+                    	"title": "URL field ID"
+                    },
+					"recordsPerPage": {
+                    	"type": "number",
+                    	"title": "Records Per Page"
+                    },
+					"tabLabel": {
+                        "type": "string",
+                    	"title": "My Account Tab Label"
+                    },
+					"tabIndex": {
+                        "type": "number",
+                    	"title": "My Account Tab Index"
+                    }
+				}
+			}
+		}
+    }
+}

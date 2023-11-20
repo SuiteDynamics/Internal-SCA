@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": { 
+        "StitchPaymentsModule.merchantId": {
+            "group": "extensions",
+            "subtab": "StitchPaymentsModule_subtab",
+            "type": "string",
+            "title": "Stitch Merchant Id"
+        }
+    }
+}

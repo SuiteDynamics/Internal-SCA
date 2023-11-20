@@ -1,0 +1,22 @@
+#stitch-smart-button-container{
+	display:table-cell;
+	border: 1px solid $sc-color-theme-border;
+	border-left: 0;
+	.stitch-checkout{
+		margin: 0 !important;
+		border: 0 !important;
+	}
+	.stitch-smart-button.stitch-smart-button-light{
+		background-color: #fff !important;
+	}
+}
+#stitch-checkout-blocker{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.3;
+    z-index: 1;
+}

@@ -1,0 +1,66 @@
+{
+    "name": "MyAccountSearch",
+    "fantasyName": "My Account Search",
+    "vendor": "SuiteDynamics",
+    "version": "1.0.0",
+    "type": "extension",
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": ">=18.1.0",
+        "SCS": ">=18.1.0"
+    },
+    "description": "Displays saved search results in My Account.",
+    "skins": [],
+    "assets": {
+        "img": {
+            "files": []
+        },
+        "fonts": {
+            "files": []
+        },
+        "services": {
+            "files": []
+        }
+    },
+    "configuration": {
+        "files": [
+            "Modules/SearchResultsModule/Configuration/SearchResultsModule.json"
+        ]
+    },
+    "sass": {
+        "entry_points": {
+            "myaccount": "Modules/SearchResultsModule/Sass/_savedsearchresults-searchresultsmodule.scss"
+        },
+        "files": [
+            "Modules/SearchResultsModule/Sass/_savedsearchresults-searchresultsmodule.scss"
+        ]
+    },
+    "templates": {
+        "application": {
+            "myaccount": {
+                "files": [
+                    "Modules/SearchResultsModule/Templates/sd_savedsearchresults_searchresultsmodule.tpl"
+                ]
+            }
+        }
+    },
+    "javascript": {
+        "entry_points": {
+            "myaccount": "Modules/SearchResultsModule/JavaScript/SD.SavedSearchResults.SearchResultsModule.js"
+        },
+        "application": {
+            "myaccount": {
+                "files": [
+                    "Modules/SearchResultsModule/JavaScript/SD.SavedSearchResults.SearchResultsModule.js",
+                    "Modules/SearchResultsModule/JavaScript/SearchResultsModule.View.js",
+                    "Modules/SearchResultsModule/JavaScript/SearchResultsModule.Modal.View.js",
+                    "Modules/SearchResultsModule/JavaScript/SD.SavedSearchResults.SearchResultsModule.Model.js"
+                ]
+            }
+        }
+    },
+    "local_folder": "Workspace\\MyAccountSearch",
+    "suitescript2": {
+        "files": []
+    }
+}
