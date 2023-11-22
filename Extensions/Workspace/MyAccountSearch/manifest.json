@@ -39,7 +39,8 @@
         "application": {
             "myaccount": {
                 "files": [
-                    "Modules/SearchResultsModule/Templates/sd_savedsearchresults_searchresultsmodule.tpl"
+                    "Modules/SearchResultsModule/Templates/sd_savedsearchresults_searchresultsmodule.tpl",
+                    "Modules/SearchResultsModule/Templates/sd_savedsearchresults_searchresultsmodule_modal.tpl"
                 ]
             }
         }

@@ -32,6 +32,9 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 		template: sd_savedsearchresults_searchresultsmodule_tpl
 
 	,	initialize: function (options) {
+
+
+			
 			
 			this.savedSearchId = (options.routerArguments && options.routerArguments[0]);
 			var urlOptions = Utils.parseUrlOptions(options.routerArguments && options.routerArguments[1]);
@@ -80,7 +83,8 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 	,	events: {
 			'click [data-sort]': 'sortData',
 			'click [data-group]': 'drillDownView',
-			'click .return-summary-link': 'returnSummary'
+			'click .return-summary-link': 'returnSummary',
+			'click [data-action="expand-table"]': 'expandTable',
 		}
 	,	returnSummary: function(){
 			var UrlHelper = _.has(UrlHelperModule,'UrlHelper')? UrlHelperModule.UrlHelper : UrlHelperModule;
@@ -189,6 +193,25 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 			
 			this.formattedResults = formattedResults;
 		}
+	,	expandTable: function(event){
+		
+		console.log(event.target)
+		
+		let targetID = $(event.target)[0].id;
+
+		console.log(targetID)
+		if(targetID == "zab-detail-button"){
+			return
+		}
+		event.stopPropagation();
+		var $target = $(event.target);
+		if ( $target.closest("td").attr("colspan") > 1 ) {
+			$target.slideUp();
+		} else {
+			$target.closest("tr").next().find("p").slideToggle();
+			$target.closest("tr").next().find("div").slideToggle();
+		}                    
+	}
 
 		//@method getContext @return AG.SavedSearchResults.SearchResultsModule.View.Context
 	,	getContext: function getContext()

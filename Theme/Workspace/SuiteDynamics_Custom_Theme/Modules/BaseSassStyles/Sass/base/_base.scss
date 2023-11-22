@@ -1,0 +1,45 @@
+.main, .layout-container {
+	min-height: 100%;
+	height: auto;
+	width: 100%;
+}
+
+%sc-layout {
+	min-height: 100%;
+}
+
+
+
+.layout-overlay{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+.cms-content ul, .cms-content ol {
+	margin-left: $sc-margin-lv4;
+}
+
+.cms-content ul li {
+	list-style: circle;
+}
+
+.cms-content ol li {
+	list-style: decimal;
+}
+.skip-to-main-content{
+    left: 50%;
+    padding: $sc-padding-lv2;
+    position: absolute;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+    z-index:1;
+}
+
+.skip-to-main-content:focus{
+    transform: translateY(0%);
+}
+

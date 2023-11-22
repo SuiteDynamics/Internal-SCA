@@ -1,0 +1,48 @@
+.order-wizard-paymentmethod-ach-module {
+    .ach-edit {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        bpayment-top: none;
+
+        .ach-edit-form {
+            clear: both;
+        }
+        @media (min-width: $screen-sm-min) {
+            padding-left: 0;
+        }
+    }
+
+    .paymentinstrument-ach-new {
+        height: 210px;
+    }
+
+    .paymentinstrument-ach-new-title {
+        margin-top: 50px;
+    }
+}
+
+.order-wizard-paymentmethod-ach-module-learn-more {
+    margin: $sc-margin-lv3 0 0;
+    color: $sc-color-theme-700;
+    font-size: $sc-font-size-s;
+    width: 100%;
+    display: inline-block;
+}
+
+.order-wizard-paymentmethod-ach-module-learn-more-icon {
+    @extend .icon-locked;
+}
+
+.order-wizard-paymentmethod-ach-module-learn-more-link {
+    cursor: pointer;
+}
+
+.order-wizard-paymentmethod-ach-module-title{
+    margin-bottom: $sc-margin-lv2;
+}
+
+.order-wizard-paymentmethod-ach-module-list-placeholder {
+    @extend .creditcard-module-list-placeholder;
+}
+
