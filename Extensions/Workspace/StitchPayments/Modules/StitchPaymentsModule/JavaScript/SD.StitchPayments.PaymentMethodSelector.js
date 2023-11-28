@@ -1,6 +1,6 @@
 
 define(
-	'SDStitchPayments.PaymentMethodSelector'
+	'SD.StitchPayments.PaymentMethodSelector'
 ,   [
 		'LiveOrder.Model',
 		'OrderWizard.Module.PaymentMethod.Selector',
@@ -8,7 +8,8 @@ define(
 		'stitchpaymentsmodule.tpl',
 		'jQuery',
 		'Backbone',
-		'SD.Profile.Model'
+		'SD.Profile.Model',
+		'SD.StitchPayments.StitchPaymentsModule.View'
 	]
 ,   function (
 		LiveOrderModel,
@@ -17,18 +18,44 @@ define(
 		stitchpaymentsmodule_tpl,
 		jQuery,
 		Backbone,
-		ProfileModel
+		ProfileModel,
+		StitchModalView
+
 	)
 {
 	'use strict';
 
-	return  {
-		loadModule: function (container,sdkData){
+	return  { 
+		
+		loadModule: function (container,sdkData, StitchModuleView){
+			console.log(StitchModuleView)
+			
 			
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
 				
 				template: stitchpaymentsmodule_tpl,
+
+				events:{
+					'click [data-action="initiate-stitch"]': 'initiateStitch'
+				},
 				
+				initiateStitch: function (options) {
+
+					let layout = container.getComponent('Layout');
+					console.log('initiate stitch',StitchModuleView)
+
+					
+					if (layout) {
+
+						// var StitchModalView = new StitchModalView();
+
+						layout.showContent(new StitchModalView({
+							container: container,
+							model: sdkData
+						}), {showInModal: true, options: {className: 'stitch-modal'}});
+						
+					}
+				},
 				initialize: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.initialize, function (fn) {
 					
 					fn.apply(this, _.toArray(arguments).slice(1));
@@ -36,6 +63,26 @@ define(
 					var	profile = ProfileModel.getInstance(),
 						self = this;
 					
+
+					// this.modules.push({
+                    //     classModule: OrderWizardModulePaymentMethodOthers,
+                    //     name: 'Stitch',
+                    //     type: 'others',
+                    //     options: _.extend(this.options, { external: true, selector: this })
+                    // })
+					// const ModuleClass = this.modules[4].classModule;
+					// this.modules[4].instance = new ModuleClass(
+					// 	_.extend(
+					// 		{
+					// 			wizard: self.wizard,
+					// 			step: self.step,
+					// 			stepGroup: self.stepGroup
+					// 		},
+					// 		this.modules[4].options
+					// 	)
+					// );;
+					
+					console.log(this);
 					this.on('afterViewRender',function(){
 						
 						jQuery(document).ready(function(){
@@ -44,25 +91,27 @@ define(
 							var stitch_payment_method = sdkData.get('payment_method'),
 								logo_url = sdkData.get('logo_url');
 							
-							var checkout = new Checkout({
-								'mode': "popup",
-								'publicKey': sdkData.get('public_key'),
-								'apiMode': sdkData.get('api_mode'),
-								'apiVersion': sdkData.get('api_version')
-							});
+
+
+							// var checkout = new Checkout({
+							// 	'mode': "popup",
+							// 	'publicKey': sdkData.get('public_key'),
+							// 	'apiMode': sdkData.get('api_mode'),
+							// 	'apiVersion': sdkData.get('api_version')
+							// });
 							
-							checkout.renderStitchButton("stitch-smart-button-container");
+							// checkout.renderStitchButton("stitch-smart-button-container");
 							
-							if(logo_url){
-								jQuery('.stitch-smart-button-logo-img').attr('src',logo_url);
-							}
+							// if(logo_url){
+							// 	jQuery('.stitch-smart-button-logo-img').attr('src',logo_url);
+							// }
 							
-							checkout.init({
-								onClick: startCheckout,
-								onComplete : onCompleteHandler,
-								onCancel: function () {},
-								onFailure: function (event) {}
-							});
+							// checkout.init({
+							// 	onClick: startCheckout,
+							// 	onComplete : onCompleteHandler,
+							// 	onCancel: function () {},
+							// 	onFailure: function (event) {}
+							// });
 							
 							function startCheckout(event){
 								
@@ -123,6 +172,10 @@ define(
 								
 							}
 							function onCompleteHandler(event) {
+
+							  console.log('complete event handler')
+
+							  
 							  var data = event.data || Object.create(null);
 
 							  //console.log('checkout data:',data);
@@ -191,6 +244,8 @@ define(
 						});
 						
 					});
+
+
 				}),
 				
 			});

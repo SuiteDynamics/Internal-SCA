@@ -21,6 +21,8 @@ define("SD.StitchPayments.Model",  [
 		name: 'StitchPayments.Model',
 		
 		processOrder: function(data){
+
+			log.debug({ title: 'processOrder', details: data })
 			
 			var returnString = {};
 			try{
@@ -84,26 +86,20 @@ define("SD.StitchPayments.Model",  [
 			var filters = ['isinactive', 'is', 'F'];
 
 			var columns = [
-				new nlobjSearchColumn('custrecord_sd_stitch_api_url'),
-				new nlobjSearchColumn('custrecord_sd_stitch_public_key'),
-				new nlobjSearchColumn('custrecord_sd_stitch_api_mode'),
-				new nlobjSearchColumn('custrecord_sd_stitch_api_version'),
-				new nlobjSearchColumn('custrecord_sd_stitch_payment_method'),
-				new nlobjSearchColumn('custrecord_sd_stitch_logo_url')
+				new nlobjSearchColumn('custrecord_stitch_cred_base_url'),
+				new nlobjSearchColumn('	custrecord_stitch_cred_pub_key'),
+				new nlobjSearchColumn('custrecord_stitch_environment'),
 			];
 
-			var search_results = Application.getAllSearchResults('customrecord_sd_stitch_credentials', filters, columns);
+			var search_results = Application.getAllSearchResults('customrecord_stitch_credentials', filters, columns);
 			
 			var stitch_creds = {};
 			
 			if(search_results && search_results.length){
 				
-				stitch_creds.api_url = search_results[0].getValue('custrecord_sd_stitch_api_url');
-				stitch_creds.public_key = search_results[0].getValue('custrecord_sd_stitch_public_key');
-				stitch_creds.api_mode = search_results[0].getValue('custrecord_sd_stitch_api_mode');
-				stitch_creds.api_version = search_results[0].getValue('custrecord_sd_stitch_api_version');
-				stitch_creds.payment_method = search_results[0].getValue('custrecord_sd_stitch_payment_method');
-				stitch_creds.logo_url = search_results[0].getValue('custrecord_sd_stitch_logo_url');
+				stitch_creds.api_url = search_results[0].getValue('custrecord_stitch_cred_base_url');
+				stitch_creds.public_key = search_results[0].getValue('custrecord_stitch_cred_pub_key');
+				stitch_creds.api_mode = search_results[0].getValue('custrecord_stitch_environment');
 			}
 			return stitch_creds;
 		}

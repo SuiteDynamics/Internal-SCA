@@ -3,7 +3,7 @@ define("SD.StitchPayments.StitchPaymentsModule.ServiceController", ["ServiceCont
   StitchPaymentsModel
 ) {
   "use strict";
-
+  
   return ServiceController.extend({
     name: "SD.StitchPayments.StitchPaymentsModule.ServiceController",
 

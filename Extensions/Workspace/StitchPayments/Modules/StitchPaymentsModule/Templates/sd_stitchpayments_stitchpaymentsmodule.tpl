@@ -1,9 +1,23 @@
-<section class="stitchpaymentsmodule-info-card">
-    <span class="stitchpaymentsmodule-info-card-content">
-      {{message}}
-    </span>
-</section>
+<script language="JavaScript">
+  window.addEventListener('message', function(event) {
+      console.log('event', event)
+      var token = event.data;
+      var mytoken = document.getElementById('in-modal-mytoken');
+      
+      mytoken.value = token;
+      var submitButton = document.getElementById('in-modal-stitch-token-submit').click();
+      // console.log('submitButton', submitButton)
 
+  }, false);
+</script>
+
+<body data-type="modal-body">
+    <form name="tokenform" id="tokenform">
+        <iframe id="tokenFrame" name="tokenFrame" src="https://fts-uat.cardconnect.com/itoke/ajax-tokenizer.html?useexpiry=true&usecvv=true&enhancedresponse=true&tokenizewheninactive=false" frameborder="0" scrolling="no"></iframe>
+        <input type="hidden" name="mytoken" id="mytoken"/>
+</form>
+<a id="stitch-token-submit" data-action="token-success"> Click here </a>
+</body>
 
 <!--
   Available helpers:

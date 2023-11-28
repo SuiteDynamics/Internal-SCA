@@ -2,10 +2,22 @@
 define(
 	'SD.StitchPayments.StitchPaymentsModule'
 ,   [
-		'SD.StitchPayments.StitchPaymentsModule.View'
+		'underscore',
+		'jQuery',
+		'SD.StitchPayments.PaymentMethodSelector',
+		'SD.StitchPayments.StitchPaymentsModule.Model',
+		'Configuration',
+		'SD.StitchPayments.StitchPaymentsModule.View',
+		'order_wizard_paymentmethod_others_module.tpl'
 	]
 ,   function (
-		StitchPaymentsModuleView
+		_,
+		jQuery,
+		StitchPaymentMethodSelector,
+		StitchPaymentsModel,
+		Configuration,
+		StitchPaymentsModuleView,
+		order_wizard_paymentmethod_others_module_tpl
 	)
 {
 	'use strict';
@@ -13,21 +25,30 @@ define(
 	return  {
 		mountToApp: function mountToApp (container)
 		{
-			console.log('Hello World')
-			// using the 'Layout' component we add a new child view inside the 'Header' existing view 
-			// (there will be a DOM element with the HTML attribute data-view="Header.Logo")
-			// more documentation of the Extensibility API in
-			// https://system.netsuite.com/help/helpcenter/en_US/APIs/SuiteCommerce/Extensibility/Frontend/index.html
+
+
+			var paymentMethods = Configuration.get('siteSettings.paymentmethods', []);
+			console.log(order_wizard_paymentmethod_others_module_tpl)
+			console.log(paymentMethods)
+			//change url
+			//var promise = jQuery.getScript("https://checkout-sdk.sezzle.com/checkout.min.js")
 			
-			/** @type {LayoutComponent} */
-			var layout = container.getComponent('Layout');
-			
-			if(layout)
-			{
-				layout.addChildView('Header.Logo', function() { 
-					return new StitchPaymentsModuleView({ container: container });
-				});
+			let layout = container.getComponent('Layout');
+			console.log('inititate');
+
+			if (layout) {
+
+				var StitchModalView = new StitchPaymentsModuleView();
+
+				//layout.showContent(StitchModalView, {showInModal: true, options: {className: 'stitch-modal'}});
+				
 			}
+			//container.waitForPromise(promise);
+			//container.waitForPromise(model.fetch());
+			
+			var model = new StitchPaymentsModel().fetch();
+			console.log('model',model)
+			StitchPaymentMethodSelector.loadModule(container,model, StitchModalView);
 
 		}
 	};

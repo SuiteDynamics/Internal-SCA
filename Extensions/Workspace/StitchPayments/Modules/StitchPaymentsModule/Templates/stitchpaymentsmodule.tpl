@@ -14,11 +14,8 @@
 					</a>
 				{{/each}}
 				
-				<div id="stitch-smart-button-container"
-				templateText="%%logo%%"
-				 borderType="square"
-				 customClass="stitch-checkout"
-				></div>
+				<div>true</div>
+				<a data-toggle="show-in-modal" data-action="initiate-stitch" class="order-wizard-paymentmethod-selector-module-button" id="sezzle-smart-button-container">Stitch</a>
 			</div>
 		</div>
 	{{/if}}
@@ -29,7 +26,6 @@
 	<div data-view="OrderWizard.AfterPaymentMethods"></div>
 
 </div>
-
 
 
 {{!----
