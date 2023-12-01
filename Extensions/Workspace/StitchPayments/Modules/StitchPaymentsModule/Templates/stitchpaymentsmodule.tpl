@@ -9,13 +9,13 @@
 		<div class="order-wizard-paymentmethod-selector-module-header-nav">
 			<div class="order-wizard-paymentmethod-selector-module-button-group" data-action="change-payment-method">
 				{{#each activeModules}}
-					<a class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">
+					<a data-action="change-payment-method" class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">
 						{{name}}
 					</a>
 				{{/each}}
 				
 				<div>true</div>
-				<a data-toggle="show-in-modal" data-action="initiate-stitch" class="order-wizard-paymentmethod-selector-module-button" id="sezzle-smart-button-container">Stitch</a>
+				<a data-action="change-payment-method" data-toggle="show-in-modal" data-action="initiate-stitch" class="order-wizard-paymentmethod-selector-module-button" id="sezzle-smart-button-container">Stitch</a>
 			</div>
 		</div>
 	{{/if}}

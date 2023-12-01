@@ -16,13 +16,22 @@ define("SD.StitchPayments.Model",  [
 ) {
     "use strict";
     // @class StitchPayments.Model @extends SC.Model
+
+	LiveOrderModel.prototype.getPaymentMethods = _.wrap(LiveOrderModel.prototype.getPaymentMethods, function (fn) {
+
+		var context = fn.apply(this, _.toArray(arguments).slice(1));
+		nlapiLogExecution('DEBUG', 'live order context', context);
+		
+		return context;
+	});
+
     return SCModel.extend({
     
 		name: 'StitchPayments.Model',
 		
 		processOrder: function(data){
 
-			log.debug({ title: 'processOrder', details: data })
+			nlapiLogExecution('DEBUG', 'start', data);
 			
 			var returnString = {};
 			try{
@@ -38,9 +47,10 @@ define("SD.StitchPayments.Model",  [
 				LiveOrderModel.checkItemsAvailability();
 				
 				data.options = _.extend(data.options,{
-					'custbody_sd_stitch_order_uuid': data.order_uuid,
-					'custbody_sd_stitch_order_status': data.status,
-					'custbody_sd_stitch_checkout_summary': JSON.stringify(data.order_summary)
+					
+					//TODO: Make Dynamic
+					'custbody_sd_reference_pay_id': "1234",
+					'custbody_sd_stitch_token_response': "1234"
 				});
 				
 				LiveOrderModel.setTransactionBodyField(data); //set options as custom body fields.
@@ -87,8 +97,11 @@ define("SD.StitchPayments.Model",  [
 
 			var columns = [
 				new nlobjSearchColumn('custrecord_stitch_cred_base_url'),
-				new nlobjSearchColumn('	custrecord_stitch_cred_pub_key'),
+				new nlobjSearchColumn('custrecord_stitch_cred_pub_key'),
 				new nlobjSearchColumn('custrecord_stitch_environment'),
+
+				//TODO: This brings back error. Fix and link to frontend
+				// new nlobjSearchColumn('custrecord_stitch_payment_method')
 			];
 
 			var search_results = Application.getAllSearchResults('customrecord_stitch_credentials', filters, columns);
@@ -100,6 +113,7 @@ define("SD.StitchPayments.Model",  [
 				stitch_creds.api_url = search_results[0].getValue('custrecord_stitch_cred_base_url');
 				stitch_creds.public_key = search_results[0].getValue('custrecord_stitch_cred_pub_key');
 				stitch_creds.api_mode = search_results[0].getValue('custrecord_stitch_environment');
+				// stitch_creds.payment_method = search_results[0].getValue('custrecord_stitch_payment_method');
 			}
 			return stitch_creds;
 		}

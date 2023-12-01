@@ -26,7 +26,12 @@ define('SD.StitchPayments.StitchPaymentsModule.View'
 
 	,	initialize: function (options) {
 
-			console.log('stitch module view',)
+			var self = this
+			console.log('stitch module view', options , this)
+			if(options){
+				self.model = options.model
+			}
+			
 			this.render();
 
 			/*  Uncomment to test backend communication with an example service
@@ -51,19 +56,19 @@ define('SD.StitchPayments.StitchPaymentsModule.View'
 	, 	childViews: {
 
 		}
-	
+
 	, onCompleteHandler: function onCompleteHandler(event) {
 
 			console.log('complete event handler', $('#in-modal-mytoken'))
 			let data = JSON.parse($('#in-modal-mytoken')[0].value);
-			console.log('data', data)
+			console.log('data', this)
 			  //var data = event.data || Object.create(null);
 
 			  //console.log('checkout data:',data);
 			  
 			  if(data.errorCode == "0" && data.token){
 
-				console.log('liveorder', 'liveorder')
+				console.log('liveorder', self)
 				  
 				  var cart = LiveOrderModel.getInstance();
 				  
@@ -71,8 +76,11 @@ define('SD.StitchPayments.StitchPaymentsModule.View'
 				  data.billaddress = cart.get('billaddress') || '';
 				  data.purchase_order = cart.get('purchasenumber') || '';
 				  data.options = cart.get('options') || {};
-				  data.payment_method = stitch_payment_method;
-				  
+
+				  //uncomment once model comes back
+				  //data.payment_method = stitch_payment_method;
+				  data.payment_method = 8;
+
 				  data.order_summary = cart.get('summary') || {};
 				  
 				  data.order_summary.lines = cart.get('lines').map(function(line){
@@ -85,8 +93,8 @@ define('SD.StitchPayments.StitchPaymentsModule.View'
 				  
 				  //block UI
 				  jQuery('body').append('<div id="stitch-checkout-blocker"></div>');
-				  
-				  sdkData.save({'stitch': data}).then(function(response){
+				  console.log('before', this.model)
+				  this.model.save({'stitch': data}).then(function(response){
 					
 					
 					if( _.has(response,'orderCreated') ){

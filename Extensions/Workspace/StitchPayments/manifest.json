@@ -71,8 +71,7 @@
                     "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethodSelector.js",
                     "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.Shopping.js",
                     "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.View.js",
-                    "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPayments.Model.js",
-                    "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPaymentsModule.ServiceController.js"
+                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js"
                 ]
             },
             "checkout": {
@@ -85,16 +84,14 @@
                     "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethodSelector.js",
                     "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.Shopping.js",
                     "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.View.js",
-                    "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPayments.Model.js",
-                    "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPaymentsModule.ServiceController.js"
+                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js"
                 ]
             }
         }
     },
     "ssp-libraries": {
-        "entry_point": "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPayments.StitchPaymentsModule.js",
+        "entry_point": "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPaymentsModule.ServiceController.js",
         "files": [
-            "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPayments.StitchPaymentsModule.js",
             "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPaymentsModule.ServiceController.js",
             "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPayments.Model.js"
         ]
@@ -105,3 +102,7 @@
         ]
     }
 }
+
+SD.StitchPaymentsModule.ServiceController
+
+SD.StitchPaymentsModule.ServiceController.js

@@ -8,7 +8,7 @@ define(['N/search','N/https'],function (search,https) {
 	function stitch_CredentialsSearch(){
 		
 		var credentialsSearchObj = search.create({
-			type: "customrecord_sd_stitch_credentials",
+			type: "customrecord_stitch_credentials",
 			filters: ["isinactive","is",'F'],
 			columns: [
 				  "custrecord_sd_stitch_api_url",

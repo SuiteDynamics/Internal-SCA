@@ -9,7 +9,10 @@ define(
 		'jQuery',
 		'Backbone',
 		'SD.Profile.Model',
-		'SD.StitchPayments.StitchPaymentsModule.View'
+		'SD.StitchPayments.StitchPaymentsModule.View',
+		'OrderWizard.Module.PaymentMethod.Others',
+		'SD.StitchPayments.PaymentMethod.Stitch',
+		'order_wizard_paymentmethod_others_module.tpl'
 	]
 ,   function (
 		LiveOrderModel,
@@ -19,7 +22,10 @@ define(
 		jQuery,
 		Backbone,
 		ProfileModel,
-		StitchModalView
+		StitchModalView,
+		OrderWizardModulePaymentMethodOthers,
+		SitchPaymentMethod,
+		order_wizard_paymentmethod_others_module_tpl
 
 	)
 {
@@ -28,7 +34,6 @@ define(
 	return  { 
 		
 		loadModule: function (container,sdkData, StitchModuleView){
-			console.log(StitchModuleView)
 			
 			
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
@@ -36,14 +41,17 @@ define(
 				template: stitchpaymentsmodule_tpl,
 
 				events:{
-					'click [data-action="initiate-stitch"]': 'initiateStitch'
+					'click [data-action="initiate-stitch"]': 'initiateStitch',
+					'click [data-action="change-payment-method"]': 'selectPaymentMethod',
+					'change [name="paymentmethod-external-option"]': 'selectPaymentMethodExternal',
+					'click [name="paymentmethod-external-option"]': 'selectPaymentMethodExternal'
 				},
 				
 				initiateStitch: function (options) {
 
 					let layout = container.getComponent('Layout');
 					console.log('initiate stitch',StitchModuleView)
-
+					console.log('sdk data',sdkData)
 					
 					if (layout) {
 
@@ -56,6 +64,26 @@ define(
 						
 					}
 				},
+
+				selectPaymentMethod: function(e) {
+					console.log('select', this)
+					const value = e.target.getAttribute('value') || jQuery(e.target).val();
+					if (value) {
+						// var paymentMethods = this.model.get('paymentmethods');
+						// if(this.selectedModule.name == "Stitch" ){
+						// 	this.model.set('paymentmethods', this.selectedModule)
+						// 	// this.paymentMethod = this.selectedModule
+						// }
+						
+						this.setModuleByType(value);
+						console.log('after',this)
+					}
+				},
+
+				selectPaymentMethodExternal: function(e) {
+					this.setModuleByType(e.target.getAttribute('value'), true);
+				},
+
 				initialize: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.initialize, function (fn) {
 					
 					fn.apply(this, _.toArray(arguments).slice(1));
@@ -64,23 +92,26 @@ define(
 						self = this;
 					
 
-					// this.modules.push({
-                    //     classModule: OrderWizardModulePaymentMethodOthers,
-                    //     name: 'Stitch',
-                    //     type: 'others',
-                    //     options: _.extend(this.options, { external: true, selector: this })
-                    // })
-					// const ModuleClass = this.modules[4].classModule;
-					// this.modules[4].instance = new ModuleClass(
-					// 	_.extend(
-					// 		{
-					// 			wizard: self.wizard,
-					// 			step: self.step,
-					// 			stepGroup: self.stepGroup
-					// 		},
-					// 		this.modules[4].options
-					// 	)
-					// );;
+					this.modules.push({
+                        classModule: SitchPaymentMethod,
+                        name: 'Stitch',
+                        type: 'stitch'
+                    })
+					const ModuleClass = this.modules[4].classModule;
+					this.modules[4].instance = new ModuleClass(
+						_.extend(
+							{
+								wizard: self.wizard,
+								step: self.step,
+								stepGroup: self.stepGroup
+							},
+							this.modules[4].options
+						)
+					);
+					console.log(this.modules)
+					this.modules[4].instance.on('ready', function(is_ready) {
+						self.moduleReady(is_ready);
+					});
 					
 					console.log(this);
 					this.on('afterViewRender',function(){
@@ -88,8 +119,14 @@ define(
 						jQuery(document).ready(function(){
 							
 							//var stitchApiUrl = sdkData.get('api_url');
-							var stitch_payment_method = sdkData.get('payment_method'),
-								logo_url = sdkData.get('logo_url');
+
+							//make dynamic
+							// var stitch_payment_method = sdkData.get('payment_method'),
+								// logo_url = sdkData.get('logo_url');
+							var stitch_payment_method = 8,
+								logo_url = "http://7050356.shop.netsuite.com/c.7050356/SiteImages/Stitch_logo.png"
+
+
 							
 
 
