@@ -1,7 +1,7 @@
 // Model.js
 // -----------------------
 // @module Case
-define("SD.StitchPayments.StitchPaymentsModule.SS2Model", ["Backbone", "Utils"], function(
+define("SuiteDynamics.StitchPayments.StitchPayments.SS2Model", ["Backbone", "Utils"], function(
     Backbone,
     Utils
 ) {
@@ -12,7 +12,7 @@ define("SD.StitchPayments.StitchPaymentsModule.SS2Model", ["Backbone", "Utils"],
         //@property {String} urlRoot
         urlRoot: Utils.getAbsoluteUrl(
             getExtensionAssetsPath(
-                "Modules/StitchPaymentsModule/SuiteScript2/StitchPaymentsModule.Service.ss"
+                "Modules/StitchPayments/SuiteScript2/StitchPayments.Service.ss"
             ),
             true
         )

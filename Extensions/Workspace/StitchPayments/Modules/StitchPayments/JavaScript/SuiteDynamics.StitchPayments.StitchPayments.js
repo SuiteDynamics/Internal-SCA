@@ -1,101 +1,134 @@
 
 define(
-	'SD.StitchPayments.PaymentMethodSelector'
+	'SuiteDynamics.StitchPayments.StitchPayments'
 ,   [
-		'LiveOrder.Model',
+		'SuiteDynamics.StitchPayments.StitchPayments.View',
 		'OrderWizard.Module.PaymentMethod.Selector',
+		'SuiteDynamics.StitchPayments.PaymentMethod.Stitch',
+		'LiveOrder.Model',
+		'OrderWizard.Module.PaymentMethod.External',
+		'Profile.Model',
+		'Transaction.Model',
+		'Transaction.Paymentmethod.Collection',
+		'Transaction.Paymentmethod.Model',
+		'OrderWizard.Module.PaymentMethod',
+		'OrderWizard.Module.ShowPayments',
 		'underscore',
-		'stitchpaymentsmodule.tpl',
 		'jQuery',
 		'Backbone',
-		'SD.Profile.Model',
-		'SD.StitchPayments.StitchPaymentsModule.View',
-		'OrderWizard.Module.PaymentMethod.Others',
-		'SD.StitchPayments.PaymentMethod.Stitch',
-		'order_wizard_paymentmethod_others_module.tpl'
+		'Utils',
+		'Tracker',
+		'Configuration',
+
+		'suitedynamics_stitchpayments_stitchpayments.tpl'
 	]
 ,   function (
-		LiveOrderModel,
+		StitchPaymentsView,
 		OrderWizardModulePaymentMethodSelector,
+		SitchPaymentMethod,
+		LiveOrderModel,
+		OrderWizardModulePaymentMethodExternal,
+		ProfileModel,
+		TransactionModel,
+		TransactionPaymentmethodCollection,
+		TransactionPaymentmethodModel,
+		OrderWizardModulePaymentMethod,
+		OrderWizardShowPayments,
 		_,
-		stitchpaymentsmodule_tpl,
 		jQuery,
 		Backbone,
-		ProfileModel,
-		StitchModalView,
-		OrderWizardModulePaymentMethodOthers,
-		SitchPaymentMethod,
-		order_wizard_paymentmethod_others_module_tpl
+		Utils,
+		Tracker,
+		Configuration,
 
+		stitchpayments_tpl
+		
 	)
 {
 	'use strict';
 
-	return  { 
-		
-		loadModule: function (container,sdkData, StitchModuleView){
-			
-			
+	return  {
+		mountToApp: function mountToApp (container)
+		{
+
+			OrderWizardModulePaymentMethodExternal.prototype.render = function() {
+				const options = this.options.model && this.options.model.get('options');
+				console.log('external render', this)
+				if (options) {
+					_.extend(this.options, options);
+				}
+				if(this.options.paymentmethod.name = 'Stitch'){
+					this.setStitchPaymentMethod();
+				}else{
+					this.setPaymentMethod();
+				}
+				this._render();
+			};
+
+			OrderWizardModulePaymentMethodExternal.prototype.submit = function() {
+				console.log('external submit', this)
+
+				if(this.options.paymentmethod.name = 'Stitch'){
+					this.setStitchPaymentMethod();
+				}else{
+					this.setPaymentMethod();
+				}
+				OrderWizardModulePaymentMethod.prototype.submit.apply(this);
+			};
+
+			//Seperated this out for Stitch method. 
+			OrderWizardModulePaymentMethodExternal.prototype.setStitchPaymentMethod = function() {
+				console.log('set stich external')
+
+				//Add EL New. For Testing. TODO: Make Dynamic
+				this.paymentMethod = new TransactionPaymentmethodModel({
+					type: 'external_checkout',
+					isexternal: 'T',
+					internalid: "8",
+					name: 'Stitch',
+					key: "8"
+				});
+
+			};
+
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
 				
-				template: stitchpaymentsmodule_tpl,
+				template: stitchpayments_tpl,
 
 				events:{
-					'click [data-action="initiate-stitch"]': 'initiateStitch',
+					// 'click [data-action="initiate-stitch"]': 'initiateStitch',
 					'click [data-action="change-payment-method"]': 'selectPaymentMethod',
 					'change [name="paymentmethod-external-option"]': 'selectPaymentMethodExternal',
 					'click [name="paymentmethod-external-option"]': 'selectPaymentMethodExternal'
 				},
 				
-				initiateStitch: function (options) {
 
-					let layout = container.getComponent('Layout');
-					console.log('initiate stitch',StitchModuleView)
-					console.log('sdk data',sdkData)
-					
-					if (layout) {
-
-						// var StitchModalView = new StitchModalView();
-
-						layout.showContent(new StitchModalView({
-							container: container,
-							model: sdkData
-						}), {showInModal: true, options: {className: 'stitch-modal'}});
-						
-					}
+				//For some reason this was added into source code to look for external, not others. As a result external payment methods were getting excluded from render. 
+				isOthersModule: function(type) {
+					return type.indexOf('others') !== -1 && !!order_wizard_paymentmethod_others_module_tpl;
 				},
 
-				selectPaymentMethod: function(e) {
-					console.log('select', this)
-					const value = e.target.getAttribute('value') || jQuery(e.target).val();
-					if (value) {
-						// var paymentMethods = this.model.get('paymentmethods');
-						// if(this.selectedModule.name == "Stitch" ){
-						// 	this.model.set('paymentmethods', this.selectedModule)
-						// 	// this.paymentMethod = this.selectedModule
-						// }
-						
-						this.setModuleByType(value);
-						console.log('after',this)
-					}
-				},
 
-				selectPaymentMethodExternal: function(e) {
-					this.setModuleByType(e.target.getAttribute('value'), true);
-				},
-
+				//Source code is not adding Stitch method, so we do this manually
 				initialize: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.initialize, function (fn) {
 					
-					fn.apply(this, _.toArray(arguments).slice(1));
-					
-					var	profile = ProfileModel.getInstance(),
+					var context = fn.apply(this, _.toArray(arguments).slice(1));
+					console.log('context',context)
+					const payment_methods = Configuration.get('siteSettings.paymentmethods', []);
+					console.log('payment_methods',payment_methods)
+					var stitch = _.findWhere(payment_methods,{ name: 'Stitch' });
+					console.log('stitch',stitch)
+					var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 						self = this;
 					
 
 					this.modules.push({
-                        classModule: SitchPaymentMethod,
+                        classModule: OrderWizardModulePaymentMethodExternal,
                         name: 'Stitch',
-                        type: 'stitch'
+                        type: 'external',
+						options: {
+							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' })
+						}
                     })
 					const ModuleClass = this.modules[4].classModule;
 					this.modules[4].instance = new ModuleClass(
@@ -114,10 +147,11 @@ define(
 					});
 					
 					console.log(this);
+					
 					this.on('afterViewRender',function(){
+
 						
 						jQuery(document).ready(function(){
-							
 							//var stitchApiUrl = sdkData.get('api_url');
 
 							//make dynamic
@@ -286,6 +320,25 @@ define(
 				}),
 				
 			});
+
+
+
+			console.log('trigger')
+			// using the 'Layout' component we add a new child view inside the 'Header' existing view 
+			// (there will be a DOM element with the HTML attribute data-view="Header.Logo")
+			// more documentation of the Extensibility API in
+			// https://system.netsuite.com/help/helpcenter/en_US/APIs/SuiteCommerce/Extensibility/Frontend/index.html
+			
+			/** @type {LayoutComponent} */
+			var layout = container.getComponent('Layout');
+			
+			if(layout)
+			{
+				layout.addChildView('Header.Logo', function() { 
+					return new StitchPaymentsView({ container: container });
+				});
+			}
+
 		}
 	};
 });

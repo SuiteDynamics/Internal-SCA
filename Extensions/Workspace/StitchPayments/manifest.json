@@ -1,15 +1,16 @@
 {
     "name": "StitchPayments",
-    "fantasyName": "Stich Payment Processor ",
+    "fantasyName": "Stitch Payments",
     "vendor": "SuiteDynamics",
+    "version": "1.0.0",
     "type": "extension",
     "target": "SCA,SCS",
     "target_version": {
-        "SCA": ">=23.1.3",
-        "SCS": ">=23.1.3"
+        "SCA": "",
+        "SCS": ""
     },
-    "version": "1.0.0",
-    "description": "Integrates Stitch payments into the webstore",
+    "description": "Integrates Stitch payment method into SuiteCommerce",
+    "skins": [],
     "assets": {
         "img": {
             "files": []
@@ -19,90 +20,60 @@
         },
         "services": {
             "files": [
-                "services/StitchPaymentsModule.Service.ss"
+                "services/StitchPayments.Service.ss"
             ]
         }
     },
     "configuration": {
         "files": [
-            "Modules/StitchPaymentsModule/Configuration/StitchPaymentsModule.json"
+            "Modules/StitchPayments/Configuration/StitchPayments.json"
+        ]
+    },
+    "sass": {
+        "entry_points": {
+            "checkout": "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
+        },
+        "files": [
+            "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
         ]
     },
     "templates": {
         "application": {
-            "shopping": {
-                "files": [
-                    "Modules/StitchPaymentsModule/Templates/sd_stitchpayments_stitchpaymentsmodule.tpl",
-                    "Modules/StitchPaymentsModule/Templates/stitchpayments_widget.tpl",
-                    "Modules/StitchPaymentsModule/Templates/stitchpaymentsmodule.tpl"
-                ]
-            },
             "checkout": {
                 "files": [
-                    "Modules/StitchPaymentsModule/Templates/sd_stitchpayments_stitchpaymentsmodule.tpl",
-                    "Modules/StitchPaymentsModule/Templates/stitchpayments_widget.tpl",
-                    "Modules/StitchPaymentsModule/Templates/stitchpaymentsmodule.tpl"
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_stitchpayments.tpl",
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_paymentmethod.tpl"
                 ]
             }
         }
     },
-    "sass": {
-        "entry_points": {
-            "shopping": "Modules/StitchPaymentsModule/Sass/_stitchpayments-stitchpaymentsmodule.scss",
-            "checkout": "Modules/StitchPaymentsModule/Sass/_stitchpayments-stitchpaymentsmodule.scss"
-        },
-        "files": [
-            "Modules/StitchPaymentsModule/Sass/_stitchpayments-stitchpaymentsmodule.scss"
-        ]
-    },
     "javascript": {
         "entry_points": {
-            "shopping": "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.js",
-            "checkout": "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.js"
+            "checkout": "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.js"
         },
         "application": {
-            "shopping": {
-                "files": [
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.js",
-                    "Modules/StitchPaymentsModule/JavaScript/StitchPaymentsModule.View.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.Model.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.SS2Model.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.Profile.Model.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethodSelector.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.Shopping.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.View.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js"
-                ]
-            },
             "checkout": {
                 "files": [
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.js",
-                    "Modules/StitchPaymentsModule/JavaScript/StitchPaymentsModule.View.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.Model.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.StitchPaymentsModule.SS2Model.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.Profile.Model.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethodSelector.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.Shopping.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.View.js",
-                    "Modules/StitchPaymentsModule/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js"
+                    "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.js",
+                    "Modules/StitchPayments/JavaScript/StitchPayments.View.js",
+                    "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.Model.js",
+                    "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.SS2Model.js",
+                    "Modules/StitchPayments/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js"
                 ]
             }
         }
     },
     "ssp-libraries": {
-        "entry_point": "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPaymentsModule.ServiceController.js",
+        "entry_point": "Modules/StitchPayments/SuiteScript/SuiteDynamics.StitchPayments.StitchPayments.js",
         "files": [
-            "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPaymentsModule.ServiceController.js",
-            "Modules/StitchPaymentsModule/SuiteScript/SD.StitchPayments.Model.js"
+            "Modules/StitchPayments/SuiteScript/SuiteDynamics.StitchPayments.StitchPayments.js",
+            "Modules/StitchPayments/SuiteScript/StitchPayments.ServiceController.js"
         ]
     },
+    "local_folder": "Workspace\\StitchPayments",
     "suitescript2": {
         "files": [
-            "Modules/StitchPaymentsModule/SuiteScript2/StitchPaymentsModule.Service.ss"
+            "Modules/StitchPayments/SuiteScript2/StitchPayments.Service.ss"
         ]
     }
 }
-
-SD.StitchPaymentsModule.ServiceController
-
-SD.StitchPaymentsModule.ServiceController.js

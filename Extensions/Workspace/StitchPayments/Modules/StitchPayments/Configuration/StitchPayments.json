@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": { 
+        "StitchPayments.config": {
+            "group": "extensions",
+            "subtab": "StitchPayments_subtab",
+            "type": "string",
+            "title": "StitchPayments_Title",
+            "description": "Config description example",
+            "default": "Default config example"
+        }
+    }
+}

@@ -9,11 +9,11 @@
 // --------------------------------
 //
 define(
-	'SD.StitchPayments.PaymentMethod.Stitch'
+	'SuiteDynamics.StitchPayments.PaymentMethod.Stitch'
 ,	[	'OrderWizard.Module.PaymentMethod'
 	,	'Transaction.Paymentmethod.Model'
 
-	,	'stitchpayments_widget.tpl'
+	,	'suitedynamics_stitchpayments_paymentmethod.tpl'
 
 	,	'Backbone'
 	,	'underscore'
@@ -22,7 +22,7 @@ define(
 		OrderWizardModulePaymentMethod
 	,	TransactionPaymentmethodModel
 
-	,	stitchpayments_widget_tpl
+	,	suitedynamics_stitchpayments_paymentmethod_tpl
 
 	,	Backbone
 	,	_
@@ -32,7 +32,7 @@ define(
 
 	return OrderWizardModulePaymentMethod.extend({
 
-		template: stitchpayments_widget_tpl
+		template: suitedynamics_stitchpayments_paymentmethod_tpl
 
 	// ,	events: {
 	// 		'click [data-toggle="show-terms"]': 'showTerms'
@@ -75,22 +75,22 @@ define(
 			}
 		}
 
-	,	submit: function ()
-		{
-			var self = this;
+	// ,	submit: function ()
+	// 	{
+	// 		var self = this;
 
-			return this.isValid().done(function ()
-			{
-				self.paymentMethod = new TransactionPaymentmethodModel(
-				{
-						type: 'Stitch',
-                        name: 'Stitch'
-					// ,	terms: self.wizard.options.profile.get('paymentterms')
-				});
+	// 		return this.isValid().done(function ()
+	// 		{
+	// 			self.paymentMethod = new TransactionPaymentmethodModel(
+	// 			{
+	// 					type: 'Stitch',
+    //                     name: 'Stitch'
+	// 				// ,	terms: self.wizard.options.profile.get('paymentterms')
+	// 			});
 
-				OrderWizardModulePaymentMethod.prototype.submit.apply(self);
-			});
-		}
+	// 			OrderWizardModulePaymentMethod.prototype.submit.apply(self);
+	// 		});
+	// 	}
 	,	getContext: function ()
 		{
 
