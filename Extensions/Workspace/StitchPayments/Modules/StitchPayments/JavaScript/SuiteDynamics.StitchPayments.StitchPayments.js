@@ -50,46 +50,52 @@ define(
 	return  {
 		mountToApp: function mountToApp (container)
 		{
-
-			OrderWizardModulePaymentMethodExternal.prototype.render = function() {
-				const options = this.options.model && this.options.model.get('options');
-				console.log('external render', this)
-				if (options) {
-					_.extend(this.options, options);
-				}
-				if(this.options.paymentmethod.name = 'Stitch'){
-					this.setStitchPaymentMethod();
-				}else{
-					this.setPaymentMethod();
-				}
-				this._render();
+			OrderWizardModulePaymentMethod.prototype.submit = function() {
+				console.log('PM Submit')
+				const payment_method = this.paymentMethod;
+				return this.model.addPayment(payment_method);
 			};
 
-			OrderWizardModulePaymentMethodExternal.prototype.submit = function() {
-				console.log('external submit', this)
 
-				if(this.options.paymentmethod.name = 'Stitch'){
-					this.setStitchPaymentMethod();
-				}else{
-					this.setPaymentMethod();
-				}
-				OrderWizardModulePaymentMethod.prototype.submit.apply(this);
-			};
+			// OrderWizardModulePaymentMethodExternal.prototype.render = function() {
+			// 	const options = this.options.model && this.options.model.get('options');
+			// 	console.log('external render', this)
+			// 	if (options) {
+			// 		_.extend(this.options, options);
+			// 	}
+			// 	if(this.options.paymentmethod.name = 'Stitch'){
+			// 		this.setStitchPaymentMethod();
+			// 	}else{
+			// 		this.setPaymentMethod();
+			// 	}
+			// 	this._render();
+			// };
 
-			//Seperated this out for Stitch method. 
-			OrderWizardModulePaymentMethodExternal.prototype.setStitchPaymentMethod = function() {
-				console.log('set stich external')
+			// OrderWizardModulePaymentMethodExternal.prototype.submit = function() {
+			// 	console.log('external submit', this)
 
-				//Add EL New. For Testing. TODO: Make Dynamic
-				this.paymentMethod = new TransactionPaymentmethodModel({
-					type: 'external_checkout',
-					isexternal: 'T',
-					internalid: "8",
-					name: 'Stitch',
-					key: "8"
-				});
+			// 	if(this.options.paymentmethod.name = 'Stitch'){
+			// 		this.setStitchPaymentMethod();
+			// 	}else{
+			// 		this.setPaymentMethod();
+			// 	}
+			// 	OrderWizardModulePaymentMethod.prototype.submit.apply(this);
+			// };
 
-			};
+			// //Seperated this out for Stitch method. 
+			// OrderWizardModulePaymentMethodExternal.prototype.setStitchPaymentMethod = function() {
+			// 	console.log('set stich external')
+
+			// 	//Add EL New. For Testing. TODO: Make Dynamic
+			// 	this.paymentMethod = new TransactionPaymentmethodModel({
+			// 		type: 'external_checkout',
+			// 		isexternal: 'T',
+			// 		internalid: "8",
+			// 		name: 'Stitch',
+			// 		key: "8"
+			// 	});
+
+			// };
 
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
 				
@@ -123,13 +129,14 @@ define(
 					
 
 					this.modules.push({
-                        classModule: OrderWizardModulePaymentMethodExternal,
+                        classModule: SitchPaymentMethod,
                         name: 'Stitch',
                         type: 'external',
 						options: {
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' })
 						}
                     })
+					//TODO: Make Dynamic
 					const ModuleClass = this.modules[4].classModule;
 					this.modules[4].instance = new ModuleClass(
 						_.extend(

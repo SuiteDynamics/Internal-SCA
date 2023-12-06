@@ -16,3 +16,11 @@
     color: $sc-color-secondary;
     font-weight: bold;
 }
+.stitchpayments-iframe{
+	position: inherit !important; 
+}
+.stitchpayments-body{
+	left:10000px;
+	position: relative;
+	height: 200px;
+}

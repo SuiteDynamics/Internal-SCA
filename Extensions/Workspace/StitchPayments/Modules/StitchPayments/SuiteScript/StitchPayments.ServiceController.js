@@ -1,5 +1,6 @@
-define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["ServiceController","LiveOrder.Model","underscore"], function(
+define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["ServiceController", "StitchPayments.Model", "LiveOrder.Model","underscore"], function(
   ServiceController,
+  StitchPaymentsModel,
   LiveOrderModel,
   _
 ) {
@@ -15,9 +16,7 @@ define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["Servic
     },
 
     get: function get() {
-      return JSON.stringify({
-        message: "Hello World I'm an Extension using a Service!"
-      });
+      return StitchPaymentsModel.getTokens();
     },
 
     post: function post() {

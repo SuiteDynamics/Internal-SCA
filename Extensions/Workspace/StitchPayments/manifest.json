@@ -67,7 +67,8 @@
         "entry_point": "Modules/StitchPayments/SuiteScript/SuiteDynamics.StitchPayments.StitchPayments.js",
         "files": [
             "Modules/StitchPayments/SuiteScript/SuiteDynamics.StitchPayments.StitchPayments.js",
-            "Modules/StitchPayments/SuiteScript/StitchPayments.ServiceController.js"
+            "Modules/StitchPayments/SuiteScript/StitchPayments.ServiceController.js",
+            "Modules/StitchPayments/SuiteScript/StitchPayments.Model.js"
         ]
     },
     "local_folder": "Workspace\\StitchPayments",

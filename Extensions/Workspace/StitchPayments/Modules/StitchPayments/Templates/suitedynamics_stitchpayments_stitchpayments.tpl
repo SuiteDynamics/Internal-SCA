@@ -9,7 +9,6 @@
 		<div class="order-wizard-paymentmethod-selector-module-header-nav">
 			<div class="order-wizard-paymentmethod-selector-module-button-group" data-action="change-payment-method">
 				{{#each activeModules}}
-				<div>in</div>
 					<a data-action="change-payment-method" class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">
 						{{name}}
 					</a>
