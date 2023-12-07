@@ -2,15 +2,14 @@
     "name": "StitchPayments",
     "fantasyName": "Stitch Payments",
     "vendor": "SuiteDynamics",
-    "version": "1.0.0",
     "type": "extension",
     "target": "SCA,SCS",
     "target_version": {
         "SCA": "",
         "SCS": ""
     },
+    "version": "1.0.0",
     "description": "Integrates Stitch payment method into SuiteCommerce",
-    "skins": [],
     "assets": {
         "img": {
             "files": []
@@ -29,6 +28,17 @@
             "Modules/StitchPayments/Configuration/StitchPayments.json"
         ]
     },
+    "templates": {
+        "application": {
+            "checkout": {
+                "files": [
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_stitchpayments.tpl",
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_paymentmethod.tpl",
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_addtoken.tpl"
+                ]
+            }
+        }
+    },
     "sass": {
         "entry_points": {
             "checkout": "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
@@ -36,16 +46,6 @@
         "files": [
             "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
         ]
-    },
-    "templates": {
-        "application": {
-            "checkout": {
-                "files": [
-                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_stitchpayments.tpl",
-                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_paymentmethod.tpl"
-                ]
-            }
-        }
     },
     "javascript": {
         "entry_points": {
@@ -57,8 +57,10 @@
                     "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.js",
                     "Modules/StitchPayments/JavaScript/StitchPayments.View.js",
                     "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.Model.js",
+                    "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.Collection.js",
                     "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.StitchPayments.SS2Model.js",
-                    "Modules/StitchPayments/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js"
+                    "Modules/StitchPayments/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js",
+                    "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.AddToken.view.js"
                 ]
             }
         }
@@ -71,7 +73,6 @@
             "Modules/StitchPayments/SuiteScript/StitchPayments.Model.js"
         ]
     },
-    "local_folder": "Workspace\\StitchPayments",
     "suitescript2": {
         "files": [
             "Modules/StitchPayments/SuiteScript2/StitchPayments.Service.ss"

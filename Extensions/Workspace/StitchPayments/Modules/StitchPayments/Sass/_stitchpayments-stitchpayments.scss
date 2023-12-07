@@ -24,3 +24,6 @@
 	position: relative;
 	height: 200px;
 }
+.stitch-add-token-button{
+	@extend .button-secondary;
+}

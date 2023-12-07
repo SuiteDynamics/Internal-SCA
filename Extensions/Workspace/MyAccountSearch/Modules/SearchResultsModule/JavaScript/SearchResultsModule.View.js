@@ -116,25 +116,25 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 			
 			Backbone.history.navigate(url, { trigger: true });
 		}
-	, 	childViews: {
-			'Pagination.View': function() {
+	// , 	childViews: {
+	// 		'Pagination.View': function() {
 				
-				var defaultPaginationSettings = this.options.environment.getConfig('defaultPaginationSettings',{});
+	// 			var defaultPaginationSettings = this.options.environment.getConfig('defaultPaginationSettings',{});
 				
-				var PaginationView = _.has(GlobalViewsPaginationModule,'GlobalViewsPaginationView')? GlobalViewsPaginationModule.GlobalViewsPaginationView: GlobalViewsPaginationModule;
+	// 			var PaginationView = _.has(GlobalViewsPaginationModule,'GlobalViewsPaginationView')? GlobalViewsPaginationModule.GlobalViewsPaginationView: GlobalViewsPaginationModule;
 				
-				return new PaginationView(
-					_.extend(
-						{
-							totalPages: Math.ceil(
-								this.totalRecords / this.recordsPerPage
-							)
-						},
-						defaultPaginationSettings
-					)
-				);
-			}
-		}
+	// 			return new PaginationView(
+	// 				_.extend(
+	// 					{
+	// 						totalPages: Math.ceil(
+	// 							this.totalRecords / this.recordsPerPage
+	// 						)
+	// 					},
+	// 					defaultPaginationSettings
+	// 				)
+	// 			);
+	// 		}
+	// 	}
 	,	getSelectedMenu: function() {
 			return 'search_' + this.savedSearchId;
 		}

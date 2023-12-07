@@ -56,7 +56,6 @@ define(
 				return this.model.addPayment(payment_method);
 			};
 
-
 			// OrderWizardModulePaymentMethodExternal.prototype.render = function() {
 			// 	const options = this.options.model && this.options.model.get('options');
 			// 	console.log('external render', this)
@@ -133,7 +132,8 @@ define(
                         name: 'Stitch',
                         type: 'external',
 						options: {
-							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' })
+							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
+							layout: container.getComponent('Layout')
 						}
                     })
 					//TODO: Make Dynamic
