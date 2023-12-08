@@ -129,11 +129,16 @@ try{
                     stitch_card.last_four = card.getValue('custrecord_sd_stitch_cc_last_4');
                     stitch_card.card_type = card.getValue('custrecord_stitch_cc_token_card_type');
                     stitch_card.card_name = card.getValue('custrecord_stitch_cc_token_card_name');
-                    stitch_card.default_card = card.getValue('custrecord_sd_stitch_is_default_card');
                     stitch_card.exp_month = card.getValue('custrecord_stitch_cc_token_exp_month');
                     stitch_card.exp_year = card.getValue('custrecord_stitch_cc_token_exp_year');
                     stitch_card.id = card.getValue('internalid');
             
+                    if(card.getValue('custrecord_sd_stitch_is_default_card') == 'T'){
+                        stitch_card.default_card = true 
+                    }else{
+                        stitch_card.default_card = false 
+                    }
+
                     stitchCardsArr.push(stitch_card)
 
                 })
@@ -144,10 +149,36 @@ try{
 
 
                 nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
+                var userId = nlapiGetUser();
 
-                this.submitCustomerProfile(data, nlapiGetUser())
+                var stitchProfileSubmit = this.submitCustomerProfile(data, userId);
 
-                return {'Test': 'test'};
+                if(stitchProfileSubmit.status == 'Success'){
+
+                    //nlapiSubmitField('customer', userId, 'custentity_sd_stitch_profile_id', stitchProfileSubmit.profileid);
+
+                    var customerUpdate = {
+                        internalid: parseInt(nlapiGetUser(), 10),
+                        custentity_sd_stitch_profile_id:stitchProfileSubmit.profileid
+                    };
+                    ModelsInit.customer.updateProfile(customerUpdate);
+
+                    var tokenRec = this.createTokenRecord(data, stitchProfileSubmit.response)
+                }
+
+                if(tokenRec){
+
+                    //Since we will want to make the new card the default card, we will need to remove the default from the other card
+                    this.resetTokenDefaults(userId,tokenRec);
+
+                    return{
+                        status: 'Success'
+                    }
+                }else{
+                    return{
+                        status: 'Failed to create token'
+                    }
+                }
             },
             updateTokens: function(data){
                 nlapiLogExecution('DEBUG', 'update', 'update');
@@ -159,10 +190,54 @@ try{
 
                 nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
 
-                var custInfo = nlapiLookupField('customer', user, ['name','phone']);
+                var stitchCredentials = this.getStitchCredentials(user)
+                //var custInfo = nlapiLookupField('customer', user, ['firstname','lastname','phone']);
 
+                // //Build body object
+                var stitchBody = {
+                    "phone"		: data.phone,
+                    "email"		: data.email,
+                    "expiry"	: data.expiry,
+                    "merchid"	: stitchCredentials.merchantId,
+                    "name"		: data.first_name + " " + data.last_name,
+                    "account"	: data.token
+                }
 
-                nlapiLogExecution('DEBUG', 'customer result', custInfo);
+                //Build header object
+                var headerObj = {
+                    "Authorization" : stitchCredentials.tokenKey,
+                    "Access-Control-Allow-Origin": "*",
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip, deflate, br",
+                    "Content-Type": "application/json"
+                }
+
+                var stitchPaymentsApiUrl = stitchCredentials.baseurl + '/profile'
+                nlapiLogExecution('DEBUG', 'body', JSON.stringify(stitchBody));
+                nlapiLogExecution('DEBUG', 'stitchPaymentsApiUrl', stitchPaymentsApiUrl);
+                nlapiLogExecution('DEBUG', 'headers', JSON.stringify(headerObj));
+                // var response = nlapiRequestURL(stitchPaymentsApiUrl, body, headerObj)
+                var response = nlapiRequestURL(stitchPaymentsApiUrl, JSON.stringify(stitchBody), headerObj, 'POST')
+                // var response = nlapiRequestURL(url, body, header, null, "POST");
+				
+                var responseBody = JSON.parse(response.getBody());
+                nlapiLogExecution('DEBUG', 'PROFILE_RESPONSE', JSON.stringify(responseBody));
+                if (response.getCode() == 200 && responseBody.respcode == "09") {
+				
+                    return{
+                        status: 'Success',
+                        response: responseBody
+                    }
+					
+				}else{
+                    nlapiLogExecution('ERROR', 'CUST_PROFILE_ERR', JSON.stringify(responseBody));
+                    return{
+                        status: 'Error',
+                        response: responseBody
+                    }
+                }
+
+                // nlapiLogExecution('DEBUG', 'customer result first name', custInfo.firstname);
 
 
 
@@ -178,7 +253,91 @@ try{
                 // "name"		: customerDetails.name,
                 // "account"	: tokenNum
 
-                return {'Test': 'test'};
+            },
+            createTokenRecord: function(tokenData, profileData){
+                nlapiLogExecution('DEBUG', 'createTokenRecord', JSON.stringify(profileData));
+
+                stitchTokenRecord = nlapiCreateRecord('customrecord_stitch_cc_token');
+				stitchTokenRecord.setFieldValue('custrecord_stitch_cc_token_customer', nlapiGetUser());
+                stitchTokenRecord.setFieldValue('custrecord_stitch_cc_token_card_type', profileData.accttype);
+				stitchTokenRecord.setFieldValue('custrecord_stitch_cc_token_exp_month', tokenData.exp_month);
+				stitchTokenRecord.setFieldValue('custrecord_stitch_cc_token_exp_year', tokenData.exp_year);
+                stitchTokenRecord.setFieldValue('custrecord_stitch_cc_token_token', tokenData.token);
+				stitchTokenRecord.setFieldValue('custrecord_sd_stitch_cc_last_4', tokenData.last_four);
+                stitchTokenRecord.setFieldValue('custrecord_sd_stitch_cc_per_token_json', profileData);
+                stitchTokenRecord.setFieldValue('custrecord_sd_stitch_is_default_card', 'T');
+                stitchTokenRecord.setFieldValue('name', profileData.accttype + " " + tokenData.last_four);
+
+	
+				newRec = nlapiSubmitRecord(stitchTokenRecord);
+
+                nlapiLogExecution('DEBUG', 'newRec id', newRec);
+                return newRec;
+            },
+            resetTokenDefaults: function(user,newTokenRec){
+
+                nlapiLogExecution('DEBUG', 'resetTokenDefaults', newTokenRec);
+                var filters = [
+                    ["custrecord_stitch_cc_token_customer","anyof", user], 
+                    "AND", 
+                    ["custrecord_sd_stitch_is_default_card","is","T"],
+                    "AND", 
+                    ["internalid","noneof",newTokenRec]
+                  ];
+
+                var columns = [
+                    new nlobjSearchColumn('internalid')
+                ];
+
+                var search_results = Application.getAllSearchResults('customrecord_stitch_cc_token', filters, columns);
+
+                if(search_results && search_results.length){
+
+                search_results.forEach(function (card) {
+
+                    var removeDefaultId = card.getValue('internalid');
+
+                    nlapiLogExecution('DEBUG', 'remove default card', removeDefaultId);
+
+                    nlapiSubmitField('customrecord_stitch_cc_token', removeDefaultId, 'custrecord_sd_stitch_is_default_card', 'F');
+
+                })
+                }
+                return;
+            },
+            getStitchCredentials: function(){
+
+
+                var stitchCreds = nlapiSearchRecord(
+                    'customrecord_stitch_credentials',
+                    null,
+                    null,// new nlobjSearchFilter('custrecord_stitch_cred_base_url', null, 'is', user),
+                    [
+                    new nlobjSearchColumn('custrecord_stitch_cred_token_key'),
+                    new nlobjSearchColumn('custrecord_sd_stitch_merchantid'),
+                    new nlobjSearchColumn('custrecord_stitch_cred_base_url')
+                    // new nlobjSearchColumn('id')
+                    ]
+                );
+
+
+                // nlapiLogExecution('DEBUG', 'creds result', stitchCreds[0].getValue("id"));
+
+                var result = {};
+
+                if(stitchCreds.length > 0){
+                    for (var i = 0; i < stitchCreds.length; i++) {
+
+                        nlapiLogExecution('DEBUG', 'result', stitchCreds[i].getValue("custrecord_stitch_cred_base_url"));
+                        result.baseurl = stitchCreds[i].getValue("custrecord_stitch_cred_base_url");
+                        result.tokenKey = stitchCreds[i].getValue("custrecord_stitch_cred_token_key");
+                        result.merchantId = stitchCreds[i].getValue("custrecord_sd_stitch_merchantid");
+                    }
+                }
+
+               // var sitchCreds = nlapiLookupField('customrecord_stitch_credentials', 1, ['custrecord_stitch_cred_base_url','custrecord_stitch_cred_token_key','custrecord_sd_stitch_merchantid']);
+                nlapiLogExecution('DEBUG', 'get credentials', JSON.stringify(result));
+                return result;
             }
         });
 

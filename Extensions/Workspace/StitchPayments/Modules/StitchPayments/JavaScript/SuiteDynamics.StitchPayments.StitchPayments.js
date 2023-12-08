@@ -126,14 +126,15 @@ define(
 					var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 						self = this;
 					
-
+					// console.log('profile', profile)
 					this.modules.push({
                         classModule: SitchPaymentMethod,
                         name: 'Stitch',
                         type: 'external',
 						options: {
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
-							layout: container.getComponent('Layout')
+							layout: container.getComponent('Layout'),
+							container: container
 						}
                     })
 					//TODO: Make Dynamic

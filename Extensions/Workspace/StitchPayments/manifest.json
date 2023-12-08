@@ -2,14 +2,15 @@
     "name": "StitchPayments",
     "fantasyName": "Stitch Payments",
     "vendor": "SuiteDynamics",
+    "version": "1.0.0",
     "type": "extension",
     "target": "SCA,SCS",
     "target_version": {
         "SCA": "",
         "SCS": ""
     },
-    "version": "1.0.0",
     "description": "Integrates Stitch payment method into SuiteCommerce",
+    "skins": [],
     "assets": {
         "img": {
             "files": []
@@ -28,6 +29,14 @@
             "Modules/StitchPayments/Configuration/StitchPayments.json"
         ]
     },
+    "sass": {
+        "entry_points": {
+            "checkout": "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
+        },
+        "files": [
+            "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
+        ]
+    },
     "templates": {
         "application": {
             "checkout": {
@@ -38,14 +47,6 @@
                 ]
             }
         }
-    },
-    "sass": {
-        "entry_points": {
-            "checkout": "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
-        },
-        "files": [
-            "Modules/StitchPayments/Sass/_stitchpayments-stitchpayments.scss"
-        ]
     },
     "javascript": {
         "entry_points": {
@@ -73,6 +74,7 @@
             "Modules/StitchPayments/SuiteScript/StitchPayments.Model.js"
         ]
     },
+    "local_folder": "Workspace\\StitchPayments",
     "suitescript2": {
         "files": [
             "Modules/StitchPayments/SuiteScript2/StitchPayments.Service.ss"

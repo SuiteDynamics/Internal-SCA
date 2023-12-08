@@ -77,7 +77,9 @@ define(
 				
 			});
 			// console.log('Collection', stitchCollection)
-
+			self.stitchCollection.on('reset sync add remove change destroy', function() {
+				self.render();
+			});
 
 			OrderWizardModulePaymentMethod.prototype.initialize.apply(this, arguments);
 			WizardStepModule.WizardStepModule.prototype.initialize.apply(this, arguments);
@@ -217,7 +219,8 @@ define(
 			console.log('add payment',this)
 
 			var addTokenView = new StitchPaymentsAddTokenView({
-			   collection: this.stitchCollection
+			   collection: this.stitchCollection,
+			   container: this.options.container
 			});
 
 			addTokenView.title = "Add Card"
