@@ -47,99 +47,89 @@ define(
 {
 	'use strict';
 
+	//Code initiates here
 	return  {
 		mountToApp: function mountToApp (container)
 		{
 			OrderWizardModulePaymentMethod.prototype.submit = function() {
-				console.log('PM Submit')
+
 				const payment_method = this.paymentMethod;
 				return this.model.addPayment(payment_method);
 			};
-
-			// OrderWizardModulePaymentMethodExternal.prototype.render = function() {
-			// 	const options = this.options.model && this.options.model.get('options');
-			// 	console.log('external render', this)
-			// 	if (options) {
-			// 		_.extend(this.options, options);
-			// 	}
-			// 	if(this.options.paymentmethod.name = 'Stitch'){
-			// 		this.setStitchPaymentMethod();
-			// 	}else{
-			// 		this.setPaymentMethod();
-			// 	}
-			// 	this._render();
-			// };
-
-			// OrderWizardModulePaymentMethodExternal.prototype.submit = function() {
-			// 	console.log('external submit', this)
-
-			// 	if(this.options.paymentmethod.name = 'Stitch'){
-			// 		this.setStitchPaymentMethod();
-			// 	}else{
-			// 		this.setPaymentMethod();
-			// 	}
-			// 	OrderWizardModulePaymentMethod.prototype.submit.apply(this);
-			// };
-
-			// //Seperated this out for Stitch method. 
-			// OrderWizardModulePaymentMethodExternal.prototype.setStitchPaymentMethod = function() {
-			// 	console.log('set stich external')
-
-			// 	//Add EL New. For Testing. TODO: Make Dynamic
-			// 	this.paymentMethod = new TransactionPaymentmethodModel({
-			// 		type: 'external_checkout',
-			// 		isexternal: 'T',
-			// 		internalid: "8",
-			// 		name: 'Stitch',
-			// 		key: "8"
-			// 	});
-
-			// };
 
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
 				
 				template: stitchpayments_tpl,
 
 				events:{
-					// 'click [data-action="initiate-stitch"]': 'initiateStitch',
 					'click [data-action="change-payment-method"]': 'selectPaymentMethod',
 					'change [name="paymentmethod-external-option"]': 'selectPaymentMethodExternal',
 					'click [name="paymentmethod-external-option"]': 'selectPaymentMethodExternal'
 				},
 				
 
-				//For some reason this was added into source code to look for external, not others. As a result external payment methods were getting excluded from render. 
+				//For some reason this was added into source code for 2020 and later to look for external, not others. As a result external payment methods were getting excluded from render. Changed code to to look for 'others'. 
 				isOthersModule: function(type) {
 					return type.indexOf('others') !== -1 && !!order_wizard_paymentmethod_others_module_tpl;
 				},
 
+				//Add Stitch logo to getContext handlebars
+				getContext: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.getContext, function (fn) {
+					var context = fn.apply(this, _.toArray(arguments).slice(1));
+					var self = this
+					
+					_.each(context.activeModules,function(module){
+						if(module.name == 'Stitch'){
+							var stitch = _.findWhere(self.modules,{ name: 'Stitch' });
+
+							module.stitchurl = stitch.img
+							module.isStitch = true;
+						}
+					})
+					return context
+				}),
+
+				//If Stitch method is removed, make sure it does not set Stitch token card on transaction body
+				selectPaymentMethod: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.selectPaymentMethod, function (fn) {
+					var context = fn.apply(this, _.toArray(arguments).slice(1));
+
+					if(this.selectedModule.name !== "Stitch"){
+						let transactionBodyFields = {
+							'custbody_sd_select_st_card': ''
+						}
+						this.model.set('options', transactionBodyFields);
+					}
+					return context
+				}),
 
 				//Source code is not adding Stitch method, so we do this manually
 				initialize: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.initialize, function (fn) {
 					
-					var context = fn.apply(this, _.toArray(arguments).slice(1));
-					console.log('context',context)
+					fn.apply(this, _.toArray(arguments).slice(1));
+
 					const payment_methods = Configuration.get('siteSettings.paymentmethods', []);
-					console.log('payment_methods',payment_methods)
+
 					var stitch = _.findWhere(payment_methods,{ name: 'Stitch' });
-					console.log('stitch',stitch)
+
 					var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 						self = this;
 					
-					// console.log('profile', profile)
 					this.modules.push({
                         classModule: SitchPaymentMethod,
                         name: 'Stitch',
                         type: 'external',
+						img: stitch.imagesrc[0],
 						options: {
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
 							layout: container.getComponent('Layout'),
-							container: container
+							container: container,
+							img: stitch.imagesrc[0]
 						}
                     })
-					//TODO: Make Dynamic
-					const ModuleClass = this.modules[4].classModule;
-					this.modules[4].instance = new ModuleClass(
+	
+					var stitchModule = _.findWhere(this.modules,{ name: 'Stitch' })
+					var ModuleClass = stitchModule.classModule
+					stitchModule.instance = new ModuleClass(
 						_.extend(
 							{
 								wizard: self.wizard,
@@ -149,49 +139,19 @@ define(
 							this.modules[4].options
 						)
 					);
-					console.log(this.modules)
+				
 					this.modules[4].instance.on('ready', function(is_ready) {
 						self.moduleReady(is_ready);
 					});
 					
-					console.log(this);
-					
+					//
 					this.on('afterViewRender',function(){
 
 						
 						jQuery(document).ready(function(){
-							//var stitchApiUrl = sdkData.get('api_url');
 
-							//make dynamic
-							// var stitch_payment_method = sdkData.get('payment_method'),
-								// logo_url = sdkData.get('logo_url');
-							var stitch_payment_method = 8,
-								logo_url = "http://7050356.shop.netsuite.com/c.7050356/SiteImages/Stitch_logo.png"
+							var stitch_payment_method = 8
 
-
-							
-
-
-							// var checkout = new Checkout({
-							// 	'mode': "popup",
-							// 	'publicKey': sdkData.get('public_key'),
-							// 	'apiMode': sdkData.get('api_mode'),
-							// 	'apiVersion': sdkData.get('api_version')
-							// });
-							
-							// checkout.renderStitchButton("stitch-smart-button-container");
-							
-							// if(logo_url){
-							// 	jQuery('.stitch-smart-button-logo-img').attr('src',logo_url);
-							// }
-							
-							// checkout.init({
-							// 	onClick: startCheckout,
-							// 	onComplete : onCompleteHandler,
-							// 	onCancel: function () {},
-							// 	onFailure: function (event) {}
-							// });
-							
 							function startCheckout(event){
 								
 								var	promises = [];
@@ -247,86 +207,11 @@ define(
 											}
 										}
 									});
-								});
-								
-							}
-							function onCompleteHandler(event) {
-
-							  console.log('complete event handler')
-
-							  
-							  var data = event.data || Object.create(null);
-
-							  //console.log('checkout data:',data);
-							  
-							  if(data && data.status == "success"){
-								  
-								  var cart = LiveOrderModel.getInstance();
-								  
-								  data.shipaddress = cart.get('shipaddress') || '';
-								  data.billaddress = cart.get('billaddress') || '';
-								  data.purchase_order = cart.get('purchasenumber') || '';
-								  data.options = cart.get('options') || {};
-								  data.payment_method = stitch_payment_method;
-								  
-								  data.order_summary = cart.get('summary') || {};
-								  
-								  data.order_summary.lines = cart.get('lines').map(function(line){
-									  return {
-										  item: line.get('item').get('internalid'),
-										  quantity: line.get('quantity'),
-										  amount: line.get('total')
-									  }
-								  });
-								  
-								  //block UI
-								  jQuery('body').append('<div id="stitch-checkout-blocker"></div>');
-								  
-								  sdkData.save({'stitch': data}).then(function(response){
-									
-									
-									if( _.has(response,'orderCreated') ){
-										
-										cart.set('lines',[]);
-										
-										jQuery('.checkout-layout-content').html('<div class="order-wizard-confirmation-module alert fade in"><h2 class="order-wizard-confirmation-module-title">Thank you for shopping with us!</h2><p class="order-wizard-confirmation-module-body">We received your order and will process it right away.</p><p class="order-wizard-confirmation-module-body" data-type="additional-confirmation-message">You will receive an email with this confirmation in a few minutes.</p><a class="order-wizard-confirmation-module-continue" href="/" data-touchpoint="home" data-hashtag="#/">Continue shopping</a></div>');
-									}
-									  
-									else if(_.has(response,'confirmation')){
-										var confirmation = response.confirmation;
-										
-										cart.set('confirmation',confirmation);
-										cart.set('lines',[]);
-										Backbone.history.navigate('confirmation',{ trigger: true, replace: true });
-									}
-									else{
-										var error = _.has(response,'error')? response.error : {};
-										
-										if(error.code == 'ERR_WS_REQUIRE_CUSTOMER_LOGIN'){
-											
-											window.location.reload();
-										}
-										else{
-											if(error.code == 'ERR_WS_SET_SHIPPING_ADDRESS'){
-												error.details = 'Please add a shipping address.';
-											}
-											self.$('#payment-method-selector-content').html('<div class="global-views-message global-views-message-error alert">'+ error.code +': '+ error.details +'</div></div>');
-										}
-										
-									}
-										
-									jQuery('body').find('#stitch-checkout-blocker').remove();
-								  });
-							  }
-							}
-							
-						});
-						
+								});					
+							}				
+						});					
 					});
-
-
-				}),
-				
+				}),		
 			});
 
 

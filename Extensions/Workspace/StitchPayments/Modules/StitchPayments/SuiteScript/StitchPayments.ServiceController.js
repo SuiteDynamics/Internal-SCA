@@ -25,7 +25,8 @@ define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["Servic
       // not implemented
     },
     delete: function() {
-        nlapiLogExecution('DEBUG', 'delete', 'delete');
+        nlapiLogExecution('DEBUG', 'delete', this.request.getParameter('id'));
+        return StitchPaymentsModel.deleteToken(this.request.getParameter('id'));
       // not implemented
     }
   });

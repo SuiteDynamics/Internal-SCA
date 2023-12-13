@@ -6,6 +6,10 @@
 	@import "other-sass-file.scss";
 	@import "../../<other module>/Sass/other-sass-file.scss";
 */ 
+$color--green: #7ac142;
+$color--red: #db2323;
+$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+
 
 .stitchpayments-info-card {
     @extend .info-card;
@@ -16,33 +20,70 @@
     color: $sc-color-secondary;
     font-weight: bold;
 }
+
 .stitchpayments-iframe{
 	position: inherit !important; 
 }
+
 .stitchpayments-body{
 	left:10000px;
 	position: relative;
 	height: 200px;
 }
+
 .stitch-add-token-button{
 	@extend .button-secondary;
+  padding: $sc-margin-lv1;
 }
-$color--green: #7ac142;
-$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 
-.checkmark__circle {
+.stitch-remove-token-button{
+	@extend .button-secondary;
+  padding: $sc-margin-lv1;
+}
+
+.stitch-payments-list-container{
+  display: inline-flex;
+}
+
+.stitch-payments-buttons-container{
+  display: flex;
+}
+
+.stitch-payments-add-container{
+  margin-top: $sc-margin-lv2;
+  float: left;
+}
+
+.stitch-payments-remove-container{
+  margin-top: $sc-margin-lv2;
+  margin-left: $sc-margin-lv2;
+}
+.stitch-success-checkmark-container {
+  display: none;
+  margin-left: $sc-margin-lv2;
+  margin-top: $sc-margin-lv1;
+}
+
+.stitch-payments-dropdown {
+  margin-bottom: 0px;
+  display: inline-block;
+  min-width: 100px;
+}
+
+.checkmark_success_circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
   stroke: $color--green;
   fill: none;
-  animation: stroke .6s $curve forwards;
+  // animation: stroke .6s $curve forwards;
 }
 
-.checkmark {
-  width: 56px;
-  height: 56px;
+.stitch-success-checkmark {
+  display: none;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: block;
   stroke-width: 2;
@@ -50,13 +91,12 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   stroke-miterlimit: 10;
   margin: 10% auto;
   box-shadow: inset 0px 0px 0px $color--green;
-  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
 
 .checkmark__check {
   transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
+  stroke-dasharray: 0;
+  stroke-dashoffset: 0;
   animation: stroke .3s $curve .8s forwards;
 }
 
@@ -75,8 +115,72 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   }
 }
 
-@keyframes fill {
-  100% {
-    box-shadow: inset 0px 0px 0px 30px $color--green;
+.stitch-success-checkmark{
+  @keyframes fill-success {
+    100% {
+      box-shadow: inset 0px 0px 0px 30px $color--green;
+    }
   }
+}
+.stitch-fail-checkmark{
+  @keyframes fill-fail {
+    100% {
+      box-shadow: inset 0px 0px 0px 30px $color--green;
+    }
+  }
+}
+.stitch-fail-checkmark {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px $color--red;
+}
+
+.stitch-fail-checkmark-container {
+  display: none;
+  margin-left: $sc-margin-lv2;
+  margin-top: $sc-margin-lv1;
+}
+
+.checkmark_fail_circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: $color--red;
+  fill: none;
+  // animation: stroke .6s $curve forwards;
+}
+
+.order-wizard-paymentmethod-selector-module-button{
+  position: relative;
+  max-width: 120px;
+}
+
+.order-wizard-paymentmethod-selector-module-button-img{
+  pointer-events: none;
+}
+
+.stitch-removetoken-row{
+  @extend .recordviews-row;
+  
+}
+.stitch-removetoken-button{
+  @extend .button-secondary;
+  margin: $sc-margin-lv1;
+  padding-left: $sc-padding-lv1;
+  padding-right: $sc-padding-lv1;
+}
+
+.stitch-payments-add-token-container{
+  margin-top: $sc-margin-lv2;
+  float: left;
+  bottom: 50px;
+  position: relative;
 }

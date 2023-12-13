@@ -16,6 +16,7 @@ define(
 	,   'SuiteDynamics.StitchPayments.StitchPayments.Collection'
 	,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
 	,   'SuiteDynamics.StitchPayments.AddToken.View'
+	,   'SuiteDynamics.StitchPayments.RemoveToken.View'
 
 	,	'suitedynamics_stitchpayments_paymentmethod.tpl'
 
@@ -31,6 +32,7 @@ define(
 	,	StitchPaymentsCollection
 	,	StitchPaymentsModel
 	,   StitchPaymentsAddTokenView
+	,   StitchPaymentsRemoveTokenView
 
 	,	suitedynamics_stitchpayments_paymentmethod_tpl
 
@@ -48,7 +50,8 @@ define(
 
 	,	events: {
 			'change [data-action="change-stitch-payment"]': 'changeStitchPayment',
-			'click [data-action="stitch-add-token"]': 'addStitchPayment'
+			'click [data-action="stitch-add-token"]': 'addStitchPayment',
+			'click [data-action="stitch-remove-token"]': 'removeStitchPayment'
 		}
 
     ,	errors: ['ERR_WS_INVALID_CARD', 'ERR_CHK_INVALID_CARD']
@@ -60,8 +63,6 @@ define(
 
 			this.layout = this.options.layout
 
-			console.log(new StitchPaymentsModel())
-
 			self.stitchCollection = new StitchPaymentsCollection();
 			
 			
@@ -69,28 +70,26 @@ define(
 				{ data: { salesOrderId: "1" } }
 
 			).done(function(result) {
+
 				console.log('model', result)
 
-      		}).then(function () {
-                    
-				console.log("Then done");
-				
-			});
+      		})
 			// console.log('Collection', stitchCollection)
-			self.stitchCollection.on('reset sync add remove change destroy', function() {
-				self.render();
-			});
+			// self.stitchCollection.on('reset sync add remove change destroy', function() {
+			// 	self.render();
+			// });
 
 			OrderWizardModulePaymentMethod.prototype.initialize.apply(this, arguments);
 			WizardStepModule.WizardStepModule.prototype.initialize.apply(this, arguments);
-			console.log('external init', self)
+
 			self.on('afterViewRender', function(){
-				console.log('setInitial', self.$el.find("#stitch-payments-dropdown"))
 
 				let selectedInitialPayment = _.findWhere(self.$el.find("#stitch-payments-dropdown")[0],{ selected: true });
 
-				console.log('selectedInitialPayment', selectedInitialPayment.id)
-				self.setInitial(selectedInitialPayment.id)
+				if(selectedInitialPayment){
+					self.setInitial(selectedInitialPayment.id)
+				}
+				
 			}, this);
 
 		}
@@ -98,31 +97,25 @@ define(
 	,	render: function ()
 		{
 			const options = this.options.model && this.options.model.get('options');
-			console.log('external render', this)
+
 			if (options) {
 				_.extend(this.options, options);
 			}
 			if(this.options.paymentmethod.name == 'Stitch'){
-				console.log('RENDER set payment method')
 				this.setStitchPaymentMethod();
 			}else{
 				this.setPaymentMethod();
 			}
 			this.showInModal();
 			this._render();
-
 			this.setInitial();
-
 			
 		}
 
 	,	setInitial: function (initial)
 		{
 
-			console.log('initial', initial)
-
 			if(initial){
-				console.log('inside initial', initial)
 				this.setStitchPaymentMethod();
 				OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
@@ -130,44 +123,25 @@ define(
 			}
 		}
 
-	,	submit: function ()
-		{
-			console.log('external submit', this)
-
-			// if(this.options.paymentmethod.name == 'Stitch'){
-			// 	console.log('SUBMIT set payment method')
-			// 	this.setStitchPaymentMethod();
-			// }else{
-			// 	this.setPaymentMethod();
-			// }
-			// OrderWizardModulePaymentMethod.prototype.submit.apply(this);
-		}
-
 	,	setStitchPaymentMethod: function ()
 		{
-			console.log('set stich external')
-
-			//Add EL New. For Testing. TODO: Make Dynamic
-			this.paymentMethod = new TransactionPaymentmethodModel({
-				type: 'external_checkout',
-				isexternal: 'T',
-				internalid: "8",
-				name: 'Stitch',
-				key: "8"
-			});
+			if(!this.paymentMethod){
+				this.paymentMethod = new TransactionPaymentmethodModel({
+					type: 'external_checkout',
+					isexternal: this.options.paymentmethod.isexternal,
+					internalid: this.options.paymentmethod.internalid,
+					name: this.options.paymentmethod.name,
+					key: this.options.paymentmethod.key,
+				});
+			}
 		}
 
 	,	stitchTokenSuccess: function()
 		{
 
-			console.log('stitch success',this)
-			console.log('complete event handler', $('#stitchtoken'))
 			let data = JSON.parse($('#stitchtoken')[0].value);
-			console.log('data', data);
-			console.log('success this', this)
 
 			if(data.token && data.token !== ""){
-				console.log('success set stitch', this)
 				this.setStitchPaymentMethod();
 				OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
@@ -188,11 +162,7 @@ define(
 		,	changeStitchPayment: function(e)
 		{
 
-			console.log('change payment',e)
-			
 			let paymentSelected = _.findWhere(e.target,{ selected: true });
-			console.log('payment selected', paymentSelected);
-			console.log('success set stitch', this)
 
 			this.setStitchPaymentMethod();
 			OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
@@ -204,9 +174,6 @@ define(
 
 		,	setTransactionFields: function(paymentSelected)
 		{
-
-			console.log('setTransactionFields',paymentSelected)
-
 			let transactionBodyFields = {
 				'custbody_sd_select_st_card': paymentSelected
 			}
@@ -216,53 +183,29 @@ define(
 		,	addStitchPayment: function(e)
 		{
 
-			console.log('add payment',this)
-
 			var addTokenView = new StitchPaymentsAddTokenView({
+			   collection: this.stitchCollection,
+			   container: this.options.container,
+			   paymentMethodView: this
+			});
+
+			addTokenView.title = "Add Card"
+			
+			this.layout.showContent(addTokenView, { showInModal: true });
+		}
+		,	removeStitchPayment: function(e)
+		{
+
+			var removeTokenView = new StitchPaymentsRemoveTokenView({
 			   collection: this.stitchCollection,
 			   container: this.options.container
 			});
 
-			addTokenView.title = "Add Card"
-			//addTokenView.modalClass = "global-views-modal-large";
-			//addTokenView.showInModal({title: "Inventory Status", className: "inventory-status-modal", modalOptions: {backdrop: false}})
-			this.layout.showContent(addTokenView, { showInModal: true, title: "Inventory Status" });
+			removeTokenView.title = "Remove Card"
+			
+			this.layout.showContent(removeTokenView, { showInModal: true });
 		}
 
-		// ,	setStitchToOrder: function(paymentSelected)
-		// {
-
-		// 	console.log('change payment',e)
-			
-		// 	let paymentSelected = _.findWhere(e.target,{ selected: true });
-
-		// 	console.log('success set stitch', this)
-		// 	this.setStitchPaymentMethod();
-		// 	OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
-
-		// 	this.setTransactionFields(paymentSelected);
-		// 	console.log('payment selected', paymentSelected.id);
-
-			
-
-		// }
-
-	// ,	submit: function ()
-	// 	{
-	// 		var self = this;
-
-	// 		return this.isValid().done(function ()
-	// 		{
-	// 			self.paymentMethod = new TransactionPaymentmethodModel(
-	// 			{
-	// 					type: 'Stitch',
-    //                     name: 'Stitch'
-	// 				// ,	terms: self.wizard.options.profile.get('paymentterms')
-	// 			});
-
-	// 			OrderWizardModulePaymentMethod.prototype.submit.apply(self);
-	// 		});
-	// 	}
 	,	getContext: function ()
 		{
 
@@ -271,6 +214,7 @@ define(
 				imageUrl: this.options.paymentmethod.imagesrc[0],
 				// @property {String} name
 				name: this.options.paymentmethod.name,
+				isStitch: this.options.paymentmethod.name == "Stitch" ? true : false,
 				// @property {String} description
 				description:
 					this.options.description ||
@@ -281,12 +225,7 @@ define(
 				type: this.paymentMethod.get('type'),
 				isSelected: this.paymentMethod.get('type') === this.options.selectedExternalId,
 				payments: this.stitchCollection
-					//@property {String} termsName
-				// 	termsName: this.terms.name
-				// 	//@property {Boolean} showTerms
-				// ,	showTerms: this.wizard.application.getConfig('siteSettings.checkout.requiretermsandconditions') === 'T'
-				// 	//@property {String} balanceAvailable
-				// ,	balanceAvailable: this.wizard.options.profile.get('balance_available_formatted') || ''
+
 			};
 		}
 	});

@@ -36,18 +36,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
             console.log('profile result', result)
             self.userProfile = result
         })
-
-			/*  Uncomment to test backend communication with an example service
-				(you'll need to deploy and activate the extension first)
-			*/
-
-			// this.model = new StitchPaymentsModel();
-			// var self = this;
-         	// this.model.fetch().done(function(result) {
-			// 	self.message = result.message;
-			// 	self.render();
-      		// });
-		}
+	}
 
 	,	events: {
 
@@ -65,16 +54,11 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     ,	stitchTokenSuccess: function()
     {
 
-        console.log('stitch success',this)
         var self = this
-        console.log('complete event handler', $('#ccnumfield'))
         let data = JSON.parse($('#in-modal-stitchtoken')[0].value);
-        console.log('data', data);
-        console.log('success this', this)
 
         let token = data.token 
         let expiry = data.expiry 
-        console.log('last 4', token.slice(-4))
 
         var newPaymentModel = new StitchPaymentsModel()
 
@@ -94,47 +78,44 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
         console.log('newPaymentModel', newPaymentModel)
     
-
+        //disable continue button to prevent order submit until card is submitted in service
+        $('.order-wizard-step-button-continue').prop("disabled",true);
+        
         this.collection.add(newPaymentModel).save().then(function(result){
         
-            console.log('result', result)
             if(result.status = 'success'){
+
+                self.options.paymentMethodView.render();
+
                 self.$containerModal &&
                 self.$containerModal
                     .removeClass('fade')
                     .modal('hide')
                     .data('bs.modal', null);
+
+                //display success checkmark 
+                $('.stitch-success-checkmark-container').css('display','inline-block');
+                $('#stitch-success-checkmark').css('animation','fill-success .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both');
+                $('.checkmark_success_circle').css('animation','stroke .6s $curve forwards');
+
+                $('.order-wizard-step-button-continue').prop("disabled",false);
+
+            }else{
+                //display fail checkmark
+                $('.stitch-fail-checkmark-container').css('display','inline-block');
+                $('#stitch-fail-checkmark').css('animation','fill-fail .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both');
+                $('.checkmark_fail_circle').css('animation','stroke .6s $curve forwards');
+
+                $('.order-wizard-step-button-continue').prop("disabled",false);
             }
 
-            
-            console.log('result self', self)
         })
 
-        console.log('final collection', this.collection)
-
-        // if(data.token && data.token !== ""){
-        //     console.log('success set stitch', this)
-        //     this.setStitchPaymentMethod();
-        //     OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
-
-        //     this.setTransactionFields(data);
-        // }else{
-        //     this.wizard.manageError({
-        //     errorCode: 'ERR_WS_INVALID_CARD',
-        //     errorMessage: Utils.translate('Invalid Card')
-        //     });
-        //     return jQuery.Deferred().reject({
-        //         errorCode: 'ERR_WS_INVALID_CARD',
-        //         errorMessage: Utils.translate('Invalid Card')
-        //     });
-        // } 
     } 
 
 		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context
 	,	getContext: function getContext()
 		{
-
-            console.log('get context', this)
 			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 			return {

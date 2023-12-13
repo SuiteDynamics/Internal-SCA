@@ -1,9 +1,10 @@
 // Model.js
 // -----------------------
 // @module Case
-define("SuiteDynamics.StitchPayments.StitchPayments.Model", ["Backbone", "Utils"], function(
+define("SuiteDynamics.StitchPayments.StitchPayments.Model", ["Backbone", "Utils", "underscore"], function(
     Backbone,
-    Utils
+    Utils,
+    _
 ) {
     "use strict";
 
@@ -12,11 +13,7 @@ define("SuiteDynamics.StitchPayments.StitchPayments.Model", ["Backbone", "Utils"
 
         
         //@property {String} urlRoot
-        urlRoot: Utils.getAbsoluteUrl(
-            getExtensionAssetsPath(
-                "services/StitchPayments.Service.ss"
-            )
-        )
+        urlRoot: _.getAbsoluteUrl("services/StitchPayments.Service.ss")
         
 });
 });

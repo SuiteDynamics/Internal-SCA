@@ -3,13 +3,16 @@
         console.log('event', event)
         var token = event.data;
         var mytoken = document.getElementById('in-modal-stitchtoken');
-        
-        mytoken.value = token;
-
-        if(JSON.parse(token).token){
-            var submitButton = document.getElementById('in-modal-stitch-token-success').click();
+        if(mytoken){
+            mytoken.value = token;
+            try{
+                if(JSON.parse(token).token){
+                    var submitButton = document.getElementById('in-modal-stitch-token-success').click();
+                }
+            }catch(e){
+            }
         }
-        // console.log('submitButton', submitButton)
+
   
     }, false);
 </script>
@@ -20,4 +23,8 @@
         <input type="hidden" name="stitchtoken" id="stitchtoken"/>
 </form>
 <a id="stitch-token-success" data-action="stitch-token-success"> Click here </a>
+</div>
+
+<div class="stitch-payments-add-token-container">
+    <a id="stitch-add-token-button" data-action="stitch-add-token" class="stitch-add-token-button" data-toggle="show-in-modal">Add</a>
 </div>

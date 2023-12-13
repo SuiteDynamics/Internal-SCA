@@ -4,6 +4,7 @@ function service(request, response)
 	'use strict';
 	try 
 	{
+		
 		require('SuiteDynamics.StitchPayments.StitchPayments.ServiceController').handle(request, response);
 	} 
 	catch(ex)
