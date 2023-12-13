@@ -136,11 +136,11 @@ define(
 								step: self.step,
 								stepGroup: self.stepGroup
 							},
-							this.modules[4].options
+							stitchModule.options
 						)
 					);
 				
-					this.modules[4].instance.on('ready', function(is_ready) {
+					stitchModule.instance.on('ready', function(is_ready) {
 						self.moduleReady(is_ready);
 					});
 					
