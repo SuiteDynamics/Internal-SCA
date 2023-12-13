@@ -65,7 +65,7 @@ define(
 
 			self.stitchCollection = new StitchPaymentsCollection();
 			
-			
+			//TODO:Remove static id
 			self.stitchCollection.fetch(
 				{ data: { salesOrderId: "1" } }
 
