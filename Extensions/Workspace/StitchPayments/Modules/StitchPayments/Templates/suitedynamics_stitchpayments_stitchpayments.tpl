@@ -1,3 +1,5 @@
+{{#if isReview}}
+{{else}}
 <div class="order-wizard-paymentmethod-selector-module">
 	{{#if showTitle}}
 		<h2 class="order-wizard-paymentmethod-selector-module-header">
@@ -22,7 +24,7 @@
 			</div>
 		</div>
 	{{/if}}
-	
+{{/if}}	
 
 	<div class="order-wizard-paymentmethod-selector-module-payment-method-selector-content" id="payment-method-selector-content"></div>
 

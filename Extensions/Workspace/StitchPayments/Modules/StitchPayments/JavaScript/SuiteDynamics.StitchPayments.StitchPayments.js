@@ -2,9 +2,9 @@
 define(
 	'SuiteDynamics.StitchPayments.StitchPayments'
 ,   [
-		'SuiteDynamics.StitchPayments.StitchPayments.View',
 		'OrderWizard.Module.PaymentMethod.Selector',
 		'SuiteDynamics.StitchPayments.PaymentMethod.Stitch',
+		'SuiteDynamics.StitchPayments.StitchPayments.Collection',
 		'LiveOrder.Model',
 		'OrderWizard.Module.PaymentMethod.External',
 		'Profile.Model',
@@ -23,9 +23,9 @@ define(
 		'suitedynamics_stitchpayments_stitchpayments.tpl'
 	]
 ,   function (
-		StitchPaymentsView,
 		OrderWizardModulePaymentMethodSelector,
 		SitchPaymentMethod,
+		StitchPaymentsCollection,
 		LiveOrderModel,
 		OrderWizardModulePaymentMethodExternal,
 		ProfileModel,
@@ -51,8 +51,26 @@ define(
 	return  {
 		mountToApp: function mountToApp (container)
 		{
-			OrderWizardModulePaymentMethod.prototype.submit = function() {
+			var checkout = container.getComponent("Checkout")
 
+			var stitchSelf = this
+			stitchSelf.stitchCollection = new StitchPaymentsCollection();
+
+			checkout.addModuleToStep({
+				step_url: 'review',
+				module: {
+					id: 'SuiteDynamics.StitchPayments.View',
+					index: 11,
+					classname: 'SuiteDynamics.StitchPayments.StitchPayments.View',
+					options: { container: '#wizard-step-content-right', sitchPayments: stitchSelf },
+				},
+			}).catch(function(error){
+				console.warn(error);
+			});
+
+			
+			OrderWizardModulePaymentMethod.prototype.submit = function() {
+				console.log('payment method', this )
 				const payment_method = this.paymentMethod;
 				return this.model.addPayment(payment_method);
 			};
@@ -113,7 +131,7 @@ define(
 
 					var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 						self = this;
-					
+					console.log('stitchSelf', stitchSelf)
 					this.modules.push({
                         classModule: SitchPaymentMethod,
                         name: 'Stitch',
@@ -123,7 +141,8 @@ define(
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
 							layout: container.getComponent('Layout'),
 							container: container,
-							img: stitch.imagesrc[0]
+							img: stitch.imagesrc[0],
+							collection: stitchSelf.stitchCollection
 						}
                     })
 	
@@ -227,9 +246,9 @@ define(
 			
 			if(layout)
 			{
-				layout.addChildView('Header.Logo', function() { 
-					return new StitchPaymentsView({ container: container });
-				});
+				// layout.addChildView('Header.Logo', function() { 
+				// 	return new StitchPaymentsView({ container: container });
+				// });
 			}
 
 		}

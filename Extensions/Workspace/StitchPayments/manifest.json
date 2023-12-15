@@ -44,7 +44,8 @@
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_stitchpayments.tpl",
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_paymentmethod.tpl",
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_addtoken.tpl",
-                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_removetoken.tpl"
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_removetoken.tpl",
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_review.tpl"
                 ]
             }
         }

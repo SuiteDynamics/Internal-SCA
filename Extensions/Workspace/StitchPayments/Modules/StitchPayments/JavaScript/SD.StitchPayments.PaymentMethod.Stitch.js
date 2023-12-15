@@ -12,6 +12,7 @@ define(
 	'SuiteDynamics.StitchPayments.PaymentMethod.Stitch'
 ,	[	'OrderWizard.Module.PaymentMethod'
 	,	'Transaction.Paymentmethod.Model'
+	,   'Transaction.Model'
 	,   'Wizard.StepModule'
 	,   'SuiteDynamics.StitchPayments.StitchPayments.Collection'
 	,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
@@ -28,6 +29,7 @@ define(
 ,	function (
 		OrderWizardModulePaymentMethod
 	,	TransactionPaymentmethodModel
+	,   TransactionModel
 	,	WizardStepModule
 	,	StitchPaymentsCollection
 	,	StitchPaymentsModel
@@ -59,14 +61,36 @@ define(
 	,	initialize: function()
 		{
 
-			var self = this;
+			// TransactionModel.prototype.addPayment = function addPayment(payment_method) {
+			// 	// Gets the payment method collection
 
+			// 	console.log('transaction', payment_method)
+			// 	console.log('transaction 2', this)
+			// 	const payment_methods = this.get('paymentmethods');
+		
+			// 	// Removes the primary if any
+			// 	payment_methods.remove(payment_methods.where({ primary: true }));
+		
+			// 	// Sets it as primary
+			// 	payment_method.set('primary', true);
+		
+			// 	// Adds it to the collection
+			// 	payment_methods.add(payment_method);
+			// }
+
+			var self = this;
+			console.log('start', this)
 			this.layout = this.options.layout
 
-			self.stitchCollection = new StitchPaymentsCollection();
 			
+
+			this.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+				console.log('profile result', result)
+				self.userProfile = result
+			})
+
 			//TODO:Remove static id
-			self.stitchCollection.fetch(
+			this.options.collection.fetch(
 				{ data: { salesOrderId: "1" } }
 
 			).done(function(result) {
@@ -81,9 +105,9 @@ define(
 
 			OrderWizardModulePaymentMethod.prototype.initialize.apply(this, arguments);
 			WizardStepModule.WizardStepModule.prototype.initialize.apply(this, arguments);
-
+			
 			self.on('afterViewRender', function(){
-
+				
 				let selectedInitialPayment = _.findWhere(self.$el.find("#stitch-payments-dropdown")[0],{ selected: true });
 
 				if(selectedInitialPayment){
@@ -96,6 +120,7 @@ define(
 
 	,	render: function ()
 		{
+			
 			const options = this.options.model && this.options.model.get('options');
 
 			if (options) {
@@ -125,13 +150,14 @@ define(
 
 	,	setStitchPaymentMethod: function ()
 		{
+			console.log('set stitch method', this)
 			if(!this.paymentMethod){
 				this.paymentMethod = new TransactionPaymentmethodModel({
 					type: 'external_checkout',
 					isexternal: this.options.paymentmethod.isexternal,
 					internalid: this.options.paymentmethod.internalid,
 					name: this.options.paymentmethod.name,
-					key: this.options.paymentmethod.key,
+					key: 8,
 				});
 			}
 		}
@@ -161,8 +187,37 @@ define(
 
 		,	changeStitchPayment: function(e)
 		{
+			console.log('change', this)
+
+
 
 			let paymentSelected = _.findWhere(e.target,{ selected: true });
+			console.log('payment selected', paymentSelected)
+
+			var modelSelected = this.options.collection.where({'id': paymentSelected.id})[0]
+			console.log('model selected', modelSelected)
+
+			//this is the old active model that we will need to void the auth for
+			var modelActive = this.options.collection.where({'active': true})[0]
+			console.log('model active', modelActive)
+			//modelSelected.set('active', true)
+			console.log('model selected', modelSelected)
+			//Profile information
+			modelSelected.set('first_name', this.userProfile.firstname);
+			modelSelected.set('last_name', this.userProfile.firstname);
+			modelSelected.set('phone', this.userProfile.phoneinfo.phone);
+			modelSelected.set('email', this.userProfile.email);
+			modelSelected.set('stitch_id', _.findWhere(this.userProfile.customfields,{ id: "custentity_sd_stitch_profile_id" }).value);
+			//Order information
+			modelSelected.set('amount', this.model.get('summary').total);
+	
+			// modelSelected.save({internalid: paymentSelected.id, activeAuth:modelActive}).then(function(result){
+
+			// 	console.log('result',result)
+			// })
+			
+			//this.stitchCollection.add(newPaymentModel).save().then(function(result){})
+
 
 			this.setStitchPaymentMethod();
 			OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
@@ -174,6 +229,7 @@ define(
 
 		,	setTransactionFields: function(paymentSelected)
 		{
+			console.log('set transaction options', this)
 			let transactionBodyFields = {
 				'custbody_sd_select_st_card': paymentSelected
 			}
@@ -184,9 +240,10 @@ define(
 		{
 
 			var addTokenView = new StitchPaymentsAddTokenView({
-			   collection: this.stitchCollection,
+			   collection: this.options.collection,
 			   container: this.options.container,
-			   paymentMethodView: this
+			   paymentMethodView: this,
+			   userProfile: this.userProfile
 			});
 
 			addTokenView.title = "Add Card"
@@ -197,7 +254,7 @@ define(
 		{
 
 			var removeTokenView = new StitchPaymentsRemoveTokenView({
-			   collection: this.stitchCollection,
+			   collection: this.options.collection,
 			   container: this.options.container
 			});
 
@@ -208,7 +265,7 @@ define(
 
 	,	getContext: function ()
 		{
-
+			
 			return {
 
 				imageUrl: this.options.paymentmethod.imagesrc[0],
@@ -224,7 +281,7 @@ define(
 				// @property {String} type
 				type: this.paymentMethod.get('type'),
 				isSelected: this.paymentMethod.get('type') === this.options.selectedExternalId,
-				payments: this.stitchCollection
+				payments: this.options.collection
 
 			};
 		}

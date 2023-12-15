@@ -127,7 +127,9 @@ try{
                         stitch_card.card_name = card.getValue('custrecord_stitch_cc_token_card_name');
                         stitch_card.exp_month = card.getValue('custrecord_stitch_cc_token_exp_month');
                         stitch_card.exp_year = card.getValue('custrecord_stitch_cc_token_exp_year');
+                        stitch_card.token = card.getValue('custrecord_stitch_cc_token_token');
                         stitch_card.id = card.getValue('internalid');
+                        stitch_card.active = false;
                 
                         if(card.getValue('custrecord_sd_stitch_is_default_card') == 'T'){
                             stitch_card.default_card = true 
@@ -142,7 +144,22 @@ try{
                 submitToken: function(data){
                     nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
                     var userId = nlapiGetUser();
+                    //var authResponse = this.submitTokenAuth(data,userId)
+
+                    // if(authResponse.status !== 'Success'){
+                    //     nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
+                    //         message: JSON.stringify(authResponse),
+                    //         user: userId,
+                    //         action: 'Auth failure, no authorization or Netsuite token created'
+                    //     }));
+                    //     return{
+                    //         status: 'Failed to create token'
+                    //     }
+                    // }
+
                     var stitchProfileSubmit = this.submitCustomerProfile(data, userId);
+                   
+                   
 
                     if(stitchProfileSubmit.status == 'Success'){
 
@@ -153,6 +170,7 @@ try{
                             };
                             ModelsInit.customer.updateProfile(customerUpdate);
                             var tokenRec = this.createTokenRecord(data, stitchProfileSubmit.response)
+
                         }catch(e){
                             nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
                                 message: e,
@@ -173,6 +191,7 @@ try{
                             status: 'Failed to create token'
                         }
                     }
+
                     if(tokenRec){
                         try{
                             //Since we will want to make the new card the default card, we will need to remove the default from the other card
@@ -284,6 +303,82 @@ try{
                     nlapiLogExecution('DEBUG', 'newRec id', newRec);
                     return newRec;
                 },
+                submitTokenAuth: function(data, user){
+                    nlapiLogExecution('DEBUG', 'submittokenauth', JSON.stringify(data));
+                    var credentials_object = this.getStitchCredentials()
+                    if (credentials_object) {
+                        var stitchPaymentsApiUrl = credentials_object.baseurl + '/auth'
+                        //var orderid = newRecord.getValue('transactionnumber');
+                        var customerId = user;
+
+                        var headerObj = {
+                            'Authorization': credentials_object.tokenKey,
+                            "Access-Control-Allow-Origin": "*",
+                            "Accept": "application/json",
+                            "Accept-Encoding": "gzip, deflate, br",
+                            "Content-Type": "application/json"
+                        };
+
+                        var requestBody = {
+                            "merchid": credentials_object.merchantId,
+                            "account": data.token,
+                            "expiry": data.expiry,
+                            "ecomind": "E",
+                            "amount": data.amount,
+                            "name": data.first_name + " " + data.last_name,
+                            "email": data.email,
+                            "phone": data.phone,
+                        }
+                        nlapiLogExecution('DEBUG', 'stitchPaymentsApiUrl', stitchPaymentsApiUrl);
+                        var stringifyObj = JSON.stringify(requestBody);
+                        var response = nlapiRequestURL(stitchPaymentsApiUrl, JSON.stringify(requestBody), headerObj, 'POST')
+                        // var myresponse_body = response.body;
+                        nlapiLogExecution('DEBUG', 'RAW_RESPONSE', JSON.stringify(response));
+                        var responseBody = JSON.parse(response.getBody());
+                        nlapiLogExecution('DEBUG', 'AUTH_RESPONSE', JSON.stringify(responseBody));
+                        var myresponse_code = response.getCode();
+                        if (myresponse_code == 201 || myresponse_code == '201' || myresponse_code == 200 || myresponse_code == '200') {
+                            
+                            return{
+                                status: 'Success',
+                                response: responseBody
+                            }
+                        }else{
+                            return{
+                                status: 'Error',
+                                response: responseBody
+                            }
+                        }
+                    }
+                },
+
+                voidAuth: function(auth){
+                    if (auth.merchid && auth.retref) {
+
+                        var credentials_object = this.getStitchCredentials();
+                        var stitchVoidApiUrl = credentials_object.baseurl + '/void'
+                        var headerObj = {
+                            'Authorization': credentials_object.tokenKey,
+                            "Access-Control-Allow-Origin": "*",
+                            "Accept": "application/json",
+                            "Accept-Encoding": "gzip, deflate, br",
+                            "Content-Type": "application/json"
+                        };
+            
+                        var requestBody = {
+                            "merchid": auth.merchid,
+                            "retref": auth.retref
+                        }
+                        nlapiLogExecution('DEBUG', 'void requestBody', JSON.stringify(requestBody));
+                        //log.audit('stringifyObj98', stringifyObj)
+                        var voidResponse = nlapiRequestURL(stitchVoidApiUrl, JSON.stringify(requestBody), headerObj, 'POST')
+                        // var myresponse_body = response.body;
+                        nlapiLogExecution('DEBUG', 'RAW_VOID_RESPONSE', JSON.stringify(voidResponse));
+                        var responseBody = JSON.parse(voidResponse.getBody());
+                        nlapiLogExecution('DEBUG', 'RAW_VOID_RESPONSE_BODY', JSON.stringify(responseBody));
+                    }
+                },
+
                 resetTokenDefaults: function(user,newTokenRec){
                     nlapiLogExecution('DEBUG', 'resetTokenDefaults', newTokenRec);
                     var filters = [
@@ -331,11 +426,35 @@ try{
                    // var sitchCreds = nlapiLookupField('customrecord_stitch_credentials', 1, ['custrecord_stitch_cred_base_url','custrecord_stitch_cred_token_key','custrecord_sd_stitch_merchantid']);
                     nlapiLogExecution('DEBUG', 'get credentials', JSON.stringify(result));
                     return result;
+                },
+                updateToken: function(data){
+                    //nlapiLogExecution('DEBUG', 'put', JSON.stringify(data));
+                    var userId = nlapiGetUser();
+                    var authResponse = this.submitTokenAuth(data,userId)
+                    nlapiLogExecution('DEBUG', 'authResponse', JSON.stringify(authResponse));
+                    if(authResponse.status !== 'Success'){
+                        nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
+                            message: JSON.stringify(authResponse),
+                            user: userId,
+                            action: 'Auth failure, no authorization or Netsuite token created'
+                        }));
+                        return{
+                            status: 'Failed to create token'
+                        }
+                    }
+
+                    if(data.activeAuth){
+                        //We need to void any other Authorizations put on other tokens
+                        var voidAuth = this.voidAuth(data.activeAuth.authData.response)
+
+
+                    }    
+
                 }
             });
             
         });
-        
+
     define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["ServiceController", "StitchPayments.Model", "LiveOrder.Model","underscore"], function(
       ServiceController,
       StitchPaymentsModel,
@@ -359,7 +478,9 @@ try{
           // not implemented
         },
         put: function put() {
-            nlapiLogExecution('DEBUG', 'put', 'put');
+            nlapiLogExecution('DEBUG', 'put', JSON.stringify(this.data));
+            //Here we will update the token and submit Authorization
+            return StitchPaymentsModel.updateToken(this.data);
           // not implemented
         },
         delete: function() {
@@ -374,18 +495,175 @@ try{
     // ----------------
     define('SuiteDynamics.StitchPayments.StitchPayments'
     ,	[
-            // 'SuiteDynamics.StitchPayments.StitchPayments.ServiceController',
             'LiveOrder.Model',
+            'SC.Models.Init',
             'underscore'
         ]
     ,	function (
-            // StitchPaymentsServiceController,
             LiveOrderModel,
+            ModelsInit,
             _
         )
     {
         'use strict';
         nlapiLogExecution('DEBUG', 'start backend module', 'start backend module');
+
+        _.extend(LiveOrderModel, {
+            setPaymentMethods: function setPaymentMethods(data) {
+                // Because of an api issue regarding Gift Certificates, we are going to handle them separately
+                var gift_certificate_methods = _.where(data.paymentmethods, {
+                    type: 'giftcertificate'
+                });
+                const non_certificate_methods = _.difference(
+                    data.paymentmethods,
+                    gift_certificate_methods
+                );
+    
+                // Payment Methods non gift certificate
+                if (
+                    this.isSecure &&
+                    non_certificate_methods &&
+                    non_certificate_methods.length &&
+                    ModelsInit.session.isLoggedIn2()
+                ) {
+                    _.each(non_certificate_methods, function (paymentmethod) {
+                        if (paymentmethod.type === 'creditcard' && paymentmethod.creditcard) {
+                            const credit_card = paymentmethod.creditcard;
+                            const require_cc_security_code =
+                                ModelsInit.session.getSiteSettings(['checkout']).checkout
+                                .requireccsecuritycode === 'T';
+                            const cc_obj = credit_card && {
+                                ccnumber: credit_card.ccnumber,
+                                ccname: credit_card.ccname,
+                                ccexpiredate: credit_card.ccexpiredate,
+                                expmonth: credit_card.expmonth,
+                                expyear: credit_card.expyear,
+                                paymentmethod: {
+                                    internalid:
+                                        credit_card.paymentmethod.internalid ||
+                                        credit_card.paymentmethod,
+                                    name: credit_card.paymentmethod.name,
+                                    creditcard: credit_card.paymentmethod.creditcard ? 'T' : 'F',
+                                    ispaypal: credit_card.paymentmethod.ispaypal ? 'T' : 'F',
+                                    key: credit_card.paymentmethod.key
+                                }
+                            };
+    
+                            if (credit_card.internalid !== '-temporal-') {
+                                cc_obj.internalid = credit_card.internalid;
+                            } else {
+                                cc_obj.internalid = null;
+                                cc_obj.savecard = 'F';
+                            }
+    
+                            if (credit_card.ccsecuritycode) {
+                                cc_obj.ccsecuritycode = credit_card.ccsecuritycode;
+                            }
+    
+                            if (
+                                !require_cc_security_code ||
+                                (require_cc_security_code && credit_card.ccsecuritycode)
+                            ) {
+                                // the user's default credit card may be expired so we detect this using try & catch and if it is we remove the payment methods.
+                                try {
+                                    // if the credit card is not temporal or it is temporal and the number is complete then set payment method.
+                                    if (
+                                        cc_obj.internalid ||
+                                        (!cc_obj.internalid && !~cc_obj.ccnumber.indexOf('*'))
+                                    ) {
+                                        ModelsInit.order.removePayment();
+    
+                                        const cc_parameter = {
+                                            paymentterms: 'CreditCard',
+                                            creditcard: {
+                                                internalid: cc_obj.internalid,
+                                                ccsecuritycode: cc_obj.ccsecuritycode,
+                                                paymentmethod: {
+                                                    internalid: cc_obj.paymentmethod.internalid
+                                                }
+                                            }
+                                        };
+                                        if (!cc_obj.internalid) {
+                                            cc_parameter.creditcard.ccnumber = cc_obj.ccnumber;
+                                            cc_parameter.creditcard.ccname = cc_obj.ccname;
+                                            cc_parameter.creditcard.expmonth = cc_obj.expmonth;
+                                            cc_parameter.creditcard.expyear = cc_obj.expyear;
+                                            cc_parameter.creditcard.savecard = cc_obj.savecard;
+                                        }
+                                        ModelsInit.order.setPayment(cc_parameter);
+    
+                                        ModelsInit.context.setSessionObject('paypal_complete', 'F');
+                                    }
+                                } catch (e) {
+                                    if (e && e.code && e.code === 'ERR_WS_INVALID_PAYMENT') {
+                                        ModelsInit.order.removePayment();
+                                    }
+                                    throw e;
+                                }
+                            }
+                            // if the the given credit card don't have a security code and it is required we just remove it from the order
+                            else if (require_cc_security_code && !credit_card.ccsecuritycode) {
+                                ModelsInit.order.removePayment();
+                            }
+                        } else if (paymentmethod.type === 'invoice') {
+                            ModelsInit.order.removePayment();
+    
+                            try {
+                                ModelsInit.order.setPayment({
+                                    paymentterms: 'Invoice'
+                                });
+                            } catch (e) {
+                                if (e && e.code && e.code === 'ERR_WS_INVALID_PAYMENT') {
+                                    ModelsInit.order.removePayment();
+                                }
+                                throw e;
+                            }
+    
+                            ModelsInit.context.setSessionObject('paypal_complete', 'F');
+                        } else if (paymentmethod.type === 'paypal') {
+                            if (ModelsInit.context.getSessionObject('paypal_complete') !== 'T') {
+                                ModelsInit.order.removePayment();
+                                const paypal = _.findWhere(ModelsInit.session.getPaymentMethods(), {
+                                    ispaypal: 'T'
+                                });
+                                paypal &&
+                                    ModelsInit.order.setPayment({
+                                        paymentterms: '',
+                                        paymentmethod: paypal.key
+                                    });
+                            }
+                        } else if (
+                            paymentmethod.type &&
+                            ~paymentmethod.type.indexOf('external_checkout')
+                        ) {
+                            ModelsInit.order.removePayment();
+                            nlapiLogExecution('DEBUG', 'set external', 'set external');
+                            nlapiLogExecution('DEBUG', 'paymentmethod', paymentmethod.key);
+
+                            ModelsInit.order.setPayment({
+                                paymentmethod: paymentmethod.key,
+                                thankyouurl: paymentmethod.thankyouurl,
+                                errorurl: paymentmethod.errorurl,
+                                merchantid: paymentmethod.merchantid
+                            });
+                        } else {
+                            ModelsInit.order.removePayment();
+                        }
+                    });
+                } else if (this.isSecure && ModelsInit.session.isLoggedIn2()) {
+                    ModelsInit.order.removePayment();
+                }
+    
+                gift_certificate_methods = _.map(gift_certificate_methods, function (gift_certificate) {
+                    return gift_certificate.giftcertificate;
+                });
+    
+                this.setGiftCertificates(gift_certificate_methods);
+            }
+        });
+
+
+
     });
     };
     extensions['CXExtensibility.CoreContent.1.0.5'] = function(extensionName){
