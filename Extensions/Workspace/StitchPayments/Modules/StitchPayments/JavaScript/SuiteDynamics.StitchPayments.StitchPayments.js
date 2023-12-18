@@ -51,6 +51,52 @@ define(
 	return  {
 		mountToApp: function mountToApp (container)
 		{
+
+
+			//Experiment
+			// OrderWizardModulePaymentMethodExternal.prototype.submit = function() {
+			// 	console.log('external submit', this)
+
+			// 	if(this.options.paymentmethod.name = 'Stitch'){
+			// 		this.setStitchPaymentMethod();
+			// 	}else{
+			// 		this.setPaymentMethod();
+			// 	}
+			// 	OrderWizardModulePaymentMethod.prototype.submit.apply(this);
+			// };
+
+			// //Seperated this out for Stitch method. 
+			// OrderWizardModulePaymentMethodExternal.prototype.setStitchPaymentMethod = function() {
+			// 	console.log('set stich external')
+
+			// 	//Add EL New. For Testing. TODO: Make Dynamic
+			// 	this.paymentMethod = new TransactionPaymentmethodModel({
+			// 		type: 'external_checkout',
+			// 		isexternal: 'T',
+			// 		internalid: "8",
+			// 		name: 'Stitch',
+			// 		key: "8"
+			// 	});
+
+			// };
+
+			// OrderWizardModulePaymentMethodExternal.prototype.render = function() {
+			// 	const options = this.options.model && this.options.model.get('options');
+			// 	console.log('external render', this)
+			// 	if (options) {
+			// 		_.extend(this.options, options);
+			// 	}
+			// 	if(this.options.paymentmethod.name = 'Stitch'){
+			// 		this.setStitchPaymentMethod();
+			// 	}else{
+			// 		this.setPaymentMethod();
+			// 	}
+			// 	this._render();
+			// };
+
+
+
+
 			var checkout = container.getComponent("Checkout")
 
 			var stitchSelf = this
@@ -62,7 +108,7 @@ define(
 					id: 'SuiteDynamics.StitchPayments.View',
 					index: 11,
 					classname: 'SuiteDynamics.StitchPayments.StitchPayments.View',
-					options: { container: '#wizard-step-content-right', sitchPayments: stitchSelf },
+					options: { container: '#wizard-step-content-right', stitchPayments: stitchSelf },
 				},
 			}).catch(function(error){
 				console.warn(error);

@@ -5,12 +5,14 @@ define('SuiteDynamics.StitchPayments.StitchPayments.View'
 	
 	,	'Wizard.Module'
 	,	'Backbone'
+	,   'jQuery',
     ]
 , function (
 	suitedynamics_stitchpayments_stitchpayments_tpl
 	
 	,   WizardModule
 	,	Backbone
+	,   jQuery
 )
 {
     'use strict';
@@ -20,7 +22,7 @@ define('SuiteDynamics.StitchPayments.StitchPayments.View'
 
 		    template: suitedynamics_stitchpayments_stitchpayments_tpl
 
-		,	errors: ['ERR_STITCH_AUTH']
+		,	errors: ['ERR_STITCH_AUTH','ERR_NO_CARD_PRESENT']
 
 		,	initialize: _.wrap(WizardModule.prototype.initialize, function(fn){
 				fn.apply(this, _.toArray(arguments).slice(1));
@@ -40,13 +42,53 @@ define('SuiteDynamics.StitchPayments.StitchPayments.View'
       		// });
 		})
 
+		,	setTransactionFields: function(response, activeCard)
+		{
+			console.log('set transaction options', this)
+			let transactionBodyFields = {
+				'custbody_sd_select_st_card': activeCard.get('id'),
+				'custbody_sd_stitch_token_response': JSON.stringify(response)
+			}
+			this.model.set('options', transactionBodyFields);
+		}
+
+		,	retrieveToken()	{
+
+			var self = this
+			var promise = jQuery.Deferred();
+			console.log(this)
+			var stitchCollection = this.options.stitchPayments.stitchCollection;
+
+			var activeCard = stitchCollection.where({'active': true})[0]
+
+			console.log('active card', activeCard)
+
+			if(activeCard){
+				activeCard.save({internalid: activeCard.get('id')}).always(function(response){
+					
+					console.log('result',response)
+
+					if(response.status == "Success"){
+						self.setTransactionFields(response.response,activeCard)
+						promise.reject();
+					}else{
+						promise.reject({errorCode: 'ERR_STITCH_AUTH', errorMessage: 'Card Authorization failure. Please select a different card.'});
+					}
+				})
+
+			}else{
+				promise.reject({errorCode: 'ERR_NO_CARD_PRESENT', errorMessage: 'Please select a Stitch payment card'});
+			}
+
+			return promise;
+		}
+
 		,	submit: function () {
 
-				var promise = jQuery.Deferred();
-				console.log(this)
-				promise.reject({errorCode: 'ERR_STITCH_AUTH', errorMessage: 'Card Authorization failure. Please select a different card.'});
+				
+				return this.retrieveToken();
 
-				return promise.resolve();
+				
 			}
 		
 

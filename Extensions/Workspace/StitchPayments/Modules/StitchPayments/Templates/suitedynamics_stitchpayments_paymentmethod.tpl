@@ -24,9 +24,9 @@
     <div class="stitch-payments-add-container">
         <a id="stitch-add-token-button" data-action="stitch-add-token" class="stitch-add-token-button" data-toggle="show-in-modal">Add New Card</a>
     </div>
-    <div class="stitch-payments-remove-container">
+    <!-- <div class="stitch-payments-remove-container">
         <a id="stitch-remove-token-button" data-action="stitch-remove-token" class="stitch-remove-token-button" data-toggle="show-in-modal">Remove Cards</a>
-    </div>
+    </div> -->
 </div>
 
 

@@ -430,7 +430,8 @@ try{
                 updateToken: function(data){
                     //nlapiLogExecution('DEBUG', 'put', JSON.stringify(data));
                     var userId = nlapiGetUser();
-                    var authResponse = this.submitTokenAuth(data,userId)
+                   // var authResponse = this.submitTokenAuth(data,userId)
+                   var authResponse = {"status":"Success","response":{"respproc":"PPS","amount":"0.00","resptext":"Invalid card","bintype":"","cardproc":"RPCT","commcard":"N","retref":"349596054924","respstat":"C","respcode":"11","entrymode":"ECommerce","account":"","merchid":"800000001560"}}
                     nlapiLogExecution('DEBUG', 'authResponse', JSON.stringify(authResponse));
                     if(authResponse.status !== 'Success'){
                         nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
@@ -440,6 +441,26 @@ try{
                         }));
                         return{
                             status: 'Failed to create token'
+                        }
+                    }else{
+
+
+                        //TODO:Get Working
+                        // var customBodyFields = {};
+                        // customBodyFields.options = {
+                        //     'custbody_sd_select_st_card': data.id,
+                        //     'custbody_sd_stitch_token_response': authResponse
+                        //     // 'paymentoption':8
+                        // };
+                        
+                        //LiveOrderModel.setTransactionBodyField(customBodyFields);
+                        // ModelsInit.order.setPayment({
+                        //     paymentterms: '',
+                        //     paymentmethod: 8
+                        // });
+                        return{
+                            status: 'Success',
+                            response: authResponse
                         }
                     }
 

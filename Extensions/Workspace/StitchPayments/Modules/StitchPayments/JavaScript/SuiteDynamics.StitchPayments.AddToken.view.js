@@ -91,6 +91,9 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         this.collection.add(newPaymentModel).save().then(function(result){
             console.log('auth result', result);
             if(result.status == 'Success'){
+
+                self.removeActive();
+                newPaymentModel.set('active', true);
                 console.log('success', self);
                 //self.options.paymentMethodView.options.authResponse = result.authData
 
@@ -126,6 +129,16 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         })
 
     } 
+    ,	removeActive: function()
+    {
+        console.log('remove active', this)
+        var activeCards = this.options.collection.where({'active': true})
+        _.each(activeCards, function(card) {
+            card.set('active', false)
+        });
+        console.log('after remove active', this)
+        
+    }
     ,	setTransactionFields: function(paymentSelected, authData)
     {
         console.log('set',paymentSelected)

@@ -139,17 +139,20 @@ define(
 
 	,	setInitial: function (initial)
 		{
-
+			console.log('set initial', initial)
 			if(initial){
+				
+				this.setActive(initial)
 				this.setStitchPaymentMethod();
 				OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
-				this.setTransactionFields(initial);
+				//this.setTransactionFields(initial);
 			}
 		}
 
 	,	setStitchPaymentMethod: function ()
 		{
+
 			console.log('set stitch method', this)
 			if(!this.paymentMethod){
 				this.paymentMethod = new TransactionPaymentmethodModel({
@@ -184,23 +187,19 @@ define(
 			} 
 		}
 
-
-		,	changeStitchPayment: function(e)
+		,	setActive: function(paymentSelected)
 		{
-			console.log('change', this)
 
-
-
-			let paymentSelected = _.findWhere(e.target,{ selected: true });
+			// let paymentSelected = _.findWhere(e.target,{ selected: true });
 			console.log('payment selected', paymentSelected)
 
-			var modelSelected = this.options.collection.where({'id': paymentSelected.id})[0]
+			var modelSelected = this.options.collection.where({'id': paymentSelected})[0]
 			console.log('model selected', modelSelected)
 
 			//this is the old active model that we will need to void the auth for
 			var modelActive = this.options.collection.where({'active': true})[0]
 			console.log('model active', modelActive)
-			//modelSelected.set('active', true)
+			modelSelected.set('active', true)
 			console.log('model selected', modelSelected)
 			//Profile information
 			modelSelected.set('first_name', this.userProfile.firstname);
@@ -210,6 +209,19 @@ define(
 			modelSelected.set('stitch_id', _.findWhere(this.userProfile.customfields,{ id: "custentity_sd_stitch_profile_id" }).value);
 			//Order information
 			modelSelected.set('amount', this.model.get('summary').total);
+		}
+
+
+		,	changeStitchPayment: function(e)
+		{
+			console.log('change', this)
+
+
+			this.removeActive();
+
+			this.setActive(_.findWhere(e.target,{ selected: true }).id)
+
+
 	
 			// modelSelected.save({internalid: paymentSelected.id, activeAuth:modelActive}).then(function(result){
 
@@ -217,14 +229,25 @@ define(
 			// })
 			
 			//this.stitchCollection.add(newPaymentModel).save().then(function(result){})
-
+			
 
 			this.setStitchPaymentMethod();
 			OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
 
-			this.setTransactionFields(paymentSelected.id);
+			//this.setTransactionFields(paymentSelected.id);
 
+		}
+
+		,	removeActive: function()
+		{
+			console.log('remove active', this)
+			var activeCards = this.options.collection.where({'active': true})
+			_.each(activeCards, function(card) {
+                card.set('active', false)
+            });
+			console.log('after remove active', this)
+			
 		}
 
 		,	setTransactionFields: function(paymentSelected)
