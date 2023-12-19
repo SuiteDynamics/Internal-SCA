@@ -18,16 +18,18 @@ define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["Servic
     post: function post() {
         nlapiLogExecution('DEBUG', 'post', 'post');
         return StitchPaymentsModel.submitToken(this.data);
-      // not implemented
+
     },
     put: function put() {
-        nlapiLogExecution('DEBUG', 'put', 'put');
-      // not implemented
+        nlapiLogExecution('DEBUG', 'put', JSON.stringify(this.data));
+        //Here we will update the token and submit Authorization
+        return StitchPaymentsModel.updateToken(this.data);
+
     },
     delete: function() {
         nlapiLogExecution('DEBUG', 'delete', this.request.getParameter('id'));
         return StitchPaymentsModel.deleteToken(this.request.getParameter('id'));
-      // not implemented
+
     }
   });
 });

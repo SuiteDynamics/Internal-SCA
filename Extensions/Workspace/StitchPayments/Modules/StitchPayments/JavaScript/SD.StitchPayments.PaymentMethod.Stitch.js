@@ -217,9 +217,9 @@ define(
 			//this is the old active model that we will need to void the auth for
 			var modelActive = this.options.collection.where({'active': true})[0]
 
-			//In rare cases, not model is active, so grab the first one instead. 
-			if(!modelActive){
-				modelActive = this.options.collection.first()
+			//If no model is active, grab the first one instead. 
+			if(!modelSelected){
+				modelSelected = this.options.collection.first()
 			}
 
 			console.log('model active', modelActive)

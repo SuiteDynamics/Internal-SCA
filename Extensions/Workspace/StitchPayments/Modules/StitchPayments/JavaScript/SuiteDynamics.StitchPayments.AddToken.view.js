@@ -89,11 +89,18 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         $('.order-wizard-step-button-continue').prop("disabled",true);
         
         this.collection.add(newPaymentModel).save().then(function(result){
-            console.log('auth result', result);
+            console.log('token result', result);
             if(result.status == 'Success'){
+
+
+                //We need to grab the user profile and overwrite the old one because the customer stitch token has changed.
+                self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+                    self.options.userProfile = result
+                })
 
                 self.removeActive();
                 newPaymentModel.set('active', true);
+                newPaymentModel.set('type', true);
                 console.log('success', self);
                 //self.options.paymentMethodView.options.authResponse = result.authData
 

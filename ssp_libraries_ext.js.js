@@ -247,6 +247,10 @@ try{
                     var stitchCredentials = this.getStitchCredentials(user)
                     //var custInfo = nlapiLookupField('customer', user, ['firstname','lastname','phone']);
                     // //Build body object
+
+
+
+                    //build body
                     var stitchBody = {
                         "phone"		: data.phone,
                         "email"		: data.email,
@@ -255,6 +259,14 @@ try{
                         "name"		: data.first_name + " " + data.last_name,
                         "account"	: data.token
                     }
+
+                    var userStitchId = nlapiLookupField('customer', user, 'custentity_sd_stitch_profile_id');
+                    nlapiLogExecution('DEBUG', 'userStitchId', userStitchId);
+                    if(userStitchId !== ""){
+                        stitchBody.profile = userStitchId;
+                        stitchBody.profileupdate = 'Y';
+                    }
+
                     //Build header object
                     var headerObj = {
                         "Authorization" : stitchCredentials.tokenKey,
@@ -264,6 +276,7 @@ try{
                         "Content-Type": "application/json"
                     }
                     var stitchPaymentsApiUrl = stitchCredentials.baseurl + '/profile'
+
                     nlapiLogExecution('DEBUG', 'body', JSON.stringify(stitchBody));
                     nlapiLogExecution('DEBUG', 'stitchPaymentsApiUrl', stitchPaymentsApiUrl);
                     nlapiLogExecution('DEBUG', 'headers', JSON.stringify(headerObj));
@@ -276,6 +289,11 @@ try{
                     nlapiLogExecution('DEBUG', 'PROFILE_RESPONSE', JSON.stringify(responseBody));
                     if (response.getCode() == 200 && responseBody.respcode == "09") {
                     
+                        //if new profile, submit id to customer
+                        if(userStitchId == ""){
+                            nlapiSubmitField('customer', user, 'custentity_sd_stitch_profile_id', responseBody.profileid);
+                        }
+                        
                         return{
                             status: 'Success',
                             response: responseBody
