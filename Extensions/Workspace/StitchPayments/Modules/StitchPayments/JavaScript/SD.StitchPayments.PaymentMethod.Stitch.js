@@ -18,6 +18,7 @@ define(
 	,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
 	,   'SuiteDynamics.StitchPayments.AddToken.View'
 	,   'SuiteDynamics.StitchPayments.RemoveToken.View'
+	,   'SuiteDynamics.StitchPayments.ShowPayment.View'
 
 	,	'suitedynamics_stitchpayments_paymentmethod.tpl'
 
@@ -35,6 +36,7 @@ define(
 	,	StitchPaymentsModel
 	,   StitchPaymentsAddTokenView
 	,   StitchPaymentsRemoveTokenView
+	,   StitchPaymentsShowPaymentView
 
 	,	suitedynamics_stitchpayments_paymentmethod_tpl
 
@@ -82,7 +84,13 @@ define(
 			console.log('start', this)
 			this.layout = this.options.layout
 
-			
+			this.options.layout.addChildView('PaymentMethods.Collection', function () {
+				console.log('add child view', self)
+				return new StitchPaymentsShowPaymentView({
+					stitch: self
+				});
+			});
+		
 
 			this.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
 				console.log('profile result', result)
@@ -96,11 +104,10 @@ define(
 			).done(function(result) {
 
 				console.log('model', result)
-
       		})
 			// console.log('Collection', stitchCollection)
-			// self.stitchCollection.on('reset sync add remove change destroy', function() {
-			// 	self.render();
+			// this.options.collection.on('reset sync add remove change destroy', function() {
+			// 	self._render();
 			// });
 
 			OrderWizardModulePaymentMethod.prototype.initialize.apply(this, arguments);
@@ -120,20 +127,30 @@ define(
 
 	,	render: function ()
 		{
-			
+			console.log('render', this)
 			const options = this.options.model && this.options.model.get('options');
+			var modelSelected = this.options.collection.where({'active': true})[0]
 
+			//if no model is active, just grab the default
+			if(!modelSelected){
+				console.log('no model selected')
+				modelSelected = this.options.collection.where({'default_card': true})[0]
+			}
+
+			console.log('modelSelected', modelSelected)
 			if (options) {
 				_.extend(this.options, options);
 			}
 			if(this.options.paymentmethod.name == 'Stitch'){
+				this.stitchActive = true;
+				this.stitchSelected = modelSelected.get('id')
 				this.setStitchPaymentMethod();
 			}else{
 				this.setPaymentMethod();
 			}
 			this.showInModal();
 			this._render();
-			this.setInitial();
+			//this.setInitial(modelSelected.get('id'));
 			
 		}
 
@@ -146,13 +163,14 @@ define(
 				this.setStitchPaymentMethod();
 				OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
-				//this.setTransactionFields(initial);
+				this.setTransactionFields(initial);
 			}
 		}
 
 	,	setStitchPaymentMethod: function ()
 		{
-
+			// console.log('stitchTokenSuccess', this)
+			//TODO: Make key dynamic
 			console.log('set stitch method', this)
 			if(!this.paymentMethod){
 				this.paymentMethod = new TransactionPaymentmethodModel({
@@ -165,41 +183,48 @@ define(
 			}
 		}
 
-	,	stitchTokenSuccess: function()
-		{
+	// ,	stitchTokenSuccess: function()
+	// 	{
 
-			let data = JSON.parse($('#stitchtoken')[0].value);
+	// 		let data = JSON.parse($('#stitchtoken')[0].value);
 
-			if(data.token && data.token !== ""){
-				this.setStitchPaymentMethod();
-				OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
-
-				this.setTransactionFields(data);
-			}else{
-				this.wizard.manageError({
-                errorCode: 'ERR_WS_INVALID_CARD',
-                errorMessage: Utils.translate('Invalid Card')
-           		});
-				return jQuery.Deferred().reject({
-					errorCode: 'ERR_WS_INVALID_CARD',
-					errorMessage: Utils.translate('Invalid Card')
-				});
-			} 
-		}
+	// 		if(data.token && data.token !== ""){
+	// 			this.setStitchPaymentMethod();
+	// 			OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
+	// 			console.log('stitchTokenSuccess', this)
+	// 			//this.setTransactionFields(data);
+	// 		}else{
+	// 			this.wizard.manageError({
+    //             errorCode: 'ERR_WS_INVALID_CARD',
+    //             errorMessage: Utils.translate('Invalid Card')
+    //        		});
+	// 			return jQuery.Deferred().reject({
+	// 				errorCode: 'ERR_WS_INVALID_CARD',
+	// 				errorMessage: Utils.translate('Invalid Card')
+	// 			});
+	// 		} 
+	// 	}
 
 		,	setActive: function(paymentSelected)
 		{
 
 			// let paymentSelected = _.findWhere(e.target,{ selected: true });
-			console.log('payment selected', paymentSelected)
+			console.log('set active', this)
 
 			var modelSelected = this.options.collection.where({'id': paymentSelected})[0]
 			console.log('model selected', modelSelected)
 
 			//this is the old active model that we will need to void the auth for
 			var modelActive = this.options.collection.where({'active': true})[0]
+
+			//In rare cases, not model is active, so grab the first one instead. 
+			if(!modelActive){
+				modelActive = this.options.collection.first()
+			}
+
 			console.log('model active', modelActive)
 			modelSelected.set('active', true)
+			modelSelected.set('default_card', true)
 			console.log('model selected', modelSelected)
 			//Profile information
 			modelSelected.set('first_name', this.userProfile.firstname);
@@ -208,25 +233,42 @@ define(
 			modelSelected.set('email', this.userProfile.email);
 			modelSelected.set('stitch_id', _.findWhere(this.userProfile.customfields,{ id: "custentity_sd_stitch_profile_id" }).value);
 			//Order information
-			modelSelected.set('amount', this.model.get('summary').total);
+			modelSelected.set('amount', Math.round(this.model.get('summary').total * 100));
+			
+			//reset the other defaults so other cards aren't active
+			this.options.collection.each(function(token) {
+				console.log('token', token)
+				if(token.get('id') !== paymentSelected){
+					token.set('active', false)
+					token.set('default_card', false)
+				}
+			});
+
+			console.log('set active after', modelSelected)
 		}
 
 
 		,	changeStitchPayment: function(e)
 		{
 			console.log('change', this)
-
+			var self = this;
 
 			this.removeActive();
 
-			this.setActive(_.findWhere(e.target,{ selected: true }).id)
+			var paymentSelected = _.findWhere(e.target,{ selected: true }).id
+			this.setActive(paymentSelected)
 
 
-	
-			// modelSelected.save({internalid: paymentSelected.id, activeAuth:modelActive}).then(function(result){
+			var modelSelected = this.options.collection.where({'id': paymentSelected})[0]
+			console.log('modelSelected', modelSelected)
 
-			// 	console.log('result',result)
-			// })
+			modelSelected.save({internalid: paymentSelected , data: {submit: false}}).then(function(result){
+
+				console.log('change result',result)
+
+				//self.render();
+
+			})
 			
 			//this.stitchCollection.add(newPaymentModel).save().then(function(result){})
 			
@@ -234,7 +276,8 @@ define(
 			this.setStitchPaymentMethod();
 			OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
-
+			this.wizard.stitchActive = true
+			this.wizard.stitchSelected = paymentSelected
 			//this.setTransactionFields(paymentSelected.id);
 
 		}
@@ -256,7 +299,16 @@ define(
 			let transactionBodyFields = {
 				'custbody_sd_select_st_card': paymentSelected
 			}
-			this.model.set('options', transactionBodyFields);
+			//this.model.set('options', transactionBodyFields);
+			this.model.set('options', _.extend(this.model.get('options'), {'custbody_sd_select_st_card': paymentSelected}));
+			//this.model.save();
+			//self.model.set('options', _.extend(self.model.get('options'), {'custbody_po_document': String(modelData.fileId)}));
+			// this.wizard.set('stitchActive',true);
+
+			//put in wizard because it isn't being reflected in model on review page
+			this.wizard.stitchActive = true
+			this.wizard.stitchSelected = paymentSelected
+			console.log('after set', this)
 		}
 
 		,	addStitchPayment: function(e)

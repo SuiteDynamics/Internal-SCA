@@ -113,7 +113,9 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
             
                 $('.order-wizard-step-button-continue').prop("disabled",false);
 
-                self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData)
+                //self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
+                self.options.paymentMethodView.wizard.stitchActive = true
+                self.options.paymentMethodView.wizard.stitchSelected = result.id
                 self.options.paymentMethodView.render();
 
             }else{

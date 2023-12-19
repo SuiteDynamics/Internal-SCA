@@ -26,8 +26,6 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 }
 
 .stitchpayments-body{
-	left:10000px;
-	position: relative;
 	height: 200px;
 }
 
@@ -183,4 +181,10 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   float: left;
   bottom: 50px;
   position: relative;
+}
+.stitch-show-payments-img{
+  max-width: 100px;
+}
+.stitch-token-success{
+  display: none;
 }

@@ -52,25 +52,44 @@ define('SuiteDynamics.StitchPayments.StitchPayments.View'
 			this.model.set('options', transactionBodyFields);
 		}
 
-		,	retrieveToken()	{
+		,	retrieveAuth()	{
 
 			var self = this
+
+			console.log('retrieveAuth', this)
+
 			var promise = jQuery.Deferred();
-			console.log(this)
+
+			if(this.wizard.stitchActive !== true)
+			{
+				// remove reject and promise
+				console.log(this.model.get('paymentmethods').length)
+				
+				//Another payment method is selected, so coninute with order submit
+				if(this.model.get('paymentmethods').length > 0){
+					promise.resolve()
+				}else{
+					promise.reject({errorCode: 'ERR_SELECT_PAYMENT', errorMessage: 'Please select a Payment Method'});	
+				}
+				return promise;
+			}
+			
 			var stitchCollection = this.options.stitchPayments.stitchCollection;
 
-			var activeCard = stitchCollection.where({'active': true})[0]
+			//get the card selected from the id stored in the wizard
+			var activeCard = stitchCollection.where({'id': this.wizard.stitchSelected})[0]
 
 			console.log('active card', activeCard)
 
 			if(activeCard){
-				activeCard.save({internalid: activeCard.get('id')}).always(function(response){
+				activeCard.save({internalid: activeCard.get('id'), data: {submit: true}}).always(function(response){
 					
 					console.log('result',response)
 
-					if(response.status == "Success"){
+					// A = Cardpointe authorization sucess, all other codes represent failure
+					if(response.response.respstat == "A"){
 						self.setTransactionFields(response.response,activeCard)
-						promise.reject();
+						promise.resolve();
 					}else{
 						promise.reject({errorCode: 'ERR_STITCH_AUTH', errorMessage: 'Card Authorization failure. Please select a different card.'});
 					}
@@ -84,11 +103,7 @@ define('SuiteDynamics.StitchPayments.StitchPayments.View'
 		}
 
 		,	submit: function () {
-
-				
-				return this.retrieveToken();
-
-				
+				return this.retrieveAuth();
 			}
 		
 

@@ -22,7 +22,7 @@
         <iframe class="stitchpayments-iframe" id="tokenFrame" name="tokenFrame" src="https://fts-uat.cardconnect.com/itoke/ajax-tokenizer.html?useexpiry=true&usecvv=true&enhancedresponse=true&css=%2Eerror%7Bcolor%3A%20red%3B%7Dinput%7Bwidth%3A500px%3B%7D" width="600" frameborder="0" scrolling="no"></iframe>
         <input type="hidden" name="stitchtoken" id="stitchtoken"/>
 </form>
-<a id="stitch-token-success" data-action="stitch-token-success"> Click here </a>
+<a id="stitch-token-success" class="stitch-token-success" data-action="stitch-token-success"> Click here </a>
 </div>
 
 <div class="stitch-payments-add-token-container">

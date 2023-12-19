@@ -5,14 +5,12 @@ define(
 		'OrderWizard.Module.PaymentMethod.Selector',
 		'SuiteDynamics.StitchPayments.PaymentMethod.Stitch',
 		'SuiteDynamics.StitchPayments.StitchPayments.Collection',
+		'SuiteDynamics.StitchPayments.ShowPayment.View',
 		'LiveOrder.Model',
-		'OrderWizard.Module.PaymentMethod.External',
-		'Profile.Model',
-		'Transaction.Model',
-		'Transaction.Paymentmethod.Collection',
-		'Transaction.Paymentmethod.Model',
-		'OrderWizard.Module.PaymentMethod',
 		'OrderWizard.Module.ShowPayments',
+		'Profile.Model',
+		'OrderWizard.Module.PaymentMethod',
+
 		'underscore',
 		'jQuery',
 		'Backbone',
@@ -26,14 +24,12 @@ define(
 		OrderWizardModulePaymentMethodSelector,
 		SitchPaymentMethod,
 		StitchPaymentsCollection,
+		StitchShowPaymentView,
 		LiveOrderModel,
-		OrderWizardModulePaymentMethodExternal,
-		ProfileModel,
-		TransactionModel,
-		TransactionPaymentmethodCollection,
-		TransactionPaymentmethodModel,
-		OrderWizardModulePaymentMethod,
 		OrderWizardShowPayments,
+		ProfileModel,
+		OrderWizardModulePaymentMethod,
+
 		_,
 		jQuery,
 		Backbone,
@@ -51,56 +47,36 @@ define(
 	return  {
 		mountToApp: function mountToApp (container)
 		{
+			var stitchSelf = this
+
+			var layout = container.getComponent('Layout');
+			console.log('layout', layout)
 
 
-			//Experiment
-			// OrderWizardModulePaymentMethodExternal.prototype.submit = function() {
-			// 	console.log('external submit', this)
+			//Extend Source Code natives
+			_.extend(OrderWizardModulePaymentMethodSelector.prototype, {
+                selectPaymentMethod: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.selectPaymentMethod, function initialize(fn) {
+                    var context = fn.apply(this, _.toArray(arguments).slice(1));
+                    console.log('selectPaymentMethod',this);
+					if(this.selectedModule.name !== 'Stitch'){
+						this.wizard.stitchActive = false;
+					}
+					return context;
+                }),
+			});
 
-			// 	if(this.options.paymentmethod.name = 'Stitch'){
-			// 		this.setStitchPaymentMethod();
-			// 	}else{
-			// 		this.setPaymentMethod();
-			// 	}
-			// 	OrderWizardModulePaymentMethod.prototype.submit.apply(this);
-			// };
-
-			// //Seperated this out for Stitch method. 
-			// OrderWizardModulePaymentMethodExternal.prototype.setStitchPaymentMethod = function() {
-			// 	console.log('set stich external')
-
-			// 	//Add EL New. For Testing. TODO: Make Dynamic
-			// 	this.paymentMethod = new TransactionPaymentmethodModel({
-			// 		type: 'external_checkout',
-			// 		isexternal: 'T',
-			// 		internalid: "8",
-			// 		name: 'Stitch',
-			// 		key: "8"
-			// 	});
-
-			// };
-
-			// OrderWizardModulePaymentMethodExternal.prototype.render = function() {
-			// 	const options = this.options.model && this.options.model.get('options');
-			// 	console.log('external render', this)
-			// 	if (options) {
-			// 		_.extend(this.options, options);
-			// 	}
-			// 	if(this.options.paymentmethod.name = 'Stitch'){
-			// 		this.setStitchPaymentMethod();
-			// 	}else{
-			// 		this.setPaymentMethod();
-			// 	}
-			// 	this._render();
-			// };
-
-
+			OrderWizardShowPayments.prototype.getContext = _.wrap(OrderWizardShowPayments.prototype.getContext, function (fn) {
+				var context = fn.apply(this, _.toArray(arguments).slice(1));
+				console.log('Globalpaymentviews',this);
+				return context;
+			});
+			
 
 
 			var checkout = container.getComponent("Checkout")
 
-			var stitchSelf = this
 			stitchSelf.stitchCollection = new StitchPaymentsCollection();
+			stitchSelf.stitchActive = false;
 
 			checkout.addModuleToStep({
 				step_url: 'review',
@@ -114,6 +90,16 @@ define(
 				console.warn(error);
 			});
 
+			//unset stitchActive from wizard if payment method is changed from Stitch
+			_.extend(OrderWizardModulePaymentMethodSelector.prototype, {
+                selectPaymentMethod: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.selectPaymentMethod, function initialize(fn) {
+                    fn.apply(this, _.toArray(arguments).slice(1));
+                    console.log('selectPaymentMethod',this);
+					if(this.selectedModule.name !== 'Stitch'){
+						this.wizard.stitchActive = false;
+					}
+                }),
+			});
 			
 			OrderWizardModulePaymentMethod.prototype.submit = function() {
 				console.log('payment method', this )
@@ -181,7 +167,7 @@ define(
 					this.modules.push({
                         classModule: SitchPaymentMethod,
                         name: 'Stitch',
-                        type: 'external',
+                        type: 'Offline',
 						img: stitch.imagesrc[0],
 						options: {
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
@@ -292,11 +278,8 @@ define(
 			
 			if(layout)
 			{
-				// layout.addChildView('Header.Logo', function() { 
-				// 	return new StitchPaymentsView({ container: container });
-				// });
-			}
 
+			}
 		}
 	};
 });

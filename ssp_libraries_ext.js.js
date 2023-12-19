@@ -114,6 +114,7 @@ try{
                         new nlobjSearchColumn('custrecord_sd_stitch_is_default_card'),
                         new nlobjSearchColumn('custrecord_stitch_cc_token_exp_month'),
                         new nlobjSearchColumn('custrecord_stitch_cc_token_exp_year'),
+                        new nlobjSearchColumn('custrecord_stitch_cc_token_token'),
                         new nlobjSearchColumn('internalid')
                     ];
                     var search_results = Application.getAllSearchResults('customrecord_stitch_cc_token', filters, columns);
@@ -121,6 +122,7 @@ try{
                     var stitchCardsArr = [];
                     if(search_results && search_results.length){
                     search_results.forEach(function (card) {
+                        nlapiLogExecution('DEBUG', 'card', JSON.stringify(card));
                         var stitch_card = {};
                         stitch_card.last_four = card.getValue('custrecord_sd_stitch_cc_last_4');
                         stitch_card.card_type = card.getValue('custrecord_stitch_cc_token_card_type');
@@ -197,7 +199,8 @@ try{
                             //Since we will want to make the new card the default card, we will need to remove the default from the other card
                             this.resetTokenDefaults(userId,tokenRec);
                             return{
-                                status: 'Success'
+                                status: 'Success',
+                                id:tokenRec
                             }
                         }catch(e){
                             nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
@@ -322,7 +325,7 @@ try{
                         var requestBody = {
                             "merchid": credentials_object.merchantId,
                             "account": data.token,
-                            "expiry": data.expiry,
+                            "expiry": data.exp_year + data.exp_month,
                             "ecomind": "E",
                             "amount": data.amount,
                             "name": data.first_name + " " + data.last_name,
@@ -428,48 +431,20 @@ try{
                     return result;
                 },
                 updateToken: function(data){
-                    //nlapiLogExecution('DEBUG', 'put', JSON.stringify(data));
-                    var userId = nlapiGetUser();
-                   // var authResponse = this.submitTokenAuth(data,userId)
-                   var authResponse = {"status":"Success","response":{"respproc":"PPS","amount":"0.00","resptext":"Invalid card","bintype":"","cardproc":"RPCT","commcard":"N","retref":"349596054924","respstat":"C","respcode":"11","entrymode":"ECommerce","account":"","merchid":"800000001560"}}
-                    nlapiLogExecution('DEBUG', 'authResponse', JSON.stringify(authResponse));
-                    if(authResponse.status !== 'Success'){
-                        nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
-                            message: JSON.stringify(authResponse),
-                            user: userId,
-                            action: 'Auth failure, no authorization or Netsuite token created'
-                        }));
-                        return{
-                            status: 'Failed to create token'
-                        }
-                    }else{
 
-
-                        //TODO:Get Working
-                        // var customBodyFields = {};
-                        // customBodyFields.options = {
-                        //     'custbody_sd_select_st_card': data.id,
-                        //     'custbody_sd_stitch_token_response': authResponse
-                        //     // 'paymentoption':8
-                        // };
+                    if(data.data.submit == true){
                         
-                        //LiveOrderModel.setTransactionBodyField(customBodyFields);
-                        // ModelsInit.order.setPayment({
-                        //     paymentterms: '',
-                        //     paymentmethod: 8
-                        // });
+                        return this.submitTokenAuth(data)
+
+                    }else{
+                        nlapiSubmitField('customrecord_stitch_cc_token', data.id, 'custrecord_sd_stitch_is_default_card', 'T');
+                        
+                        this.resetTokenDefaults(nlapiGetUser(),data.id);
+                        
                         return{
-                            status: 'Success',
-                            response: authResponse
+                            status: 'Success'
                         }
-                    }
-
-                    if(data.activeAuth){
-                        //We need to void any other Authorizations put on other tokens
-                        var voidAuth = this.voidAuth(data.activeAuth.authData.response)
-
-
-                    }    
+                   }
 
                 }
             });
