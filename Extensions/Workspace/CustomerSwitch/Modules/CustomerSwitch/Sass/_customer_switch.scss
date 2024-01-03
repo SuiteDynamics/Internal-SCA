@@ -1,0 +1,140 @@
+.customer-switch-link-container {
+	float: right;
+    margin-bottom: -24px;
+    position: relative;
+    z-index: 1001;
+	
+	// i {
+	// 	@extend .fa;
+	// 	@extend %fa-users;
+	// }
+}
+
+.customer-switch-img{
+	max-width: 30px;
+	@extend .fa;
+}
+
+.customer-switch-row {
+	display: none;
+	position: absolute;
+    right: 0;
+    min-width: 240px;
+	margin-top: 15px;
+    z-index: 1001;
+	background: #F7F7F7;
+    box-shadow: 0 0 2px 2px transparentize(#000, 1-0.2);
+}
+
+.customer-switch-row,
+.customer-switch-modal {
+	
+	.customer-switch-customers,
+	.customer-switch-search-container {
+		padding: $sc-padding-lv2 $sc-padding-lv3;
+		border-bottom: 1px solid transparentize(rgb(36,56,91), 1-0.15);
+		color: #607799;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #E0E6EF;
+			color: #24385B;
+		}
+	}
+
+	[name="customer-switch-search"] {
+		margin: 0;
+	}
+
+	.customer-switch-customers-container {
+		max-height: 380px;
+		overflow-y: auto;
+	}
+
+	.active-cust-icon {
+		float: right;
+	}
+}
+
+.customer-switch-modal {
+	border: 1px solid transparentize(rgb(36,56,91), 1-0.15);
+}
+
+.customer-switch-page-content {
+	@extend .container;
+	margin: 5% auto;
+	
+	.customer-switch-search-container {
+		padding: $sc-padding-lv3 0;
+		margin-top: 20px;
+	}
+
+	[name="customer-switch-search"] {
+		margin: 0;
+		max-width: 300px;
+	}
+
+	.switch-customer-rows {
+		cursor: pointer;
+	}
+}
+
+.customer-switch-table-container {
+	overflow:auto;
+	max-height: 500px;
+	
+	table {
+        min-width:100%;
+    }
+	
+	thead {
+		background-color: #222426;
+		position: -webkit-sticky; 
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		
+		th {
+			white-space: nowrap;
+			color: #fff;
+			font-weight: normal;
+			text-transform: uppercase;
+			padding-top: $sc-padding-lv1;
+			padding-bottom: $sc-padding-lv1;
+			vertical-align: middle;
+		}
+	}
+
+	tbody {
+		
+		tr.active {
+            background: #d1d1d1;
+        }
+		
+		td {
+			padding-top: $sc-padding-lv1;
+			padding-bottom: $sc-padding-lv1;
+			vertical-align: middle;
+		}
+        
+		tr {
+			border-bottom: 1px solid #ccc;
+		}
+	}
+
+}
+
+.customer-switch-processing {
+	display: none;
+	position: fixed;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    background: #000;
+    opacity: 0.3;
+    z-index: 1001;
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    padding-top: 25%;
+}

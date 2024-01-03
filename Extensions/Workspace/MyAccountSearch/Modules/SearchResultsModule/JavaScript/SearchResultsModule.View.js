@@ -34,7 +34,12 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 	,	initialize: function (options) {
 
 
+		this.on('afterViewRender', function() {
+
+			$("#zab-item").find("p").hide();
+			$("#zab-item").find("div").hide();
 			
+	 	 });
 			
 			this.savedSearchId = (options.routerArguments && options.routerArguments[0]);
 			var urlOptions = Utils.parseUrlOptions(options.routerArguments && options.routerArguments[1]);
@@ -78,6 +83,8 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 				self.render();
 				
       		});
+
+
 		}
 
 	,	events: {
@@ -208,6 +215,8 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 		if ( $target.closest("td").attr("colspan") > 1 ) {
 			$target.slideUp();
 		} else {
+			console.log($target.closest("tr").next().find("p"))
+			console.log($target.closest("tr").next().find("div"))
 			$target.closest("tr").next().find("p").slideToggle();
 			$target.closest("tr").next().find("div").slideToggle();
 		}                    

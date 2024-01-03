@@ -1,0 +1,105 @@
+{
+    "name": "CustomerSwitch",
+    "fantasyName": "Customer Switch",
+    "vendor": "SuiteDynamics",
+    "version": "1.0.0",
+    "type": "extension",
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": ">=21.1.0",
+        "SCS": ">=21.1.0"
+    },
+    "description": "Allow a contact to switch login between assigned customers.",
+    "skins": [],
+    "assets": {
+        "fonts": {
+            "files": []
+        },
+        "services": {
+            "files": [
+                "services/CustomerSwitch.Service.ss"
+            ]
+        },
+        "img": {
+            "files": [
+                "img/Switch_Icon.png"
+            ]
+        }
+    },
+    "sass": {
+        "entry_points": {
+            "shopping": "Modules/CustomerSwitch/Sass/_customer_switch.scss",
+            "myaccount": "Modules/CustomerSwitch/Sass/_customer_switch.scss",
+            "checkout": "Modules/CustomerSwitch/Sass/_customer_switch.scss"
+        },
+        "files": [
+            "Modules/CustomerSwitch/Sass/_customer_switch.scss"
+        ]
+    },
+    "templates": {
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/CustomerSwitch/Templates/customer_switch_link.tpl",
+                    "Modules/CustomerSwitch/Templates/customer_switch_page.tpl"
+                ]
+            },
+            "myaccount": {
+                "files": [
+                    "Modules/CustomerSwitch/Templates/customer_switch_link.tpl",
+                    "Modules/CustomerSwitch/Templates/customer_switch_page.tpl"
+                ]
+            },
+            "checkout": {
+                "files": [
+                    "Modules/CustomerSwitch/Templates/customer_switch_link.tpl",
+                    "Modules/CustomerSwitch/Templates/customer_switch_modal.tpl",
+                    "Modules/CustomerSwitch/Templates/customer_switch_page.tpl"
+                ]
+            }
+        }
+    },
+    "javascript": {
+        "entry_points": {
+            "shopping": "Modules/CustomerSwitch/JavaScript/CustomerSwitch.Shopping.Entry.js",
+            "checkout": "Modules/CustomerSwitch/JavaScript/CustomerSwitch.Checkout.Entry.js",
+            "myaccount": "Modules/CustomerSwitch/JavaScript/CustomerSwitch.MyAccount.Entry.js"
+        },
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitchLink.View.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitch.Model.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitch.Shopping.Entry.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitchPage.View.js"
+                ]
+            },
+            "checkout": {
+                "files": [
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitch.Checkout.Entry.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitchLink.View.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitch.Model.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitchModal.View.js"
+                ]
+            },
+            "myaccount": {
+                "files": [
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitch.MyAccount.Entry.js",
+                    "Modules/CustomerSwitch/JavaScript/CustomerSwitchLink.View.js"
+                ]
+            }
+        }
+    },
+    "ssp-libraries": {
+        "entry_point": "Modules/CustomerSwitch/SuiteScript/CustomerSwitch.Entry.js",
+        "files": [
+            "Modules/CustomerSwitch/SuiteScript/CustomerSwitch.Entry.js",
+            "Modules/CustomerSwitch/SuiteScript/CustomerSwitch.ServiceController.js",
+            "Modules/CustomerSwitch/SuiteScript/CustomerSwitch.Model.js"
+        ]
+    },
+    "local_folder": "Workspace\\CustomerSwitch",
+    "suitescript2": {
+        "files": []
+    }
+}

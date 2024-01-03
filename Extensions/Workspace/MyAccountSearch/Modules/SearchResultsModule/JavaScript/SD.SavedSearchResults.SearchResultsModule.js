@@ -18,11 +18,7 @@ define(
 		mountToApp: function mountToApp (container)
 		{
 			var layout = container.getComponent('Layout');
-			layout.on('afterShowContent', function() {
-				$("#zab-item").find("p").hide();
-				$("#zab-item").find("div").hide();
-				
-		  });
+
 
 			var pageType = container.getComponent('PageType');
 			var environment = container.getComponent("Environment");
