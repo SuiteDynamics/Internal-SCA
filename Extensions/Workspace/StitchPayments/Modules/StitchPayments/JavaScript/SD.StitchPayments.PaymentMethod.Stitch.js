@@ -212,7 +212,7 @@ define(
 					isexternal: this.options.paymentmethod.isexternal,
 					internalid: this.options.paymentmethod.internalid,
 					name: this.options.paymentmethod.name,
-					key: 38,
+					key: 8,
 				});
 			}
 		}
