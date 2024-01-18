@@ -27,13 +27,6 @@ define('SuiteDynamics.StitchPayments.ShowPayment.View'
 
 	,	initialize: function (options) {
 
-        var self = this;
-		//WizardStepModule.prototype.getContext.apply(this, arguments);
-        
-        // options.container.getComponent("UserProfile").getUserProfile().done(function(result){
-        //     console.log('profile result', result)
-        //     self.userProfile = result
-        // })
 	}
 
 	,	events: {
@@ -52,17 +45,17 @@ define('SuiteDynamics.StitchPayments.ShowPayment.View'
 		{
 			
 			var activeCard = this.options.stitch.options.collection.where({'active': true})[0]
-			console.log('activeCard',activeCard)
+
 			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
-			this.message = this.message || 'Hello World!!'
-			
+	
+			var cardType = null;
+			var cardLastFour = null;
+
 			if(activeCard){
-				var cardLastFour = activeCard.get('last_four');
-				var cardType = activeCard.get('card_type');
-			}else{
-				var cardLastFour = null
-				var cardType = null
+				cardLastFour = activeCard.get('last_four');
+				cardType = activeCard.get('card_type');
 			}
+			
 			return {
 				showStitch: this.options.stitch.wizard.stitchActive ? true : false,
 				logo: this.options.stitch.options.img,

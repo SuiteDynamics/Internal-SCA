@@ -43,6 +43,7 @@
                 "files": [
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_stitchpayments.tpl",
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_paymentmethod.tpl",
+                    "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_paymentmethodlist.tpl",
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_addtoken.tpl",
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_removetoken.tpl",
                     "Modules/StitchPayments/Templates/suitedynamics_stitchpayments_review.tpl",
@@ -66,7 +67,8 @@
                     "Modules/StitchPayments/JavaScript/SD.StitchPayments.PaymentMethod.Stitch.js",
                     "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.AddToken.view.js",
                     "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.RemoveToken.view.js",
-                    "Modules/StitchPayments/JavaScript/StitchPaymentsStitchPayments.ShowPayment.view.js"
+                    "Modules/StitchPayments/JavaScript/StitchPaymentsStitchPayments.ShowPayment.view.js",
+                    "Modules/StitchPayments/JavaScript/SuiteDynamics.StitchPayments.PaymentMethodList.view.js"
                 ]
             }
         }

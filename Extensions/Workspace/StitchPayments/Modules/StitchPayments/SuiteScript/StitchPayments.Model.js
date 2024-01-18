@@ -66,29 +66,15 @@
                 submitToken: function(data){
                     nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
                     var userId = nlapiGetUser();
-                    //var authResponse = this.submitTokenAuth(data,userId)
-
-                    // if(authResponse.status !== 'Success'){
-                    //     nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
-                    //         message: JSON.stringify(authResponse),
-                    //         user: userId,
-                    //         action: 'Auth failure, no authorization or Netsuite token created'
-                    //     }));
-                    //     return{
-                    //         status: 'Failed to create token'
-                    //     }
-                    // }
 
                     var stitchProfileSubmit = this.submitCustomerProfile(data, userId);
                    
-                   
-
                     if(stitchProfileSubmit.status == 'Success'){
 
                         try{    
                             var customerUpdate = {
                                 internalid: parseInt(nlapiGetUser(), 10),
-                                custentity_sd_stitch_profile_id:stitchProfileSubmit.profileid
+                                custentity_profile_id_stitch:stitchProfileSubmit.profileid
                             };
                             ModelsInit.customer.updateProfile(customerUpdate);
                             var tokenRec = this.createTokenRecord(data, stitchProfileSubmit.response)
@@ -180,7 +166,7 @@
                         "account"	: data.token
                     }
 
-                    var userStitchId = nlapiLookupField('customer', user, 'custentity_sd_stitch_profile_id');
+                    var userStitchId = nlapiLookupField('customer', user, 'custentity_profile_id_stitch');
                     nlapiLogExecution('DEBUG', 'userStitchId', userStitchId);
                     if(userStitchId !== ""){
                         stitchBody.profile = userStitchId;
@@ -211,7 +197,7 @@
                     
                         //if new profile, submit id to customer
                         if(userStitchId == ""){
-                            nlapiSubmitField('customer', user, 'custentity_sd_stitch_profile_id', responseBody.profileid);
+                            nlapiSubmitField('customer', user, 'custentity_profile_id_stitch', responseBody.profileid);
                         }
                         
                         return{

@@ -1,4 +1,7 @@
-
+//ENTRY POINT
+//EXTENSION IMPROVEMENTS
+	// 1.Figure out how to get the payment method selected attached to the order model. As a workaround we are attaching the Stitch information to the wizard.
+	// 2.Fix multiple renders on Stitch payment method selection. 
 define(
 	'SuiteDynamics.StitchPayments.StitchPayments'
 ,   [
@@ -10,6 +13,7 @@ define(
 		'OrderWizard.Module.ShowPayments',
 		'Profile.Model',
 		'OrderWizard.Module.PaymentMethod',
+		'order_wizard_paymentmethod_others_module.tpl',
 
 		'underscore',
 		'jQuery',
@@ -29,6 +33,7 @@ define(
 		OrderWizardShowPayments,
 		ProfileModel,
 		OrderWizardModulePaymentMethod,
+		order_wizard_paymentmethod_others_module_tpl,
 
 		_,
 		jQuery,
@@ -64,19 +69,25 @@ define(
 					return context;
                 }),
 			});
-
-			OrderWizardShowPayments.prototype.getContext = _.wrap(OrderWizardShowPayments.prototype.getContext, function (fn) {
-				var context = fn.apply(this, _.toArray(arguments).slice(1));
-				console.log('Globalpaymentviews',this);
-				return context;
+			
+			//unset stitchActive from wizard if payment method is changed from Stitch
+			_.extend(OrderWizardModulePaymentMethodSelector.prototype, {
+				selectPaymentMethod: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.selectPaymentMethod, function initialize(fn) {
+					fn.apply(this, _.toArray(arguments).slice(1));
+					if(this.selectedModule.name !== 'Stitch'){
+						this.wizard.stitchActive = false;
+					}
+				}),
 			});
 			
-
-
 			var checkout = container.getComponent("Checkout")
 
 			stitchSelf.stitchCollection = new StitchPaymentsCollection();
 			stitchSelf.stitchActive = false;
+			stitchSelf.stitchCollection.on('add', function (model) {	
+				console.log('add listener')				
+				self.render()
+			});
 
 			checkout.addModuleToStep({
 				step_url: 'review',
@@ -89,23 +100,6 @@ define(
 			}).catch(function(error){
 				console.warn(error);
 			});
-
-			//unset stitchActive from wizard if payment method is changed from Stitch
-			_.extend(OrderWizardModulePaymentMethodSelector.prototype, {
-                selectPaymentMethod: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.selectPaymentMethod, function initialize(fn) {
-                    fn.apply(this, _.toArray(arguments).slice(1));
-                    console.log('selectPaymentMethod',this);
-					if(this.selectedModule.name !== 'Stitch'){
-						this.wizard.stitchActive = false;
-					}
-                }),
-			});
-			
-			OrderWizardModulePaymentMethod.prototype.submit = function() {
-				console.log('payment method', this )
-				const payment_method = this.paymentMethod;
-				return this.model.addPayment(payment_method);
-			};
 
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
 				
@@ -158,34 +152,36 @@ define(
 					fn.apply(this, _.toArray(arguments).slice(1));
 
 					const payment_methods = Configuration.get('siteSettings.paymentmethods', []);
-
+					console.log('payment methods', payment_methods)
 					var stitch = _.findWhere(payment_methods,{ name: 'Stitch' });
 
 					var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 						self = this;
-					console.log('stitchSelf', stitchSelf)
+
 					this.modules.push({
                         classModule: SitchPaymentMethod,
                         name: 'Stitch',
-                        type: 'Offline',
+                        type: 'external', //Changed from 'offline'
 						img: stitch.imagesrc[0],
 						options: {
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
 							layout: container.getComponent('Layout'),
+							checkout: container.getComponent('Checkout'),
 							container: container,
-							img: stitch.imagesrc[0],
+							images: stitch.imagesrc,
 							collection: stitchSelf.stitchCollection
 						}
                     })
 	
 					var stitchModule = _.findWhere(this.modules,{ name: 'Stitch' })
-					var ModuleClass = stitchModule.classModule
+					var ModuleClass = stitchModule.classModule;
+
 					stitchModule.instance = new ModuleClass(
 						_.extend(
 							{
 								wizard: self.wizard,
 								step: self.step,
-								stepGroup: self.stepGroup
+								stepGroup: self.step.stepGroup
 							},
 							stitchModule.options
 						)
@@ -195,91 +191,75 @@ define(
 						self.moduleReady(is_ready);
 					});
 					
-					//
-					this.on('afterViewRender',function(){
+					// This can probably be removed
+					// this.on('afterViewRender',function(){
 
 						
-						jQuery(document).ready(function(){
+					// 	jQuery(document).ready(function(){
 
-							var stitch_payment_method = 8
+					// 		var stitch_payment_method = 8
 
-							function startCheckout(event){
+					// 		function startCheckout(event){
 								
-								var	promises = [];
+					// 			var	promises = [];
 								
-								_.each(self.step.moduleInstances,function(module){
+					// 			_.each(self.step.moduleInstances,function(module){
 									
-									if(module.module_id != "SD_stitchpayments_stitchpaymentsmodule"){
+					// 				if(module.module_id != "SD_stitchpayments_stitchpaymentsmodule"){
 										
-										promises.push(module.submit());
-									}
-								});
-								jQuery.when(promises).then(function(){
+					// 					promises.push(module.submit());
+					// 				}
+					// 			});
+					// 			jQuery.when(promises).then(function(){
 									
-									var cart = LiveOrderModel.getInstance(),
-										billaddress = cart.get('billaddress') || '',
-										shipaddress = cart.get('shipaddress') || '';
+					// 				var cart = LiveOrderModel.getInstance(),
+					// 					billaddress = cart.get('billaddress') || '',
+					// 					shipaddress = cart.get('shipaddress') || '';
 									
-									if(!shipaddress){
+					// 				if(!shipaddress){
 									
-										self.$('#payment-method-selector-content').html('<div class="global-views-message global-views-message-error alert">Please select shipping address.</div>');
+					// 					self.$('#payment-method-selector-content').html('<div class="global-views-message global-views-message-error alert">Please select shipping address.</div>');
 										
-										return;
-									}
-									if(!billaddress || (billaddress == '-------null')){
+					// 					return;
+					// 				}
+					// 				if(!billaddress || (billaddress == '-------null')){
 									
-										self.$('#payment-method-selector-content').html('<div class="global-views-message global-views-message-error alert">Please select billing address.</div>');
+					// 					self.$('#payment-method-selector-content').html('<div class="global-views-message global-views-message-error alert">Please select billing address.</div>');
 										
-										return;
-									}
+					// 					return;
+					// 				}
 									
-									var email = profile.get('email'),
-										first_name = profile.get('firstname'),
-										last_name = profile.get('lastname'),
-										currency = SC.SESSION && SC.SESSION.currency && SC.SESSION.currency.code,
-										cartTotal = (cart.get('summary') && cart.get('summary').total) || 0;
+					// 				var email = profile.get('email'),
+					// 					first_name = profile.get('firstname'),
+					// 					last_name = profile.get('lastname'),
+					// 					currency = SC.SESSION && SC.SESSION.currency && SC.SESSION.currency.code,
+					// 					cartTotal = (cart.get('summary') && cart.get('summary').total) || 0;
 									
-									checkout.startCheckout({
+					// 				checkout.startCheckout({
 										
-										checkout_payload: {
-											"order": {
-											  "intent": "AUTH",
-											  "reference_id": "ord_cart",
-											  "description": "Order from " + window.location.href,
-											  "order_amount": {
-												"amount_in_cents": Math.round(cartTotal * 100),
-												"currency": currency
-											  }
-											},
-											"customer": {
-												"email": email,
-												"first_name": first_name,
-												"last_name": last_name
-											}
-										}
-									});
-								});					
-							}				
-						});					
-					});
+					// 					checkout_payload: {
+					// 						"order": {
+					// 						  "intent": "AUTH",
+					// 						  "reference_id": "ord_cart",
+					// 						  "description": "Order from " + window.location.href,
+					// 						  "order_amount": {
+					// 							"amount_in_cents": Math.round(cartTotal * 100),
+					// 							"currency": currency
+					// 						  }
+					// 						},
+					// 						"customer": {
+					// 							"email": email,
+					// 							"first_name": first_name,
+					// 							"last_name": last_name
+					// 						}
+					// 					}
+					// 				});
+					// 			});					
+					// 		}				
+					// 	});					
+					// });
 				}),		
 			});
-
-
-
-			console.log('trigger')
-			// using the 'Layout' component we add a new child view inside the 'Header' existing view 
-			// (there will be a DOM element with the HTML attribute data-view="Header.Logo")
-			// more documentation of the Extensibility API in
-			// https://system.netsuite.com/help/helpcenter/en_US/APIs/SuiteCommerce/Extensibility/Frontend/index.html
-			
-			/** @type {LayoutComponent} */
-			var layout = container.getComponent('Layout');
-			
-			if(layout)
-			{
-
-			}
 		}
 	};
 });

@@ -17,6 +17,7 @@ define("SuiteDynamics.StitchPayments.StitchPayments.ServiceController", ["Servic
     },
     post: function post() {
         nlapiLogExecution('DEBUG', 'post', 'post');
+        //Here we will submit the token to Netsuite and create/update the customer profile in CardPointe
         return StitchPaymentsModel.submitToken(this.data);
 
     },
