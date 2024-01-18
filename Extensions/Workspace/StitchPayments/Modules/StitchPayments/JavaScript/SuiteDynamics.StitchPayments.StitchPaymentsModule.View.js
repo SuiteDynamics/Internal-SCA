@@ -1,5 +1,5 @@
 // @module SuiteDynamics.StitchPayments.StitchPayments
-define('SuiteDynamics.StitchPayments.StitchPayments.View'
+define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 ,	[
 	'suitedynamics_stitchpayments_stitchpayments.tpl'
 	
@@ -20,9 +20,9 @@ define('SuiteDynamics.StitchPayments.StitchPayments.View'
 	// @class SuiteDynamics.StitchPayments.StitchPayments.View @extends Backbone.View
 	return WizardModule.extend({
 
-		    template: suitedynamics_stitchpayments_stitchpayments_tpl
+		    // template: suitedynamics_stitchpayments_stitchpayments_tpl
 
-		,	errors: ['ERR_STITCH_AUTH','ERR_NO_CARD_PRESENT']
+			errors: ['ERR_STITCH_AUTH','ERR_NO_CARD_PRESENT']
 
 		,	initialize: _.wrap(WizardModule.prototype.initialize, function(fn){
 				fn.apply(this, _.toArray(arguments).slice(1));

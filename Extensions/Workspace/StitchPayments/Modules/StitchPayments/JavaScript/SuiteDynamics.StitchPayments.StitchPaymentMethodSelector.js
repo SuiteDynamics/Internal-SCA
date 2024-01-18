@@ -9,7 +9,7 @@
 // --------------------------------
 //
 define(
-	'SuiteDynamics.StitchPayments.PaymentMethod.Stitch'
+	'SuiteDynamics.StitchPayments.StitchPaymentMethodSelector'
 ,	[	'OrderWizard.Module.PaymentMethod'
 	,	'Transaction.Paymentmethod.Model'
 	,   'Transaction.Model'
@@ -23,11 +23,9 @@ define(
 
 	,	'suitedynamics_stitchpayments_paymentmethod.tpl'
 
-	,	'Backbone'
 	,	'Backbone.CollectionView'
 	,	'backbone_collection_view_row.tpl'
 	,	'backbone_collection_view_cell.tpl'
-	, 	'jQuery'
 	,	'underscore'
 	,   'Utils'
 	]
@@ -45,11 +43,9 @@ define(
 
 	,	suitedynamics_stitchpayments_paymentmethod_tpl
 
-	,	Backbone
 	,	BackboneCollectionView
 	,	backbone_collection_view_row_tpl
 	,	backbone_collection_view_cell_tpl
-	,   jQuery
 	,	_
 	,   Utils
 	)
@@ -94,7 +90,7 @@ define(
 					},
 					viewsPerRow:
 						this.itemsPerRow ||
-						(Utils.isDesktopDevice() ? 3 : Utils.isTabletDevice() ? 2 : 1),
+						(Utils.isDesktopDevice() ? 2 : Utils.isTabletDevice() ? 2 : 1),
 					cellTemplate: backbone_collection_view_cell_tpl,
 					rowTemplate: backbone_collection_view_row_tpl
 				});
@@ -160,7 +156,7 @@ define(
 
 	,	render: function ()
 		{
-
+			console.log('render')
 			const options = this.options.model && this.options.model.get('options');
 			var modelSelected = this.options.collection.where({'active': true})[0]
 
@@ -331,7 +327,7 @@ define(
 
 		return {
 
-			imageUrl: this.options.paymentmethod.imagesrc[0],
+			//imageUrl: this.options.paymentmethod.imagesrc[0],
 			// @property {String} name
 			name: this.options.paymentmethod.name,
 			isStitch: this.options.paymentmethod.name == "Stitch" ? true : false,
