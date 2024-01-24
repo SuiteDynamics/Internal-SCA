@@ -31,8 +31,8 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 		,	setTransactionFields: function(response, activeCard)
 		{
 			let transactionBodyFields = {
-				'custbody_sd_select_st_card': activeCard.get('id'),
-				'custbody_sd_stitch_token_response': JSON.stringify(response)
+				'custbody_sd_select_mt_card': activeCard.get('id'),
+				'custbody_sd_motus_token_response': JSON.stringify(response)
 			}
 			this.model.set('options', transactionBodyFields);
 		}
@@ -64,11 +64,11 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 				activeCard.save({internalid: activeCard.get('id'), data: {submit: true}}).always(function(response){
 					console.log('response', response)
 					// A = Cardpointe authorization sucess, all other codes represent failure
-					if(response.response.respstat == "A"){
+					if(response.response.response_code == 101){
 						self.setTransactionFields(response.response,activeCard)
 						promise.resolve();
 					}else{
-						promise.reject({errorCode: 'ERR_STITCH_AUTH', errorMessage: 'Card Authorization failure. Please select a different card.'});
+						promise.reject({errorCode: 'ERR_MOTUS _AUTH', errorMessage: 'Card Authorization failure. Please select a different card.'});
 					}
 				})
 

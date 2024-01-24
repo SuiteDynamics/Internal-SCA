@@ -624,9 +624,29 @@ try{
                             if (credentials_object) {
 
                                 var oauthTokenData = this.getOauthToken(credentials_object);
-                                nlapiLogExecution('DEBUG', 'oauthToken', JSON.stringify(oauthTokenData));
-                                var authReponse = this.getAuthResponse(credentials_object,oauthTokenData.response,cardData);
-                            
+                                nlapiLogExecution('DEBUG', 'oauthToken', JSON.stringify(oauthTokenData.getBody()));
+                                var authReponse = this.getAuthResponse(credentials_object,JSON.parse(oauthTokenData.getBody()),cardData);
+
+                                var responseBody = JSON.parse(authReponse.getBody());
+                                var myresponse_code = authReponse.getCode();
+                                nlapiLogExecution('DEBUG', 'AUTH_RESPONSE_CODE', JSON.stringify(myresponse_code));
+                                if (myresponse_code == 101 || myresponse_code == '101' || myresponse_code == 200 || myresponse_code == '200') {
+                                    
+                                    return{
+                                        status: 'Success',
+                                        response: responseBody
+                                    }
+                                }else{
+                                        nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
+                                        message: JSON.stringify(response),
+                                        user: userId,
+                                        action: 'AUTH Failure. No Authorization occured'
+                                    }));
+                                    return{
+                                        status: 'Error',
+                                        response: responseBody
+                                    }
+                                }
 
                             }
                         },
@@ -657,25 +677,8 @@ try{
                                     //var stringifyObj = JSON.stringify(requestBody);
                                     var response = nlapiRequestURL(urlBase + '/oauth/token', JSON.stringify(requestBody), headerObj, 'POST')
                                     nlapiLogExecution('DEBUG', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
-                                    var responseBody = JSON.parse(response.getBody());
-                                    var myresponse_code = response.getCode();
-                                    if (myresponse_code == 201 || myresponse_code == '201' || myresponse_code == 200 || myresponse_code == '200') {
-                                    
-                                        return{
-                                            status: 'Success',
-                                            response: responseBody
-                                        }
-                                    }else{
-                                        nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
-                                            message: JSON.stringify(response),
-                                            user: userId,
-                                            action: 'Oauth Token Failure. No Authorization occured'
-                                        }));
-                                        return{
-                                            status: 'Error',
-                                            response: responseBody
-                                        }
-                                    }
+
+                                    return response;
                                 }
                     
                             } catch (error) {
@@ -695,6 +698,9 @@ try{
                         },
 
                         getAuthResponse: function(credentialsObj,tokenData,data){
+                            nlapiLogExecution('DEBUG', 'AUTH_TOKENData', JSON.stringify(tokenData));
+                            nlapiLogExecution('DEBUG', 'AUTH_TOKENtype', tokenData.token_type);
+                            nlapiLogExecution('DEBUG', 'AUTH_TOKENtoken', tokenData.access_token);
                             var response = null;
                             try {
                                 var urlBase = "";
@@ -736,22 +742,12 @@ try{
                                 // var stringifyObj = JSON.stringify(requestBodyKeyed);
                                 var response = nlapiRequestURL(urlBase + 'v1/transactions/authorization/keyed', JSON.stringify(requestBodyKeyed), headerObjKeyed, 'POST')
                                 // var myresponse_body = response.body;
-                                nlapiLogExecution('DEBUG', 'RAW_RESPONSE', JSON.stringify(response));
-                                var responseBody = JSON.parse(response.getBody());
-                                nlapiLogExecution('DEBUG', 'AUTH_RESPONSE', JSON.stringify(responseBody));
-                                var myresponse_code = response.getCode();
-                                if (myresponse_code == 201 || myresponse_code == '201' || myresponse_code == 200 || myresponse_code == '200') {
-                                    
-                                    return{
-                                        status: 'Success',
-                                        response: responseBody
-                                    }
-                                }else{
-                                    return{
-                                        status: 'Error',
-                                        response: responseBody
-                                    }
-                                }
+                                // nlapiLogExecution('DEBUG', 'RAW_RESPONSE', JSON.stringify(response));
+                                // var responseBody = JSON.parse(response.getBody());
+                                // nlapiLogExecution('DEBUG', 'AUTH_RESPONSE', JSON.stringify(responseBody));
+                                // var myresponse_code = response.getCode();
+                                // // nlapiLogExecution('DEBUG', 'AUTH_RESPONSE_CODE', myresponse_code);
+                                return response;
                     
                             } catch (error) {
                                 nlapiLogExecution('ERROR', 'AUTH_RESPONSE_ERROR', JSON.stringify(error));

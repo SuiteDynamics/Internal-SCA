@@ -7,7 +7,7 @@
 
 // OrderWizard.Module.PaymentMethod.Invoice.js
 // --------------------------------
-//
+//MAYBE DO NOT NEED THIS FILE
 define(
 	'SuiteDynamics.StitchPayments.StitchPaymentMethodSelector'
 ,	[	'OrderWizard.Module.PaymentMethod'
@@ -218,7 +218,7 @@ define(
 
 		var modelSelected = this.options.collection.where({'id': paymentSelected})[0]
 
-
+		console.log('model', this.model)
 		//If no model is selected, grab the first one instead. 
 		if(!modelSelected){
 			modelSelected = this.options.collection.first()
@@ -237,7 +237,7 @@ define(
 		modelSelected.set('email', this.userProfile.email);
 		modelSelected.set('stitch_id', _.findWhere(this.userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
 		//Order information
-		modelSelected.set('amount', Math.round(this.model.get('summary').total * 100));
+		modelSelected.set('amount', this.model.get('summary').total);
 		
 		//reset the other defaults so other cards aren't active
 		this.options.collection.each(function(token) {
@@ -248,7 +248,7 @@ define(
 			}
 		});
 
-		console.log('set active after', modelSelected)
+		console.log('set active after 2', modelSelected)
 	}
 
 

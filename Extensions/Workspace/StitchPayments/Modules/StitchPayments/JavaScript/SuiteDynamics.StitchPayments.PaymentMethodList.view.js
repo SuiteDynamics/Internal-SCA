@@ -37,7 +37,6 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 		template: suitedynamics_stitchpayments_paymentmethodlist_tpl
 
 	,	initialize: function (options) {
-        console.log('payment list view init', this)
 	}
 
 	,	events: {
@@ -98,7 +97,7 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 		if(!modelSelected){
 			modelSelected = this.options.collection.first()
 		}
-
+		console.log('model', this.options.orderWizard.model)
 		modelSelected.set('active', true)
 		modelSelected.set('default_card', true)
 		//Profile information
@@ -112,7 +111,7 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 		modelSelected.set('email', this.options.userProfile.email);
 		modelSelected.set('stitch_id', _.findWhere(this.options.userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
 		//Order information
-		modelSelected.set('amount', Math.round(this.options.orderWizard.model.get('summary').total * 100));
+		modelSelected.set('amount', this.options.orderWizard.model.get('summary').total);
 		
 		//reset the other defaults so other cards aren't active
 		this.options.collection.each(function(token) {
@@ -173,7 +172,6 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 
 			var image = this.getCardImage();
 
-			console.log('list getcontext',this)
 			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 
