@@ -1,5 +1,5 @@
 {{log this}}
-<!-- <div>hello</div> -->
+<div>hello</div>
 <div class="stitch-payments-list-container">
     <div>
         <div id="creditcard-module-list-placeholder" class="order-wizard-paymentmethod-creditcard-module-list-placeholder">

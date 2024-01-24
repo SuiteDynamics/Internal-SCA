@@ -38,7 +38,7 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 		}
 
 		,	retrieveAuth()	{
-
+			console.log('retrieve auth', this)
 			var self = this
 
 			var promise = jQuery.Deferred();
@@ -59,10 +59,10 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 
 			//get the card selected from the id stored in the wizard
 			var activeCard = stitchCollection.where({'id': this.wizard.stitchSelected})[0]
-
+			console.log('active card', activeCard)
 			if(activeCard){
 				activeCard.save({internalid: activeCard.get('id'), data: {submit: true}}).always(function(response){
-
+					console.log('response', response)
 					// A = Cardpointe authorization sucess, all other codes represent failure
 					if(response.response.respstat == "A"){
 						self.setTransactionFields(response.response,activeCard)

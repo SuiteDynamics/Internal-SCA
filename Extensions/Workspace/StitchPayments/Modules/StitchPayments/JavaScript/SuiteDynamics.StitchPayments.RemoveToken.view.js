@@ -1,4 +1,5 @@
 // @module SuiteDynamics.StitchPayments.StitchPayments
+//Not currently in use
 define('SuiteDynamics.StitchPayments.RemoveToken.View'
 ,	[
 	'suitedynamics_stitchpayments_removetoken.tpl'

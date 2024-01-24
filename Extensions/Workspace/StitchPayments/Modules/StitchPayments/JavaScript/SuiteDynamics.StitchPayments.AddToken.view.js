@@ -10,6 +10,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     ,	'GlobalViews.Message.View'
 	
 	,	'Backbone'
+    ,   'jQuery'
     ]
 , function (
 	suitedynamics_stitchpayments_addtoken_tpl
@@ -21,6 +22,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     ,	GlobalViewsMessageView
 	
 	,	Backbone
+    ,   jQuery
 )
 {
     'use strict';
@@ -31,12 +33,22 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 		template: suitedynamics_stitchpayments_addtoken_tpl
 
 	,	initialize: function (options) {
-
+        console.log('add init',this)
+		this.on('afterViewRender',function(){
+			
+			console.log('add init listener')
+            jQuery(document).ready(function(){
+                console.log('view render')
+                
+                $('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+             })
+		})
 	}
 
 	,	events: {
 
-        'click [data-action="stitch-token-success"]': 'stitchTokenSuccess'
+        'click [data-action="stitch-token-success"]': 'stitchTokenSuccess',
+        'click [data-action="submit-card"]': 'submitCard'
 
 		}
 
@@ -47,14 +59,18 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
 		}
 
-    ,	stitchTokenSuccess: function()
+    ,	submitCard: function(e)
     {
-        console.log('stitchtokensuccess',this)
-        var self = this
-        let data = JSON.parse($('#in-modal-stitchtoken')[0].value);
 
-        let token = data.token 
-        let expiry = data.expiry 
+        var self = this;
+
+        var token_number = $( "input[name*='cardid']" )[0].value;
+                                           
+        var lastFour = token_number.slice(-4);
+        var expiryYear = $( "select[name*='year']" )[0].value;
+        var expiryMonth = $( "select[name*='month']" )[0].value;
+        var cardType = this.getCardType(token_number)
+        var csc = $( "input[name*='cvvid']" )[0].value;
 
         var order = this.options.paymentMethodView.model
 
@@ -63,13 +79,13 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         var newPaymentModel = new StitchPaymentsModel()
 
         //Card information
-        newPaymentModel.set('new', token);
-        newPaymentModel.set('default_card', "Add-on Parent Item ID");
-        newPaymentModel.set('expiry', expiry)
-        newPaymentModel.set('exp_month', expiry.slice(-1));
-        newPaymentModel.set('exp_year', expiry.slice(0,4));
-        newPaymentModel.set('last_four', token.slice(-4));
-        newPaymentModel.set('token', token);
+        newPaymentModel.set('name', 'Motus' + ' ' + cardType + ' ' + lastFour);
+        newPaymentModel.set('exp_month', expiryMonth);
+        newPaymentModel.set('exp_year', expiryYear);
+        newPaymentModel.set('last_four', lastFour);
+        newPaymentModel.set('token', token_number);
+        newPaymentModel.set('card_type', cardType);
+        newPaymentModel.set('csc', csc);
         //Profile information
         newPaymentModel.set('first_name', userProfile.firstname);
         newPaymentModel.set('last_name', userProfile.lastname);
@@ -83,21 +99,21 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
         //disable continue button to prevent order submit until card is submitted in service
         $('.order-wizard-step-button-continue').prop("disabled",true);
-        
+        $('.btn').prop("disabled",true);
         this.collection.add(newPaymentModel, { at: this.collection.length - 1 }).save().then(function(result){
             console.log('token result', result);
             if(result.status == 'Success'){
 
 
                 //We need to grab the user profile and overwrite the old one because the customer stitch token has changed.
-                self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
-                    self.options.userProfile = result
-                })
+                // self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+                //     self.options.userProfile = result
+                // })
 
                 self.removeActive();
                 newPaymentModel.set('active', true);
-                newPaymentModel.set('type', true);
-
+                //newPaymentModel.set('type', true);
+                console.log('hide')
                 self.$containerModal &&
                 self.$containerModal
                     .removeClass('fade')
@@ -105,8 +121,9 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
                     .data('bs.modal', null);
             
                 $('.order-wizard-step-button-continue').prop("disabled",false);
-
+                $('.btn').prop("disabled",false);
                 //self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
+                console.log('set wizard', self)
                 self.options.paymentMethodView.wizard.stitchActive = true
                 self.options.paymentMethodView.wizard.stitchSelected = result.id
                 self.options.paymentMethodView.render();
@@ -137,7 +154,98 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
         })
 
-    } 
+    }
+    // ,	stitchTokenSuccess: function()
+    // {
+    //     console.log('stitchtokensuccess',this)
+    //     var self = this
+    //     let data = JSON.parse($('#in-modal-stitchtoken')[0].value);
+
+    //     let token = data.token 
+    //     let expiry = data.expiry 
+
+    //     var order = this.options.paymentMethodView.model
+
+    //     var userProfile = this.options.userProfile
+
+    //     var newPaymentModel = new StitchPaymentsModel()
+
+    //     //Card information
+    //     newPaymentModel.set('new', token);
+    //     newPaymentModel.set('default_card', "Add-on Parent Item ID");
+    //     newPaymentModel.set('expiry', expiry)
+    //     newPaymentModel.set('exp_month', expiry.slice(-1));
+    //     newPaymentModel.set('exp_year', expiry.slice(0,4));
+    //     newPaymentModel.set('last_four', token.slice(-4));
+    //     newPaymentModel.set('token', token);
+    //     //Profile information
+    //     newPaymentModel.set('first_name', userProfile.firstname);
+    //     newPaymentModel.set('last_name', userProfile.lastname);
+    //     newPaymentModel.set('phone', userProfile.phoneinfo.phone);
+    //     newPaymentModel.set('email', userProfile.email);
+    //     newPaymentModel.set('stitch_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
+    //     //Order information
+    //     newPaymentModel.set('amount', order.get('summary').total);
+
+    //     console.log('newPaymentModel', newPaymentModel)
+
+    //     //disable continue button to prevent order submit until card is submitted in service
+    //     $('.order-wizard-step-button-continue').prop("disabled",true);
+        
+    //     this.collection.add(newPaymentModel, { at: this.collection.length - 1 }).save().then(function(result){
+    //         console.log('token result', result);
+    //         if(result.status == 'Success'){
+
+
+    //             //We need to grab the user profile and overwrite the old one because the customer stitch token has changed.
+    //             self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+    //                 self.options.userProfile = result
+    //             })
+
+    //             self.removeActive();
+    //             newPaymentModel.set('active', true);
+    //             newPaymentModel.set('type', true);
+
+    //             self.$containerModal &&
+    //             self.$containerModal
+    //                 .removeClass('fade')
+    //                 .modal('hide')
+    //                 .data('bs.modal', null);
+            
+    //             $('.order-wizard-step-button-continue').prop("disabled",false);
+
+    //             //self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
+    //             self.options.paymentMethodView.wizard.stitchActive = true
+    //             self.options.paymentMethodView.wizard.stitchSelected = result.id
+    //             self.options.paymentMethodView.render();
+
+    //         }else{
+
+    //             console.log('display fail marks', self);
+    //             self.$containerModal &&
+    //             self.$containerModal
+    //                 .removeClass('fade')
+    //                 .modal('hide')
+    //                 .data('bs.modal', null);
+
+    //             var $alert_warn = $('#stitch-fail-message');
+    //             console.log($alert_warn)
+    //             $alert_warn.html(
+    //                 new GlobalViewsMessageView({
+    //                     message: 'Card failure. Please try a different card',
+    //                     type: 'error',
+    //                     closable: true
+    //                 }).render().$el
+    //             );
+
+    //             $('.order-wizard-step-button-continue').prop("disabled",false);
+    //         }
+
+    //         newPaymentModel.set('card_type', result.type);
+
+    //     })
+
+    // } 
     ,	removeActive: function()
     {
         var activeCards = this.options.collection.where({'active': true})
@@ -153,6 +261,34 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         }
 
         this.options.paymentMethodView.model.set('options', transactionBodyFields);
+    }
+
+    ,   getCardType: function(tokenNumber)
+    {
+
+        // Get card type
+        var req1 = tokenNumber.substring(0, 1);
+        console.log('req1',req1)   
+        var req2 = tokenNumber.substring(0, 2);
+        console.log('req2',req2)  
+        var cardType;
+        if (req2=='34' || req2=='37') {
+            cardType = 'Amex'
+        } else if (req1=='4') {
+            cardType = 'Visa'
+        } else if (req2=='51' || req2=='52' || req2=='53' || req2=='54' || req2=='55') {
+            cardType = 'Master Card'
+        } else if (req1 == '6') {
+            cardType = 'Discover'
+        } else if (req2=='36') {
+            cardType = 'Diners'
+        } else if (req2=='35') {
+            cardType = 'JCB'
+        }else{
+         cardType = ' ';
+        } 
+        return cardType;
+
     }
 
 		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context

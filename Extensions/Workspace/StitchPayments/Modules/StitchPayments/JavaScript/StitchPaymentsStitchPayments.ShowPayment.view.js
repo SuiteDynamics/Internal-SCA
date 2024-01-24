@@ -43,7 +43,7 @@ define('SuiteDynamics.StitchPayments.ShowPayment.View'
 		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context
 	,	getContext: function getContext()
 		{
-			
+			console.log('show paAYMENT GET CONTEXT')
 			var activeCard = this.options.stitch.options.collection.where({'active': true})[0]
 
 			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context

@@ -134,7 +134,7 @@ define(
 				module.instance.isReady = false;
 				module.instance.render();
 
-				this.wizard.StitchActive = false;
+				this.wizard.stitchActive = false;
 
 				this.$('#payment-method-selector-content')
 					.empty()
