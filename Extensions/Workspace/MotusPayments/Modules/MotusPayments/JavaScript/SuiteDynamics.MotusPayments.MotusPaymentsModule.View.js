@@ -1,14 +1,14 @@
-// @module SuiteDynamics.StitchPayments.StitchPayments
-define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
+// @module SuiteDynamics.MotusPayments.MotusPayments
+define('SuiteDynamics.MotusPayments.MotusPaymentsModule.View'
 ,	[
-	'suitedynamics_stitchpayments_stitchpayments.tpl'
+	'suitedynamics_motuspayments_motuspayments.tpl'
 	
 	,	'Wizard.Module'
 	,	'Backbone'
 	,   'jQuery',
     ]
 , function (
-	suitedynamics_stitchpayments_stitchpayments_tpl
+	suitedynamics_motuspayments_motuspayments_tpl
 	
 	,   WizardModule
 	,	Backbone
@@ -17,10 +17,10 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 {
     'use strict';
 
-	// @class SuiteDynamics.StitchPayments.StitchPayments.View @extends Backbone.View
+	// @class SuiteDynamics.MotusPayments.MotusPayments.View @extends Backbone.View
 	return WizardModule.extend({
 
-		    // template: suitedynamics_stitchpayments_stitchpayments_tpl
+		    // template: suitedynamics_motuspayments_motuspayments_tpl
 
 			errors: ['ERR_STITCH_AUTH','ERR_NO_CARD_PRESENT']
 
@@ -43,7 +43,7 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 
 			var promise = jQuery.Deferred();
 
-			if(this.wizard.stitchActive !== true)
+			if(this.wizard.motusActive !== true)
 			{
 	
 				//Another payment method is selected, so coninute with order submit
@@ -55,10 +55,10 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 				return promise;
 			}
 			
-			var stitchCollection = this.options.stitchPayments.stitchCollection;
+			var motusCollection = this.options.motusPayments.motusCollection;
 
 			//get the card selected from the id stored in the wizard
-			var activeCard = stitchCollection.where({'id': this.wizard.stitchSelected})[0]
+			var activeCard = motusCollection.where({'id': this.wizard.motusSelected})[0]
 			console.log('active card', activeCard)
 			if(activeCard){
 				activeCard.save({internalid: activeCard.get('id'), data: {submit: true}}).always(function(response){
@@ -73,7 +73,7 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 				})
 
 			}else{
-				promise.reject({errorCode: 'ERR_NO_CARD_PRESENT', errorMessage: 'Please select a Stitch payment card'});
+				promise.reject({errorCode: 'ERR_NO_CARD_PRESENT', errorMessage: 'Please select a Motus payment card'});
 			}
 
 			return promise;
@@ -94,11 +94,11 @@ define('SuiteDynamics.StitchPayments.StitchPaymentsModule.View'
 
 		}
 
-		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context
+		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
 			console.log('getcontext', this)
-			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
+			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 			return {
 				isReview: true,

@@ -1,10 +1,10 @@
-// @module SuiteDynamics.StitchPayments.StitchPayments
-define('SuiteDynamics.StitchPayments.AddToken.View'
+// @module SuiteDynamics.MotusPayments.MotusPayments
+define('SuiteDynamics.MotusPayments.AddToken.View'
 ,	[
-	'suitedynamics_stitchpayments_addtoken.tpl'
+	'suitedynamics_motuspayments_addtoken.tpl'
 	
-	,	'SuiteDynamics.StitchPayments.StitchPayments.SS2Model'
-    ,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
+	,	'SuiteDynamics.MotusPayments.MotusPayments.SS2Model'
+    ,   'SuiteDynamics.MotusPayments.MotusPayments.Model'
 
     ,   'OrderWizard.Module.PaymentMethod'
     ,	'GlobalViews.Message.View'
@@ -13,10 +13,10 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     ,   'jQuery'
     ]
 , function (
-	suitedynamics_stitchpayments_addtoken_tpl
+	suitedynamics_motuspayments_addtoken_tpl
 	
-	,	StitchPaymentsSS2Model
-    ,   StitchPaymentsModel
+	,	MotusPaymentsSS2Model
+    ,   MotusPaymentsModel
 
     ,   OrderWizardModulePaymentMethod
     ,	GlobalViewsMessageView
@@ -27,10 +27,10 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 {
     'use strict';
 
-	// @class SuiteDynamics.StitchPayments.StitchPayments.View @extends Backbone.View
+	// @class SuiteDynamics.MotusPayments.MotusPayments.View @extends Backbone.View
 	return Backbone.View.extend({
 
-		template: suitedynamics_stitchpayments_addtoken_tpl
+		template: suitedynamics_motuspayments_addtoken_tpl
 
 	,	initialize: function (options) {
         console.log('add init',this)
@@ -47,7 +47,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
 	,	events: {
 
-        'click [data-action="stitch-token-success"]': 'stitchTokenSuccess',
+        'click [data-action="motus-token-success"]': 'motusTokenSuccess',
         'click [data-action="submit-card"]': 'submitCard'
 
 		}
@@ -76,7 +76,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
         var userProfile = this.options.userProfile
 
-        var newPaymentModel = new StitchPaymentsModel()
+        var newPaymentModel = new MotusPaymentsModel()
 
         //Card information
         newPaymentModel.set('name', 'Motus' + ' ' + cardType + ' ' + lastFour);
@@ -91,7 +91,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         newPaymentModel.set('last_name', userProfile.lastname);
         newPaymentModel.set('phone', userProfile.phoneinfo.phone);
         newPaymentModel.set('email', userProfile.email);
-        newPaymentModel.set('stitch_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
+        newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
         //Order information
         newPaymentModel.set('amount', order.get('summary').total);
 
@@ -105,7 +105,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
             if(result.status == 'Success'){
 
 
-                //We need to grab the user profile and overwrite the old one because the customer stitch token has changed.
+                //We need to grab the user profile and overwrite the old one because the customer motus token has changed.
                 // self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
                 //     self.options.userProfile = result
                 // })
@@ -124,8 +124,8 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
                 $('.btn').prop("disabled",false);
                 //self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
                 console.log('set wizard', self)
-                self.options.paymentMethodView.wizard.stitchActive = true
-                self.options.paymentMethodView.wizard.stitchSelected = result.id
+                self.options.paymentMethodView.wizard.motusActive = true
+                self.options.paymentMethodView.wizard.motusSelected = result.id
                 self.options.paymentMethodView.render();
 
             }else{
@@ -137,7 +137,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
                     .modal('hide')
                     .data('bs.modal', null);
 
-                var $alert_warn = $('#stitch-fail-message');
+                var $alert_warn = $('#motus-fail-message');
                 console.log($alert_warn)
                 $alert_warn.html(
                     new GlobalViewsMessageView({
@@ -155,11 +155,11 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
         })
 
     }
-    // ,	stitchTokenSuccess: function()
+    // ,	motusTokenSuccess: function()
     // {
-    //     console.log('stitchtokensuccess',this)
+    //     console.log('motustokensuccess',this)
     //     var self = this
-    //     let data = JSON.parse($('#in-modal-stitchtoken')[0].value);
+    //     let data = JSON.parse($('#in-modal-motustoken')[0].value);
 
     //     let token = data.token 
     //     let expiry = data.expiry 
@@ -168,7 +168,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
     //     var userProfile = this.options.userProfile
 
-    //     var newPaymentModel = new StitchPaymentsModel()
+    //     var newPaymentModel = new MotusPaymentsModel()
 
     //     //Card information
     //     newPaymentModel.set('new', token);
@@ -183,7 +183,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     //     newPaymentModel.set('last_name', userProfile.lastname);
     //     newPaymentModel.set('phone', userProfile.phoneinfo.phone);
     //     newPaymentModel.set('email', userProfile.email);
-    //     newPaymentModel.set('stitch_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
+    //     newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
     //     //Order information
     //     newPaymentModel.set('amount', order.get('summary').total);
 
@@ -197,7 +197,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     //         if(result.status == 'Success'){
 
 
-    //             //We need to grab the user profile and overwrite the old one because the customer stitch token has changed.
+    //             //We need to grab the user profile and overwrite the old one because the customer motus token has changed.
     //             self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
     //                 self.options.userProfile = result
     //             })
@@ -215,8 +215,8 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     //             $('.order-wizard-step-button-continue').prop("disabled",false);
 
     //             //self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
-    //             self.options.paymentMethodView.wizard.stitchActive = true
-    //             self.options.paymentMethodView.wizard.stitchSelected = result.id
+    //             self.options.paymentMethodView.wizard.motusActive = true
+    //             self.options.paymentMethodView.wizard.motusSelected = result.id
     //             self.options.paymentMethodView.render();
 
     //         }else{
@@ -228,7 +228,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     //                 .modal('hide')
     //                 .data('bs.modal', null);
 
-    //             var $alert_warn = $('#stitch-fail-message');
+    //             var $alert_warn = $('#motus-fail-message');
     //             console.log($alert_warn)
     //             $alert_warn.html(
     //                 new GlobalViewsMessageView({
@@ -257,7 +257,7 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
     {
         var transactionBodyFields = {
             'custbody_sd_select_st_card': paymentSelected,
-            'custbody_sd_stitch_token_response': JSON.stringify(authData)
+            'custbody_sd_motus_token_response': JSON.stringify(authData)
         }
 
         this.options.paymentMethodView.model.set('options', transactionBodyFields);
@@ -291,10 +291,10 @@ define('SuiteDynamics.StitchPayments.AddToken.View'
 
     }
 
-		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context
+		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
-			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
+			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 			return {
 				message: this.message

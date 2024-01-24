@@ -1,10 +1,10 @@
-// @module SuiteDynamics.StitchPayments.StitchPayments
-define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
+// @module SuiteDynamics.MotusPayments.MotusPayments
+define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 ,	[
-	'suitedynamics_stitchpayments_paymentmethodlist.tpl'
+	'suitedynamics_motuspayments_paymentmethodlist.tpl'
 	
-	,	'SuiteDynamics.StitchPayments.StitchPayments.SS2Model'
-    ,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
+	,	'SuiteDynamics.MotusPayments.MotusPayments.SS2Model'
+    ,   'SuiteDynamics.MotusPayments.MotusPayments.Model'
 
     ,   'OrderWizard.Module.PaymentMethod'
     ,	'GlobalViews.Message.View'
@@ -12,10 +12,10 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 	,	'Backbone'
     ]
 , function (
-	suitedynamics_stitchpayments_paymentmethodlist_tpl
+	suitedynamics_motuspayments_paymentmethodlist_tpl
 	
-	,	StitchPaymentsSS2Model
-    ,   StitchPaymentsModel
+	,	MotusPaymentsSS2Model
+    ,   MotusPaymentsModel
 
     ,   OrderWizardModulePaymentMethod
     ,	GlobalViewsMessageView
@@ -25,25 +25,25 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 {
     'use strict';
 
-	const stitchTypeMap = {
+	const motusTypeMap = {
 		'MC' : 'master',
 		'VISA' : 'visa',
 		'DISC' : 'discover'
 	}
 
-	// @class SuiteDynamics.StitchPayments.StitchPayments.View @extends Backbone.View
+	// @class SuiteDynamics.MotusPayments.MotusPayments.View @extends Backbone.View
 	return Backbone.View.extend({
 
-		template: suitedynamics_stitchpayments_paymentmethodlist_tpl
+		template: suitedynamics_motuspayments_paymentmethodlist_tpl
 
 	,	initialize: function (options) {
 	}
 
 	,	events: {
 
-        'click [data-action="stitch-token-success"]': 'stitchTokenSuccess',
-		'click [data-action="select"]': 'changeStitchPayment',
-		'click [data-action="stitch-add-token"]': 'addStitchPayment'
+        'click [data-action="motus-token-success"]': 'motusTokenSuccess',
+		'click [data-action="select"]': 'changeMotusPayment',
+		'click [data-action="motus-add-token"]': 'addMotusPayment'
 
 		}
 
@@ -54,7 +54,7 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 
 		}
 
-	,	changeStitchPayment: function(e)
+	,	changeMotusPayment: function(e)
 	{
 		console.log('change payment', this)
 		this.removeActive();
@@ -70,11 +70,11 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 
 		})
 	
-		this.setStitchPaymentMethod();
+		this.setMotusPaymentMethod();
 		OrderWizardModulePaymentMethod.prototype.submit.apply(this.options.orderWizard, arguments);
 
-		this.options.orderWizard.wizard.stitchActive = true
-		this.options.orderWizard.wizard.stitchSelected = paymentSelected
+		this.options.orderWizard.wizard.motusActive = true
+		this.options.orderWizard.wizard.motusSelected = paymentSelected
 
 	}
 
@@ -109,7 +109,7 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 			modelSelected.set('phone', "");
 		}
 		modelSelected.set('email', this.options.userProfile.email);
-		modelSelected.set('stitch_id', _.findWhere(this.options.userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
+		modelSelected.set('motus_id', _.findWhere(this.options.userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
 		//Order information
 		modelSelected.set('amount', this.options.orderWizard.model.get('summary').total);
 		
@@ -124,11 +124,11 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 
 		console.log('set active after', modelSelected)
 	}
-	,	setStitchPaymentMethod: function ()
+	,	setMotusPaymentMethod: function ()
 	{
-		// console.log('stitchTokenSuccess', this)
+		// console.log('motusTokenSuccess', this)
 		//TODO: Make key dynamic
-		console.log('set stitch method', this)
+		console.log('set motus method', this)
 		if(!this.options.orderWizard.paymentMethod){
 			this.options.orderWizard.paymentMethod = new TransactionPaymentmethodModel({
 				type: 'external_checkout',
@@ -147,7 +147,7 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 			return null
 		}
 
-		var cardType = stitchTypeMap[this.model.get('card_type')]
+		var cardType = motusTypeMap[this.model.get('card_type')]
 
 		let foundImg;
 		
@@ -166,13 +166,13 @@ define('SuiteDynamics.StitchPayments.PaymentMethodList.View'
 		return foundImg;
 	}
 
-		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context
+		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
 
 			var image = this.getCardImage();
 
-			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
+			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 
 			var expMonth = this.model.get('exp_month');

@@ -9,19 +9,19 @@
 // --------------------------------
 //MAYBE DO NOT NEED THIS FILE
 define(
-	'SuiteDynamics.StitchPayments.StitchPaymentMethodSelector'
+	'SuiteDynamics.MotusPayments.MotusPaymentMethodSelector'
 ,	[	'OrderWizard.Module.PaymentMethod'
 	,	'Transaction.Paymentmethod.Model'
 	,   'Transaction.Model'
 	,   'Wizard.StepModule'
-	,   'SuiteDynamics.StitchPayments.StitchPayments.Collection'
-	,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
-	,   'SuiteDynamics.StitchPayments.AddToken.View'
-	,   'SuiteDynamics.StitchPayments.PaymentMethodList.View'
-	,   'SuiteDynamics.StitchPayments.RemoveToken.View'
-	,   'SuiteDynamics.StitchPayments.ShowPayment.View'
+	,   'SuiteDynamics.MotusPayments.MotusPayments.Collection'
+	,   'SuiteDynamics.MotusPayments.MotusPayments.Model'
+	,   'SuiteDynamics.MotusPayments.AddToken.View'
+	,   'SuiteDynamics.MotusPayments.PaymentMethodList.View'
+	,   'SuiteDynamics.MotusPayments.RemoveToken.View'
+	,   'SuiteDynamics.MotusPayments.ShowPayment.View'
 
-	,	'suitedynamics_stitchpayments_paymentmethod.tpl'
+	,	'suitedynamics_motuspayments_paymentmethod.tpl'
 
 	,	'Backbone.CollectionView'
 	,	'backbone_collection_view_row.tpl'
@@ -34,14 +34,14 @@ define(
 	,	TransactionPaymentmethodModel
 	,   TransactionModel
 	,	WizardStepModule
-	,	StitchPaymentsCollection
-	,	StitchPaymentsModel
-	,   StitchPaymentsAddTokenView
-	,   StitchPaymentsPaymentMethodListView
-	,   StitchPaymentsRemoveTokenView
-	,   StitchPaymentsShowPaymentView
+	,	MotusPaymentsCollection
+	,	MotusPaymentsModel
+	,   MotusPaymentsAddTokenView
+	,   MotusPaymentsPaymentMethodListView
+	,   MotusPaymentsRemoveTokenView
+	,   MotusPaymentsShowPaymentView
 
-	,	suitedynamics_stitchpayments_paymentmethod_tpl
+	,	suitedynamics_motuspayments_paymentmethod_tpl
 
 	,	BackboneCollectionView
 	,	backbone_collection_view_row_tpl
@@ -54,17 +54,17 @@ define(
 
 	return OrderWizardModulePaymentMethod.extend({
 
-		template: suitedynamics_stitchpayments_paymentmethod_tpl
+		template: suitedynamics_motuspayments_paymentmethod_tpl
 
 	,	events: {
-			'change [data-action="change-stitch-payment"]': 'changeStitchPayment',
-			'click [data-action="stitch-add-token"]': 'addStitchPayment',
-			'click [data-action="stitch-remove-token"]': 'removeStitchPayment'
+			'change [data-action="change-motus-payment"]': 'changeMotusPayment',
+			'click [data-action="motus-add-token"]': 'addMotusPayment',
+			'click [data-action="motus-remove-token"]': 'removeMotusPayment'
 		}
 
     ,	errors: ['ERR_WS_INVALID_CARD', 'ERR_CHK_INVALID_CARD']
     ,	childViews: {
-			'StitchPayments.List': function () {
+			'MotusPayments.List': function () {
 				// if (this.paymentMethodSelected) {
 				// 	this.setCreditCard({
 				// 		id: this.paymentMethodSelected
@@ -73,7 +73,7 @@ define(
 				console.log('child view', this)
 				return new BackboneCollectionView({
 					collection: this.options.collection,
-					childView: StitchPaymentsPaymentMethodListView,
+					childView: MotusPaymentsPaymentMethodListView,
 					childViewOptions: {
 						collection: this.options.collection,
 						userProfile: this.userProfile,
@@ -120,8 +120,8 @@ define(
 			this.layout = this.options.layout
 
 			this.options.layout.addChildView('PaymentMethods.Collection', function () {
-				return new StitchPaymentsShowPaymentView({
-					stitch: self
+				return new MotusPaymentsShowPaymentView({
+					motus: self
 				});
 			});
 		
@@ -135,7 +135,7 @@ define(
 			
 			self.on('afterViewRender', function(){
 				
-				let selectedInitialPayment = _.findWhere(self.$el.find("#stitch-payments-dropdown")[0],{ selected: true });
+				let selectedInitialPayment = _.findWhere(self.$el.find("#motus-payments-dropdown")[0],{ selected: true });
 
 				if(selectedInitialPayment){
 					self.setInitial(selectedInitialPayment.id)
@@ -172,10 +172,10 @@ define(
 			if (options) {
 				_.extend(this.options, options);
 			}
-			if(this.options.paymentmethod.name == 'Stitch' && modelSelected){
-				this.stitchActive = true;
-				this.stitchSelected = modelSelected.get('id')
-				this.setStitchPaymentMethod();
+			if(this.options.paymentmethod.name == 'Motus' && modelSelected){
+				this.motusActive = true;
+				this.motusSelected = modelSelected.get('id')
+				this.setMotusPaymentMethod();
 			}else if (modelSelected) {
 				this.setPaymentMethod();
 			}
@@ -190,18 +190,18 @@ define(
 			if(initial){
 				
 				this.setActive(initial)
-				this.setStitchPaymentMethod();
+				this.setMotusPaymentMethod();
 				OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
 				this.setTransactionFields(initial);
 			}
 		}
 
-	,	setStitchPaymentMethod: function ()
+	,	setMotusPaymentMethod: function ()
 		{
-			// console.log('stitchTokenSuccess', this)
+			// console.log('motusTokenSuccess', this)
 			//TODO: Make key dynamic
-			console.log('set stitch method', this)
+			console.log('set motus method', this)
 			if(!this.paymentMethod){
 				this.paymentMethod = new TransactionPaymentmethodModel({
 					type: 'external_checkout',
@@ -235,7 +235,7 @@ define(
 			modelSelected.set('phone', "");
 		}
 		modelSelected.set('email', this.userProfile.email);
-		modelSelected.set('stitch_id', _.findWhere(this.userProfile.customfields,{ id: "custentity_profile_id_stitch" }).value);
+		modelSelected.set('motus_id', _.findWhere(this.userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
 		//Order information
 		modelSelected.set('amount', this.model.get('summary').total);
 		
@@ -252,7 +252,7 @@ define(
 	}
 
 
-	,	changeStitchPayment: function(e)
+	,	changeMotusPayment: function(e)
 	{
 		this.removeActive();
 
@@ -267,11 +267,11 @@ define(
 
 		})
 	
-		this.setStitchPaymentMethod();
+		this.setMotusPaymentMethod();
 		OrderWizardModulePaymentMethod.prototype.submit.apply(this, arguments);
 
-		this.wizard.stitchActive = true
-		this.wizard.stitchSelected = paymentSelected
+		this.wizard.motusActive = true
+		this.wizard.motusSelected = paymentSelected
 
 	}
 
@@ -291,14 +291,14 @@ define(
 		this.model.set('options', _.extend(this.model.get('options'), {'custbody_sd_select_st_card': paymentSelected}));
 
 		//put in wizard because it isn't being reflected in model on review page
-		this.wizard.stitchActive = true
-		this.wizard.stitchSelected = paymentSelected
+		this.wizard.motusActive = true
+		this.wizard.motusSelected = paymentSelected
 	}
 
-	,	addStitchPayment: function(e)
+	,	addMotusPayment: function(e)
 	{
 
-		var addTokenView = new StitchPaymentsAddTokenView({
+		var addTokenView = new MotusPaymentsAddTokenView({
 			collection: this.options.collection,
 			container: this.options.container,
 			paymentMethodView: this,
@@ -309,10 +309,10 @@ define(
 		
 		this.layout.showContent(addTokenView, { showInModal: true });
 	}
-	,	removeStitchPayment: function(e)
+	,	removeMotusPayment: function(e)
 	{
 
-		var removeTokenView = new StitchPaymentsRemoveTokenView({
+		var removeTokenView = new MotusPaymentsRemoveTokenView({
 			collection: this.options.collection,
 			container: this.options.container
 		});
@@ -330,12 +330,12 @@ define(
 			//imageUrl: this.options.paymentmethod.imagesrc[0],
 			// @property {String} name
 			name: this.options.paymentmethod.name,
-			isStitch: this.options.paymentmethod.name == "Stitch" ? true : false,
+			isMotus: this.options.paymentmethod.name == "Motus" ? true : false,
 			// @property {String} description
 
 			// @property {String} type
 			type: this.paymentMethod ? this.paymentMethod.get('type') : null,
-			isSelected:  this.options.paymentmethod.name == "Stitch" ? true : false,
+			isSelected:  this.options.paymentmethod.name == "Motus" ? true : false,
 			payments: this.options.collection
 
 		};

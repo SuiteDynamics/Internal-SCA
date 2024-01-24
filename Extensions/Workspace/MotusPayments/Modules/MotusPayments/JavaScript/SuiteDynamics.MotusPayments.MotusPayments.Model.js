@@ -1,7 +1,7 @@
 // Model.js
 // -----------------------
 // @module Case
-define("SuiteDynamics.StitchPayments.StitchPayments.Model", ["Backbone", "Utils", "underscore"], function(
+define("SuiteDynamics.MotusPayments.MotusPayments.Model", ["Backbone", "Utils", "underscore"], function(
     Backbone,
     Utils,
     _
@@ -13,7 +13,7 @@ define("SuiteDynamics.StitchPayments.StitchPayments.Model", ["Backbone", "Utils"
 
         
         //@property {String} urlRoot
-        urlRoot: _.getAbsoluteUrl("services/StitchPayments.Service.ss")
+        urlRoot: _.getAbsoluteUrl("services/MotusPayments.Service.ss")
         
 });
 });

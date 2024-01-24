@@ -1,0 +1,90 @@
+{
+    "name": "MotusPayments",
+    "fantasyName": "Motus Payments",
+    "vendor": "SuiteDynamics",
+    "version": "1.0.0",
+    "type": "extension",
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": "",
+        "SCS": ""
+    },
+    "description": "Integrates Motus payment method into SuiteCommerce",
+    "skins": [],
+    "assets": {
+        "img": {
+            "files": []
+        },
+        "fonts": {
+            "files": []
+        },
+        "services": {
+            "files": [
+                "services/MotusPayments.Service.ss"
+            ]
+        }
+    },
+    "configuration": {
+        "files": [
+            "Modules/MotusPayments/Configuration/MotusPayments.json"
+        ]
+    },
+    "sass": {
+        "entry_points": {
+            "checkout": "Modules/MotusPayments/Sass/_motuspayments-motuspayments.scss"
+        },
+        "files": [
+            "Modules/MotusPayments/Sass/_motuspayments-motuspayments.scss"
+        ]
+    },
+    "templates": {
+        "application": {
+            "checkout": {
+                "files": [
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_addtoken.tpl",
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_paymentmethod.tpl",
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_paymentmethodlist.tpl",
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_paymentmethodselector.tpl",
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_removetoken.tpl",
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_review.tpl",
+                    "Modules/MotusPayments/Templates/suitedynamics_motuspayments_showpayment.tpl"
+                ]
+            }
+        }
+    },
+    "javascript": {
+        "entry_points": {
+            "checkout": "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPayments.js"
+        },
+        "application": {
+            "checkout": {
+                "files": [
+                    "Modules/MotusPayments/JavaScript/MotusPaymentsMotusPayments.ShowPayment.view.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.AddToken.view.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.PaymentMethodList.view.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.RemoveToken.view.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPaymentMethodSelector.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPayments.Collection.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPayments.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPayments.Model.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPayments.SS2Model.js",
+                    "Modules/MotusPayments/JavaScript/SuiteDynamics.MotusPayments.MotusPaymentsModule.View.js"
+                ]
+            }
+        }
+    },
+    "ssp-libraries": {
+        "entry_point": "Modules/MotusPayments/SuiteScript/SuiteDynamics.MotusPayments.MotusPayments.js",
+        "files": [
+            "Modules/MotusPayments/SuiteScript/SuiteDynamics.MotusPayments.MotusPayments.js",
+            "Modules/MotusPayments/SuiteScript/MotusPayments.ServiceController.js",
+            "Modules/MotusPayments/SuiteScript/MotusPayments.Model.js"
+        ]
+    },
+    "local_folder": "Workspace\\MotusPayments",
+    "suitescript2": {
+        "files": [
+            "Modules/MotusPayments/SuiteScript2/MotusPayments.Service.ss"
+        ]
+    }
+}

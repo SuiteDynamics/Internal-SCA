@@ -1,11 +1,11 @@
-// @module SuiteDynamics.StitchPayments.StitchPayments
+// @module SuiteDynamics.MotusPayments.MotusPayments
 //Not currently in use
-define('SuiteDynamics.StitchPayments.RemoveToken.View'
+define('SuiteDynamics.MotusPayments.RemoveToken.View'
 ,	[
-	'suitedynamics_stitchpayments_removetoken.tpl'
+	'suitedynamics_motuspayments_removetoken.tpl'
 	
-	,	'SuiteDynamics.StitchPayments.StitchPayments.SS2Model'
-    ,   'SuiteDynamics.StitchPayments.StitchPayments.Model'
+	,	'SuiteDynamics.MotusPayments.MotusPayments.SS2Model'
+    ,   'SuiteDynamics.MotusPayments.MotusPayments.Model'
 
     ,   'OrderWizard.Module.PaymentMethod'
 	
@@ -15,10 +15,10 @@ define('SuiteDynamics.StitchPayments.RemoveToken.View'
     ,   'underscore'
     ]
 , function (
-	suitedynamics_stitchpayments_removetoken_tpl
+	suitedynamics_motuspayments_removetoken_tpl
 	
-	,	StitchPaymentsSS2Model
-    ,   StitchPaymentsModel
+	,	MotusPaymentsSS2Model
+    ,   MotusPaymentsModel
 
     ,   OrderWizardModulePaymentMethod
 	
@@ -30,10 +30,10 @@ define('SuiteDynamics.StitchPayments.RemoveToken.View'
 {
     'use strict';
 
-	// @class SuiteDynamics.StitchPayments.StitchPayments.View @extends Backbone.View
+	// @class SuiteDynamics.MotusPayments.MotusPayments.View @extends Backbone.View
 	return Backbone.View.extend({
 
-		template: suitedynamics_stitchpayments_removetoken_tpl
+		template: suitedynamics_motuspayments_removetoken_tpl
 
 	,	initialize: function (options) {
 
@@ -42,7 +42,7 @@ define('SuiteDynamics.StitchPayments.RemoveToken.View'
             this.collection.on('reset sync add remove change', function (model) {
                 
             //The collection is not self-populating the url, so we need to populate it to call the backend service. 
-            self.collection.sync('delete',model,{url: _.getAbsoluteUrl("services/StitchPayments.Service.ss?id="+model.get("id")), wait:true}).done(function(result){
+            self.collection.sync('delete',model,{url: _.getAbsoluteUrl("services/MotusPayments.Service.ss?id="+model.get("id")), wait:true}).done(function(result){
                 
                 if(result.status == 'Success'){
                     self.render();
@@ -60,7 +60,7 @@ define('SuiteDynamics.StitchPayments.RemoveToken.View'
 
 	,	events: {
 
-        'click [data-action="stitch-remove-token-line"]': 'stitchRemoveTokenLine'
+        'click [data-action="motus-remove-token-line"]': 'motusRemoveTokenLine'
 
 		}
 
@@ -71,7 +71,7 @@ define('SuiteDynamics.StitchPayments.RemoveToken.View'
 
 		}
 
-    ,	stitchRemoveTokenLine: function(e)
+    ,	motusRemoveTokenLine: function(e)
     {
         var tokenID = e.currentTarget.id.split('in-modal-').pop();
 
@@ -83,10 +83,10 @@ define('SuiteDynamics.StitchPayments.RemoveToken.View'
         }
     } 
 
-		//@method getContext @return SuiteDynamics.StitchPayments.StitchPayments.View.Context
+		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
-			//@class SuiteDynamics.StitchPayments.StitchPayments.View.Context
+			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 			return {
 				tokens: this.collection

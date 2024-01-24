@@ -1,7 +1,7 @@
             // Model.js
             // -----------------------
             // @module SezzleSdk.Model
-            define("StitchPayments.Model",  [
+            define("MotusPayments.Model",  [
                 "SC.Model",
                 "SC.Models.Init",
                 "LiveOrder.Model",
@@ -18,7 +18,7 @@
                 // @class SezzleSdk.Model @extends SC.Model
                 return SCModel.extend({
                 
-                    name: "StitchPayments.Model",
+                    name: "MotusPayments.Model",
                     getTokens: function()
                     {
                         nlapiLogExecution('DEBUG', 'getTokens', nlapiGetUser());
@@ -174,7 +174,7 @@
                     },
                     submitCustomerProfile: function(data, user){
                         nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
-                        var stitchCredentials = this.getStitchCredentials(user)
+                        var stitchCredentials = this.getMotusCredentials(user)
                         //var custInfo = nlapiLookupField('customer', user, ['firstname','lastname','phone']);
                         // //Build body object
     
@@ -190,10 +190,10 @@
                             "account"	: data.token
                         }
     
-                        var userStitchId = nlapiLookupField('customer', user, 'custentity_profile_id_stitch');
-                        nlapiLogExecution('DEBUG', 'userStitchId', userStitchId);
+                        var userMotusId = nlapiLookupField('customer', user, 'custentity_profile_id_stitch');
+                        nlapiLogExecution('DEBUG', 'userMotusId', userStitchId);
                         if(userStitchId !== ""){
-                            stitchBody.profile = userStitchId;
+                            stitchBody.profile = userMotusId;
                             stitchBody.profileupdate = 'Y';
                         }
     
@@ -221,7 +221,7 @@
                         if (response.getCode() == 200 && responseBody.respcode == "09") {
                         
                             //if new profile, submit id to customer
-                            if(userStitchId == ""){
+                            if(userMotusId == ""){
                                 nlapiSubmitField('customer', user, 'custentity_profile_id_stitch', responseBody.profileid);
                             }
                             
@@ -257,7 +257,7 @@
                     },
                     submitTokenAuth: function(data, user){
                         nlapiLogExecution('DEBUG', 'submittokenauth', JSON.stringify(data));
-                        var credentials_object = this.getStitchCredentials()
+                        var credentials_object = this.getMotusCredentials()
                         if (credentials_object) {
                             var stitchPaymentsApiUrl = credentials_object.baseurl + '/auth'
                             //var orderid = newRecord.getValue('transactionnumber');
@@ -307,7 +307,7 @@
                     voidAuth: function(auth){
                         if (auth.merchid && auth.retref) {
     
-                            var credentials_object = this.getStitchCredentials();
+                            var credentials_object = this.getMotusCredentials();
                             var stitchVoidApiUrl = credentials_object.baseurl + '/void'
                             var headerObj = {
                                 'Authorization': credentials_object.tokenKey,
@@ -353,7 +353,7 @@
                         }
                         return;
                     },
-                    getStitchCredentials: function(){
+                    getMotusCredentials: function(){
                         var stitchCreds = nlapiSearchRecord(
                             'customrecord_stitch_credentials',
                             null,

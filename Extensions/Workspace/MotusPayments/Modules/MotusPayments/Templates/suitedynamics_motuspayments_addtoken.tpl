@@ -148,12 +148,12 @@
     window.addEventListener('message', function(event) {
         console.log('event', event)
         var token = event.data;
-        var mytoken = document.getElementById('in-modal-stitchtoken');
+        var mytoken = document.getElementById('in-modal-motustoken');
         if(mytoken){
             mytoken.value = token;
             try{
                 if(JSON.parse(token).token){
-                    var submitButton = document.getElementById('in-modal-stitch-token-success').click();
+                    var submitButton = document.getElementById('in-modal-motus-token-success').click();
                 }
             }catch(e){
             }
@@ -166,14 +166,14 @@
 <script src='https://protect.sandbox.paytrace.com/js/protect.min.js'></script>
 <div id='pt_hpf_form'><!--iframe sensitive data payment fields inserted here--></div>
 
-<!-- <div class="stitchpayments-body">
+<!-- <div class="motuspayments-body">
     <form name="tokenform" id="tokenform">
-        <iframe class="stitchpayments-iframe" id="tokenFrame" name="tokenFrame" src="https://protect.sandbox.paytrace.com/js/protect.min.js" width="600" frameborder="0" scrolling="no"></iframe>
-        <input type="hidden" name="stitchtoken" id="stitchtoken"/>
+        <iframe class="motuspayments-iframe" id="tokenFrame" name="tokenFrame" src="https://protect.sandbox.paytrace.com/js/protect.min.js" width="600" frameborder="0" scrolling="no"></iframe>
+        <input type="hidden" name="motustoken" id="motustoken"/>
 </form>
-<a id="stitch-token-success" class="stitch-token-success" data-action="stitch-token-success"> Click here </a>
+<a id="motus-token-success" class="motus-token-success" data-action="motus-token-success"> Click here </a>
 </div>
 
-<div class="stitch-payments-add-token-container">
-    <a id="stitch-add-token-button" data-action="stitch-add-token" class="stitch-add-token-button" data-toggle="show-in-modal">Add</a>
+<div class="motus-payments-add-token-container">
+    <a id="motus-add-token-button" data-action="motus-add-token" class="motus-add-token-button" data-toggle="show-in-modal">Add</a>
 </div> -->

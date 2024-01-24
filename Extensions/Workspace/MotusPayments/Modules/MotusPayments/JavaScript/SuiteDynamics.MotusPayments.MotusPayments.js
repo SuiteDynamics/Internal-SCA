@@ -1,13 +1,13 @@
 //ENTRY POINT
 //EXTENSION IMPROVEMENTS
-	// 1.Figure out how to get the payment method selected attached to the order model. As a workaround we are attaching the Stitch information to the wizard.
-	// 2.Fix multiple renders on Stitch payment method selection. 
+	// 1.Figure out how to get the payment method selected attached to the order model. As a workaround we are attaching the Motus information to the wizard.
+	// 2.Fix multiple renders on Motus payment method selection. 
 define(
-	'SuiteDynamics.StitchPayments.StitchPayments'
+	'SuiteDynamics.MotusPayments.MotusPayments'
 ,   [
 		'OrderWizard.Module.PaymentMethod.Selector',
-		'SuiteDynamics.StitchPayments.StitchPaymentMethodSelector',
-		'SuiteDynamics.StitchPayments.StitchPayments.Collection',
+		'SuiteDynamics.MotusPayments.MotusPaymentMethodSelector',
+		'SuiteDynamics.MotusPayments.MotusPayments.Collection',
 
 		'underscore',
 		'jQuery',
@@ -16,13 +16,13 @@ define(
 		'Tracker',
 		'Configuration',
 
-		'suitedynamics_stitchpayments_paymentmethodselector.tpl',
+		'suitedynamics_motuspayments_paymentmethodselector.tpl',
 		'order_wizard_paymentmethod_others_module.tpl'
 	]
 ,   function (
 		OrderWizardModulePaymentMethodSelector,
-		SuitedynamicsStitchPaymentsMethodSelector,
-		StitchPaymentsCollection,
+		SuitedynamicsMotusPaymentsMethodSelector,
+		MotusPaymentsCollection,
 
 		_,
 		jQuery,
@@ -31,7 +31,7 @@ define(
 		Tracker,
 		Configuration,
 
-		suitedynamics_stitchpayments_paymentmethodselector_tpl,
+		suitedynamics_motuspayments_paymentmethodselector_tpl,
 		order_wizard_paymentmethod_others_module_tpl
 		
 	)
@@ -44,13 +44,13 @@ define(
 
 			/** @type {LayoutComponent} */
 			var layout = container.getComponent('Layout');
-			console.log('stitch', this)
-			var stitchSelf = this
-			stitchSelf.stitchCollection = new StitchPaymentsCollection();
-			stitchSelf.stitchActive = false;
-			stitchSelf.stitchCollection.on('add', function (model) {	
+			console.log('motus', this)
+			var motusSelf = this
+			motusSelf.motusCollection = new MotusPaymentsCollection();
+			motusSelf.motusActive = false;
+			motusSelf.motusCollection.on('add', function (model) {	
 				console.log('add listener')				
-				// stitchSelf.render()
+				// motusSelf.render()
 			});
 
 			var checkout = container.getComponent("Checkout");
@@ -58,20 +58,20 @@ define(
 			checkout.addModuleToStep({
 				step_url: 'review',
 				module: {
-					id: 'SuiteDynamics_StitchPayments_Module',
+					id: 'SuiteDynamics_MotusPayments_Module',
 					index: 11,
-					classname: 'SuiteDynamics.StitchPayments.StitchPaymentsModule.View',
-					options: { container: '#wizard-step-content-right', stitchPayments: stitchSelf},
+					classname: 'SuiteDynamics.MotusPayments.MotusPaymentsModule.View',
+					options: { container: '#wizard-step-content-right', motusPayments: motusSelf},
 				}
 			}).catch(function(error){
 				console.log('error',error);
 			});
 
-			//TOUCHPOINT 2: Add Module to native payment selector. This module will trigger on payment method display to display Stitch as a payment option
+			//TOUCHPOINT 2: Add Module to native payment selector. This module will trigger on payment method display to display Motus as a payment option
 			
 			_.extend(OrderWizardModulePaymentMethodSelector.prototype,{
 			
-				template: suitedynamics_stitchpayments_paymentmethodselector_tpl,
+				template: suitedynamics_motuspayments_paymentmethodselector_tpl,
 
 				events:{
 					'click [data-action="change-payment-method"]': 'selectPaymentMethod',
@@ -87,39 +87,39 @@ define(
 					var self = this
 					const payment_methods = Configuration.get('siteSettings.paymentmethods', []);
 					console.log('payment methods', payment_methods)
-					// var stitch = _.findWhere(payment_methods,{ name: 'Stitch' });
+					// var motus = _.findWhere(payment_methods,{ name: 'Motus' });
 
 					// var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 					// 	self = this;
 
 					this.modules.push({
-						classModule: SuitedynamicsStitchPaymentsMethodSelector,
-						name: 'Stitch',
+						classModule: SuitedynamicsMotusPaymentsMethodSelector,
+						name: 'Motus',
 						type: 'external', //Changed from 'offline'
 						options: {
-							paymentmethod: _.findWhere(payment_methods,{ name: 'Stitch' }),
+							paymentmethod: _.findWhere(payment_methods,{ name: 'Motus' }),
 							layout: container.getComponent('Layout'),
 							checkout: container.getComponent('Checkout'),
 							container: container,
-							collection: stitchSelf.stitchCollection
+							collection: motusSelf.motusCollection
 						}
 					})
 	
-					var StitchModule = _.findWhere(this.modules,{ name: 'Stitch' })
-					var ModuleClass = StitchModule.classModule;
+					var MotusModule = _.findWhere(this.modules,{ name: 'Motus' })
+					var ModuleClass = MotusModule.classModule;
 
-					StitchModule.instance = new ModuleClass(
+					MotusModule.instance = new ModuleClass(
 						_.extend(
 							{
 								wizard: self.wizard,
 								step: self.step,
 								stepGroup: self.step.stepGroup
 							},
-							StitchModule.options
+							MotusModule.options
 						)
 					);
 					console.log('after', this)		
-					StitchModule.instance.on('ready', function(is_ready) {
+					MotusModule.instance.on('ready', function(is_ready) {
 						self.moduleReady(is_ready);
 					});
 			}),
@@ -134,7 +134,7 @@ define(
 				module.instance.isReady = false;
 				module.instance.render();
 
-				this.wizard.stitchActive = false;
+				this.wizard.motusActive = false;
 
 				this.$('#payment-method-selector-content')
 					.empty()
@@ -147,7 +147,7 @@ define(
 		// if(layout)
 		// {
 		// 	layout.addChildView('Header.Logo', function() { 
-		// 		return new StitchPaymentsView({ container: container });
+		// 		return new MotusPaymentsView({ container: container });
 		// 	});
 		// }
 
