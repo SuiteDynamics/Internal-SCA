@@ -1,15 +1,15 @@
-// SuiteDynamics.StitchPayments.StitchPayments.js
+// SuiteDynamics.MotusPayments.MotusPayments.js
 // Load all your starter dependencies in backend for your extension here
 // ----------------
 
-define('SuiteDynamics.StitchPayments.StitchPayments'
+define('SuiteDynamics.MotusPayments.MotusPayments'
 ,	[
-		// 'SuiteDynamics.StitchPayments.StitchPayments.ServiceController',
+		// 'SuiteDynamics.MotusPayments.MotusPayments.ServiceController',
 		'LiveOrder.Model',
 		'underscore'
 	]
 ,	function (
-		// StitchPaymentsServiceController,
+		// MotusPaymentsServiceController,
 		LiveOrderModel,
 		_
 	)

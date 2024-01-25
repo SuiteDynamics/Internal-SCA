@@ -125,7 +125,6 @@ define(
 				});
 			});
 		
-
 			this.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
 				self.userProfile = result
 			})
@@ -325,20 +324,6 @@ define(
 	,	getContext: function ()
 	{
 
-		return {
-
-			//imageUrl: this.options.paymentmethod.imagesrc[0],
-			// @property {String} name
-			name: this.options.paymentmethod.name,
-			isMotus: this.options.paymentmethod.name == "Motus" ? true : false,
-			// @property {String} description
-
-			// @property {String} type
-			type: this.paymentMethod ? this.paymentMethod.get('type') : null,
-			isSelected:  this.options.paymentmethod.name == "Motus" ? true : false,
-			payments: this.options.collection
-
-		};
 	}
 	});
 });

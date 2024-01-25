@@ -20,7 +20,7 @@
         },
         "services": {
             "files": [
-                "services/MotusPayments.Service.ss"
+                "services/StitchPayments.Service.ss"
             ]
         }
     },

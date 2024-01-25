@@ -1,5 +1,3 @@
-{{log this}}
-<div>hello</div>
 <div class="motus-payments-list-container">
     <div>
         <div id="creditcard-module-list-placeholder" class="order-wizard-paymentmethod-creditcard-module-list-placeholder">

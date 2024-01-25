@@ -109,7 +109,7 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 			modelSelected.set('phone', "");
 		}
 		modelSelected.set('email', this.options.userProfile.email);
-		modelSelected.set('motus_id', _.findWhere(this.options.userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
+		//modelSelected.set('motus_id', _.findWhere(this.options.userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
 		//Order information
 		modelSelected.set('amount', this.options.orderWizard.model.get('summary').total);
 		

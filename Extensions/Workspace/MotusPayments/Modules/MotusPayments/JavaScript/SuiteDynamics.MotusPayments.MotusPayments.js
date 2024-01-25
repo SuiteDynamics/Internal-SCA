@@ -87,7 +87,7 @@ define(
 					var self = this
 					const payment_methods = Configuration.get('siteSettings.paymentmethods', []);
 					console.log('payment methods', payment_methods)
-					// var motus = _.findWhere(payment_methods,{ name: 'Motus' });
+					var motus = _.findWhere(payment_methods,{ name: 'Motus' });
 
 					// var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
 					// 	self = this;
@@ -96,6 +96,8 @@ define(
 						classModule: SuitedynamicsMotusPaymentsMethodSelector,
 						name: 'Motus',
 						type: 'external', //Changed from 'offline'
+						isMotus: true,
+						imageUrl: motus.imagesrc[0],
 						options: {
 							paymentmethod: _.findWhere(payment_methods,{ name: 'Motus' }),
 							layout: container.getComponent('Layout'),
@@ -123,6 +125,21 @@ define(
 						self.moduleReady(is_ready);
 					});
 			}),
+
+			getContext: _.wrap(OrderWizardModulePaymentMethodSelector.prototype.getContext, function (fn) {
+
+				   
+				var context = fn.apply(this, _.toArray(arguments).slice(1));
+				context.isMotus = this.selectedModule.name == "Motus" ? true : false
+
+				var motusModule = _.findWhere(context.activeModules,{ name: 'Motus' })
+
+				motusModule.isMotus = true;
+				motusModule.imagesrc =  _.findWhere(this.modules,{ name: 'Motus' }).imageUrl
+
+				return context;
+
+		}),
 
 			//For some reason this was added into source code for 2020 and later to look for external, not others. As a result other payment methods were getting excluded from render. Changed code to to look for 'others'. 
 			isOthersModule: function(type) {

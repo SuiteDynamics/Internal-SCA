@@ -1,21 +1,15 @@
 // @module SuiteDynamics.MotusPayments.MotusPayments
+//This view shows the selected payment on the review checkout page
 define('SuiteDynamics.MotusPayments.ShowPayment.View'
 ,	[
 	'suitedynamics_motuspayments_showpayment.tpl'
 
-	,   'Wizard.Step'
-	,   'OrderWizard.Module.PaymentMethod'
-
 	,	'Backbone'
-	,   'jQuery',
     ]
 , function (
 	suitedynamics_motuspayments_showpayment_tpl
 	
-	,	WizardStepModule
-	,	OrderWizardModulePaymentMethod
 	,	Backbone
-	,   jQuery
 )
 {
     'use strict';

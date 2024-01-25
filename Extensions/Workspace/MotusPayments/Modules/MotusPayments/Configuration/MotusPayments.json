@@ -1,11 +1,11 @@
 {
     "type": "object",
     "properties": { 
-        "StitchPayments.config": {
+        "MotusPayments.config": {
             "group": "extensions",
-            "subtab": "StitchPayments_subtab",
+            "subtab": "MotusPayments_subtab",
             "type": "string",
-            "title": "StitchPayments_Title",
+            "title": "MotusPayments_Title",
             "description": "Config description example",
             "default": "Default config example"
         }

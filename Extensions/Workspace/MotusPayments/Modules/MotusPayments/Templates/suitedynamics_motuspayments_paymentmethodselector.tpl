@@ -6,14 +6,13 @@
 			{{title}}
 		</h2>
 	{{/if}}
-
 	{{#if activeModulesLengthGreaterThan1}}
 		<div class="order-wizard-paymentmethod-selector-module-header-nav">
 			<div class="order-wizard-paymentmethod-selector-module-button-group" data-action="change-payment-method">
 				{{#each activeModules}}
 					{{#if isMotus}}
 						<a data-action="change-payment-method" class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">
-							<img class="order-wizard-paymentmethod-selector-module-button-img" src="{{motusurl}}" alt="">
+							<img class="order-wizard-paymentmethod-selector-module-button-img" src="{{imagesrc}}" alt="">
 						</a>
 					{{else}}
 						<a data-action="change-payment-method" class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">
