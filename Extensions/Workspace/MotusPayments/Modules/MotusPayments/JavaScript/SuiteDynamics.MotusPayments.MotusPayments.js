@@ -103,7 +103,8 @@ define(
 							layout: container.getComponent('Layout'),
 							checkout: container.getComponent('Checkout'),
 							container: container,
-							collection: motusSelf.motusCollection
+							collection: motusSelf.motusCollection,
+							images: motus.imagesrc
 						}
 					})
 	

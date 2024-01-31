@@ -58,8 +58,8 @@ define(
 
 	,	events: {
 			'change [data-action="change-motus-payment"]': 'changeMotusPayment',
-			'click [data-action="motus-add-token"]': 'addMotusPayment',
-			'click [data-action="motus-remove-token"]': 'removeMotusPayment'
+			'click [data-action="motus-add-token"]': 'addMotusPayment'
+			// 'click [data-action="motus-remove-token"]': 'removeMotusPayment'
 		}
 
     ,	errors: ['ERR_WS_INVALID_CARD', 'ERR_CHK_INVALID_CARD']
@@ -146,7 +146,7 @@ define(
 				
 			}, this);
 
-			this.options.collection.on('sync', function (model) {	
+			this.options.collection.on('reset sync add remove change destroy', function (model) {	
 				console.log('add listener')				
 				self.render()
 			});
@@ -308,18 +308,18 @@ define(
 		
 		this.layout.showContent(addTokenView, { showInModal: true });
 	}
-	,	removeMotusPayment: function(e)
-	{
+	// ,	removeMotusPayment: function(e)
+	// {
 
-		var removeTokenView = new MotusPaymentsRemoveTokenView({
-			collection: this.options.collection,
-			container: this.options.container
-		});
+	// 	var removeTokenView = new MotusPaymentsRemoveTokenView({
+	// 		collection: this.options.collection,
+	// 		container: this.options.container
+	// 	});
 
-		removeTokenView.title = "Remove Card"
+	// 	removeTokenView.title = "Remove Card"
 		
-		this.layout.showContent(removeTokenView, { showInModal: true });
-	}
+	// 	this.layout.showContent(removeTokenView, { showInModal: true });
+	// }
 
 	,	getContext: function ()
 	{

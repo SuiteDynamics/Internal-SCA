@@ -34,11 +34,6 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   padding: $sc-margin-lv1;
 }
 
-.motus-remove-token-button{
-	@extend .button-secondary;
-  padding: $sc-margin-lv1;
-}
-
 .motus-payments-list-container{
   display: inline-flex;
 }
@@ -174,10 +169,8 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   
 }
 .motus-removetoken-button{
-  @extend .button-secondary;
-  margin: $sc-margin-lv1;
-  padding-left: $sc-padding-lv1;
-  padding-right: $sc-padding-lv1;
+  @extend .button-link;
+  float: right;
 }
 
 .motus-payments-add-token-container{

@@ -54,14 +54,25 @@ define('SuiteDynamics.MotusPayments.MotusPaymentsModule.View'
 				}
 				return promise;
 			}
-			
+
+			//get billing address
+			var billAddress = this.model.get('addresses').where({'internalid': this.model.get('billaddress')})
+			var billingAddrObj = {
+				"name": billAddress[0].get('fullname'),
+				"street_address": billAddress[0].get('addr1'),
+				"city": billAddress[0].get('city'),
+				"state": billAddress[0].get('state'),
+				"zip": billAddress[0].get('zip')
+			}
+			console.log('billingAddrObj', billingAddrObj)
+
 			var motusCollection = this.options.motusPayments.motusCollection;
 
 			//get the card selected from the id stored in the wizard
 			var activeCard = motusCollection.where({'id': this.wizard.motusSelected})[0]
 			console.log('active card', activeCard)
 			if(activeCard){
-				activeCard.save({internalid: activeCard.get('id'), data: {submit: true}}).always(function(response){
+				activeCard.save({internalid: activeCard.get('id'), data: {submit: true, billingAddrObj: billingAddrObj}}).always(function(response){
 					console.log('response', response)
 					// A = Cardpointe authorization sucess, all other codes represent failure
 					if(response.response.response_code == 101){

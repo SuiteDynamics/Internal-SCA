@@ -32,9 +32,8 @@
                         {{type}}
                     {{/if}}
                 </div>
-
                 <p class="motus-payments-creditcard-expdate"><b>{{translate 'Expires in'}}</b> {{expirationDate}}</p>
-
+                <button class="motus-removetoken-button" id="{{id}}" data-action="motus-remove-token">Remove</button>
                 {{#if showSecurityCodeForm}}
                     </div>
                     <div class="motus-payments-creditcard-security-code-section">

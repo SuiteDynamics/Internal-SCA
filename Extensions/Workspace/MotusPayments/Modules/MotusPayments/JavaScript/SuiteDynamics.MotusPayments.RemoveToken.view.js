@@ -39,28 +39,28 @@ define('SuiteDynamics.MotusPayments.RemoveToken.View'
 
             var self = this;
 
-            this.collection.on('reset sync add remove change', function (model) {
+            // this.collection.on('reset sync add remove change', function (model) {
                 
-            //The collection is not self-populating the url, so we need to populate it to call the backend service. 
-            self.collection.sync('delete',model,{url: _.getAbsoluteUrl("services/MotusPayments.Service.ss?id="+model.get("id")), wait:true}).done(function(result){
+            // //The collection is not self-populating the url, so we need to populate it to call the backend service. 
+            // self.collection.sync('delete',model,{url: _.getAbsoluteUrl("services/MotusPayments.Service.ss?id="+model.get("id")), wait:true}).done(function(result){
                 
-                if(result.status == 'Success'){
-                    self.render();
-                }else{
-                    return jQuery.Deferred().reject({
-                        errorCode: 'ERR_WS_INVALID_CARD',
-                        errorMessage: Utils.translate('Invalid Card')
-                    });
-                }
-            })
+            //     if(result.status == 'Success'){
+            //         self.render();
+            //     }else{
+            //         return jQuery.Deferred().reject({
+            //             errorCode: 'ERR_WS_INVALID_CARD',
+            //             errorMessage: Utils.translate('Invalid Card')
+            //         });
+            //     }
+            // })
                 
-            });
+            // });
 
 		}
 
 	,	events: {
 
-        'click [data-action="motus-remove-token-line"]': 'motusRemoveTokenLine'
+        'click [data-action="motus-remove-token"]': 'motusRemoveTokenLine'
 
 		}
 
@@ -73,6 +73,7 @@ define('SuiteDynamics.MotusPayments.RemoveToken.View'
 
     ,	motusRemoveTokenLine: function(e)
     {
+   
         var tokenID = e.currentTarget.id.split('in-modal-').pop();
 
         if(tokenID){

@@ -77,7 +77,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
         var userProfile = this.options.userProfile
 
         var newPaymentModel = new MotusPaymentsModel()
-
+        console.log('userprofile', userProfile)
         //Card information
         newPaymentModel.set('name', 'Motus' + ' ' + cardType + ' ' + lastFour);
         newPaymentModel.set('exp_month', expiryMonth);
@@ -91,7 +91,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
         newPaymentModel.set('last_name', userProfile.lastname);
         newPaymentModel.set('phone', userProfile.phoneinfo.phone);
         newPaymentModel.set('email', userProfile.email);
-        newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
+        //newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
         //Order information
         newPaymentModel.set('amount', order.get('summary').total);
 

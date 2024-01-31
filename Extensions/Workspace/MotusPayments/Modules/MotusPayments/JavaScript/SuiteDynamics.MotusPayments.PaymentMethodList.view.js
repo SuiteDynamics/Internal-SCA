@@ -10,6 +10,8 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
     ,	'GlobalViews.Message.View'
 	
 	,	'Backbone'
+	,	'underscore'
+	,	'Utils'
     ]
 , function (
 	suitedynamics_motuspayments_paymentmethodlist_tpl
@@ -21,14 +23,17 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
     ,	GlobalViewsMessageView
 	
 	,	Backbone
+	,	_
+	,	Utils
 )
 {
     'use strict';
 
 	const motusTypeMap = {
-		'MC' : 'master',
-		'VISA' : 'visa',
-		'DISC' : 'discover'
+		'Master Card' : 'master',
+		'Visa' : 'visa',
+		'Discover' : 'discover',
+		'Amex' : 'american'
 	}
 
 	// @class SuiteDynamics.MotusPayments.MotusPayments.View @extends Backbone.View
@@ -37,13 +42,15 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		template: suitedynamics_motuspayments_paymentmethodlist_tpl
 
 	,	initialize: function (options) {
+
 	}
 
 	,	events: {
 
         'click [data-action="motus-token-success"]': 'motusTokenSuccess',
 		'click [data-action="select"]': 'changeMotusPayment',
-		'click [data-action="motus-add-token"]': 'addMotusPayment'
+		'click [data-action="motus-add-token"]': 'addMotusPayment',
+		'click [data-action="motus-remove-token"]': 'removeMotusToken'
 
 		}
 
@@ -142,6 +149,7 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 
 	,	getCardImage: function(e)
 	{
+		console.log('get card image', this)
 
 		if(this.model.get('isNewPaymentMethod') == true){
 			return null
@@ -166,6 +174,36 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		return foundImg;
 	}
 
+	,	removeMotusToken: function(e)
+    {
+
+		var self = this;
+
+		console.log('remove',this)
+        var tokenID = e.currentTarget.id
+
+        if(tokenID){
+			console.log('tokenID',tokenID)
+            var removeModel = this.options.collection.where({ id: tokenID })[0];
+			console.log('removemodel',removeModel)
+            removeModel.destroy();
+
+			this.options.collection.sync('delete',removeModel,{url: _.getAbsoluteUrl("services/MotusPayments.Service.ss?id="+removeModel.get("id"))}).done(function(result){
+				console.log('delete service', result)
+				if(result.status == 'Success'){
+					console.log('render')
+					//self.parentView.render();
+				}else{
+					return jQuery.Deferred().reject({
+						errorCode: 'ERR_WS_INVALID_CARD',
+						errorMessage: Utils.translate('Invalid Card')
+					});
+				}
+			})
+
+        }
+    } 
+
 		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
@@ -173,7 +211,7 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 			var image = this.getCardImage();
 
 			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
-			this.message = this.message || 'Hello World!!'
+			//this.message = this.message || 'Hello World!!'
 
 			var expMonth = this.model.get('exp_month');
 			if(expMonth.split("").length < 2){
@@ -186,7 +224,8 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 				expirationDate: expMonth + "/" + this.model.get('exp_year'),
 				logo: image,
 				isSelected:this.model.get('active'),
-				isNewPaymentMethod: this.model.get("isNewPaymentMethod")
+				isNewPaymentMethod: this.model.get("isNewPaymentMethod"),
+				id: this.model.get('id')
 			};
 		}
 	});
