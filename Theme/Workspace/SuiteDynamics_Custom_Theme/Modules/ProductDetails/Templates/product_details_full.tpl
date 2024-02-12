@@ -45,6 +45,7 @@
 
 						<div data-cms-area="product_details_full_cms_area_4" data-cms-area-filters="path"></div>
 
+						<div><a class="btn" style="background-color: #16607b; color: white;" target="popup" onclick=window.open("https://7050356.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=1309&deploy=1&compid=7050356&h=a036c6de5397fed77061","popup","width=600,height=600")>Check Availability</a></div>
 						<div data-view="Product.Sku"></div>
 
 						<div data-view="Product.Price"></div>
@@ -61,7 +62,6 @@
 									<div data-view="MainActionView"></div>
 									<div  data-view="ItemActions"></div>
 								</div>
-								
 								<div class="product-details-full-actions-container">
 									<div data-view="AddToProductList" class="product-details-full-actions-addtowishlist"></div>
 

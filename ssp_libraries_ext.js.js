@@ -17,7 +17,7 @@ try{
     }
     var current_domain = _getDomain();
     var Configuration = require('Configuration');
-    Configuration.overwriteByDomain({"www.suitedynamics.co":{"MotusPayments":{"config":"Default config example"},"blog":{"blogHomeTitle":"Blog","readMoreLabel":"Read More","allArticlesTaxonomyName":"All Articles","showFeaturedArticlesInPagination":true,"moreArticlesLabel":"More Articles","searchLabel":"Search This Blog","searchHint":"Search","searchResultsLabel":"Search Results","noSearchResultsLabel":"Not many results for [[term]]","noResultsArticleSuggestionMessage":"Search again or see these articles:","searchCloseButtonLabel":"Close","taxonomyNavigationTitle":"Categories","paginationLabel":"Read More Articles","backToTopLabel":"Back To Top","largeImageResizeId":"zoom","thumbnailImageResizeId":"zoom","articlesByPage":"20","emptyStateLabel":"Articles are coming soon!","emptyStateMessage":"Meanwhile, visit our shop","emptyStateButtonLabel":"Shop Now","showLatestPostsSection":true,"latestPostsLabel":"Latest Articles","latestPostsCarouselInterval":"5 sec","showRssFeedLink":false}}});
+    Configuration.overwriteByDomain({"www.suitedynamics.co":{"MyCoolModule":{"config":"Default config example"},"MotusPayments":{"config":"Default config example"},"blog":{"blogHomeTitle":"Blog","readMoreLabel":"Read More","allArticlesTaxonomyName":"All Articles","showFeaturedArticlesInPagination":true,"moreArticlesLabel":"More Articles","searchLabel":"Search This Blog","searchHint":"Search","searchResultsLabel":"Search Results","noSearchResultsLabel":"Not many results for [[term]]","noResultsArticleSuggestionMessage":"Search again or see these articles:","searchCloseButtonLabel":"Close","taxonomyNavigationTitle":"Categories","paginationLabel":"Read More Articles","backToTopLabel":"Back To Top","largeImageResizeId":"zoom","thumbnailImageResizeId":"zoom","articlesByPage":"20","emptyStateLabel":"Articles are coming soon!","emptyStateMessage":"Meanwhile, visit our shop","emptyStateButtonLabel":"Shop Now","showLatestPostsSection":true,"latestPostsLabel":"Latest Articles","latestPostsCarouselInterval":"5 sec","showRssFeedLink":false}}});
     require('SCA');
     var extensions = {};
      var srcDefine = define;
@@ -37,6 +37,86 @@ try{
           });
           return proxy;
       };
+    extensions['SD.LodgeReservationDemo.1.0.0'] = function(extensionName){
+      var define = function(moduleName, dependencies, callback) {
+          for (var i = 0; i < dependencies.length; i++){
+              var dep = dependencies[i];
+              if (dep === 'Application' && dep.indexOf(extensionName + '.Plugin!') === -1) {
+                  dependencies[i] = extensionName + '.Plugin!' + dep;
+              }
+          }
+          return srcDefine(moduleName, dependencies, callback);
+      };
+      define(extensionName + '.Plugin', [], function (){
+          return {
+                load: function (name, req, onload, config){
+                  try{
+                        req(
+                          [name],
+                          function (value) {
+                              const proxy = new ProxyPolyfill(value, {
+                                  get: function (target, prop, receiver){
+                                      var targetProp = target[prop];
+                                      if(typeof targetProp === 'function'){
+                                          targetProp = function() {
+                                              var args = Array.prototype.slice.call(arguments)
+                                              if(prop === 'getComponent'){
+                                                  args.push(extensionName);
+                                              }
+                                              return target[prop].apply(target, args);
+                                          }
+                                      }                                  return targetProp;
+                                  }
+                              });
+                              onload(proxy);
+                          },
+                          function () {
+                              onload(null);
+                          });
+                  }catch (e) {}
+              }
+          };
+      });
+    define("SD.LodgeReservationDemo.MyCoolModule.ServiceController", ["ServiceController"], function(
+      ServiceController
+    ) {
+      "use strict";
+      return ServiceController.extend({
+        name: "SD.LodgeReservationDemo.MyCoolModule.ServiceController",
+        // The values in this object are the validation needed for the current service.
+        options: {
+          common: {}
+        },
+        get: function get() {
+          return JSON.stringify({
+            message: "Hello World I'm an Extension using a Service!"
+          });
+        },
+        post: function post() {
+          // not implemented
+        },
+        put: function put() {
+          // not implemented
+        },
+        delete: function() {
+          // not implemented
+        }
+      });
+    });
+    // SD.LodgeReservationDemo.MyCoolModule.js
+    // Load all your starter dependencies in backend for your extension here
+    // ----------------
+    define('SD.LodgeReservationDemo.MyCoolModule'
+    ,	[
+            'SD.LodgeReservationDemo.MyCoolModule.ServiceController'
+        ]
+    ,	function (
+            MyCoolModuleServiceController
+        )
+    {
+        'use strict';
+    });
+    };
     extensions['SuiteDynamics.CustomerSwitch.1.0.0'] = function(extensionName){
       var define = function(moduleName, dependencies, callback) {
           for (var i = 0; i < dependencies.length; i++){
@@ -640,7 +720,7 @@ try{
                                         }else{
                                                 nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
                                                 message: JSON.stringify(response),
-                                                user: userId,
+                                                // user: userId,
                                                 action: 'AUTH Failure. No Authorization occured'
                                             }));
                                             return{
@@ -674,7 +754,7 @@ try{
                                             }
                             
                                             //var stringifyObj = JSON.stringify(requestBody);
-                                            var response = nlapiRequestURL(urlBase + '/oauth/token', JSON.stringify(requestBody), headerObj, 'POST')
+                                            var response = nlapiRequestURL(urlBase + 'oauth/token', JSON.stringify(requestBody), headerObj, 'POST')
                                             nlapiLogExecution('DEBUG', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
                                             return response;
                                         }
@@ -682,7 +762,7 @@ try{
                                     } catch (error) {
                                         nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
                                             message: error,
-                                            user: userId,
+                                            //user: userId,
                                             action: 'Error on Oauth token retrieval'
                                         }));
                                         return{
@@ -696,6 +776,7 @@ try{
                                 },
                                 getAuthResponse: function(credentialsObj,tokenData,data){
                                     nlapiLogExecution('DEBUG', 'AUTH_TOKENData', JSON.stringify(tokenData));
+                                    nlapiLogExecution('DEBUG', 'AUTH_TOKENDataCSC', JSON.stringify(data));
                                     nlapiLogExecution('DEBUG', 'AUTH_TOKENtype', tokenData.token_type);
                                     nlapiLogExecution('DEBUG', 'AUTH_TOKENtoken', tokenData.access_token);
                                     var response = null;
@@ -725,11 +806,12 @@ try{
                                         }
                                         nlapiLogExecution('DEBUG', 'motusPaymentsApiUrl', motusPaymentsApiUrl);
                                         nlapiLogExecution('DEBUG', 'Auth Header', JSON.stringify(headerObjKeyed));
+                                        nlapiLogExecution('DEBUG', 'requestBodyKeyed', JSON.stringify(requestBodyKeyed));
                                         nlapiLogExecution('DEBUG', 'base url', urlBase);
                                         // var stringifyObj = JSON.stringify(requestBodyKeyed);
                                         var response = nlapiRequestURL(urlBase + 'v1/transactions/authorization/keyed', JSON.stringify(requestBodyKeyed), headerObjKeyed, 'POST')
                                         // var myresponse_body = response.body;
-                                        nlapiLogExecution('DEBUG', 'RAW_RESPONSE', JSON.stringify(response));
+                                        // nlapiLogExecution('DEBUG', 'RAW_RESPONSE', JSON.stringify(response));
                                         // var responseBody = JSON.parse(response.getBody());
                                         // nlapiLogExecution('DEBUG', 'AUTH_RESPONSE', JSON.stringify(responseBody));
                                         // var myresponse_code = response.getCode();
@@ -988,6 +1070,13 @@ try{
     try{
         extensions['SuiteDynamics.CustomerSwitch.1.0.0']('SuiteDynamics.CustomerSwitch.1.0.0');
         require('CustomerSwitch.Entry');
+    }
+    catch(error){
+        nlapiLogExecution('ERROR', 'ERROR_SSP_LIBRARIES_EXT', JSON.stringify(error));
+    }
+    try{
+        extensions['SD.LodgeReservationDemo.1.0.0']('SD.LodgeReservationDemo.1.0.0');
+        require('SD.LodgeReservationDemo.MyCoolModule');
     }
     catch(error){
         nlapiLogExecution('ERROR', 'ERROR_SSP_LIBRARIES_EXT', JSON.stringify(error));

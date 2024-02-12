@@ -37,7 +37,7 @@ define('SuiteDynamics.MotusPayments.ShowPayment.View'
 		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
-			console.log('show paAYMENT GET CONTEXT')
+			console.log('show paAYMENT GET CONTEXT', this)
 			var activeCard = this.options.motus.options.collection.where({'active': true})[0]
 
 			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
@@ -52,7 +52,7 @@ define('SuiteDynamics.MotusPayments.ShowPayment.View'
 			
 			return {
 				showMotus: this.options.motus.wizard.motusActive ? true : false,
-				logo: this.options.motus.options.img,
+				logo: this.options.motus.options.images[0],
 				lastFour: cardLastFour,
 				type: cardType
 			}; 

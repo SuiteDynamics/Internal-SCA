@@ -2,7 +2,7 @@
 	{{#if showQuantity}}
 		<div class="product-details-quantity-options" data-validation="control-group">
 			<label for="quantity" class="product-details-quantity-options-title">
-				{{translate 'Duration'}}
+				{{translate 'Nights'}}
 			</label>
 
 			<div data-validation="control">

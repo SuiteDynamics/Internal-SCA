@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": { 
+        "MyCoolModule.config": {
+            "group": "extensions",
+            "subtab": "MyCoolModule_subtab",
+            "type": "string",
+            "title": "MyCoolModule_Title",
+            "description": "Config description example",
+            "default": "Default config example"
+        }
+    }
+}

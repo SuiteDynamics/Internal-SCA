@@ -5,22 +5,6 @@
  	font-weight: $sc-font-weight-semibold;
  	margin-top: $sc-margin-lv3;
 }
-.cart-add-to-cart-button-button-zab{
-	@extend .button-primary;
-	@extend .button-large;
-	width: 100%;
- 	font-weight: $sc-font-weight-semibold;
- 	margin-top: $sc-margin-lv3;
-	color: white;
-	background-color: $sc-color-secondary;
-	border: 2px solid $sc-color-secondary;
-
-	&:hover {
-        background-color: $sc-color-secondary;
-        color: white;
-        border: 2px solid $sc-color-secondary;
-    }
-}
 
 .cart-add-to-cart-button {
 	position: static;

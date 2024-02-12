@@ -1,0 +1,92 @@
+{
+    "name": "LodgeReservationDemo",
+    "fantasyName": "Lodge Reservation Demo",
+    "vendor": "SD",
+    "version": "1.0.0",
+    "type": "extension",
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": "23.1.3",
+        "SCS": "23.1.3"
+    },
+    "description": "My cool extension does magic!",
+    "skins": [],
+    "assets": {
+        "img": {
+            "files": []
+        },
+        "fonts": {
+            "files": []
+        },
+        "services": {
+            "files": [
+                "services/MyCoolModule.Service.ss"
+            ]
+        }
+    },
+    "configuration": {
+        "files": [
+            "Modules/MyCoolModule/Configuration/MyCoolModule.json"
+        ]
+    },
+    "sass": {
+        "entry_points": {
+            "shopping": "Modules/MyCoolModule/Sass/_lodgereservationdemo-mycoolmodule.scss",
+            "checkout": "Modules/MyCoolModule/Sass/_lodgereservationdemo-mycoolmodule.scss"
+        },
+        "files": [
+            "Modules/MyCoolModule/Sass/_lodgereservationdemo-mycoolmodule.scss"
+        ]
+    },
+    "templates": {
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MyCoolModule/Templates/sd_lodgereservationdemo_mycoolmodule.tpl"
+                ]
+            },
+            "checkout": {
+                "files": [
+                    "Modules/MyCoolModule/Templates/sd_lodgereservationdemo_mycoolmodule.tpl"
+                ]
+            }
+        }
+    },
+    "javascript": {
+        "entry_points": {
+            "shopping": "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.js",
+            "checkout": "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.js"
+        },
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.js",
+                    "Modules/MyCoolModule/JavaScript/MyCoolModule.View.js",
+                    "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.Model.js",
+                    "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.SS2Model.js"
+                ]
+            },
+            "checkout": {
+                "files": [
+                    "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.js",
+                    "Modules/MyCoolModule/JavaScript/MyCoolModule.View.js",
+                    "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.Model.js",
+                    "Modules/MyCoolModule/JavaScript/SD.LodgeReservationDemo.MyCoolModule.SS2Model.js"
+                ]
+            }
+        }
+    },
+    "ssp-libraries": {
+        "entry_point": "Modules/MyCoolModule/SuiteScript/SD.LodgeReservationDemo.MyCoolModule.js",
+        "files": [
+            "Modules/MyCoolModule/SuiteScript/SD.LodgeReservationDemo.MyCoolModule.js",
+            "Modules/MyCoolModule/SuiteScript/MyCoolModule.ServiceController.js"
+        ]
+    },
+    "local_folder": "Workspace\\LodgeReservationDemo",
+    "suitescript2": {
+        "files": [
+            "Modules/MyCoolModule/SuiteScript2/MyCoolModule.Service.ss"
+        ]
+    }
+}
