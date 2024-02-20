@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": { 
+        "MotusPDP.config": {
+            "group": "extensions",
+            "subtab": "MotusPDP_subtab",
+            "type": "string",
+            "title": "MotusPDP_Title",
+            "description": "Config description example",
+            "default": "Default config example"
+        }
+    }
+}

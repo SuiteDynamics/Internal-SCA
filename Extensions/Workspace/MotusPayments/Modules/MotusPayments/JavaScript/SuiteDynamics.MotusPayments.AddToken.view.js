@@ -11,6 +11,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 	
 	,	'Backbone'
     ,   'jQuery'
+    ,   'Utils'
     ]
 , function (
 	suitedynamics_motuspayments_addtoken_tpl
@@ -23,6 +24,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 	
 	,	Backbone
     ,   jQuery
+    ,   Utils
 )
 {
     'use strict';
@@ -34,14 +36,43 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 
 	,	initialize: function (options) {
         console.log('add init',this)
+        var self = this
+        // PTPayment.setup({    
+        //     authorization: { clientKey: this.options.collection.models[0].get('clientkey') }
+        //   }).then(function(instance){
+        //        console.log('instance', instance)
+        //       //use instance object to process and tokenize sensitive data payment fields.
+        //   });.
+        PTPayment.setup({    
+            authorization: { clientKey: self.options.collection.models[0].get('clientkey') }
+          }).then(function(instance){
+               console.log('instance', instance)
+              //use instance object to process and tokenize sensitive data payment fields.
+          });
 		this.on('afterViewRender',function(){
-			
-			console.log('add init listener')
-            jQuery(document).ready(function(){
-                console.log('view render')
-                
-                $('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-             })
+			//  $('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+            //  $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+            //  $('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+            // PTPayment.setup({    
+            //     authorization: { clientKey: "NFSgOzU7Am2Fh34+SSuXew==./LIH5Wkc/CVI0TMUvmabXboubebH8Qs70sAEDrsZmQbtqbnqAdH/gehlBekoLKt3YA1IOHZgMRE3huXpUqv4ZAmJ0giZaqqb6DAOdtOfMx/994oOcwDLnEP5WkaegQi+/08EIzQklqGfqVIYm+sMRof2e567duQwB/QFzYUvIICBemiiAIIkQ8mSQ5Il+zoOhTBmRbdX9oj1uYqFWUoVlDRYonRh7yHMiJiixWzXX9s8kiROxu7//9rUa056qkmQA6XJECodMyxj+so+8Qcpfw1UeNAs5845Wxzv4A7rJPV+5YBdWCzHZMvPRUMZaNOwOSvJJXQWh0OYPt2QgeTupgP65hXPMWhJEeiyRyX2hyl2FI+rRzFnnqLCQgviezjG4GjExjeyMUQtm7KSXcKmrhH9D4H1F2DKZLUymqXJUf4JHKvfMgxRBaFzFhJDNXGRYufXq4dfuPJX6Y2UfYlippmApgNWqp14ppW8yC7XnpyMyZyWbohK/Bjn4NZfAio+" }
+            //   }).then(function(instance){
+            //        console.log('instance', instance)
+            //       //use instance object to process and tokenize sensitive data payment fields.
+            //   });
+            console.log('add init listener')
+            // jQuery(document).ready(function(){
+            //     console.log('view render',self)
+            //     // $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+            //     // jQuery('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+            //     PTPayment.setup({    
+            //         authorization: { clientKey: self.options.collection.models[0].get('clientkey') }
+            //       }).then(function(instance){
+            //            console.log('instance', instance)
+            //           //use instance object to process and tokenize sensitive data payment fields.
+            //       });
+            //     // console.log('setpaytrace', paytrace)
+            //     // paytrace.setKeyAjax("https://7050356-sb1.app.netsuite.com/core/media/media.nl?id=15579&c=7050356_SB1&h=GyGcwcnLfnS9NWCfcjBji8Ttk2kbyhmRI7WnbemgxZpU5kQE&_xt=.cer");
+            // })
 		})
 	}
 
@@ -61,11 +92,30 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 
     ,	submitCard: function(e)
     {
+        console.log('submit card',this.options.collection.models[0].get('clientkey'))
+        // $.get(Utils.getAbsoluteUrl(
+        //     getExtensionAssetsPath(
+        //         "Motus_Pub_Key/public_key.pem"
+        //     )
+        // ), function(data, status){
+        //     alert("Data: " + data + "\nStatus: " + status);
+        //   });
+
+        // console.log('UTILS', Utils.getAbsoluteUrl(
+        //     getExtensionAssetsPath(
+        //         "Motus_Pub_Key/public_key.pem"
+        //     )
+        // ))
+
+        // var encodedData = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzaUQwdGpqSmZSOTA2MWFweXR5NQpicGJ1QXpvTENCM2p2S0JnYkJ3SlJxS3JvWEpNNDlkai9BOGlOTXIyQWg3QWdHK2NKdU9vcTlOT0YyUEN3aVFUClB2L21YYkdPMFBaU0x3YzV2QVBDOW1TSXpQVUFnTldGNDA3akxVRklMbFdFMHBzTDN3N3Rva3JHMDhiNWp3MXQKTmpRQktPR3cydWxCMTV6bG80d2lKdE9TaEF2RGJZaFF2MmdhaGRVU0swVUd3TXk5c2ZOc3RYOFFZRDRhbVNTNgo5RFE0RVZqZWZGbHBOeUthQUxuNEZWcHlqLzJVakFJRFZZLzZYWFM3NzdKSDBqclZIOGhwcXhWaHlqZnhHUythCkdPRGlHWjA0OWlieTczUFo1Y215WE9CaTlTeFBocCtpY2pjdGtzTTBNWUVHbTNHdDdidHZ2R2NiZnFtR21tN2wKS3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
+        // var decodedData = atob(encodedData);
+        // console.log(decodedData)
+        // paytrace.setKey(decodedData);
 
         var self = this;
 
         var token_number = $( "input[name*='cardid']" )[0].value;
-                                           
+        console.log('ccnum',token_number)                                   
         var lastFour = token_number.slice(-4);
         var expiryYear = $( "select[name*='year']" )[0].value;
         var expiryMonth = $( "select[name*='month']" )[0].value;
@@ -77,7 +127,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
         var userProfile = this.options.userProfile
 
         var newPaymentModel = new MotusPaymentsModel()
-        console.log('userprofile', userProfile)
+
         //Card information
         newPaymentModel.set('name', 'Motus' + ' ' + cardType + ' ' + lastFour);
         newPaymentModel.set('exp_month', expiryMonth);
@@ -256,7 +306,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
     ,	setTransactionFields: function(paymentSelected, authData)
     {
         var transactionBodyFields = {
-            'custbody_sd_select_st_card': paymentSelected,
+            'custbody_sd_select_mt_card': paymentSelected,
             'custbody_sd_motus_token_response': JSON.stringify(authData)
         }
 
@@ -294,6 +344,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 		//@method getContext @return SuiteDynamics.MotusPayments.MotusPayments.View.Context
 	,	getContext: function getContext()
 		{
+
 			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 			return {

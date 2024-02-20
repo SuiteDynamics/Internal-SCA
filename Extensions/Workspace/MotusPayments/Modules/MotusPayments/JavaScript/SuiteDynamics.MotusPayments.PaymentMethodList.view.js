@@ -42,7 +42,21 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		template: suitedynamics_motuspayments_paymentmethodlist_tpl
 
 	,	initialize: function (options) {
+	// 	this.on('afterViewRender',function(){
+	// 		$('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+	// 		$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+	// 		$('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+	// 	   console.log('add init listener')
+	// 	   jQuery(document).ready(function(){
+	// 		   console.log('view render')
+	// 		   $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+	// 		   jQuery('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+			   
 
+	// 		   // console.log('setpaytrace', paytrace)
+	// 		   // paytrace.setKeyAjax("https://7050356-sb1.app.netsuite.com/core/media/media.nl?id=15579&c=7050356_SB1&h=GyGcwcnLfnS9NWCfcjBji8Ttk2kbyhmRI7WnbemgxZpU5kQE&_xt=.cer");
+	// 	   })
+	//    })
 	}
 
 	,	events: {
@@ -63,7 +77,7 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 
 	,	changeMotusPayment: function(e)
 	{
-		console.log('change payment', this)
+
 		this.removeActive();
 
 		var paymentSelected = this.model.get('id')
@@ -72,8 +86,6 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		var modelSelected = this.options.collection.where({'id': paymentSelected})[0]
 
 		modelSelected.save({internalid: paymentSelected , data: {submit: false}}).then(function(result){
-
-			console.log('change result',result)
 
 		})
 	
@@ -91,7 +103,6 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		_.each(activeCards, function(card) {
 			card.set('active', false)
 		});
-		console.log('after remove active', this)
 		
 	}
 	,	setActive: function(paymentSelected)
@@ -104,7 +115,6 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		if(!modelSelected){
 			modelSelected = this.options.collection.first()
 		}
-		console.log('model', this.options.orderWizard.model)
 		modelSelected.set('active', true)
 		modelSelected.set('default_card', true)
 		//Profile information
@@ -129,13 +139,11 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 			}
 		});
 
-		console.log('set active after', modelSelected)
 	}
 	,	setMotusPaymentMethod: function ()
 	{
 		// console.log('motusTokenSuccess', this)
 		//TODO: Make key dynamic
-		console.log('set motus method', this)
 		if(!this.options.orderWizard.paymentMethod){
 			this.options.orderWizard.paymentMethod = new TransactionPaymentmethodModel({
 				type: 'external_checkout',
@@ -149,7 +157,6 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 
 	,	getCardImage: function(e)
 	{
-		console.log('get card image', this)
 
 		if(this.model.get('isNewPaymentMethod') == true){
 			return null
@@ -179,11 +186,9 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 
 		var self = this;
 
-		console.log('remove',this)
         var tokenID = e.currentTarget.id
 
         if(tokenID){
-			console.log('tokenID',tokenID)
             var removeModel = this.options.collection.where({ id: tokenID })[0];
 			console.log('removemodel',removeModel)
             removeModel.destroy();
@@ -208,20 +213,30 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 	,	getContext: function getContext()
 		{
 
+			console.log('getcontext LIST', this)
 			var image = this.getCardImage();
 
 			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			//this.message = this.message || 'Hello World!!'
 
 			var expMonth = this.model.get('exp_month');
-			if(expMonth.split("").length < 2){
-				expMonth = "0" + expMonth
-			}
+			if(expMonth){
+				if(expMonth.split("").length < 2){
+					expMonth = "0" + expMonth
+				}
+				return {
+					lastfourdigits: expMonth !== "" ? this.model.get('last_four') : "",
+					type: this.model.get('card_type'),
+					expirationDate: expMonth !== "" ? expMonth + "/" + this.model.get('exp_year') : "",
+					logo: image,
+					isSelected:this.model.get('active'),
+					isNewPaymentMethod: this.model.get("isNewPaymentMethod"),
+					id: this.model.get('id')
+				};
+			}else
 			
 			return {
-				lastfourdigits: this.model.get('last_four'),
 				type: this.model.get('card_type'),
-				expirationDate: expMonth + "/" + this.model.get('exp_year'),
 				logo: image,
 				isSelected:this.model.get('active'),
 				isNewPaymentMethod: this.model.get("isNewPaymentMethod"),

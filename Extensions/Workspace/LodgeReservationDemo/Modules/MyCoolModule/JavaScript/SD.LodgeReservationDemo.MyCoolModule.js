@@ -21,7 +21,7 @@ define(
 		{
 
 
-			console.log('lodge')
+			console.log('lodge 2')
 			/** @type {LayoutComponent} */
 			var layout2 = container.getComponent('Layout');
 			var layout = container.getLayout();

@@ -315,9 +315,10 @@ $credit-card-height-offset: 20px;
 .motus-payments-creditcard-new-card-title {
   display: inline-block;
   margin-top: 20px;
+  margin-bottom: 20px;
   color: $sc-neutral-shade-300;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight:800;
 }
 
 .motus-payments-creditcard-action {
@@ -370,3 +371,51 @@ $credit-card-height-offset: 20px;
   display: inline-flex;
   
 }
+
+
+/* The sensepass-modal (background) */
+.sensepass-modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* sensepass-sensepass-modal Content/Box */
+  .sensepass-modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .sensepass-modal-close {
+	color: #aaa;
+  background-color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .sensepass-modal-close:hover,
+  .sensepass-modal-close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  .sensepass-pay-button{
+    @extend .button-secondary;
+    @extend .button-medium;
+	float: right;
+  }
+ .sensepass-pay-button-container{
+	height: 50px;
+ }

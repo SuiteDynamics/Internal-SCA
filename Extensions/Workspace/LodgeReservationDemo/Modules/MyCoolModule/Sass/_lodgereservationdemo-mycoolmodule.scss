@@ -16,3 +16,19 @@
     color: $sc-color-secondary;
     font-weight: bold;
 }
+.canvasimage{
+	position:absolute;
+	z-index:1;
+}
+.insideWrapper{
+	display:inline-block;
+    width:320px; 
+    height:480px;
+    margin: 0 auto; 
+    position:relative; 
+    border-radius: 10px; 
+}
+.canvaselement{
+    position:relative;
+    z-index:20;
+}

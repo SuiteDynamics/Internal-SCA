@@ -44,7 +44,7 @@ define(
 
 			/** @type {LayoutComponent} */
 			var layout = container.getComponent('Layout');
-			console.log('motus', this)
+			
 			var motusSelf = this
 			motusSelf.motusCollection = new MotusPaymentsCollection();
 			motusSelf.motusActive = false;
@@ -121,7 +121,7 @@ define(
 							MotusModule.options
 						)
 					);
-					console.log('after', this)		
+						
 					MotusModule.instance.on('ready', function(is_ready) {
 						self.moduleReady(is_ready);
 					});

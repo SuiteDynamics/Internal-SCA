@@ -28,6 +28,7 @@ define(
 	,	'backbone_collection_view_cell.tpl'
 	,	'underscore'
 	,   'Utils'
+	,	'jQuery'
 	]
 ,	function (
 		OrderWizardModulePaymentMethod
@@ -48,6 +49,7 @@ define(
 	,	backbone_collection_view_cell_tpl
 	,	_
 	,   Utils
+	,	jQuery
 	)
 {
 	'use strict';
@@ -58,8 +60,8 @@ define(
 
 	,	events: {
 			'change [data-action="change-motus-payment"]': 'changeMotusPayment',
-			'click [data-action="motus-add-token"]': 'addMotusPayment'
-			// 'click [data-action="motus-remove-token"]': 'removeMotusPayment'
+			'click [data-action="motus-add-token"]': 'addMotusPayment',
+			'click [data-action="sensepass-modal-pay"]': 'payMotus'
 		}
 
     ,	errors: ['ERR_WS_INVALID_CARD', 'ERR_CHK_INVALID_CARD']
@@ -70,7 +72,7 @@ define(
 				// 		id: this.paymentMethodSelected
 				// 	});
 				// }
-				console.log('child view', this)
+
 				return new BackboneCollectionView({
 					collection: this.options.collection,
 					childView: MotusPaymentsPaymentMethodListView,
@@ -99,11 +101,12 @@ define(
 	,	initialize: function()
 		{
 
-			console.log('start', this)
 			var self = this;
 	
 			var checkout = this.options.checkout
 			checkout.on("afterShowContent", function() {
+				$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+				$('head').append('<script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>');
 				checkout.getCurrentStep().then(function(step) {
 					if (step.step_group_name == "Payment") {
 						self.options.collection.fetch(
@@ -147,7 +150,7 @@ define(
 			}, this);
 
 			this.options.collection.on('reset sync add remove change destroy', function (model) {	
-				console.log('add listener')				
+			
 				self.render()
 			});
 
@@ -155,7 +158,7 @@ define(
 
 	,	render: function ()
 		{
-			console.log('render')
+
 			const options = this.options.model && this.options.model.get('options');
 			var modelSelected = this.options.collection.where({'active': true})[0]
 
@@ -200,7 +203,7 @@ define(
 		{
 			// console.log('motusTokenSuccess', this)
 			//TODO: Make key dynamic
-			console.log('set motus method', this)
+
 			if(!this.paymentMethod){
 				this.paymentMethod = new TransactionPaymentmethodModel({
 					type: 'external_checkout',
@@ -217,7 +220,6 @@ define(
 
 		var modelSelected = this.options.collection.where({'id': paymentSelected})[0]
 
-		console.log('model', this.model)
 		//If no model is selected, grab the first one instead. 
 		if(!modelSelected){
 			modelSelected = this.options.collection.first()
@@ -247,7 +249,6 @@ define(
 			}
 		});
 
-		console.log('set active after 2', modelSelected)
 	}
 
 
@@ -262,7 +263,6 @@ define(
 
 		modelSelected.save({internalid: paymentSelected , data: {submit: false}}).then(function(result){
 
-			console.log('change result',result)
 
 		})
 	
@@ -280,14 +280,13 @@ define(
 		_.each(activeCards, function(card) {
 			card.set('active', false)
 		});
-		console.log('after remove active', this)
 		
 	}
 
 	,	setTransactionFields: function(paymentSelected)
 	{
-
-		this.model.set('options', _.extend(this.model.get('options'), {'custbody_sd_select_st_card': paymentSelected}));
+		console.log('set field', paymentSelected)
+		this.model.set('options', _.extend(this.model.get('options'), {'custbody_sd_select_mt_card': paymentSelected}));
 
 		//put in wizard because it isn't being reflected in model on review page
 		this.wizard.motusActive = true
@@ -296,17 +295,202 @@ define(
 
 	,	addMotusPayment: function(e)
 	{
+		console.log('addMotusPayment', this)
+		console.log('crypto', crypto.randomUUID())
+		$("#sensepass-modal-close").click(function(){
+			$(".sensepass-modal").fadeOut();
+		  });
+		// var encodedData = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzaUQwdGpqSmZSOTA2MWFweXR5NQpicGJ1QXpvTENCM2p2S0JnYkJ3SlJxS3JvWEpNNDlkai9BOGlOTXIyQWg3QWdHK2NKdU9vcTlOT0YyUEN3aVFUClB2L21YYkdPMFBaU0x3YzV2QVBDOW1TSXpQVUFnTldGNDA3akxVRklMbFdFMHBzTDN3N3Rva3JHMDhiNWp3MXQKTmpRQktPR3cydWxCMTV6bG80d2lKdE9TaEF2RGJZaFF2MmdhaGRVU0swVUd3TXk5c2ZOc3RYOFFZRDRhbVNTNgo5RFE0RVZqZWZGbHBOeUthQUxuNEZWcHlqLzJVakFJRFZZLzZYWFM3NzdKSDBqclZIOGhwcXhWaHlqZnhHUythCkdPRGlHWjA0OWlieTczUFo1Y215WE9CaTlTeFBocCtpY2pjdGtzTTBNWUVHbTNHdDdidHZ2R2NiZnFtR21tN2wKS3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
+        // var decodedData = atob(encodedData);
+        // console.log(decodedData)
+        // paytrace.setKey(decodedData);
+		// color: #404F5E; font-size: 16px;
+		// var encodedData = btoa(this.options.collection.models[0].get('clientkey'));
+        // var decodedData = atob(encodedData);
+		//$('.sensepass-modal').css('display','block');
+		$(".sensepass-modal").fadeIn();
+		//console.log('add payment clicked', decodedData)
+        PTPayment.setup({
+			styles:
+			 {
+			  'code': {
+			   'font_color':'#404F5E',
+			   'font_size':'13pt',
+			  },
+			  'cc': {
+				'font_color':'#404F5E',
+				'font_size':'13pt'
+			  },
+			  'exp': {
+				'font_color':'#404F5E',
+				'font_size':'13pt'
+			  },
+			  'body': {
+			   'background_color':'white'
+			  }
+			 },    
+            authorization: { clientKey: this.options.collection.models[0].get('clientkey') }
+          }
+		  
+		 
+		  ).then(function(instance){
+               console.log('instance', instance)
+              //use instance object to process and tokenize sensitive data payment fields.
+          });
 
-		var addTokenView = new MotusPaymentsAddTokenView({
-			collection: this.options.collection,
-			container: this.options.container,
-			paymentMethodView: this,
-			userProfile: this.userProfile
-		});
+		document.getElementById("pt_hpf_input").addEventListener("submit",function(e){
+// end of PTPayment.validate
+		});// end of add event listener submit
+		//TO USE OLD MODEL, ENABLE FOLLOWING PIECE OF CODE
+		// var addTokenView = new MotusPaymentsAddTokenView({
+		// 	collection: this.options.collection,
+		// 	container: this.options.container,
+		// 	paymentMethodView: this,
+		// 	userProfile: this.userProfile
+		// });
 
-		addTokenView.title = "Add Card"
+		// addTokenView.title = "Add Card"
 		
-		this.layout.showContent(addTokenView, { showInModal: true });
+		// this.layout.showContent(addTokenView, { showInModal: true });
+	}
+	,	payMotus: function (e)
+	{
+		var self = this;
+		console.log('pay');
+		e.preventDefault();
+		e.stopPropagation();
+		console.log(PTPayment)
+		// To trigger the validation of sensitive data payment fields within the iframe before calling the tokenization process:
+		PTPayment.validate(function(validationErrors) {
+			console.log(validationErrors)
+		if (validationErrors.length >= 1) {
+			if (validationErrors[0]['responseCode'] == '35') {
+			// Handle validation Errors here
+			// This is an example of using dynamic styling to show the Credit card number entered is invalid
+			PTPayment.style({'cc': {'border_color': 'red'}});
+			}
+		} else {
+			// no error so tokenize
+			//console.log(document.getElementById("pt_hpf_form").getElementsByTagName( 'input' ).getElementsByTagName( 'input' ))
+			$('#sensepass-pay-button').attr('disabled','disabled');
+			var iFrameDOM = $("iframe#hpf_casper").contents();
+			console.log('iframe dom',iFrameDOM);
+			var input = iFrameDOM.find("input");
+			console.log('input', input)
+			// var token_number = $( "input[id*='CC']" )[0].value;
+			// console.log('ccnum',token_number)                                  
+			// var lastFour = token_number.slice(-4);
+			PTPayment.process()
+			.then( (r) => submitPayment(r) )
+			.catch( (err) => handleError(err) );
+		}
+		});
+		function handleError(res){
+			console.log('error', res)
+		};
+		function submitPayment(res){
+			$(".sensepass-modal").fadeOut();
+			console.log('submit', res);
+			console.log('submit self', self);
+			
+			// var token_number = $( "input[name*='cardid']" )[0].value;
+			// console.log('ccnum',token_number)                                   
+			// var lastFour = token_number.slice(-4);
+			// var expiryYear = $( "select[name*='year']" )[0].value;
+			// var expiryMonth = $( "select[name*='month']" )[0].value;
+			// var cardType = this.getCardType(token_number)
+			// var csc = $( "input[name*='cvvid']" )[0].value;
+	
+			 var order = self.wizard.model
+	
+			var userProfile = self.userProfile
+	
+			var newPaymentModel = new MotusPaymentsModel()
+	
+			newPaymentModel.set('enc_key', res.message.enc_key);
+			newPaymentModel.set('hpf_token', res.message.hpf_token);
+			newPaymentModel.set('uuid', crypto.randomUUID());
+
+			// //Card information
+			// newPaymentModel.set('name', 'Motus' + ' ' + cardType + ' ' + lastFour);
+			// newPaymentModel.set('exp_month', expiryMonth);
+			// newPaymentModel.set('exp_year', expiryYear);
+			// newPaymentModel.set('last_four', lastFour);
+			// newPaymentModel.set('token', token_number);
+			// newPaymentModel.set('card_type', cardType);
+			// newPaymentModel.set('csc', csc);
+			// //Profile information
+			newPaymentModel.set('first_name', userProfile.firstname);
+			newPaymentModel.set('last_name', userProfile.lastname);
+			newPaymentModel.set('phone', userProfile.phoneinfo.phone);
+			newPaymentModel.set('email', userProfile.email);
+			newPaymentModel.set('userid', userProfile.internalid);
+			//newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
+			//Order information
+			newPaymentModel.set('amount', order.get('summary').total);
+	
+			console.log('newPaymentModel', newPaymentModel)
+	
+			//disable continue button to prevent order submit until card is submitted in service
+			$('.order-wizard-step-button-continue').prop("disabled",true);
+			$('.btn').prop("disabled",true);
+			self.collection.add(newPaymentModel, { at: self.collection.length - 1 }).save().then(function(result){
+				console.log('token result', result.cardDetails.response.customers[0].credit_card.expiration_month);
+				if(result.status == 'Success'){
+	
+	
+					//We need to grab the user profile and overwrite the old one because the customer motus token has changed.
+					// self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+					//     self.options.userProfile = result
+					// })
+	
+					self.removeActive();
+					newPaymentModel.set('exp_month', result.cardDetails.response.customers[0].credit_card.expiration_month.toString());
+					newPaymentModel.set('exp_year', result.cardDetails.response.customers[0].credit_card.expiration_year.toString());
+					newPaymentModel.set('last_four', result.cardDetails.response.customers[0].credit_card.masked_number.slice(-4));
+					newPaymentModel.set('active', true);
+					//newPaymentModel.set('type', true);
+					console.log('hide', self)
+					self.$containerModal &&
+					self.$containerModal
+						.removeClass('fade')
+						.modal('hide')
+						.data('bs.modal', null);
+				
+					$('.order-wizard-step-button-continue').prop("disabled",false);
+					$('.btn').prop("disabled",false);
+					//self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
+					console.log('set wizard', self)
+					self.wizard.motusActive = true
+					self.wizard.motusSelected = result.id
+					// self.options.paymentMethodView.render();
+	
+				}else{
+	
+					console.log('display fail marks', self);
+					self.$containerModal &&
+					self.$containerModal
+						.removeClass('fade')
+						.modal('hide')
+						.data('bs.modal', null);
+	
+					var $alert_warn = $('#motus-fail-message');
+					console.log($alert_warn)
+					$alert_warn.html(
+						new GlobalViewsMessageView({
+							message: 'Card failure. Please try a different card',
+							type: 'error',
+							closable: true
+						}).render().$el
+					);
+	
+					$('.order-wizard-step-button-continue').prop("disabled",false);
+				}
+	
+				newPaymentModel.set('card_type', result.type);
+	
+			})
+		};
 	}
 	// ,	removeMotusPayment: function(e)
 	// {

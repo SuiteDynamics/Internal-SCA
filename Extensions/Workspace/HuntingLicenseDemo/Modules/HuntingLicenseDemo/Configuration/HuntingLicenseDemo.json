@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": { 
+        "HuntingLicenseDemo.config": {
+            "group": "extensions",
+            "subtab": "HuntingLicenseDemo_subtab",
+            "type": "string",
+            "title": "HuntingLicenseDemo_Title",
+            "description": "Config description example",
+            "default": "Default config example"
+        }
+    }
+}
