@@ -35,7 +35,7 @@ define('SuiteDynamics.MotusPayments.MotusPaymentsModule.View'
 					   console.log('view render')
 					   $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
 					   $('head').append('<script src="https://unpkg.com/node-forge@1.0.0/dist/forge.min.js"></script>');
-					   jQuery('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+					   jQuery('head').append('<script src="https://protect.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
 					   
 		
 					   // console.log('setpaytrace', paytrace)

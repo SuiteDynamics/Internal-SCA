@@ -23,7 +23,16 @@ define('SD.MotusPDP.MotusPDP.View'
 		template: sd_motuspdp_motuspdp_tpl
 
 	,	initialize: function (options) {
+		var self = this
+		this.on('afterViewRender',function(){
 
+		   jQuery(document).ready(function(){
+
+			   if(self.options.motusItem == true){
+					$('#product-views-price').after( '<span style="margin-left:5px; font-size:12pt; font-style: italic;">Price includes one-time install fee and 1st month of service</span>' );
+			   }
+			})
+	   })
 			/*  Uncomment to test backend communication with an example service
 				(you'll need to deploy and activate the extension first)
 			*/

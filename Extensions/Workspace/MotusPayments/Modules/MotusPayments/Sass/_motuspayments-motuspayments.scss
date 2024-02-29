@@ -162,6 +162,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 
 .order-wizard-paymentmethod-selector-module-button-img{
   pointer-events: none;
+  opacity: 70%
 }
 
 .motus-removetoken-row{
@@ -181,6 +182,9 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 }
 .motus-show-payments-img{
   max-width: 100px;
+}
+.order-wizard-paymentmethod-selector-module-button.selected {
+	background-color: #b9d0d8;
 }
 .motus-token-success{
   display: none;

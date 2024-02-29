@@ -11,7 +11,7 @@
 	</p>
 	<p class="order-wizard-confirmation-module-body">{{translate 'We received your order and will process it right away.'}}</p>
 	{{#if additionalConfirmationMessage}}
-		<p class="order-wizard-confirmation-module-body" data-type="additional-confirmation-message">{{additionalConfirmationMessage}}</p>
+		<p class="order-wizard-confirmation-module-body" data-type="additional-confirmation-message">{{additionalConfirmationMessage}}<strong> This email will contain instructions on installing your bundle</strong></p>
 	{{/if}}
 	<a class="order-wizard-confirmation-module-continue" href="{{continueURL}}" {{#if touchPoint}}data-touchpoint="home"{{/if}} data-hashtag="#/">{{translate 'Continue shopping'}}</a>
 		<!-- DOWNLOAD AS PDF -->
