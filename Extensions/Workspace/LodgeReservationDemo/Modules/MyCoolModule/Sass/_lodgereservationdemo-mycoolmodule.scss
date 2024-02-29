@@ -1,0 +1,34 @@
+/*
+	Sass Application Entry Point
+	Link all your sass dependencies in the right order
+
+	Example:
+	@import "other-sass-file.scss";
+	@import "../../<other module>/Sass/other-sass-file.scss";
+*/ 
+
+.mycoolmodule-info-card {
+    @extend .info-card;
+}
+
+.mycoolmodule-info-card-content {
+    @extend .info-card-content;
+    color: $sc-color-secondary;
+    font-weight: bold;
+}
+.canvasimage{
+	position:absolute;
+	z-index:1;
+}
+.insideWrapper{
+	display:inline-block;
+    width:320px; 
+    height:480px;
+    margin: 0 auto; 
+    position:relative; 
+    border-radius: 10px; 
+}
+.canvaselement{
+    position:relative;
+    z-index:20;
+}

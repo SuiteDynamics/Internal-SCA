@@ -26,10 +26,27 @@ define('SuiteDynamics.MotusPayments.MotusPaymentsModule.View'
 
 		,	initialize: _.wrap(WizardModule.prototype.initialize, function(fn){
 				fn.apply(this, _.toArray(arguments).slice(1));
+				// this.on('afterViewRender',function(){
+				// 	$('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+				// 	$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+				// 	$('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+				   console.log('add init listener')
+				   jQuery(document).ready(function(){
+					   console.log('view render')
+					   $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+					   $('head').append('<script src="https://unpkg.com/node-forge@1.0.0/dist/forge.min.js"></script>');
+					   jQuery('head').append('<script src="https://protect.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
+					   
+		
+					   // console.log('setpaytrace', paytrace)
+					   // paytrace.setKeyAjax("https://7050356-sb1.app.netsuite.com/core/media/media.nl?id=15579&c=7050356_SB1&h=GyGcwcnLfnS9NWCfcjBji8Ttk2kbyhmRI7WnbemgxZpU5kQE&_xt=.cer");
+				   })
+			//    })
 		})
 
 		,	setTransactionFields: function(response, activeCard)
 		{
+			console.log('set 2', activeCard )
 			let transactionBodyFields = {
 				'custbody_sd_select_mt_card': activeCard.get('id'),
 				'custbody_sd_motus_token_response': JSON.stringify(response)

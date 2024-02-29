@@ -1,0 +1,22 @@
+/*
+	Sass Application Entry Point
+	Link all your sass dependencies in the right order
+
+	Example:
+	@import "other-sass-file.scss";
+	@import "../../<other module>/Sass/other-sass-file.scss";
+*/ 
+
+.motuspdp-info-card {
+    @extend .info-card;
+}
+
+.motuspdp-info-card-content {
+    @extend .info-card-content;
+    color: $sc-color-secondary;
+    font-weight: bold;
+}
+.motus-pdp-img{
+	max-width: 125px;
+	margin-right: $sc-margin-lv3;
+}

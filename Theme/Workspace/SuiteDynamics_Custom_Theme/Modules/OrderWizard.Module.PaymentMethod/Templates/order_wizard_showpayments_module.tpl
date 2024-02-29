@@ -27,9 +27,6 @@
 					{{translate 'Payment Type'}}
 				</h3>
 				<div class="order-wizard-showpayments-module-payment-methods-summary">
-					{{#if stitch}}
-					<div>Stitch</div>
-					{{/if}}
 					<div data-view="PaymentMethods.Collection"></div>
 					{{#if showGiftcertificates}}
 						<br>

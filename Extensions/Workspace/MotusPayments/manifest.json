@@ -2,14 +2,15 @@
     "name": "MotusPayments",
     "fantasyName": "Motus Payments",
     "vendor": "SuiteDynamics",
+    "version": "1.0.0",
     "type": "extension",
     "target": "SCA,SCS",
     "target_version": {
         "SCA": "",
         "SCS": ""
     },
-    "version": "1.0.0",
     "description": "Integrates Motus payment method into SuiteCommerce",
+    "skins": [],
     "assets": {
         "img": {
             "files": []
@@ -28,6 +29,14 @@
             "Modules/MotusPayments/Configuration/MotusPayments.json"
         ]
     },
+    "sass": {
+        "entry_points": {
+            "checkout": "Modules/MotusPayments/Sass/_motuspayments-motuspayments.scss"
+        },
+        "files": [
+            "Modules/MotusPayments/Sass/_motuspayments-motuspayments.scss"
+        ]
+    },
     "templates": {
         "application": {
             "checkout": {
@@ -42,14 +51,6 @@
                 ]
             }
         }
-    },
-    "sass": {
-        "entry_points": {
-            "checkout": "Modules/MotusPayments/Sass/_motuspayments-motuspayments.scss"
-        },
-        "files": [
-            "Modules/MotusPayments/Sass/_motuspayments-motuspayments.scss"
-        ]
     },
     "javascript": {
         "entry_points": {
@@ -80,6 +81,7 @@
             "Modules/MotusPayments/SuiteScript/MotusPayments.Model.js"
         ]
     },
+    "local_folder": "Workspace\\MotusPayments",
     "suitescript2": {
         "files": [
             "Modules/MotusPayments/SuiteScript2/MotusPayments.Service.ss"

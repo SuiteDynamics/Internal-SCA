@@ -15,10 +15,10 @@
 		</div>
 		<!-- Quantity -->
 		{{#if showQuantity}}
-			<div class="cart-confirmation-modal-quantity">
+			<!-- <div class="cart-confirmation-modal-quantity">
 				<span class="cart-confirmation-modal-quantity-label">{{translate 'Quantity: '}}</span>
 				<span class="cart-confirmation-modal-quantity-value">{{model.quantity}}</span>
-			</div>
+			</div> -->
 		{{/if}}
 		<div class="cart-confirmation-modal-actions">
 			<div class="cart-confirmation-modal-view-cart">

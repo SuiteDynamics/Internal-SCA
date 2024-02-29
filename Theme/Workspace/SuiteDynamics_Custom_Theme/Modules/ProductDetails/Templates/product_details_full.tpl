@@ -41,6 +41,8 @@
 							<div id="banner-summary-bottom" class="product-details-full-banner-summary-bottom"></div>
 						</section>
 
+						<section data-view="Motus.PDP"></section>
+
 						<section data-view="Product.Options"></section>
 
 						<div data-cms-area="product_details_full_cms_area_4" data-cms-area-filters="path"></div>
@@ -53,15 +55,16 @@
 						<div data-view="Product.Stock.Info"></div>
 
 						{{#if isPriceEnabled}}
+							{{#if showMotusQuantity}}
+							{{else}}
 							<div data-view="Quantity"></div>
-
+							{{/if}}
 							<section class="product-details-full-actions">
 
 								<div class="product-details-full-actions-container">
 									<div data-view="MainActionView"></div>
 									<div  data-view="ItemActions"></div>
 								</div>
-								
 								<div class="product-details-full-actions-container">
 									<div data-view="AddToProductList" class="product-details-full-actions-addtowishlist"></div>
 
