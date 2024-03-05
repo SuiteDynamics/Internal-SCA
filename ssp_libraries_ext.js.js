@@ -629,11 +629,13 @@ try{
                             "phone"		: data.phone,
                             "email"		: data.email,
                             "billing_address":{
-                                "name":"Suitedynamics LLC",
-                                "street_address":"2913 University Ave",
-                                "city":"Madison",
-                                "state":"WI",
-                                "zip":"53705"
+                                "name": data.billingAddr.name,
+                                "street_address": data.billingAddr.street_address,
+                                "street_address2": data.billingAddr.street_address2,
+                                "city": data.billingAddr.city,
+                                "state": data.billingAddr.state,
+                                "zip": data.billingAddr.zip,
+                                "country": data.billingAddr.country,
                             }
                         }
 

@@ -407,18 +407,11 @@ define(
 	
 			var newPaymentModel = new MotusPaymentsModel()
 	
+			//Card Information
 			newPaymentModel.set('enc_key', res.message.enc_key);
 			newPaymentModel.set('hpf_token', res.message.hpf_token);
 			newPaymentModel.set('uuid', crypto.randomUUID());
 
-			// //Card information
-			// newPaymentModel.set('name', 'Motus' + ' ' + cardType + ' ' + lastFour);
-			// newPaymentModel.set('exp_month', expiryMonth);
-			// newPaymentModel.set('exp_year', expiryYear);
-			// newPaymentModel.set('last_four', lastFour);
-			// newPaymentModel.set('token', token_number);
-			// newPaymentModel.set('card_type', cardType);
-			// newPaymentModel.set('csc', csc);
 			// //Profile information
 			newPaymentModel.set('first_name', userProfile.firstname);
 			newPaymentModel.set('last_name', userProfile.lastname);
@@ -429,6 +422,21 @@ define(
 			//Order information
 			newPaymentModel.set('amount', order.get('summary').total);
 	
+
+			//Billing Address
+			var billAddress = self.model.get('addresses').where({'internalid': self.model.get('billaddress')})
+			var billingAddrObj = {
+				"name": billAddress[0].get('fullname'),
+				"street_address": billAddress[0].get('addr1'),
+				"street_address2": billAddress[0].get('addr2'),
+				"city": billAddress[0].get('city'),
+				"state": billAddress[0].get('state'),
+				"zip": billAddress[0].get('zip'),
+				"country": billAddress[0].get('country')
+			}
+			console.log('billingAddrObj', billingAddrObj)
+			newPaymentModel.set('billingAddr', billingAddrObj);
+
 			console.log('newPaymentModel', newPaymentModel)
 	
 			//disable continue button to prevent order submit until card is submitted in service

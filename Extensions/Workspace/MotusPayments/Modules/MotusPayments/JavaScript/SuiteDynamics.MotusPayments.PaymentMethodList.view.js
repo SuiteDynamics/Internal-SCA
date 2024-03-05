@@ -213,7 +213,6 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 	,	getContext: function getContext()
 		{
 
-			console.log('getcontext LIST', this)
 			var image = this.getCardImage();
 
 			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context

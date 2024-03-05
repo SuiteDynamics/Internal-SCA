@@ -1,4 +1,3 @@
-{{log this}}
 
 <!-- change to reflect native view -->
 
