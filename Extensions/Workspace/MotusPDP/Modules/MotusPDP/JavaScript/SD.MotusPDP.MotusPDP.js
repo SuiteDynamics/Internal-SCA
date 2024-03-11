@@ -2,10 +2,12 @@
 define(
 	'SD.MotusPDP.MotusPDP'
 ,   [
-		'SD.MotusPDP.MotusPDP.View'
+		'SD.MotusPDP.MotusPDP.View',
+		'Configuration'
 	]
 ,   function (
-		MotusPDPView
+		MotusPDPView,
+		Configuration
 	)
 {
 	'use strict';
@@ -20,7 +22,7 @@ define(
 			
 			/** @type {LayoutComponent} */
 			var layout = container.getComponent('Layout');
-			console.log('motus PDP');
+			console.log('motus PDP', Configuration);
 
 			var pdp = container.getComponent("PDP");
 			var motusItem = false;

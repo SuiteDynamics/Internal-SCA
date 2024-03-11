@@ -22,3 +22,8 @@
     </div>
 
 </div>
+
+<body>
+    <input type="text" class="form-control pt-encrypt" id="ccNumber" name="ccNumber" placeholder="Credit card number">
+    <input type="text" class="form-control pt-encrypt" id="ccCSC" name="ccCSC" placeholder="Card security code">
+</body>

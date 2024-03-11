@@ -1,6 +1,7 @@
 ///////////////////////////////////////////////////////////////
 //header secondary nav
 .header-menu-secondary-nav {
+	width:80%;
 	@extend .container;
 }
 
@@ -8,6 +9,7 @@
 //header search
 
 .header-menu-search {
+	display: none;
 	float: right;
 }
 
@@ -31,6 +33,10 @@
 .header-menu-level1 {
 	margin-left: - ($sc-padding-lv2);
 	position: relative;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-around;
+	margin-top: $sc-margin-lv3
 }
 
 .header-menu-level1 > li {

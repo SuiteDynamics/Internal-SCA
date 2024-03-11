@@ -20,7 +20,7 @@
 				<span class="product-views-price-exact" itemprop="offers">
 					<meta itemprop="priceCurrency" content="{{currencyCode}}"/>
 					<!-- Single -->
-					<span class="product-views-price-lead" itemprop="price" data-rate="{{price}}" data-role="price-lead-formatted">
+					<span class="product-views-price-lead" id="product-views-price" itemprop="price" data-rate="{{price}}" data-role="price-lead-formatted">
 						{{priceFormatted}} {{frequency}}
 					</span>
 					{{#if showComparePrice}}

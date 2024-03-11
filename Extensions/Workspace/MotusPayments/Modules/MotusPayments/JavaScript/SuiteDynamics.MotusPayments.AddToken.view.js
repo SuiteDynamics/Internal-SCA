@@ -50,8 +50,10 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
               //use instance object to process and tokenize sensitive data payment fields.
           });
 		this.on('afterViewRender',function(){
+
+            console.log('add view after render')
 			//  $('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-            //  $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
+            //$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
             //  $('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
             // PTPayment.setup({    
             //     authorization: { clientKey: "NFSgOzU7Am2Fh34+SSuXew==./LIH5Wkc/CVI0TMUvmabXboubebH8Qs70sAEDrsZmQbtqbnqAdH/gehlBekoLKt3YA1IOHZgMRE3huXpUqv4ZAmJ0giZaqqb6DAOdtOfMx/994oOcwDLnEP5WkaegQi+/08EIzQklqGfqVIYm+sMRof2e567duQwB/QFzYUvIICBemiiAIIkQ8mSQ5Il+zoOhTBmRbdX9oj1uYqFWUoVlDRYonRh7yHMiJiixWzXX9s8kiROxu7//9rUa056qkmQA6XJECodMyxj+so+8Qcpfw1UeNAs5845Wxzv4A7rJPV+5YBdWCzHZMvPRUMZaNOwOSvJJXQWh0OYPt2QgeTupgP65hXPMWhJEeiyRyX2hyl2FI+rRzFnnqLCQgviezjG4GjExjeyMUQtm7KSXcKmrhH9D4H1F2DKZLUymqXJUf4JHKvfMgxRBaFzFhJDNXGRYufXq4dfuPJX6Y2UfYlippmApgNWqp14ppW8yC7XnpyMyZyWbohK/Bjn4NZfAio+" }

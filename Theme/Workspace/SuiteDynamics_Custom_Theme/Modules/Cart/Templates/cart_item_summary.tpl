@@ -3,7 +3,7 @@
 	<form action="#" class="cart-item-summary-item-list-actionable-qty-form" data-action="update-quantity" data-validation="control-group">
 		<input type="hidden" name="internalid" id="update-internalid-{{lineId}}" class="update-internalid-{{lineId}}" value="{{lineId}}">
 		<label for="quantity-{{lineId}}" data-validation="control">
-			<!-- {{#if showQuantity}}
+			{{#if showQuantity}}
 				<input type="hidden" name="quantity" id="quantity-{{lineId}}" value="1">
 			{{else}}
 				<div class="cart-item-summary-item-list-actionable-container-qty">
@@ -24,7 +24,7 @@
 						</small>
 					{{/if}}
 				</div>
-			{{/if}} -->
+			{{/if}}
 			<div data-type="alert-placeholder"></div>
 		</label>
 	</form>

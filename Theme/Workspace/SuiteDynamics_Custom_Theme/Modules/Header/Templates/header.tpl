@@ -46,7 +46,10 @@
 			<div class="header-logo-wrapper">
 				<div data-view="Header.Logo"></div>
 			</div>
+            <div class="header-secondary-wrapper" data-view="Header.Menu" data-phone-template="header_sidebar" data-tablet-template="header_sidebar"></div>
+            <div><button class="header-menu-consult-btn"> SCHEDULE YOUR CONSULTATION</button></div>
             <div class="header-right-menu">
+            
                 {{#if isStandalone}}
                     {{#if showLanguagesOrCurrencies}}
                         <div class="header-menu-settings">
@@ -86,7 +89,6 @@
 
 <div class="header-sidebar-overlay" data-action="header-sidebar-hide"></div>
 
-<div class="header-secondary-wrapper" data-view="Header.Menu" data-phone-template="header_sidebar" data-tablet-template="header_sidebar"></div>
 
 {{#unless isStandalone}}
 <div data-view="SiteSearch"></div>

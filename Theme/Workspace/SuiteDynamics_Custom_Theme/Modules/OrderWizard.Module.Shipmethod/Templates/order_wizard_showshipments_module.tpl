@@ -51,6 +51,7 @@
 	</section>
 {{/if}}
 
+<div data-view="Hunting.License"></div>
 
 
 {{!----

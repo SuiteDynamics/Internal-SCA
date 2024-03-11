@@ -1,0 +1,78 @@
+.footer{
+    background-color: #002535;
+    font-family: OpenSans;
+}
+
+.ninthsection1{
+  width: 100%;
+  display:flex;
+  justify-content:center;
+ flex-wrap: wrap;
+  font-family: OpenSans;
+}
+
+.ninthsection_innersection1{
+    margin: 2rem;
+    color:white;
+    font-family: OpenSans;
+}
+
+li{
+    list-style-type:none;
+    line-height: 2.5em;
+    font-family: OpenSans;
+}
+
+li a{
+    color:white;
+    text-decoration: none;
+}
+
+.ninthsection_innersection1 p{
+    font-family: OpenSans;
+
+}
+
+.p1{
+    width:230px;
+    position:relative;
+    margin-top:40px;
+    font-family: OpenSans;
+}
+
+#txt1{
+
+    width:220px;
+    font-family: OpenSans;
+}
+
+.ninthsection2{  
+    display:flex;
+    justify-content: space-between;
+    font-family: OpenSans;
+}
+
+.ninthsection_innersection2{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ninthsection_innersection2 img{
+
+    margin-top:20px;
+    margin-left:10px;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: #E6EEF1;
+    
+    margin:2px;
+  }

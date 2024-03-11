@@ -19,6 +19,22 @@
   @media (min-width: $screen-lg-min) {
     width: $container-lg;
   }
+
+  @media (min-width: 1300px) {
+    width: 1300px;
+  }
+
+  @media (min-width: 1400px) {
+    width: 1400px;
+  }
+
+  @media (min-width: 1500px) {
+    width: 1500px;
+  }
+
+  @media (min-width: 1600px) {
+    width: 1600px;
+  }
 }
 
 

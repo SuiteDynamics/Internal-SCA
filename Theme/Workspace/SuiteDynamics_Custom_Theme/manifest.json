@@ -8,7 +8,7 @@
         "SCA": ">=23.1.3",
         "SCS": ">=23.1.3"
     },
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "SuiteDynamics custom theme for SCA",
     "override": [],
     "skins": [

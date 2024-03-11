@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    *{
+        margin:0;
+        padding:0;
+        font-family: OpenSans;
+    
+    }
+    
+    body {
+        overflow-x: hidden;
+      }
+    
+    .first_section{
+    
+        
+        height:300px;
+        display:flex;
+        margin:1px;
+        max-width:100vw;
+        font-family: OpenSans;
+    }
+    
+      .first_section_innersection1{
+    
+        
+        height:300px;
+        width:49vw;
+        background-color:#002535;
+        font-family: OpenSans;
+      }
+    
+      .first_section_innersection2{
+    
+        /* border:1px solid black; */
+        height:300px;
+        width:49vw;
+        font-family: OpenSans;
+      }
+    
+      .first_section_innersection1_content{
+    
+        width:40vw;
+        height:300px;
+        font-family: OpenSans;
+        position: relative;
+        left:110px;
+        top:40px;
+    
+        
+      }
+    
+      .first_section_innersection1_content h3{
+    
+        margin-left:25px;
+        margin-top:30px;
+        font-family: OpenSans;
+        color:#ADC5CF;
+      }
+    
+      .first_section_innersection1_content h1{
+    
+        margin-left:25px;
+        margin-top:10px;
+        font-family: charter;
+        color: #EFF3F5;
+        font-weight: bold;
+        font-style: italic;
+      }
+    
+      .first_section_innersection1_content p{
+    
+        margin-left:25px;
+        margin-top:20px;
+        margin-right: 20px;
+        font-family: OpenSans;
+        color:#002535;
+        
+      }
+    
+      .first_section_innersection1_btn1{
+    
+       
+    
+        background-color:#002535;
+        height:30px;
+        color:white;
+        border:0px;
+        width:200px;
+        padding:1px;
+        border-radius: 50px;
+        margin-left:25px;
+        margin-top:50px;
+        font-family: OpenSans;
+        
+        
+        
+      }
+    
+      .imgback{
+    
+        position:relative;
+          
+          margin:5px;
+          left:20px;
+          top:20px;
+          font-family: OpenSans;
+          background-color:#ADC5CF;
+          width:70px;
+          height:60px;
+          border-radius: 50%;
+      }
+    
+      .imgback img{
+    
+        position:relative;
+        
+        
+        top:10px;
+        left:15px;
+        font-family: OpenSans;
+      }
+    
+      .third_section{
+    
+        
+        height:500px;
+        display:flex;
+        max-width:100vw;
+        font-family: OpenSans;
+    
+    }
+    
+      .third_section_innersection1{
+    
+        
+        height:500px;
+        width:60vw;
+        background-color:#D6E2E7;
+        font-family: OpenSans;
+      }
+      
+      .third_section_innersection1_content{
+    
+        width:38vw;
+        height:300px;
+        font-family: OpenSans;
+        color:#002535;
+        position: relative;
+        left:140px;
+        top:20px;
+        
+      }
+    
+      
+    
+      .third_section_innersection1_content h1{
+    
+        margin-left:25px;
+        margin-top:60px;
+        font-family: OpenSans;
+      }
+    
+      .third_section_innersection1_content p{
+    
+        margin-left:25px;
+        margin-top:10px;
+        margin-right: 10px;
+        font-family: OpenSans;
+      }
+    
+      .third_section_innersection1_btn1{
+    
+        
+        background-color: #EFF3F5;
+        height:30px;
+        color:#002535;
+        border:0px;
+        width:200px;
+        padding:1px;
+        border-radius: 50px;
+        margin-left:25px;
+        margin-top:30px;
+        font-family: OpenSans;
+        
+        
+      }
+    
+      .third_section_innersection2{
+    
+        background-color:#D6E2E7;
+        height:500px;
+        width:40vw;
+        font-family: OpenSans;
+      }
+    
+      .third_section_innersection2_content{
+    
+        width:38vw;
+        height:300px;
+        font-family: OpenSans;
+        
+        position: relative;
+        left:140px;
+        top:80px;
+        
+      }
+    
+      
+    
+    
+      .first1_section{
+    
+        
+        height:500px;
+        
+        
+        max-width:100vw;
+        font-family: OpenSans;
+    }
+    
+    .fourth_section{
+    
+        
+        height:650px;
+        display:flex;
+        max-width:100vw;
+        font-family: OpenSans;
+        background-color:#D6E2E7;
+    
+    }
+    
+      .fourth_section_innersection1{
+    
+        
+        height:650px;
+        width:60vw;
+        background-color:#D6E2E7;
+        font-family: OpenSans;
+        position:relative;
+        top:100px;
+      }
+      
+      .fourth_section_innersection1_content{
+    
+        width:38vw;
+        height:300px;
+        font-family: OpenSans;
+        color:#002535;
+        position: relative;
+        left:140px;
+        top:20px;
+        
+      }
+    
+      
+    
+      .fourth_section_innersection1_content h1{
+    
+        margin-left:25px;
+        margin-top:60px;
+        font-family: OpenSans;
+      }
+    
+      .fourth_section_innersection1_content p{
+    
+        margin-left:25px;
+        margin-top:10px;
+        margin-right: 10px;
+        font-family: OpenSans;
+      }
+    
+      .fourth_section_innersection1_btn1{
+    
+        
+        background-color: #EFF3F5;
+        height:30px;
+        color:#002535;
+        border:0px;
+        width:200px;
+        padding:1px;
+        border-radius: 50px;
+        margin-left:100px;
+        margin-top:40px;
+        font-family: OpenSans;
+        
+        
+      }
+    
+      .fourth_section_innersection2{
+    
+        background-color:#D6E2E7;
+        height:650px;
+        width:40vw;
+        font-family: OpenSans;
+        position:relative;
+        top:100px;
+      }
+    
+      .fourth_section_innersection2_content{
+    
+        width:38vw;
+        height:300px;
+        font-family: OpenSans;
+        
+        position: relative;
+        left:10px;
+        top:80px;
+        
+      }
+    
+      .fourth_section_inner_card{
+    
+        width:400px;
+        height:150px;
+        background-color: #ADC5CF;
+        margin:25px;
+        padding:30px;
+        position: relative;
+        top:40px;
+      }
+    
+      .fourth_section_inner_card p{
+    
+       text-align: center;
+       font-style: italic;
+       font-family: Charter;
+       font-weight: bold;
+      }
+    
+      
+      .fifth_section{
+    
+        background-color:#F2F4F5;
+        width:600px;
+        height:220px;
+        position:relative;
+        top:-780px;
+        left:28%;
+        
+      }
+    
+      .fifth_section p{
+    
+        color:#002535;
+        font-family: OpneSans;
+        text-align: center;
+        position:relative;
+        top:30px;
+        margin:20px;
+        font-size:20px;
+        
+    
+      }
+    
+      .donwcirc{
+    
+        border-radius: 50%;
+        background-color: #ADC5CF;
+        height:70px;
+        width:70px;
+        margin:auto;
+        position: relative;
+        top:80px;
+      }
+    
+      .fifth_section1 img{
+          
+        position:relative;
+        left:25px;
+        top:5px;
+       }
+     
+       .second_section{
+     
+         
+         height:100px;
+         background-color: #002535;
+         margin:1px;
+         margin-top: 0px;
+         text-align: center;
+         font-family: OpenSans;
+         max-width:100vw;
+         position:relative;
+       }
+     
+       .second_section h2{
+     
+         position: relative;
+         top:40px;
+         color:white;
+         font-family: OpenSans;
+         
+     
+         
+       }
+     
+       
+       .sixth_section{
+     
+         
+         max-width:100vw;
+         height:850px;
+         font-family: OpenSans;
+         padding-top:20px;
+        
+         color:#002535;
+         position:relative;
+         top:-140px;
+         
+     
+       }
+    
+       
+     
+       .sixth_section h1{
+     
+         
+         margin-top:50px;
+         font-family: OpenSans;
+         margin-left: 100px;
+       }
+     
+       .sixth_section1{
+         font-family: OpenSans;
+         display:flex;
+         flex-wrap: wrap;
+         /* flex-basis: 33%; */
+       }
+     
+      .sixth_section_cards{
+         
+         
+         font-family: OpenSans;
+         margin:8px;
+         height:300px;
+         width:28vw;
+         position:relative;
+         left:100px;
+         top:50px;
+         
+      }
+     
+     
+      .imgback1{
+     
+       position:relative;
+         
+         margin:8px;
+         top:40px;
+         font-family: OpenSans;
+         background-color:#5C8B9F;
+         width:80px;
+         height:60px;
+         border-radius: 50%;
+     
+         
+      
+         
+      }
+      
+       
+     
+     
+      .sixth_section1 img{
+     
+         position:relative;
+         
+         
+         top:10px;
+         left:15px;
+         font-family: OpenSans;
+       }
+     
+     /* .sixthsection0{
+    
+        height:50px;
+        background-color: #ADC5CF;
+        margin-left:100px;
+        width:90vw;
+        
+     } */
+    
+     .divider1{
+    
+        height:150px;
+        background-color: #ADC5CF;
+        margin-left:100px;
+        width:90vw;
+        margin-top:30px;
+     }
+    
+     .divider1 h2{
+    
+        color:#FFFFFF;
+        font-family: OpenSans;
+        font-weight: bold;
+        background-color: #002535;
+        text-align: center;
+     }
+    
+    
+      .seventh_section{
+    
+        
+        height:150px;
+        background-color: #ADC5CF;
+      
+        padding:30px;
+        position: relative;
+        top:100px;
+      }
+    
+      .seventh_section p{
+    
+        text-align: center;
+        font-style: italic;
+        font-family: Charter;
+        font-weight: bold;
+       }
+    
+       .seventh_section_innersection1_btn1{
+    
+        
+        background-color: #EFF3F5;
+        height:30px;
+        color:#002535;
+        border:0px;
+        width:250px;
+        padding:1px;
+        border-radius: 50px;
+        position:relative;
+        left:500px;
+        margin-top:50px;
+        font-family: OpenSans;
+        
+        
+      }
+    
+      .first1_section{
+    
+        display: flex;
+        height:700px;
+      }
+    
+    .first1_innersection1{
+    
+       
+        height:700px;
+        width:655px;
+    
+    
+    }
+    
+    
+    .first1_innersection2{
+    
+        
+        height:700px;
+        width:650px;
+    
+    
+    }
+    .first1_innersection2 img{
+    
+        position: relative;
+        top:100px;
+        left:140px;
+    }
+    
+    
+    .first1_innersection1_content{
+    
+        height:400px;
+        width:400px;
+        position: relative;
+        top:100px;
+        left:180px;
+        padding-top: 120px;
+        
+        color:#002535;
+    
+    }
+    
+    .first1_innersection1_content p{
+    
+        margin-top:30px;
+       
+        font-family: OpenSans;
+    }
+    
+    .fifth_section_innersection1_btn1{
+    
+        
+        background-color:#336E87;
+        height:30px;
+        color:#EFF3F5;
+        border:0px;
+        width:200px;
+        padding:1px;
+        border-radius: 50px;
+        margin-left:195px;
+        margin-top:40px;
+        font-family: OpenSans;
+        font-weight: bold;
+        
+        
+        
+      }
+         
+    </style>
+    
+</head>
+<body>
+    <div class="first_section">
+        <div class="first_section_innersection1">
+            <div class="first_section_innersection1_content">
+                <h3>NETSUITE IMPLEMENTATION</h3>
+                <H1>The Easiest<br> Road To Go-Live.</H1>
+
+               
+                <div class="imgback"><img src="img.jpg" width="36px" height="36px"></div>
+                
+
+            </div>
+            
+
+        </div>
+        <div class="first_section_innersection2">
+            <img src="image.jpg" height="300px" width="670px">
+            
+        </div>
+    </div>
+
+    <div class="third_section">
+        
+        <div class="third_section_innersection2">
+            <div class="third_section_innersection2_content">
+                <img src="image.jpg" height="330px" width="500px">
+            </div>
+            
+        </div>
+
+    <div class="third_section_innersection1">
+        <div class="third_section_innersection1_content">
+            <h1>Get Your ERP Right</h1><br>
+            
+            <p>
+                A NetSuite ERP can drive your company’s efficiency, productivity, and success. But it’s a complex system with a million moving parts. Trust us, it can be difficult to understand—much less implement. That’s why SuiteDynamics experts provide implementation services that get your system running with little stress.<br><br>
+                
+                It doesn’t matter whether you’re starting from scratch or saving a failed implementation. The SuiteDynamics team will deliver a successful NetSuite system tailored to your business’s unique structure and processes.
+
+                
+            </p>
+            <button class="third_section_innersection1_btn1"> Schedule Your Consultation</button>
+            
+
+        </div>
+        
+
+    </div>
+</div>
+
+<div class="first1_section">
+    <div class="first1_innersection1">
+        <div class="first1_innersection1_content">
+            <h1>The Go-To Tool for Successful Businesses</h1>
+            <p>With the right guidance, NetSuite can streamline your business workflows, including CRM, e-commerce, HR, inventory, manufacturing, and MORE. And the system does it all on one platform.</p>
+
+        </div>
+
+    </div>
+
+    <div class="first1_innersection2">
+        <img src="img.jpg" height="400px" width="350px;">
+        
+    </div>
+    
+</div>
+
+<div class="fourth_section">
+
+    <div class="fourth_section_innersection1">
+        <div class="fourth_section_innersection1_content">
+            <h1>Why You Need a NetSuite Implementation Partner.</h1><br>
+            
+            <p>
+                NetSuite implementation is the process of building, testing, and launching a customized NetSuite system. You can begin the process in-house. Yet, unless you have a team of NetSuite experts on staff, you’ll face coding snags and errors that result in shipping delays, accounting mistakes, and more.<br><br>
+                Find out how the SuiteDynamics team can protect you from a NetSuite implementation mess.
+    
+                
+            </p>
+            <div class="fourth_section_inner_card">
+                <P>
+                    No one should brave a NetSuite implementation alone. SuiteDynamics will ensure your company gets the ERP system it needs to stand out in the marketplace.
+                </P>
+            <button class="fourth_section_innersection1_btn1"> Schedule Your Consultation</button>
+        </div>
+            
+    
+        </div>
+        
+    
+    </div>
+        
+    <div class="fourth_section_innersection2">
+        <div class="fourth_section_innersection2_content">
+            <video height="530" width="350" controls>
+                <source src="movie.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                </video>
+            
+        </div>
+        
+    </div>
+
+
+</div>
+
+<div class="fifth_section">
+    <p>SuiteDynamics consultants can help identify which NetSuite ERP modules will help your business produce more and make customers and stakeholders happy. Discuss your needs with our experts today.</p>
+    
+    <button class="fifth_section_innersection1_btn1"> Schedule Your Consultation</button>
+</div>
+
+<div class="sixth_section">
+    <h1>How a NetSuite Implementation Works</h1>
+    <p style=" margin-top:40px; font-family: OpenSans; margin-left: 100px;">The implementation process involves six steps that take your company from initial meetings to go-live. During each phase,<br> you’ll work with the same SuiteDynamics team. Therefore, you can rest easy, knowing your project is in the hands of<br> people who have gotten to know your company and its needs.</p>
+    <div class="divider1">
+        <h2>IMPLEMENTATION PROCESS</h2>
+        <img src="img2202.png" height="122px" width="1184px">
+
+    </div>
+  
+    <div class="sixth_section1">
+    <div class="sixth_section_cards">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style="margin-top: 50px;">1. SYSTEM DESIGN/ <br>CONFIGURATION</h3>
+        <p style="margin-top:20px; ">The SuiteDynamics Project Team will mold a NetSuite environment to suit your processes, align with your business requirements, and facilitate your company’s future growth. Our team will deliver a system tailor-made for your business, whether you need complex approval routings, dynamic pricing, integrations with your 3PL, or any other advanced features.</p>
+        
+    </div>
+    <div class="sixth_section_cards">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style="margin-top: 50px;">2. DATA <br>MIGRATION</h3>
+        <p style="margin-top:20px; ">A system is useless without accurate, complete data-no matter how advanced it is. After our team has configured your environment, we’ll migrate your core accounting and business management record data from your current system into NetSuite using a CSV import. We can also provide CSV templates and CSV import templates for each type of record, including customer and vendor.</p>
+        
+    </div>
+    <div class="sixth_section_cards">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style=" margin-top: 50px;padding-bottom:22px;">3. TESTING</h3>
+        <p style="margin-top:20px; ">We don’t leave success to chance. Before go-live, our experts will perform quality assurance testing and offer a final client validation. We’ll ensure your NetSuite system exceeds expectations and that all its features, from the dashboards to the reports, meet your needs.</p>
+        
+    </div>
+
+    <div class="sixth_section_cards">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style="margin-top: 50px;">4. USER <br>TRAINING</h3>
+        <p style="margin-top:20px;">You can’t maximize your new ERP system if your team doesn’t know how to operate it. Before go-live, SuiteDynamics can provide user training for your entire staff. Our instructional programs include educational resources, one-on-one training, and team training. Our experts will ensure your team can navigate each part of the system and use the software flawlessly.</p>
+        
+    </div>
+    <div class="sixth_section_cards">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style="margin-top: 50px;padding-bottom:22px;">5. GO-LIVE</h3>
+        <p style="margin-top:20px;">It’s the Big Day! Your system is going online. A successful transition requires strict attention to detail from our experts and close collaboration between your team and ours. Then, your company can move smoothly to your new digital environment and hit the ground running.</p>
+        
+
+    </div>
+    <div class="sixth_section_cards">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style="margin-top: 50px;">6. POST-GO-LIVE<br> SUPPORT</h3>
+        <p style="margin-top:20px; ">Every implementation needs some level of post-go-live support. Some companies want additional training, while others require further enhancements. SuiteDynamics offers various post-implementation services so your NetSuite ERP can keep boosting efficiency and productivity for years to come.</p>
+      
+    </div>
+</div>
+
+</div>
+
+
+<div class="seventh_section">
+    <P>
+        A NetSuite implementation is tough. Get it right the first time with<br> SuiteDynamics experts who will ensure the system works exactly as needed.
+    </P>
+<button class="seventh_section_innersection1_btn1"> SCHEDULE A FREE CONSULTATION</button>
+</div>
+
+    
+</body>
+</html>

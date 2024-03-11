@@ -1,0 +1,24 @@
+*{
+    margin:0;
+
+}
+
+body {
+    overflow-x: hidden;
+  }
+
+  .header_innersection1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Write your media queries here */
+
+  /* Mobile specific styles */
+    @media only screen and (max-width: 767px) {
+
+      .content{
+        color:#002535;
+        text-align: center;
+      }
