@@ -1,7 +1,7 @@
 <body class="container">
   <div class="first_section">
       <div class="row">
-          <div class="first_section_innersection1">
+          <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
               <div class="first_section_innersection1_content">
                   <h3>NETSUITE IMPLEMENTATION</h3>
                   <H1>The Easiest<br> Road To Go-Live.</H1>
@@ -9,8 +9,8 @@
               </div>
           </div>
 
-          <div class="first_section_innersection2">
-              <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteImplementation_1.jpg" height="300px">
+          <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+              <img class="netsuite_implementation_image" src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteImplementation_1.jpg">
               
           </div>
       </div>
@@ -18,14 +18,14 @@
 
   <div class="third_section">
     <div class="row">
-      <div class="third_section_innersection2">
+      <div class="third_section_innersection2 col-lg-6 col-md-6 col-xs-12">
           <div class="third_section_innersection2_content">
               <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteImplementation_2.jpg" height="330px" width="500px">
           </div>
           
       </div>
 
-      <div class="third_section_innersection1">
+      <div class="third_section_innersection1 col-lg-6 col-md-6 col-xs-12">
           <div class="third_section_innersection1_content">
               <h1>Get Your ERP Right</h1><br>
               

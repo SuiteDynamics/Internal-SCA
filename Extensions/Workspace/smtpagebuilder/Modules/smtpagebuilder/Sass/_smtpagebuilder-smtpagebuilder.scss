@@ -28,7 +28,7 @@ body {
 	@extend .col-xs-12;
 	@extend .col-sm-12;
 	@extend .col-lg-6;
-	height:300px;
+	height:548px;
 	background-color:#002535;
 	font-family: OpenSans;
   }
@@ -99,8 +99,10 @@ body {
 	margin-top:50px;
 	font-family: OpenSans;
 	
-	
-	
+  }
+
+  .netsuite_implementation_image{
+	height: 548px;
   }
 
   .imgback{

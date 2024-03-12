@@ -19,7 +19,7 @@ define(
 
 			// ... do additional work with the collection
 
-			var pageType = {
+			var netsuiteImplementation = {
 				name: 'netsuite-implementation-ext',
 				view: smtpagebuilderView,
 				routes: ['netsuite-implementation-ext'],
@@ -29,7 +29,19 @@ define(
 				}
 			}
 
-			pageTypeComponent.registerPageType(pageType);
+			pageTypeComponent.registerPageType(netsuiteImplementation);
+
+			var netsuiteServices = {
+				name: 'netsuite-implementation-ext',
+				view: smtpagebuilderView,
+				routes: ['netsuite-implementation-ext'],
+				defaultTemplate: {
+					name: 'sd_smtpagebuilder_smtpagebuilder.tpl',
+					displayName: 'SMT Page',
+				}
+			}
+
+			pageTypeComponent.registerPageType(netsuiteImplementation);
 			// using the 'Layout' component we add a new child view inside the 'Header' existing view 
 			// (there will be a DOM element with the HTML attribute data-view="Header.Logo")
 			// more documentation of the Extensibility API in
