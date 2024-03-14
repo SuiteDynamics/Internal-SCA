@@ -22,6 +22,10 @@
 
 }
 
+.cms-landing-page{
+	width:100%;
+}
+
 body {
 	overflow-x: hidden;
 }
@@ -36,6 +40,9 @@ body {
 
 .first_section{
 
+	
+	// height:300px;
+	// display: inline;
 	margin:1px;
 	max-width:100vw;
 	font-family: "Open Sans";
@@ -56,6 +63,7 @@ body {
 	@extend .col-sm-12;
 	@extend .col-lg-6;
 	/*@extend .col-sm-6; border:1px solid black; */
+	// height:548px;
 	font-family: "Open Sans";
 	padding: 0px;
 	font-size: 0;
@@ -119,6 +127,7 @@ body {
 	margin-left:25px;
 	margin-top:50px;
 	font-family: "Open Sans";
+	letter-spacing: 2.8px;
 	
   }
 
@@ -207,6 +216,7 @@ body {
 	font-family: "Open Sans";
 	font-size: 24px;
 	line-height: 1.3;
+	color: #002535;
   }
 
   .third_section_innersection1_btn1{
@@ -252,35 +262,36 @@ body {
 
 .fourth_section{
 
-	
-	height:650px;
+	@extend .row;
 	display:flex;
-	max-width:100vw;
 	font-family: "Open Sans";
 	background-color:#D6E2E7;
+	padding-top: 20%;
+	padding-right: 5%;
+	padding-bottom: 5%;
+
+	@media(max-width: 992px){
+		padding-top: 37%;
+		padding-bottom: 0%;
+	}
 
 }
 
   .fourth_section_innersection1{
-
-	
-	height:650px;
-	width:60vw;
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
 	background-color:#D6E2E7;
 	font-family: "Open Sans";
 	position:relative;
-	top:100px;
+	margin-left: 5%;
   }
   
   .fourth_section_innersection1_content{
 
-	width:38vw;
-	height:300px;
 	font-family: "Open Sans";
 	color:#002535;
 	position: relative;
-	left:140px;
-	top:20px;
 	
   }
 
@@ -288,67 +299,69 @@ body {
 
   .fourth_section_innersection1_content h1{
 
-	margin-left:25px;
-	margin-top:60px;
-	font-family: "Open Sans";
+	font-family: "Charter Bold";
+	font-size: 60px;
   }
 
   .fourth_section_innersection1_content p{
 
-	margin-left:25px;
-	margin-top:10px;
-	margin-right: 10px;
+	margin-top:3%;
 	font-family: "Open Sans";
+	font-size: 24px;
+	color: #002535;
   }
 
   .fourth_section_innersection1_btn1{
 
 	
 	background-color: #EFF3F5;
-	height:30px;
+	height:68px;
 	color:#002535;
 	border:0px;
-	width:200px;
+	width:513px;
 	padding:1px;
 	border-radius: 50px;
-	margin-left:100px;
-	margin-top:40px;
+	margin-top:6%;
 	font-family: "Open Sans";
-	
+	font-weight: bold;
+	letter-spacing: 2.8px;
+
+	@media(max-width: 992px){
+		width:300px;
+		height: 50px;
+	}
 	
   }
 
   .fourth_section_innersection2{
-
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
 	background-color:#D6E2E7;
-	height:650px;
-	width:40vw;
 	font-family: "Open Sans";
 	position:relative;
-	top:100px;
   }
 
   .fourth_section_innersection2_content{
 
-	width:38vw;
-	height:300px;
 	font-family: "Open Sans";
 	
 	position: relative;
 	left:10px;
-	top:80px;
-	
+	margin-left:12%
+
+  }
+
+  .fourth_section_innersection2_content_video{
+	min-height: 500px;
   }
 
   .fourth_section_inner_card{
 
-	width:400px;
-	height:150px;
 	background-color: #ADC5CF;
-	margin:25px;
+	margin-top: 10%;
 	padding:30px;
 	position: relative;
-	top:40px;
   }
 
   .fourth_section_inner_card p{
@@ -359,30 +372,84 @@ body {
    font-weight: bold;
   }
 
-  
-  .fifth_section{
+  .fourth_section_inner_card_section1 p{
+	color: #002535
+  }
 
+  .fourth_section_inner_card_section2{
+	text-align: center;
+  }
+
+  
+  .fifth_section_row{
+
+	position: relative;
+	top:212px;
+	height:440px;
 	background-color:#F2F4F5;
-	width:600px;
-	height:220px;
 	position:relative;
-	top:-780px;
-	left:28%;
+	margin-left: 12%;
+	margin-right: 12%;
+	margin-top: -4%;
+
+	@media (max-width: 992px) {
+		display: inline-block;
+		margin-left: 0%;
+		margin-right: 0%;
+		margin-bottom: 5%;
+		height: auto;
+	}
+
 	
   }
 
-  .fifth_section p{
+  .fifth_section_innersection1{
+
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-top: 6%;
+
+  }
+
+  .fifth_section_innersection1 p{
 
 	color:#002535;
-	font-family: OpneSans;
+	font-family: "Open Sans";
 	text-align: center;
 	position:relative;
-	top:30px;
-	margin:20px;
-	font-size:20px;
-	
+	font-size:32px;
 
   }
+
+
+  .fifth_section_innersection2{
+
+	text-align: center;
+	margin-top:4%;
+
+	@media (max-width: 992px) {
+		margin-bottom: 5%;
+	}
+  }
+
+  .fifth_section_innersection1_btn1{
+
+	
+	background-color:#336E87;
+	height:68px;
+	color:#EFF3F5;
+	border:0px;
+	width:513px;
+	border-radius: 50px;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px;
+	
+	
+	
+  }
+
+
 
   .donwcirc{
 
@@ -431,28 +498,41 @@ body {
  
 	 
 	 max-width:100vw;
-	 height:850px;
 	 font-family: "Open Sans";
 	 padding-top:20px;
 	
 	 color:#002535;
 	 position:relative;
-	 top:-140px;
-	 
- 
+
+	 margin-left: 6%;
+	 margin-right: 6%;
+	 margin-top: 4%;
+
    }
 
    
  
    .sixth_section h1{
  
-	 
-	 margin-top:50px;
-	 font-family: "Open Sans";
-	 margin-left: 100px;
+	 margin-top: 3%;
+	 font-family: "Charter Bold";
+	 font-size: 60px;
+
    }
+
+   .sixth_section p{
+ 
+	margin-top: 1%;
+	font-family: "Open Sans";
+	font-size: 24px;
+	letter-spacing: -.4px;
+	color: #002535;
+
+  }
  
    .sixth_section1{
+
+	 @extend .row;
 	 font-family: "Open Sans";
 	 display:flex;
 	 flex-wrap: wrap;
@@ -461,16 +541,32 @@ body {
  
   .sixth_section_cards{
 	 
-	 
+	@extend .col-xs-12;
+	@extend .col-sm-6;
+	@extend .col-lg-4;
 	 font-family: "Open Sans";
-	 margin:8px;
-	 height:300px;
-	 width:28vw;
 	 position:relative;
-	 left:100px;
-	 top:50px;
-	 
+
   }
+
+  .sixth_section_cards p{
+	 
+	font-family: "Open Sans";
+	font-size: 24px;
+	letter-spacing: -.5px;
+	
+ }
+
+ .sixth_section_cards h3{
+	 
+	margin-top: 15%;
+	padding-bottom: 3% ;
+	font-family: "Open Sans";
+	font-weight: bold;
+	color:#002535;
+	
+ }
+ 
  
  
   .imgback1{
@@ -516,9 +612,12 @@ body {
 
 	height:150px;
 	background-color: #ADC5CF;
-	margin-left:100px;
 	width:90vw;
-	margin-top:30px;
+	margin-top: 4%;
+
+	@media(max-width: 992px){
+		display:none;
+	}
  }
 
  .divider1 h2{
@@ -533,13 +632,13 @@ body {
 
   .seventh_section{
 
-	
-	height:150px;
-	background-color: #ADC5CF;
-  
-	padding:30px;
 	position: relative;
-	top:100px;
+	background-color:#ADC5CF;
+	position:relative;
+	padding-top: 3%;
+	padding-bottom: 5%;
+	margin-top: 10%;
+
   }
 
   .seventh_section p{
@@ -548,25 +647,47 @@ body {
 	font-style: italic;
 	font-family: Charter;
 	font-weight: bold;
+	font-size: 30px;
+	color: #002535;
    }
 
-   .seventh_section_innersection1_btn1{
+   .seventh_section_innersection1{
 
-	
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-top: 6%;
+
+   }
+
+   .seventh_section_innersection2{
+
+	text-align: center;
+	margin-top:4%;
+
+	@media (max-width: 992px) {
+		margin-bottom: 5%;
+	}
+
+   }
+   
+   .seventh_section_innersection2_btn1{
+
 	background-color: #EFF3F5;
-	height:30px;
+	height:68px;
 	color:#002535;
 	border:0px;
-	width:250px;
+	width:513px;
 	padding:1px;
 	border-radius: 50px;
-	position:relative;
-	left:500px;
-	margin-top:50px;
 	font-family: "Open Sans";
-	
-	
-  }
+	font-weight: bold;
+	letter-spacing: 2.8px;
+
+	@media(max-width: 992px){
+		width:300px;
+		height: 50px;
+	}
+   }
 
   .first1_section{
 
@@ -583,14 +704,21 @@ body {
 	font-family: "Open Sans";
 	@media (max-width: 992px) {
 		display: block;
+		margin: 8%;
 	}
 }
 
 .first1_innersection1{
 
 	height:auto;
-	margin-right: 15%;
+	margin-left: 8%;
 	margin-right: 5%;
+
+	@media (max-width: 992px) {
+		display: block;
+		margin-left: 0%;
+		margin-bottom:15%;
+	}
 }
 
 
@@ -623,26 +751,8 @@ body {
 	margin-top:30px;
 	font-family: "Open Sans";
 	font-size: 24px;
+	color: #002535;
 }
-
-.fifth_section_innersection1_btn1{
-
-	
-	background-color:#336E87;
-	height:30px;
-	color:#EFF3F5;
-	border:0px;
-	width:200px;
-	padding:1px;
-	border-radius: 50px;
-	margin-left:195px;
-	margin-top:40px;
-	font-family: "Open Sans";
-	font-weight: bold;
-	
-	
-	
-  }
 
 
 
@@ -715,9 +825,20 @@ body {
 	
   </div>
   
+  <div class="fifth_section_row">
+  
+	  <div class="fifth_section_innersection1">
+		  <p>SuiteDynamics consultants can help identify which NetSuite ERP modules will help your business produce more and make customers and stakeholders happy. Discuss your needs with our experts today.</p>
+	  </div>
+	  <div class="fifth_section_innersection2">
+		  <button class="fifth_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+	  </div>
+	  
+  </div>
+  
   <div class="fourth_section">
   
-	<div class="fourth_section_innersection1">
+	<div class="fourth_section_innersection1 col-lg-6 col-md-6 col-xs-12">
 		<div class="fourth_section_innersection1_content">
 			<h1>Why You Need a NetSuite Implementation Partner.</h1><br>
 			
@@ -728,11 +849,15 @@ body {
 				
 			</p>
 			<div class="fourth_section_inner_card">
-				<P>
+				<div class="fourth_section_inner_card_section1">
+				 <P>
 					No one should brave a NetSuite implementation alone. SuiteDynamics will ensure your company gets the ERP system it needs to stand out in the marketplace.
 				</P>
-			<button class="fourth_section_innersection1_btn1"> Schedule Your Consultation</button>
-		</div>
+			   </div>
+			   <div class="fourth_section_inner_card_section2">
+				  <button class="fourth_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
+			   </div>
+			</div>
 			
 	
 		</div>
@@ -740,9 +865,9 @@ body {
 	
 	</div>
 		
-	<div class="fourth_section_innersection2">
+	<div class="fourth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
 		<div class="fourth_section_innersection2_content">
-			<video height="530" width="350" controls>
+			<video class="fourth_section_innersection2_content_video" controls>
 				<source src="movie.mp4" type="video/mp4">
 				<source src="movie.ogg" type="video/ogg">
 				</video>
@@ -754,15 +879,9 @@ body {
   
   </div>
   
-  <div class="fifth_section">
-	<p>SuiteDynamics consultants can help identify which NetSuite ERP modules will help your business produce more and make customers and stakeholders happy. Discuss your needs with our experts today.</p>
-	
-	<button class="fifth_section_innersection1_btn1"> Schedule Your Consultation</button>
-  </div>
-  
   <div class="sixth_section">
 	<h1>How a NetSuite Implementation Works</h1>
-	<p style=" margin-top:40px; font-family: OpenSans; margin-left: 100px;">The implementation process involves six steps that take your company from initial meetings to go-live. During each phase,<br> you’ll work with the same SuiteDynamics team. Therefore, you can rest easy, knowing your project is in the hands of<br> people who have gotten to know your company and its needs.</p>
+	<p>The implementation process involves six steps that take your company from initial meetings to go-live. During each phase,<br> you’ll work with the same SuiteDynamics team. Therefore, you can rest easy, knowing your project is in the hands of<br> people who have gotten to know your company and its needs.</p>
 	<div class="divider1">
 		<h2>IMPLEMENTATION PROCESS</h2>
 		<img src="img2202.png" height="122px" width="1184px">
@@ -770,41 +889,41 @@ body {
 	</div>
   
 	<div class="sixth_section1">
-	<div class="sixth_section_cards">
+	<div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
 		<div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-		<h3 style="margin-top: 50px;">1. SYSTEM DESIGN/ <br>CONFIGURATION</h3>
+		<h3>1. SYSTEM DESIGN/ <br>CONFIGURATION</h3>
 		<p style="margin-top:20px; ">The SuiteDynamics Project Team will mold a NetSuite environment to suit your processes, align with your business requirements, and facilitate your company’s future growth. Our team will deliver a system tailor-made for your business, whether you need complex approval routings, dynamic pricing, integrations with your 3PL, or any other advanced features.</p>
 		
 	</div>
-	<div class="sixth_section_cards">
+	<div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
 		<div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-		<h3 style="margin-top: 50px;">2. DATA <br>MIGRATION</h3>
+		<h3>2. DATA <br>MIGRATION</h3>
 		<p style="margin-top:20px; ">A system is useless without accurate, complete data-no matter how advanced it is. After our team has configured your environment, we’ll migrate your core accounting and business management record data from your current system into NetSuite using a CSV import. We can also provide CSV templates and CSV import templates for each type of record, including customer and vendor.</p>
 		
 	</div>
-	<div class="sixth_section_cards">
+	<div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
 		<div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-		<h3 style=" margin-top: 50px;padding-bottom:22px;">3. TESTING</h3>
+		<h3 style="padding-bottom:22px;">3. TESTING</h3>
 		<p style="margin-top:20px; ">We don’t leave success to chance. Before go-live, our experts will perform quality assurance testing and offer a final client validation. We’ll ensure your NetSuite system exceeds expectations and that all its features, from the dashboards to the reports, meet your needs.</p>
 		
 	</div>
   
-	<div class="sixth_section_cards">
+	<div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
 		<div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-		<h3 style="margin-top: 50px;">4. USER <br>TRAINING</h3>
+		<h3>4. USER <br>TRAINING</h3>
 		<p style="margin-top:20px;">You can’t maximize your new ERP system if your team doesn’t know how to operate it. Before go-live, SuiteDynamics can provide user training for your entire staff. Our instructional programs include educational resources, one-on-one training, and team training. Our experts will ensure your team can navigate each part of the system and use the software flawlessly.</p>
 		
 	</div>
-	<div class="sixth_section_cards">
+	<div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
 		<div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-		<h3 style="margin-top: 50px;padding-bottom:22px;">5. GO-LIVE</h3>
+		<h3 style="padding-bottom:22px;">5. GO-LIVE</h3>
 		<p style="margin-top:20px;">It’s the Big Day! Your system is going online. A successful transition requires strict attention to detail from our experts and close collaboration between your team and ours. Then, your company can move smoothly to your new digital environment and hit the ground running.</p>
 		
   
 	</div>
-	<div class="sixth_section_cards">
+	<div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
 		<div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-		<h3 style="margin-top: 50px;">6. POST-GO-LIVE<br> SUPPORT</h3>
+		<h3>6. POST-GO-LIVE<br> SUPPORT</h3>
 		<p style="margin-top:20px; ">Every implementation needs some level of post-go-live support. Some companies want additional training, while others require further enhancements. SuiteDynamics offers various post-implementation services so your NetSuite ERP can keep boosting efficiency and productivity for years to come.</p>
 	  
 	</div>
@@ -813,13 +932,17 @@ body {
   </div>
   
   
-  <div class="seventh_section">
-	<P>
-		A NetSuite implementation is tough. Get it right the first time with<br> SuiteDynamics experts who will ensure the system works exactly as needed.
-	</P>
-  <button class="seventh_section_innersection1_btn1"> SCHEDULE A FREE CONSULTATION</button>
-  </div>
   
+  <div class="seventh_section">
+	  <div class="seventh_section_innersection1">
+	   <P>
+		  No one should brave a NetSuite implementation alone. SuiteDynamics will ensure your company gets the ERP system it needs to stand out in the marketplace.
+	  </P>
+	 </div>
+	 <div class="seventh_section_innersection2">
+		<button class="seventh_section_innersection2_btn1">SCHEDULE YOUR CONSULTATION</button>
+	 </div>
+  </div>
 	
   </body>
 </html>
