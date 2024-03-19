@@ -101,7 +101,6 @@ define(
 	,	initialize: function()
 		{
 
-
 			var self = this;
 	
 			var checkout = this.options.checkout
@@ -118,21 +117,7 @@ define(
 							self.render();
 						  })
 					}
-
-					console.log('paytrace', paytrace)
-					
 				});
-
-				jQuery(document).ready(function(){
-					console.log('view render')
-					$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
-					$('head').append('<script src="https://unpkg.com/node-forge@1.0.0/dist/forge.min.js"></script>');
-					jQuery('head').append('<script src="https://protect.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-					
-					paytrace.setKeyAjax(atob("LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzaUQwdGpqSmZSOTA2MWFweXR5NQpicGJ1QXpvTENCM2p2S0JnYkJ3SlJxS3JvWEpNNDlkai9BOGlOTXIyQWg3QWdHK2NKdU9vcTlOT0YyUEN3aVFUClB2L21YYkdPMFBaU0x3YzV2QVBDOW1TSXpQVUFnTldGNDA3akxVRklMbFdFMHBzTDN3N3Rva3JHMDhiNWp3MXQKTmpRQktPR3cydWxCMTV6bG80d2lKdE9TaEF2RGJZaFF2MmdhaGRVU0swVUd3TXk5c2ZOc3RYOFFZRDRhbVNTNgo5RFE0RVZqZWZGbHBOeUthQUxuNEZWcHlqLzJVakFJRFZZLzZYWFM3NzdKSDBqclZIOGhwcXhWaHlqZnhHUythCkdPRGlHWjA0OWlieTczUFo1Y215WE9CaTlTeFBocCtpY2pjdGtzTTBNWUVHbTNHdDdidHZ2R2NiZnFtR21tN2wKS3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t")); 
-					// console.log('setpaytrace', paytrace)
-					// paytrace.setKeyAjax("https://7050356-sb1.app.netsuite.com/core/media/media.nl?id=15579&c=7050356_SB1&h=GyGcwcnLfnS9NWCfcjBji8Ttk2kbyhmRI7WnbemgxZpU5kQE&_xt=.cer");
-				})
 			});
 			
 			this.layout = this.options.layout
