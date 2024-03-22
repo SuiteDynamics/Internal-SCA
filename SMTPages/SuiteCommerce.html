@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@font-face{font-family:'Charter';font-style:normal;font-weight:400;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_regular.woff2) format('woff2');}
+@font-face{font-family:'Charter Bold';font-style:normal;font-weight:bolder;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold.woff2) format('woff2');}
+@font-face{font-family:'Charter Bold Italic';font-style:italic;font-weight:bolder;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold_italic.woff2) format('woff2');}
+
+.cms-landing-page{
+	width:100%;
+}
+
+
+
+*{
+  margin:0;
+  padding:0;
+  font-family: OpenSans;
+
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.first_section{
+
+	max-width:100vw;
+	font-family: "Open Sans";
+	height:auto;
+	background-color:#f2f4f5;
+}
+
+.first_section_row{
+	@extend .row;
+	display: flex;
+	@media (max-width: 992px) {
+        display: block;
+    }
+}
+
+.first_section_innersection1{
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-8;
+	height:auto;	
+	font-family: "Open Sans";
+}
+
+.first_section_innersection2{
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-4;
+	/*@extend .col-sm-6; border:1px solid black; */
+	font-family: "Open Sans";
+	padding: 0px;
+	font-size: 0;
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerce_1.jpg");
+  background-size: cover;
+
+    @media (max-width: 992px) {
+      margin-top: 10%;
+    }
+}
+
+.first_section_innersection1_content{
+
+
+	width:80%;
+	font-family: "Open Sans";
+	position: relative;
+	margin-left: 12%;
+  margin-bottom: 10%;
+
+  
+}
+
+.first_section_innersection1_content h3{
+
+	margin-top:100px;
+	font-family: "Open Sans";
+  font-weight: bold;
+	color:#002535;
+	font-size: 30px;
+	letter-spacing: 6px;
+}
+
+.first_section_innersection1_content h1{
+
+	margin-top: 5%;
+	font-family: "Charter Bold";
+	color: #5c8b9f;
+	font-weight: bold;
+	font-size: 72px;
+
+  @media (max-width: 992px) {
+    font-size: 40px;
+  }
+}
+
+.first_section_innersection1_content p{
+
+	margin-top: 3%;
+	font-family: "Open Sans";
+	color: #002535;
+	font-size: 30px;
+	letter-spacing: -.5px;
+  
+}
+
+.first_section_innersection1_btn1{
+
+	border:1px solid #002535;
+	background-color: #002535;
+	height:53px;
+	color:white;
+	width:398px;
+	border-radius: 50px;
+	margin-top: 6%;
+	font-family: "Open Sans";
+	font-size: 16px;
+	letter-spacing: 3.2px;
+	font-weight: bold;
+
+  @media (max-width: 992px) {
+    font-size: 12px;
+  }
+  
+}
+
+.first_section_innersection2 img{
+  max-width: 150%;
+
+}
+.second_section{
+
+	height:auto;
+	display: inline;
+	max-width:100vw;
+	font-family: "Open Sans";
+
+}
+
+.second_section_row{
+
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
+
+}
+
+.second_section_innersection1{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	height:auto;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
+}
+
+.second_section_innersection1_content{
+
+	color:#002535;
+	position: relative;
+	margin: 10%;
+  
+}
+
+.second_section_innersection1_content h2{
+
+	font-family: "Charter Bold";
+	font-size: 48px;
+
+}
+
+.second_section_innersection1_content p{
+
+	font-family: "Open Sans";
+	font-size: 24px;
+	line-height: 1.3;
+	color: #002535;
+  margin-top: 5%;
+
+}
+
+.second_section_innersection1_btn1{
+
+	background-color: #336e87;
+	height:53px;
+	color:#eff3f5;
+	border:0px;
+	width:398px;
+	padding:1px;
+	border-radius: 50px;
+	margin-top:5%;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px; 
+  
+}
+
+.second_section_innersection2{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
+	@media(max-width: 992px){
+		display:none;
+	}
+}
+
+.second_section_innersection2_content{
+
+	font-family: "Open Sans";
+	
+	position: relative;
+	margin-top: 15%;
+	margin-left: 15%;
+ 
+}
+
+.second_section_bold{
+
+  font-weight:bold;
+
+}
+
+.imgback{
+
+  position:relative;
+  margin:5px;
+  font-family: OpenSans;
+  background-color:rgb(255, 211, 129);
+  width:117px;
+  height:117px;
+  border-radius: 50%;
+
+ }
+
+ .innercard p{
+
+  margin-bottom: 3%;
+
+ }
+
+ .innercard p b{
+
+  font-family: "Open Sans";
+
+ }
+
+ .innercard li{
+
+  list-style-type:none;
+  position: relative;
+  line-height: 40px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  font-size: 20px;
+
+ }
+
+ .innercard li img{
+
+  height:25px;
+  position: relative;
+  top:5px;
+
+ }
+
+ .innercard{
+
+  padding-top: 3%;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 8%;
+  background-color: #ADC5CF;
+
+ }
+
+ .imgback img{
+
+  position:relative;
+  font-family: OpenSans;
+}
+
+.third_section{
+
+	 
+  max-width:100vw;
+  font-family: "Open Sans";
+  padding-top:20px;
+ 
+  color:#002535;
+  position:relative;
+
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 4%;
+
+}
+
+.third_section h1{
+
+  margin-top: 3%;
+  font-family: "Charter Bold";
+  font-size: 60px;
+
+}
+
+.third_section1{
+
+	 @extend .row;
+	 font-family: "Open Sans";
+	 display:flex;
+	 flex-wrap: wrap;
+   margin-top: 30px;
+	 /* flex-basis: 33%; */
+
+}
+
+.third_section_cards{
+  
+	@extend .col-xs-12;
+	@extend .col-sm-6;
+	@extend .col-lg-4;
+	 font-family: "Open Sans";
+	 position:relative;
+
+}
+
+.third_section_cards p{
+	 
+	font-family: "Open Sans";
+	font-size: 24px;
+	letter-spacing: -.5px;
+	
+ }
+
+ .third_section_cards h3{
+	 
+	margin-top: 15%;
+	padding-bottom: 3% ;
+	font-family: "Open Sans";
+	font-weight: bold;
+	color:#002535;
+  letter-spacing: 4.8px;
+	
+ }
+
+
+.imgback1{
+
+position:relative;
+   
+  margin:5px;
+  top:40px;
+  font-family: OpenSans;
+  background-color:#fddfb1;
+  width:92px;
+  height:92px;
+  border-radius: 50%;
+
+}
+
+.third_section_innersection1_btn1{
+
+  
+  background-color: #336E87;
+  height:147px;
+  color:white;
+  border:0px;
+  width:901px;
+  padding:1px;
+  border-radius: 75px;
+  position: relative;
+  margin: auto;
+  display: block;
+  margin-top: 8%;
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 6px;
+  
+  @media (max-width: 992px) {
+    font-size: 12px;
+    width: 400px;
+    height: 100px;
+    font-size: 18px;
+
+  }
+}
+
+
+.fourth_section{
+
+  
+  height:176px;
+  background-color: #002535;
+  margin-top: 10%;
+  font-family: "Open Sans";
+  max-width:100vw;
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  @media (max-width: 992px) {
+    padding-left: 6%;
+  }
+}
+
+.fourth_section h2{
+
+  position: relative;
+  color:white;
+  font-family: "Open Sans";
+  font-size: 32px;
+  letter-spacing: 6.4px;
+  
+}
+
+
+.seventh_section{
+
+	background-color: #D6E2E7;
+	max-width:100vw;
+	font-family: "Open Sans";
+  height:1200px;
+  position: relative;
+  z-index: 2;
+}
+
+.seventh_section_row{
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
+}
+
+.seventh_section_innersection1{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-7;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+}
+
+.seventh_section_innersection2{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-5;
+	height:auto;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+  display: flex;
+  padding-top: 6%;
+
+
+  @media(max-width: 992px){
+		display:none;
+	}
+}
+
+.seventh_section_innersection1_content{
+
+	font-family: "Open Sans";
+	color:#002535;
+	position: relative;
+	margin: 15%;
+  
+}
+
+.seventh_section_innersection1_content h2{
+
+	margin-left:25px;
+	margin-top:60px;
+	font-family: "Charter Bold Italic";
+	font-size: 48px;
+}
+
+.seventh_section_innersection1_content h1{
+
+  margin-left:25px;
+  margin-top:10px;
+  font-family: OpenSans;
+  color: #5C8B9F;
+}
+
+.seventh_section_innersection1_content p{
+
+	margin-left:25px;
+	margin-top:5%;
+	margin-right: 10px;
+	font-family: "Open Sans";
+	font-size: 24px;
+	line-height: 1.3;
+	color: #002535;
+  
+}
+
+
+
+.seventh_section_innersection2 video{
+
+  margin-top:40px;
+}
+
+.fourth_section{
+
+  height:300px;
+  
+}
+.fourth_section img{
+
+  margin-top:50px;
+}
+
+.fifth_section_row{
+
+	position: relative;
+	height:380px;
+	background-color:#F2F4F5;
+	position:relative;
+	margin-left: 12%;
+	margin-right: 12%;
+	margin-top: -12%;
+  z-index: 2;
+
+	@media (max-width: 992px) {
+		display: inline-block;
+		margin-left: 0%;
+		margin-right: 0%;
+		margin-bottom: 5%;
+		height: auto;
+	}
+
+	
+  }
+
+  .fifth_section_innersection1{
+
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-top: 6%;
+
+  }
+
+  .fifth_section_innersection1 p{
+
+	color:#002535;
+	font-family: "Charter Bold Italic";
+	text-align: center;
+	position:relative;
+	font-size:30px;
+
+  }
+
+
+  .fifth_section_innersection2{
+
+	text-align: center;
+	margin-top:4%;
+
+	@media (max-width: 992px) {
+		margin-bottom: 5%;
+	}
+  }
+
+  .fifth_section_innersection1_btn1{
+
+	
+	background-color:#002535;
+	height:68px;
+	color:#f2f4f5;
+	border:0px;
+	width:513px;
+	border-radius: 50px;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px;
+	
+	
+	
+  }
+
+.eigth_section{
+
+	
+	height:500px;
+	max-width:100vw;
+	font-family: "Open Sans";
+  background-color: #ffffff;
+
+}
+
+.eigth_section_img{
+
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerce_2.jpg");
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin-top: -725px;
+  @media (max-width: 992px) {
+    display: none;
+  }
+
+}
+
+
+
+.eigth_section_row{
+
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
+  
+}
+
+.eigth_section_innersection1{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	height:auto;
+	font-family: "Open Sans";
+  
+}
+
+.eigth_section_innersection1_content{
+
+	font-family: "Open Sans";
+	color:#002535;
+	position: relative;
+	margin: 15%;
+  
+}
+
+.eigth_section_innersection1_content h1{
+
+	height:auto;
+	font-family: "Charter Bold Italic";
+  color:#336E87;
+  
+}
+
+.eigth_section_innersection1_content p{
+
+	margin-top:5%;
+	margin-right: 10px;
+	font-family: "Open Sans";
+	font-size: 24px;
+	line-height: 1.3;
+	color: #002535;
+
+  }
+
+  .eigth_section_innersection1_btn1{
+
+	
+    background-color: #002535;
+    height:53px;
+    color:#f2f4f5;
+    border:0px;
+    width:398px;
+    padding:1px;
+    border-radius: 50px;
+    margin-top: 15%;
+    font-family: "Open Sans";
+    font-weight: bold;
+    letter-spacing: 2.8px; 
+    
+    }
+
+.eigth_section_innersection2{
+    @extend .col-xs-12;
+    @extend .col-sm-12;
+    @extend .col-lg-6;
+    font-family: "Open Sans";
+
+    @media(max-width: 992px){
+      display:none;
+    }
+
+}
+
+.eigth_section_innersection2_content_img{
+
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/HomePage_3.jpg");
+  background-size: cover;
+  width: 70%;
+  height: 380px;
+  margin-left: 40%;
+  margin-top: 10%;
+
+}
+
+  
+    </style>
+</head>
+<body>
+
+  <div class="first_section">
+      <div class="first_section_row">
+          <div class="first_section_innersection1 col-lg-8 col-md-12 col-xs-12">
+              <div class="first_section_innersection1_content">
+                  <h3>SUITECOMMERCE & SUITECOMMERCE ADVANCED</h3>
+                  <H1>Drive exponential sales with an e-commerce powerhouse.</H1>
+
+                  <p>
+                      Create an outstanding customer experience by connecting online retail with back-office operations.
+                  </p>
+                  <button class="first_section_innersection1_btn1"> Schedule A Free Demo</button>
+                  
+
+              </div>
+              
+
+          </div>
+          <div class="first_section_innersection2 col-lg-4 col-xs-12">
+          </div>
+      </div>
+  </div>
+
+  <div class="second_section">
+      <div class="second_section_row">
+          <div class="second_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+              <div class="second_section_innersection2_content">
+                  <img src="image.jpg" height="800px" width="600px">
+              </div>
+              
+          </div>
+
+          <div class="second_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+              <div class="second_section_innersection1_content">
+                  <div class="imgback"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-199.png"></div>
+                  <h2>Dominate Online Retail:</h2>
+                  
+                  <p>
+                      Most top retail companies have polished websites offering a wide variety of products and ultra-fast shipping. Their efforts earn droves of repeat customers and sky-high sales. We want you to experience e-commerce wins, but we know you face overwhelming challenges.<br><br></p>
+
+                      <div class="innercard">
+                          <p>Your Website Must:</p>
+                          <ul>
+                          <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Update Constantly</li>
+                          <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Represent Current Inventory Levels And Pricing</li>
+                          <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Expedite Order Fulfillment</li>
+                          <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Look Exceptional  </li>
+                          <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Feel Intuitive</li>
+
+                      </ul>
+                          
+                      </div>
+                  
+
+                      <p>SuiteDynamics experts can help your business develop an organized, effective web store using a SuiteCommerce or SuiteCommerce Advanced solution. These native NetSuite e-commerce platforms connect online stores with back-office operations to keep your site accurate and your customers happy. <br><br>
+
+                      <p class="second_section_bold">Give your company an edge in online retail and partner with SuiteDynamics for unprecedented SuiteCommerce success.</p>
+                  </p>
+
+                      
+                  </p>
+                  <button class="second_section_innersection1_btn1"> Schedule Your Consultation</button>
+                  
+
+              </div>
+              
+
+          </div>
+      </div>
+  </div>
+
+  <div class="third_section">
+      <h1>SuiteCommerce Key Features</h1>
+      <div class="third_section1">
+      <div class="third_section_cards col-lg-4 col-md-6 col-xs-12">
+          <div class="imgback1"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-185.png"></div>
+          <h3 style="margin-top: 50px;">SCALABILITY</h3><br>
+          <p style="margin-top:20px; ">Don’t worry about exponential growth. SuiteCommerce’s dynamic pages allow e-commerce websites to add large amounts of inventory without a problem.</p>
+          
+      </div>
+      <div class="third_section_cards col-lg-4 col-md-6 col-xs-12">
+          <div class="imgback1"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-199.png"></div>
+          <h3 style="margin-top: 50px;">ADVANCED<br> CUSTOMIZATION</h3>
+          <p style="margin-top:20px; ">Build complex javascript or HTML websites with modular designs. SuiteCommerce uses themes and extensions and provides full coding flexibility.</p>
+          
+      </div>
+      <div class="third_section_cards col-lg-4 col-md-6 col-xs-12">
+          <div class="imgback1"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-200.png"></div>
+          <h3 style=" margin-top: 50px;">NETSUITE <br>DATA ACCESS</h3>
+          <p style="margin-top:20px; ">Enjoy a single, cohesive platform. SuiteCommerce integrates with the NetSuite ERP system, retrieving data in real-time so inventory and pricing info stays current.</p>
+          
+      </div>
+
+      <div class="third_section_cards col-lg-4 col-md-6 col-xs-12">
+          <div class="imgback1"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-210.png"></div>
+          <h3 style="margin-top: 50px;">CUSTOMER LOGIN <br>& ACCOUNTS</h3>
+          <p style="margin-top:20px;">Access NetSuite directly through SuiteCommerce as an e-commerce customer. Or customize through My Account as a B2B company.</p>
+          
+      </div>
+      <div class="third_section_cards col-lg-4 col-md-6 col-xs-12">
+          <div class="imgback1"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-214.png"></div>
+          <h3 style="margin-top: 50px;">SMOOTH BUYING<br> EXPERIENCE</h3>
+          <p style="margin-top:20px;">Provide superior online experiences for your customers! SuiteCommerce’s single-page application speeds up browsing without requiring page reloads.</p>
+          
+
+      </div>
+      <div class="third_section_cards col-lg-4 col-md-6 col-xs-12">
+          <div class="imgback1"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-239.png"></div>
+          <h3 style="margin-top: 50px;">SEO <br>AUTOMATION</h3>
+          <p style="margin-top:20px; ">Rank high on search engines. SuiteCommerce offers content data management and SEO customization bundles to boost your standing.</p>
+        
+      </div>
+  </div>
+
+  <button class="third_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+
+  </div>
+
+  <div class="fourth_section">
+      <div>
+    
+          <h2>ATTRACT REPEAT ONLINE SHOPPERS</h2>
+      </div>
+    
+  </div>
+
+  <div class="seventh_section">
+      <div class="seventh_section_row">
+          <div class="seventh_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+              <div class="seventh_section_innersection1_content">
+                  <h2>Create the stellar online <br>experience customers crave.</h2>
+                  
+
+                  <p>
+                      Customer experience is paramount for online retail. Delayed shipments and incorrect orders will cost your company numerous customers and even more dollars.<br><br>
+                      A SuiteCommerce system integrates a web store with processes like inventory, marketing, and shipping to streamline purchasing and generate brand loyalty. Discover how the software can give your online retail operation the speed and accuracy it needs.<br><br>
+
+                  </p>
+                  <p style="font-weight: bold;">
+                      Start your digital transformation today with a free SuiteCommerce demo and begin raising the bar for online shopping.
+                  <br><br>
+
+                  </p>
+
+                  
+                  
+
+              </div>
+              
+
+          </div>
+          <div class="seventh_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+              <video height="581" width="812" controls>
+                  <source src="movie.mp4" type="video/mp4">
+                  <source src="movie.ogg" type="video/ogg">
+                  </video>
+              
+          </div>
+      </div>
+  </div>
+
+  <div class="fifth_section_row">
+
+      <div class="fifth_section_innersection1">
+          <p>Start your digital transformation today with a free SuiteCommerce demo and begin raising the bar for online shopping.</p>
+      </div>
+      <div class="fifth_section_innersection2">
+          <button class="fifth_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+      </div>
+      
+  </div>
+  <div class="eigth_section_img"></div>
+
+  <div class="eigth_section">
+          <div class="eigth_section_row">
+            <div class="eigth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+                <div class="eigth_section_innersection2_content">
+                    <div class="eigth_section_innersection2_content_img"></div>
+                    <!-- <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/HomePage_3.jpg"> -->
+                </div>
+                
+            </div>
+      
+            <div class="eigth_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+                <div class="eigth_section_innersection1_content">
+                    <h1>Perfect Your Web Store</h1>
+                    
+                    <p> Explore how SuiteCommerce and SuiteCommerce Advanced can boost your e-commerce business.</p>
+                    <button class="eigth_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+                    
+      
+                </div>
+                
+      
+            </div>
+          </div>
+      </div>
+  </div>
+
+  
+</body>
+</html>
