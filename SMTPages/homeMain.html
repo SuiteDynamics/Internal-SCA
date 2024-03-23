@@ -54,6 +54,9 @@
 	padding: 0px;
 	font-size: 0;
 
+    @media (max-width: 992px) {
+      margin-top: 10%;
+    }
   }
 
   .first_section_innersection1_content{
@@ -82,6 +85,10 @@
 	color: #002535;
 	font-weight: bold;
 	font-size: 72px;
+
+  @media (max-width: 992px) {
+    font-size: 40px;
+  }
   }
 
   
@@ -113,6 +120,10 @@
 	font-size: 16px;
 	letter-spacing: 3.2px;
 	font-weight: bold;
+
+  @media (max-width: 992px) {
+    font-size: 10px;
+  }
 	
   }
   
@@ -132,6 +143,9 @@
 	letter-spacing: 3.2px;
 	font-weight: bold;
 	
+  @media (max-width: 992px) {
+    font-size: 10px;
+  }
   }
 
 .first_section_innersection2_image{
@@ -150,7 +164,7 @@
 
 .fourth_section_innersection1{ 
   background-color:White;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   order:1;
 }
 
@@ -167,19 +181,26 @@
 }
 
 .fifth_section1{
-  font-family: OpenSans;
+  font-family: "Open Sans";
   display:flex;
   flex-direction: row;
   padding-inline: 1rem;
+  @media (max-width: 992px) {
+    display: block;
+  }
 }
 
 .seventh_section1{
-  font-family: OpenSans;
+  font-family: "Open Sans";
   display:flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 50px;
-  padding-bottom: 90px;
+  margin-top: 5%;
+  padding-bottom: 10%;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 }
 
 
@@ -188,67 +209,189 @@ max-width: 20%;
 margin:8px;
 padding: 10px;
 border-radius: 5px;
-background-color: white;
-font-family: OpenSans;
+background-color: #f2f4f5;
+font-family: "Open Sans";
+font-style: italic;
+font-size: 18px;
 color:#002535;
 padding-top:5px;
-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+padding: 2%;
+}
+
+.seventh_section_cards1 h4{
+
+  font-family: "Open Sans";
+  font-style: bold;
+  font-size: 14px;
+}
+
+.seventh_section_cards1 p{
+
+  font-family: "Open Sans";
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: -1px;
+  margin: 10%;
+  line-height: 20px;
 }
 
 .seventh_section_cards2{
-background-color: white;
-font-family: OpenSans;
-max-width: 35%;
+background-color: #f2f4f5;
+max-width: 45%;
 margin-inline:8px;
 margin-block: -15px;
 padding: 10px;
 border-radius: 5px;
-padding-top:20px;
+padding: 3%;
 color:#002535;
-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.seventh_section_cards2 p{
+
+  font-family: "Open Sans";
+  font-style: italic;
+  font-size: 24px;
+  letter-spacing: -1px;
+  margin: 4%;
+  line-height: 25px;
+}
+
+.seventh_section_cards2 h4{
+
+  font-family: "Open Sans";
+  font-style: bold;
+  font-size: 24px;
 }
 
 .seventh_section_cards3{
 
-background-color: white;
-font-family: OpenSans;
+background-color: #f2f4f5;
+font-family: "Open Sans";
+font-style: italic;
+font-size: 18px;
 max-width: 20%;
 margin:8px;
 padding: 10px;
 border-radius: 5px;
 padding-top:5px;
 color:#002535;
-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+padding: 2%;
+}
+
+.seventh_section_cards3 h4{
+
+  font-family: "Open Sans";
+  font-style: bold;
+  font-size: 14px;
+}
+
+.seventh_section_cards3 p{
+
+  font-family: "Open Sans";
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: -1px;
+  margin: 10%;
+  line-height: 20px;
 }
 
 .eigth_section{ 
-display:flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-font-family: OpenSans;
-position:relative;
+	
+	max-width:100vw;
+	font-family: "Open Sans";
+}
+
+.eight_section_row{
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
 }
 
 .eigth_section_innersection1{
-flex: 1.4;
-border-top-right-radius:200px;
-border-bottom-right-radius: 200px;
-background-color:#f2f4f5;
-font-family: OpenSans;
-order:1
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-7;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
 }
 
+
+.eigth_section_innersection1_content{
+
+	font-family: "Open Sans";
+	color:#002535;
+	position: relative;
+	margin: 15%;
+	
+  }
+
+
+  .eigth_section_innersection1_content h2{
+
+	margin-left:25px;
+	margin-top:60px;
+	font-family: "Charter Bold Italic";
+	font-size: 48px;
+  }
+
+  .eigth_section_innersection1_content p{
+
+	margin-left:25px;
+	margin-top:10px;
+	margin-right: 10px;
+	font-family: "Open Sans";
+	font-size: 24px;
+	line-height: 1.3;
+	color: #002535;
+  }
+
+  .eigth_section_innersection1_btn1{
+
+	background-color: #002535;
+	height:53px;
+	color:#f2f4f5;
+	border:0px;
+	width:398px;
+	padding:1px;
+	border-radius: 50px;
+	margin-left:25px;
+	margin-top:10%;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px; 
+	
+    @media (max-width: 992px) {
+      width:300px
+    }
+  }
+
+
+
+
 .eigth_section_innersection2{
-flex: 1;
-font-family: OpenSans;
-order:2
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-5;
+	height:auto;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+  display: flex;
+
+  @media(max-width: 992px){
+		display:none;
+	}
 }
 
 /* .ninthsection1{
 display:flex;
 flex-direction: row;
-font-family: OpenSans;
+font-family: "Open Sans";
 } */
 
 
@@ -301,7 +444,7 @@ margin-right: 2rem;
   padding: 16px;
   font-size: 16px;
   width:auto;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   margin-left:25px;
   border: none;
   cursor: pointer;
@@ -323,7 +466,7 @@ margin-right: 2rem;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 170px;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -335,7 +478,7 @@ margin-right: 2rem;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  font-family: OpenSans;
+  font-family: "Open Sans";
 }
 
 
@@ -395,7 +538,7 @@ margin-right: 2rem;
   top: 50%;
   right: 2px;
   transform: translateY(-50%);
-  font-family: OpenSans;
+  font-family: "Open Sans";
 }
 
 .btn1{
@@ -409,7 +552,7 @@ margin-right: 2rem;
   width:250px;
   /* left:-50px; */
   color:white;
-  font-family: OpenSans;
+  font-family: "Open Sans";
 }
 
 
@@ -428,6 +571,10 @@ margin-right: 2rem;
   align-items: center;
   justify-content: center;
 
+
+  @media (max-width: 992px) {
+    padding-left: 6%;
+  }
 }
 
 .second_section h2{
@@ -451,12 +598,13 @@ margin-right: 2rem;
 	@media(max-width: 992px){
 		padding-top: 37%;
 		padding-bottom: 0%;
+    display: block;
 	}
 
 }
 
   .third_section_innersection1{
-    
+
 	@extend .col-xs-12;
 	@extend .col-sm-12;
 	@extend .col-lg-6;
@@ -532,6 +680,7 @@ margin-right: 2rem;
 	padding-top: 8%;
 	padding-left: 8%;
 	padding-right: 4%;
+  padding-bottom: 8%;
   }
 
   .third_section_innersection2_content{
@@ -664,13 +813,13 @@ margin-right: 2rem;
 	display:flex;
 	flex-direction: row;
 	margin-bottom: 1rem;
-	font-family: OpenSans;
+	font-family: "Open Sans";
   }
   
   .fsis1_section1{
 	display:flex;
 	flex-direction: row;
-	font-family: OpenSans;
+	font-family: "Open Sans";
   }
 .fsis1_section2{
   display: flex;
@@ -681,7 +830,7 @@ margin-right: 2rem;
   padding: 2rem;
   background-color: #ADC4CF;
   padding-top:20px;
-  font-family: OpenSans;
+  font-family: "Open Sans";
 }
 
 
@@ -716,7 +865,7 @@ margin-right: 2rem;
 
 .fifth_section{
   min-height:600px;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   padding-top:20px;
   background-color: #d6e2e7;
   padding-bottom: 8%;
@@ -743,9 +892,10 @@ margin-right: 2rem;
   align-items: center;
   flex-direction: column;
   background-color: white;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   margin:2%;
   padding: 3%;
+  box-shadow: 5px 5px 5px #c0cccc;
 }
 
 .fifth_section_cards h3{
@@ -781,7 +931,7 @@ margin-right: 2rem;
 
 .fifth_section1 img{
   margin-top:2rem;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   width: 85px;
   height: 85px;
   margin-bottom: 10%;
@@ -790,12 +940,12 @@ margin-right: 2rem;
 .sixth_section{
   min-height:700px;
   padding-top:10px;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   background-color: #002535;
 }
 
 .sixthsection1{
-  font-family: OpenSans;
+  font-family: "Open Sans";
   position:relative;
   color:white;
   display: flex;
@@ -823,7 +973,7 @@ margin-right: 2rem;
 
 .sixthsection2{
   @extend .row;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   display: flex;
   justify-content: center;
   align-items: center;
@@ -835,7 +985,7 @@ margin-right: 2rem;
 
 .sixthsection2 img{
   margin: 10px;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   width: 274px;
   
 }
@@ -871,10 +1021,11 @@ margin-right: 2rem;
 
 .sixthsection3{
   position: relative;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   margin-top: 20px;
   padding-bottom: 30px;
-  
+  margin-left: 12%;
+  margin-right: 12%;
 }
 
 
@@ -889,66 +1040,74 @@ margin-inline: auto;
 }
 
 .sixthsection_innsersection{
-  max-width: 70%;
-  margin-inline: auto;
-  border-radius: 4px;
-  background-color: #f2f4f5;
-  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-top: 2rem;
-  text-align: center;
-  font-family: OpenSans;
-  color:#002535;
+  padding: 2rem;
+  background-color: #f2f4f5;
+  padding-top:20px;
+  font-family: "Open Sans";
 
 }
 
 .sixthsectionbtn{
-  background-color: #002535;
+  background-color:#002535;
+  padding: 10px;
+  padding-inline: 40px;
+  letter-spacing: 2.8px;
   color:white;
   border:0px;
-  padding:10px;
-  padding-inline: 35px;
   border-radius: 50px;
-  margin-block: 1rem;
-  font-family: OpenSans;
-  
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 14px;
+  width: 513px;
+  height: 68px;
+  margin-bottom: 3%;
+
+  @media (max-width: 992px) {
+    width:300px;
+  }
+
+}
+
+.sixthsection_innsersection p{
+  text-align: center;
+  font-family: "Open Sans";
+  color:#002535;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.sixthsection_innsersection h3{
+  margin-top:30px;
+  text-align: center;
+  font-family: "Open Sans";
+  color:#002535;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 24px;
+  letter-spacing: 6.4px;
 }
 
 .seventh_section{
-  font-family: OpenSans;
-  padding-top:20px;
+  font-family: "Open Sans";
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5%;
   /* background-color: #d6e2e7; */
 }
 
 .seventh_section h1{
   text-align: center;
   margin-top:30px;
-  font-family: OpenSans;
-}
-
-
-
-
-
-
-
-
-.eigth_section_innersection1_content{
-  padding: 25px;
-  font-family: OpenSans;
-  color:#002535;
-}
-
-
-
-.eigth_section_innersection1_content h2{
-
-  margin-left:25px;
-  margin-top:60px;
-  font-family: OpenSans;
+  font-family: "Charter Bold Italic";
+  font-size: 48px;
+  color: #336e87
 }
 
 .eigth_section_innersection1_content p{
@@ -956,37 +1115,13 @@ margin-inline: auto;
   margin-left:25px;
   margin-top:10px;
   margin-right: 10px;
-  font-family: OpenSans;
-}
-
-.eigth_section_innersection1_btn1{
-
-  
-  background-color:#002535;
-  height:30px;
-  color:white;
-  border:0px;
-  width:200px;
-  padding:1px;
-  border-radius: 50px;
-  margin-left:25px;
-  margin-top:30px;
-  font-family: OpenSans;
-  margin-bottom: 2rem;
-  
+  font-family: "Open Sans";
 }
 
 
-
-.eigth_section_innersection2 img{
-  /* position:relative;
-  left:-180px; */
-
-}
 
 
 </style>
-
 
 <div class="first_section">
   <div class="first_section_row">
@@ -1162,14 +1297,14 @@ margin-inline: auto;
   
   
   
-  
+  <hr>
 </div>
 
 
 <div class="sixthsection3">
-  <hr>
+ 
 <div class="sixthsection_innsersection">
-  <h3>NEED A SPECIAL INTEGRATION?</h3><br>
+  <h3>NEED A SPECIAL INTEGRATION?</h3>
   <p>SuiteDynamics experts can connect your NetSuite ERP to a <br>wide range of third-party applications, ensuring your <br> company has the functionality it needs to succeed.</p>
   <button class="sixthsectionbtn">Schedule Your Consultation</button>
 </div>
@@ -1182,13 +1317,13 @@ margin-inline: auto;
 <div class="seventh_section1">
 <div class="seventh_section_cards1">
  
-  <i><p style="margin:10px; text-align:center;">“SuiteDynamics attention to detail and complete understanding of my business needs allows me to focus on other parts of my business. I don’t have to stress and take time away from my expertise while they are doing the job they were hired for. Time is the most valued currency and SuiteDynamics is affording me more time to do what I am good at.”</p></i>
+  <i><p style="text-align:center;">“SuiteDynamics attention to detail and complete understanding of my business needs allows me to focus on other parts of my business. I don’t have to stress and take time away from my expertise while they are doing the job they were hired for. Time is the most valued currency and SuiteDynamics is affording me more time to do what I am good at.”</p></i>
   <h4 style="text-align:center;">Keith K.</h4>
   
 </div>
 <div class="seventh_section_cards2">
 
-  <i><p style="margin:10px; text-align:center;">“SuiteDynamics has been a tremendous asset to RMHC-Madison the past several years. They are always willing to help with a myriad of projects or volunteer efforts. We have found them to be knowledgeable, dependable and very easy to work with at every turn. Not only have they added depth to our team, but they are passionate about making our community stronger and have shown that in countless ways. Through their daily work and paying it forward spirit, SuiteDynamics has become an invaluable community resource.”</p></i>
+  <i><p style="text-align:center;">“SuiteDynamics has been a tremendous asset to RMHC-Madison the past several years. They are always willing to help with a myriad of projects or volunteer efforts. We have found them to be knowledgeable, dependable and very easy to work with at every turn. Not only have they added depth to our team, but they are passionate about making our community stronger and have shown that in countless ways. Through their daily work and paying it forward spirit, SuiteDynamics has become an invaluable community resource.”</p></i>
 
   <h4 style="text-align:center;">Deborah S, RMHC Madison</h4>
  
@@ -1196,7 +1331,7 @@ margin-inline: auto;
 </div>
 <div class="seventh_section_cards3">
   
-  <i><p style="margin:10px; text-align:center;">“SuiteDynamics is a crucial business partner. They have been integral to our startup and launch. Jake and the team are experts in listening and hearing the business requirements; not just following directions. They provided positive and workable solutions for our business needs.”</p></i>
+  <i><p style="text-align:center;">“SuiteDynamics is a crucial business partner. They have been integral to our startup and launch. Jake and the team are experts in listening and hearing the business requirements; not just following directions. They provided positive and workable solutions for our business needs.”</p></i>
 
   <h4 style="text-align:center;">Sam B, COO</h4>
  
@@ -1206,26 +1341,28 @@ margin-inline: auto;
 </div>
 
 <div class="eigth_section">
-<div class="eigth_section_innersection1">
-  <div class="eigth_section_innersection1_content">
-      <h2><i>A NetSuite Consultant Like No Other.</i></h2><br>
-     
-      <p>
-          In 2016, SuiteDynamics founder Jake Kleiner was the CEO of a quilt accessory company trying to implement a NetSuite ERP. He hated the experience. He couldn’t find an implementation partner he could trust, so he learned the process himself.<br><br>
-
-          Jake established SuiteDynamics so you don’t have to feel his pain. We offer quality NetSuite services guided by integrity and unique financial experience not found in many implementation firms.<br><br>
-
-          <b>Don’t settle for consultants with poor project management skills and inadequate business understanding. Instead, our team will listen to your needs and offer practical solutions delivered on time and within budget.</b>
-
+  <div class="eight_section_row">
+      <div class="eigth_section_innersection1">
+          <div class="eigth_section_innersection1_content">
+              <h2>A NetSuite Consultant Like No Other.</h2><br>
           
-      </p>
-      <button class="eigth_section_innersection1_btn1"> Schedule Your Consultation</button>
-      
+              <p>
+                  In 2016, SuiteDynamics founder Jake Kleiner was the CEO of a quilt accessory company trying to implement a NetSuite ERP. He hated the experience. He couldn’t find an implementation partner he could trust, so he learned the process himself.<br><br>
 
+                  Jake established SuiteDynamics so you don’t have to feel his pain. We offer quality NetSuite services guided by integrity and unique financial experience not found in many implementation firms.<br><br>
+
+                  <b>Don’t settle for consultants with poor project management skills and inadequate business understanding. Instead, our team will listen to your needs and offer practical solutions delivered on time and within budget.</b>
+
+                  
+              </p>
+              <button class="eigth_section_innersection1_btn1"> Schedule Your Consultation</button>
+              
+
+          </div>
+      </div>
+
+      <div class="eigth_section_innersection2">
+          <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/HomePage_3.jpg">
+      </div>
   </div>
-</div>
-
-<div class="eigth_section_innersection2">
-  <img src="https://picsum.photos/400/550" style="width: 100%;  aspect-ratio: 4/5; height: 400px;">
-</div>
 </div>
