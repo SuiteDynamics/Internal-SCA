@@ -46,6 +46,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 
 	,	events: {
 
+        'click [data-action="motus-token-success"]': 'motusTokenSuccess',
         'click [data-action="submit-card"]': 'submitCard'
 
 		}
@@ -60,6 +61,24 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
     ,	submitCard: function(e)
     {
         console.log('submit card',this.options.collection.models[0].get('clientkey'))
+        // $.get(Utils.getAbsoluteUrl(
+        //     getExtensionAssetsPath(
+        //         "Motus_Pub_Key/public_key.pem"
+        //     )
+        // ), function(data, status){
+        //     alert("Data: " + data + "\nStatus: " + status);
+        //   });
+
+        // console.log('UTILS', Utils.getAbsoluteUrl(
+        //     getExtensionAssetsPath(
+        //         "Motus_Pub_Key/public_key.pem"
+        //     )
+        // ))
+
+        // var encodedData = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzaUQwdGpqSmZSOTA2MWFweXR5NQpicGJ1QXpvTENCM2p2S0JnYkJ3SlJxS3JvWEpNNDlkai9BOGlOTXIyQWg3QWdHK2NKdU9vcTlOT0YyUEN3aVFUClB2L21YYkdPMFBaU0x3YzV2QVBDOW1TSXpQVUFnTldGNDA3akxVRklMbFdFMHBzTDN3N3Rva3JHMDhiNWp3MXQKTmpRQktPR3cydWxCMTV6bG80d2lKdE9TaEF2RGJZaFF2MmdhaGRVU0swVUd3TXk5c2ZOc3RYOFFZRDRhbVNTNgo5RFE0RVZqZWZGbHBOeUthQUxuNEZWcHlqLzJVakFJRFZZLzZYWFM3NzdKSDBqclZIOGhwcXhWaHlqZnhHUythCkdPRGlHWjA0OWlieTczUFo1Y215WE9CaTlTeFBocCtpY2pjdGtzTTBNWUVHbTNHdDdidHZ2R2NiZnFtR21tN2wKS3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
+        // var decodedData = atob(encodedData);
+        // console.log(decodedData)
+        // paytrace.setKey(decodedData);
 
         var self = this;
         console.log('submit card self', self)
@@ -95,6 +114,19 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
         //Order information
         newPaymentModel.set('amount', order.get('summary').total);
 
+
+        //Billing Address
+        var billAddress = this.model.get('addresses').where({'internalid': this.model.get('billaddress')})
+        var billingAddrObj = {
+            "name": billAddress[0].get('fullname'),
+            "street_address": billAddress[0].get('addr1'),
+            "city": billAddress[0].get('city'),
+            "state": billAddress[0].get('state'),
+            "zip": billAddress[0].get('zip')
+        }
+        console.log('billingAddrObj', billingAddrObj)
+        newPaymentModel.set('billingAddr', billingAddrObj);
+
         console.log('newPaymentModel', newPaymentModel)
 
         //disable continue button to prevent order submit until card is submitted in service
@@ -104,9 +136,15 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
             console.log('token result', result);
             if(result.status == 'Success'){
 
+
+                //We need to grab the user profile and overwrite the old one because the customer motus token has changed.
+                // self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+                //     self.options.userProfile = result
+                // })
+
                 self.removeActive();
                 newPaymentModel.set('active', true);
-
+                //newPaymentModel.set('type', true);
                 console.log('hide')
                 self.$containerModal &&
                 self.$containerModal
@@ -149,7 +187,97 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
         })
 
     }
+    // ,	motusTokenSuccess: function()
+    // {
+    //     console.log('motustokensuccess',this)
+    //     var self = this
+    //     let data = JSON.parse($('#in-modal-motustoken')[0].value);
 
+    //     let token = data.token 
+    //     let expiry = data.expiry 
+
+    //     var order = this.options.paymentMethodView.model
+
+    //     var userProfile = this.options.userProfile
+
+    //     var newPaymentModel = new MotusPaymentsModel()
+
+    //     //Card information
+    //     newPaymentModel.set('new', token);
+    //     newPaymentModel.set('default_card', "Add-on Parent Item ID");
+    //     newPaymentModel.set('expiry', expiry)
+    //     newPaymentModel.set('exp_month', expiry.slice(-1));
+    //     newPaymentModel.set('exp_year', expiry.slice(0,4));
+    //     newPaymentModel.set('last_four', token.slice(-4));
+    //     newPaymentModel.set('token', token);
+    //     //Profile information
+    //     newPaymentModel.set('first_name', userProfile.firstname);
+    //     newPaymentModel.set('last_name', userProfile.lastname);
+    //     newPaymentModel.set('phone', userProfile.phoneinfo.phone);
+    //     newPaymentModel.set('email', userProfile.email);
+    //     newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
+    //     //Order information
+    //     newPaymentModel.set('amount', order.get('summary').total);
+
+    //     console.log('newPaymentModel', newPaymentModel)
+
+    //     //disable continue button to prevent order submit until card is submitted in service
+    //     $('.order-wizard-step-button-continue').prop("disabled",true);
+        
+    //     this.collection.add(newPaymentModel, { at: this.collection.length - 1 }).save().then(function(result){
+    //         console.log('token result', result);
+    //         if(result.status == 'Success'){
+
+
+    //             //We need to grab the user profile and overwrite the old one because the customer motus token has changed.
+    //             self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
+    //                 self.options.userProfile = result
+    //             })
+
+    //             self.removeActive();
+    //             newPaymentModel.set('active', true);
+    //             newPaymentModel.set('type', true);
+
+    //             self.$containerModal &&
+    //             self.$containerModal
+    //                 .removeClass('fade')
+    //                 .modal('hide')
+    //                 .data('bs.modal', null);
+            
+    //             $('.order-wizard-step-button-continue').prop("disabled",false);
+
+    //             //self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
+    //             self.options.paymentMethodView.wizard.motusActive = true
+    //             self.options.paymentMethodView.wizard.motusSelected = result.id
+    //             self.options.paymentMethodView.render();
+
+    //         }else{
+
+    //             console.log('display fail marks', self);
+    //             self.$containerModal &&
+    //             self.$containerModal
+    //                 .removeClass('fade')
+    //                 .modal('hide')
+    //                 .data('bs.modal', null);
+
+    //             var $alert_warn = $('#motus-fail-message');
+    //             console.log($alert_warn)
+    //             $alert_warn.html(
+    //                 new GlobalViewsMessageView({
+    //                     message: 'Card failure. Please try a different card',
+    //                     type: 'error',
+    //                     closable: true
+    //                 }).render().$el
+    //             );
+
+    //             $('.order-wizard-step-button-continue').prop("disabled",false);
+    //         }
+
+    //         newPaymentModel.set('card_type', result.type);
+
+    //     })
+
+    // } 
     ,	removeActive: function()
     {
         var activeCards = this.options.collection.where({'active': true})

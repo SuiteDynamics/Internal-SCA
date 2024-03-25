@@ -88,7 +88,6 @@ define(
 	,	initialize: function()
 		{
 
-
 			var self = this;
 	
 			var checkout = this.options.checkout
@@ -103,9 +102,6 @@ define(
 							self.render();
 						  })
 					}
-
-					console.log('paytrace', paytrace)
-					
 				});
 			});
 			
