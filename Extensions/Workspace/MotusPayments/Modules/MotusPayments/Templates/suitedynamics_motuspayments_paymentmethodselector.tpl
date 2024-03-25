@@ -12,7 +12,7 @@
 				{{#each activeModules}}
 					{{#if isMotus}}
 						<a data-action="change-payment-method" class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">
-							<img class="order-wizard-paymentmethod-selector-module-button-img" src="{{imagesrc}}" alt="">
+							Credit Card
 						</a>
 					{{else}}
 						<a data-action="change-payment-method" class="order-wizard-paymentmethod-selector-module-button {{#if isSelected}}selected{{/if}}" value="{{type}}">

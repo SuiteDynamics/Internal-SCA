@@ -67,11 +67,6 @@ define(
     ,	errors: ['ERR_WS_INVALID_CARD', 'ERR_CHK_INVALID_CARD']
     ,	childViews: {
 			'MotusPayments.List': function () {
-				// if (this.paymentMethodSelected) {
-				// 	this.setCreditCard({
-				// 		id: this.paymentMethodSelected
-				// 	});
-				// }
 
 				return new BackboneCollectionView({
 					collection: this.options.collection,
@@ -81,14 +76,6 @@ define(
 						userProfile: this.userProfile,
 						orderWizard: this,
 						images: this.options.paymentmethod.imagesrc
-						// showDefaults: this.showDefaults,
-						// showSelect: true,
-						// hideSelector: false,
-						// selectMessage: this.selectMessage,
-						// showSecurityCodeForm:
-						// 	this.requireccsecuritycode && paymentinstrument_creditcard_edit_tpl,
-						// selectedCreditCardId:
-						// 	this.paymentMethodSelected || this.getDefaultCreditCardId()
 					},
 					viewsPerRow:
 						this.itemsPerRow ||
@@ -106,8 +93,6 @@ define(
 	
 			var checkout = this.options.checkout
 			checkout.on("afterShowContent", function() {
-				$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
-				$('head').append('<script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>');
 				checkout.getCurrentStep().then(function(step) {
 					if (step.step_group_name == "Payment") {
 						self.options.collection.fetch(
@@ -122,17 +107,6 @@ define(
 					console.log('paytrace', paytrace)
 					
 				});
-
-				jQuery(document).ready(function(){
-					console.log('view render')
-					$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
-					$('head').append('<script src="https://unpkg.com/node-forge@1.0.0/dist/forge.min.js"></script>');
-					jQuery('head').append('<script src="https://protect.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-					
-					paytrace.setKeyAjax(atob("LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzaUQwdGpqSmZSOTA2MWFweXR5NQpicGJ1QXpvTENCM2p2S0JnYkJ3SlJxS3JvWEpNNDlkai9BOGlOTXIyQWg3QWdHK2NKdU9vcTlOT0YyUEN3aVFUClB2L21YYkdPMFBaU0x3YzV2QVBDOW1TSXpQVUFnTldGNDA3akxVRklMbFdFMHBzTDN3N3Rva3JHMDhiNWp3MXQKTmpRQktPR3cydWxCMTV6bG80d2lKdE9TaEF2RGJZaFF2MmdhaGRVU0swVUd3TXk5c2ZOc3RYOFFZRDRhbVNTNgo5RFE0RVZqZWZGbHBOeUthQUxuNEZWcHlqLzJVakFJRFZZLzZYWFM3NzdKSDBqclZIOGhwcXhWaHlqZnhHUythCkdPRGlHWjA0OWlieTczUFo1Y215WE9CaTlTeFBocCtpY2pjdGtzTTBNWUVHbTNHdDdidHZ2R2NiZnFtR21tN2wKS3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t")); 
-					// console.log('setpaytrace', paytrace)
-					// paytrace.setKeyAjax("https://7050356-sb1.app.netsuite.com/core/media/media.nl?id=15579&c=7050356_SB1&h=GyGcwcnLfnS9NWCfcjBji8Ttk2kbyhmRI7WnbemgxZpU5kQE&_xt=.cer");
-				})
 			});
 			
 			this.layout = this.options.layout
@@ -198,7 +172,6 @@ define(
 			}
 			this.showInModal();
 			this._render();
-			//this.setInitial(modelSelected.get('id'));
 			
 		}
 
@@ -216,8 +189,6 @@ define(
 
 	,	setMotusPaymentMethod: function ()
 		{
-			// console.log('motusTokenSuccess', this)
-			//TODO: Make key dynamic
 
 			if(!this.paymentMethod){
 				this.paymentMethod = new TransactionPaymentmethodModel({
@@ -315,16 +286,9 @@ define(
 		$("#sensepass-modal-close").click(function(){
 			$(".sensepass-modal").fadeOut();
 		  });
-		// var encodedData = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFzaUQwdGpqSmZSOTA2MWFweXR5NQpicGJ1QXpvTENCM2p2S0JnYkJ3SlJxS3JvWEpNNDlkai9BOGlOTXIyQWg3QWdHK2NKdU9vcTlOT0YyUEN3aVFUClB2L21YYkdPMFBaU0x3YzV2QVBDOW1TSXpQVUFnTldGNDA3akxVRklMbFdFMHBzTDN3N3Rva3JHMDhiNWp3MXQKTmpRQktPR3cydWxCMTV6bG80d2lKdE9TaEF2RGJZaFF2MmdhaGRVU0swVUd3TXk5c2ZOc3RYOFFZRDRhbVNTNgo5RFE0RVZqZWZGbHBOeUthQUxuNEZWcHlqLzJVakFJRFZZLzZYWFM3NzdKSDBqclZIOGhwcXhWaHlqZnhHUythCkdPRGlHWjA0OWlieTczUFo1Y215WE9CaTlTeFBocCtpY2pjdGtzTTBNWUVHbTNHdDdidHZ2R2NiZnFtR21tN2wKS3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
-        // var decodedData = atob(encodedData);
-        // console.log(decodedData)
-        // paytrace.setKey(decodedData);
-		// color: #404F5E; font-size: 16px;
-		// var encodedData = btoa(this.options.collection.models[0].get('clientkey'));
-        // var decodedData = atob(encodedData);
-		//$('.sensepass-modal').css('display','block');
+
 		$(".sensepass-modal").fadeIn();
-		//console.log('add payment clicked', decodedData)
+
         PTPayment.setup({
 			styles:
 			 {
@@ -353,20 +317,7 @@ define(
               //use instance object to process and tokenize sensitive data payment fields.
           });
 
-		document.getElementById("pt_hpf_input").addEventListener("submit",function(e){
-// end of PTPayment.validate
-		});// end of add event listener submit
-		//TO USE OLD MODEL, ENABLE FOLLOWING PIECE OF CODE
-		// var addTokenView = new MotusPaymentsAddTokenView({
-		// 	collection: this.options.collection,
-		// 	container: this.options.container,
-		// 	paymentMethodView: this,
-		// 	userProfile: this.userProfile
-		// });
 
-		// addTokenView.title = "Add Card"
-		
-		// this.layout.showContent(addTokenView, { showInModal: true });
 	}
 	,	payMotus: function (e)
 	{
@@ -386,15 +337,9 @@ define(
 			}
 		} else {
 			// no error so tokenize
-			//console.log(document.getElementById("pt_hpf_form").getElementsByTagName( 'input' ).getElementsByTagName( 'input' ))
 			$('#sensepass-pay-button').attr('disabled','disabled');
 			var iFrameDOM = $("iframe#hpf_casper").contents();
-			console.log('iframe dom',iFrameDOM);
-			var input = iFrameDOM.find("input");
-			console.log('input', input)
-			// var token_number = $( "input[id*='CC']" )[0].value;
-			// console.log('ccnum',token_number)                                  
-			// var lastFour = token_number.slice(-4);
+
 			PTPayment.process()
 			.then( (r) => submitPayment(r) )
 			.catch( (err) => handleError(err) );
@@ -408,14 +353,6 @@ define(
 			console.log('submit', res);
 			console.log('submit self', self);
 			
-			// var token_number = $( "input[name*='cardid']" )[0].value;
-			// console.log('ccnum',token_number)                                   
-			// var lastFour = token_number.slice(-4);
-			// var expiryYear = $( "select[name*='year']" )[0].value;
-			// var expiryMonth = $( "select[name*='month']" )[0].value;
-			// var cardType = this.getCardType(token_number)
-			// var csc = $( "input[name*='cvvid']" )[0].value;
-	
 			 var order = self.wizard.model
 	
 			var userProfile = self.userProfile
@@ -433,7 +370,7 @@ define(
 			newPaymentModel.set('phone', userProfile.phoneinfo.phone);
 			newPaymentModel.set('email', userProfile.email);
 			newPaymentModel.set('userid', userProfile.internalid);
-			//newPaymentModel.set('motus_id', _.findWhere(userProfile.customfields,{ id: "custentity_profile_id_motus" }).value);
+
 			//Order information
 			newPaymentModel.set('amount', order.get('summary').total);
 	
@@ -461,19 +398,12 @@ define(
 				console.log('token result', result.cardDetails.response.customers[0].credit_card.expiration_month);
 				if(result.status == 'Success'){
 	
-	
-					//We need to grab the user profile and overwrite the old one because the customer motus token has changed.
-					// self.options.container.getComponent("UserProfile").getUserProfile().done(function(result){
-					//     self.options.userProfile = result
-					// })
-	
 					self.removeActive();
 					newPaymentModel.set('exp_month', result.cardDetails.response.customers[0].credit_card.expiration_month.toString());
 					newPaymentModel.set('exp_year', result.cardDetails.response.customers[0].credit_card.expiration_year.toString());
 					newPaymentModel.set('last_four', result.cardDetails.response.customers[0].credit_card.masked_number.slice(-4));
 					newPaymentModel.set('active', true);
-					//newPaymentModel.set('type', true);
-					console.log('hide', self)
+
 					self.$containerModal &&
 					self.$containerModal
 						.removeClass('fade')
@@ -482,11 +412,9 @@ define(
 				
 					$('.order-wizard-step-button-continue').prop("disabled",false);
 					$('.btn').prop("disabled",false);
-					//self.setTransactionFields(self.options.paymentMethodView.paymentMethod.get('internalid'), result.authData);
 					console.log('set wizard', self)
 					self.wizard.motusActive = true
 					self.wizard.motusSelected = result.id
-					// self.options.paymentMethodView.render();
 	
 				}else{
 	
@@ -515,18 +443,6 @@ define(
 			})
 		};
 	}
-	// ,	removeMotusPayment: function(e)
-	// {
-
-	// 	var removeTokenView = new MotusPaymentsRemoveTokenView({
-	// 		collection: this.options.collection,
-	// 		container: this.options.container
-	// 	});
-
-	// 	removeTokenView.title = "Remove Card"
-		
-	// 	this.layout.showContent(removeTokenView, { showInModal: true });
-	// }
 
 	,	getContext: function ()
 	{
