@@ -43,7 +43,7 @@ define(['N/search','N/record','N/runtime'], function (search, record, runtime) {
                 subscriptionsObj.startDate = result.getValue("custrecordzab_s_start_date");
                 subscriptionsObj.endDate = result.getValue("custrecordzab_s_end_date");
                 subscriptionsObj.idNumber = result.getValue("custrecordzab_s_identification_number");
-                subscriptionsObj.chargeSchedule = result.getValue("custrecordzab_s_charge_schedule");
+                subscriptionsObj.chargeSchedule = result.getText("custrecordzab_s_charge_schedule");
 
                 subscriptionsArray.push(subscriptionsObj);
 
@@ -58,6 +58,7 @@ define(['N/search','N/record','N/runtime'], function (search, record, runtime) {
             function retrieveZabItems(id){
 
                 log.debug('ZAB Item 2', id)
+
 
                 var customrecordzab_itemSearchObj = search.create({
                     type: "customrecordzab_subscription_item",
@@ -96,6 +97,17 @@ define(['N/search','N/record','N/runtime'], function (search, record, runtime) {
                     itemsObj.itemQuantity = result.getValue("custrecordzab_si_quantity");
                     itemsObj.itemTotal = result.getValue("custrecordzab_si_total_value");
 
+                    itemLookup = search.lookupFields({
+                     type: 'item',
+                     id: result.getValue("custrecordzab_si_item"),
+                     columns: [
+                         'storedisplayname'
+                     ]
+                    })
+
+                    log.debug('itemLookup', itemLookup)
+
+                    itemsObj.name = itemLookup.storedisplayname
     
                     itemArray.push(itemsObj);
     

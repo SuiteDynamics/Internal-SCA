@@ -6,6 +6,7 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 	,	'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model'
 	
 	,	'Backbone'
+	,	'Utils'
     ]
 , function (
 	suitedynamics_zonesubscriptions_zonesubscriptions_list_tpl
@@ -13,6 +14,7 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 	,	ZoneSubscriptionsSS2Model
 	
 	,	Backbone
+	,	Utils
 )
 {
     'use strict';
@@ -27,6 +29,9 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 			/*  Uncomment to test backend communication with an example service
 				(you'll need to deploy and activate the extension first)
 			*/
+			if(!this.subscriptions){
+				this.subscriptions = [];
+			}
 
 			this.model = new ZoneSubscriptionsSS2Model();
 			var self = this;
@@ -61,7 +66,6 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 			
 			this.formattedResults = [];
 			
-			this.model = new SearchResultsModel();
 			this.loading = true;
 			
 			var self = this;
@@ -222,6 +226,8 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 		//@method getContext @return SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 	,	getContext: function getContext()
 		{
+
+			console.log('getcontext', this)
 			//@class SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 			// this.message = this.message || 'Hello World!!'
 			return {
