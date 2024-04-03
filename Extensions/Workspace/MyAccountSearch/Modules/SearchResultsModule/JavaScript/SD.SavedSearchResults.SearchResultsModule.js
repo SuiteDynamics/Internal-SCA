@@ -25,38 +25,44 @@ define(
 			var MyAccountMenu = container.getComponent("MyAccountMenu");
 			var savedSearches = environment.getConfig('savedSearchesMyaccount',[]);
 			
-			_.each(savedSearches,function(configObj){
+			// _.each(savedSearches,function(configObj){
 				
-				MyAccountMenu.addGroup({
-					"id": ("search_" + configObj.savedSearchId),
-					"name": configObj.tabLabel,
-					"url": ("search/" + configObj.savedSearchId),
-					"index": configObj.tabIndex
-				});
-			});
-			
-			
-			pageType.registerPageType({
-				name: 'SearchResultsModuleView',
-				routes: ['search/:id'],
-				options: {
-					container: container,
-					environment: environment,
-					savedSearches: savedSearches
-				},
-				view: SearchResultsModuleView
-			});
+			// 	MyAccountMenu.addGroup({
+			// 		"id": ("search_" + configObj.savedSearchId),
+			// 		"name": configObj.tabLabel,
+			// 		"url": ("search/" + configObj.savedSearchId),
+			// 		"index": configObj.tabIndex
+			// 	});
+			// });
 
-			pageType.registerPageType({
-				name: 'SubscriptionDetailView',
-				routes: ['subscription-detail'],
-				view: SearchResultsDetailView,
-				options: {
-					application: container,
-					environment: environment,
-					savedSearches: savedSearches
-				}
-			});
+			// MyAccountMenu.addGroup({
+			// 	"id": "zone_advanced_billing",
+			// 	"name": "Subscriptions",
+			// 	"url": ("subscriptions"),
+			// 	"index": 6
+			// });
+			
+			
+			// pageType.registerPageType({
+			// 	name: 'SearchResultsModuleView',
+			// 	routes: ['subscriptions'],
+			// 	options: {
+			// 		container: container,
+			// 		environment: environment,
+			// 	},
+			// 	view: SearchResultsModuleView
+			// });
+
+			// pageType.registerPageType({
+			// 	name: 'SubscriptionDetailView',
+			// 	routes: ['subscription-detail'],
+			// 	view: SearchResultsDetailView,
+			// 	options: {
+			// 		application: container,
+			// 		environment: environment,
+			// 		savedSearches: savedSearches
+			// 	}
+			// });
 
 		}
 	};

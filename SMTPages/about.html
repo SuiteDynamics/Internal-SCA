@@ -12,686 +12,1066 @@
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@font-face{font-family:'Charter';font-style:normal;font-weight:400;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_regular.woff2) format('woff2');}
+@font-face{font-family:'Charter Bold';font-style:normal;font-weight:bolder;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold.woff2) format('woff2');}
+@font-face{font-family:'Charter Bold Italic';font-style:italic;font-weight:bolder;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold_italic.woff2) format('woff2');}
+
+
+*{
+  margin:0;
+  padding: 0;
+  
+
 }
 
-body{
+.cms-landing-page{
+	width:100%;
+}
 
-    font-family:"Open Sans";
-    overflow-x: hidden;
+body {
+  overflow-x: hidden;
+  position:relative;
+  font-family: "Open Sans";
+  
 }
 
 
+.first_section{
 
-.first_section {
-    height: 70vh;
-    /* background: #8f7b7b; */
-    display: flex;
+	max-width:100vw;
+	font-family: "Open Sans";
+	height:auto;
+	background-color:#f2f4f5;
+  
 }
 
-.first_section {
-    .first_section_content {
-        height: 100%;
-        width: 60%;
-        background: #EFF3F5;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    
-        padding-left: 100px;
-   
-
-        border-top-right-radius:200px;
-    border-bottom-right-radius: 200px;
-
-        .page_name {
-            text-transform: uppercase;
-            font-size: 30px;
-            font-family: "Open Sans" ;
-            /* font-weight: 600; */
-            margin-left: 2px;
-        }
-
-        .section_main_content {
-            margin-top: -20px;
-            font-size: 50px;
-            color: #5c8b9f;
-            font-family: Charter;
-            margin-top: 10px;
-        }
-
-        .supportive_section_content {
-            color: #002535;
-            font-size: 15px;
-            margin-top: 15px;
-            font-family: "Open Sans" ;
-        }
+.first_section_row{
+	@extend .row;
+	display: flex;
+	@media (max-width: 992px) {
+        display: block;
     }
+}
 
-    .first_section_image {
-        height: 100%;
-        width: 40%;
-        /* background-image:url() ; */
-        
+.first_section_innersection1{
+
+	height:auto;	
+	font-family: "Open Sans";
+}
+
+.first_section_innersection2{
+
+	/*@extend .col-sm-6; border:1px solid black; */
+	font-family: "Open Sans";
+	padding: 0px;
+	font-size: 0;
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/HomePage_3.jpg");
+  background-size: cover;
+
+    @media (max-width: 992px) {
+      margin-top: 10%;
     }
+ 
+}
 
-    .first_section_image img {
-        height: 100%;
-        width: 100%;
-       
-    }
+.first_section_innersection1_content{
 
+	width:80%;
+	font-family: "Open Sans";
+	position: relative;
+	margin-left: 12%;
+  margin-bottom: 10%;
+  
+}
+
+.first_section_innersection1_content h3{
+
+	margin-top:100px;
+	font-family: "Open Sans";
+  font-weight: bold;
+	color:#002535;
+	font-size: 30px;
+	letter-spacing: 6px;
+
+}
+
+.first_section_innersection1_content h1{
+
+	margin-top: 5%;
+	font-family: "Charter Bold";
+	color: #5c8b9f;
+	font-weight: bold;
+	font-size: 72px;
+
+  @media (max-width: 992px) {
+    font-size: 40px;
+  }
+}
+
+.first_section_innersection1_content p{
+
+	margin-top: 3%;
+	font-family: "Open Sans";
+	color: #002535;
+	font-size: 30px;
+	letter-spacing: -.5px;
+  
 }
 
 .first_section_innersection1_btn1{
 
-    
-    background-color: #002535;
-    height:30px;
-    color:white;
-    border:0px;
-    width:200px;
-    padding:1px;
-    border-radius: 50px;
-    /* margin-left:5px; */
-    margin-top:30px;
-    
-    
-    
+	border:1px solid #002535;
+	background-color: #002535;
+	height:53px;
+	color:white;
+	width:398px;
+	border-radius: 50px;
+	margin-top: 6%;
+	font-family: "Open Sans";
+	font-size: 16px;
+	letter-spacing: 3.2px;
+	font-weight: bold;
+
+  @media (max-width: 992px) {
+    font-size: 12px;
+  }
+  
+}
+
+.first_section_innersection2 img{
+  max-width: 150%;
+
+}
+
+.eigth_section{
+
+	height:725px;
+	max-width:100vw;
+	font-family: "Open Sans";
+  background-color: #ffffff;
+  padding-left: 15%;
+  padding-right: 15%;
+
+}
+
+.eigth_section_img{
+
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerce_2.jpg");
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin-top: -725px;
+  @media (max-width: 992px) {
+    display: none;
   }
 
-.second_section {
-    top: 20px;
-    max-width: 1150px;
-    margin: auto;
-    padding: 0;
-    /* background: #917373; */
-    height: 1100px;
-}
-
-.second_section {
-    .second_section_banner_1 {
-        margin-top: 70px;
-        display: flex;
-        /* background: #000; */
-        width: inherit;
-        height: 300px;
-
-        .second_section_banner_1_image {
-            width: 40%;
-            height: 300px;
-          
-        }
-
-        .second_section_banner_1_image img {
-            width: 100%;
-            height: 100%;
-            
-        }
-
-        .second_section_banner_1_content {
-            display: flex;
-            flex-direction: column;
-            padding-left: 60px;
-            width: 60%;
-            margin-top:20px;
-
-            .banner_1_content_heading {
-                font-style: italic;
-            }
-
-            .banner_1_main_content {
-                margin-top: 15px;
-                line-height: 25px;
-                font-family: "Open Sans" ;
-            }
-        }
-    }
-
-    .second_section_divider_paragraph {
-        margin: 30px 0px;
-        padding: 10px;
-        font-weight: bold;
-        font-family: "Open Sans" ;
-        font-size:20px;
-    }
-
-    .second_section_banner_2 {
-        
-        height: 400px;
-        width: inherit;
-    }
-
-    .second_section_banner_2 img {
-       
-        height: 100%;
-        width: 100%;
-    }
-
-    .free_consultation_btn {
-        margin-top: 40px;
-    }
-
-    .consultation_button {
-        padding: 10px;
-        border-radius: 25px;
-        background: #336e87;
-        color: #eff3f5;
-        border: none;
-    }
 }
 
 
-.third_section {
-    background: #adc5cf;
-    width: inherit;
-    height: 450px;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    padding: 40px;
+
+.eigth_section_row{
+
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
+  
+}
+
+.eigth_section_innersection1{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	height:auto;
+	font-family: "Open Sans";
+  
+}
+
+.eigth_section_innersection1_content{
+
+	font-family: "Open Sans";
+	color:#002535;
+	position: relative;
+  margin-left: 2%;
+  margin-top: 15%;
+  
+}
+
+.eigth_section_innersection1_content h1{
+
+	height:auto;
+	font-family: "Charter Bold Italic";
+  color:#002535;
+  font-size: 48px;
+
+  
+}
+
+.eigth_section_innersection1_content p{
+
+	margin-top:5%;
+	margin-right: 10px;
+	font-family: "Open Sans";
+	font-size: 20px;
+	line-height: 1.3;
+	color: #002535;
+
+  }
+
+  .eigth_section_innersection1_btn1{
+
+	
+    background-color: #002535;
+    height:53px;
+    color:#f2f4f5;
+    border:0px;
+    width:398px;
+    padding:1px;
+    border-radius: 50px;
+    margin-top: 15%;
     font-family: "Open Sans";
+    font-weight: bold;
+    letter-spacing: 2.8px; 
+    
+    }
+
+.eigth_section_innersection2{
+    @extend .col-xs-12;
+    @extend .col-sm-12;
+    @extend .col-lg-6;
+    font-family: "Open Sans";
+
+    @media(max-width: 992px){
+      display:none;
+    }
+
 }
 
-.third_section {
+.eigth_section_innersection2_content_img{
 
-    .third_section_netsuit {
-        margin-left: 150px;
-        margin-top: 20px;
-        height: 100px;
-        width: 400px;
-        line-height: 0.9em;
-        padding-top: 30px;
-    }
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/HomePage_3.jpg");
+  background-size: cover;
+  width: 90%;
+  height: 380px;
+  margin-top: 20%;
 
-    .third_section_content {
-        margin-top: 10px;
-        width: 1000px;
-        margin-left: 150px;
-    }
-
-    .third_section_button {
-        margin-top: 30px;
-        margin-left: 150px;
-        width: 200px;
-
-        #cunsultation_btn {
-            padding: 10px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-style: normal;
-            border: none;
-        }
-    }
 }
 
-.divider_banner {
-    width: 100%;
-    height: 120px;
-    background:#002535;
-    color: white;
-    text-align: center;
+
+
+.fifth_section{
+
+  min-height:600px;
+  font-family: "Open Sans";
+  padding-top:20px;
+  background-color: #ffffff;
+
 }
 
-.divider_banner h1 {
-    padding-top: 36px;
+.fifth_section h1{
+
+  text-align: center;
+  margin-top:20px;
+  margin-bottom: 40px;
+  font-family: "Charter Bold Italic";
+  font-size: 48px;
+  margin-top: 4%;
+  margin-bottom: 3%;
+  color: #336e87 ;
+  
 }
 
-.fourth_section {
-    width: inherit;
-    background: #D6E2E7;
-    height: 1200px;
-    display: flex;
-    margin: 0;
 
-    .fourth_section_image_div {
-        height: 1200px;
-        width: 35%;
-      
+.fifth_section1{
 
-    }
+  font-family: "Open Sans";
+  display:flex;
+  flex-direction: row;
+  padding-inline: 1rem;
+  margin-top: 5%;
+  @media (max-width: 992px) {
+    display: block;
+  }
 
-    .fourth_section_image_div img {
-        height: 100%;
-       
-    }
-
-    .fourth_section_content {
-        display: flex;
-        background: #d6e2e7;
-        width: 65%;
-        height: 150vh;
-        padding: 120px;
-        flex-direction: column;
-
-        .doller_image_container {
-            height: 160px;
-            width: 80px;
-            border-radius: 50%;
-            background: #f0b36d;
-            padding:10px;
-            
-          
-
-            .doller_image {
-                height: 30px;
-                width: 30px;
-                
-            }
-        }
-
-        .fourth_section_heading {
-            margin-top: 20px;
-            color: #002535;
-            /* font-size: xx-large; */
-            font-variant: normal;
-            font-style: normal;
-        }
-
-        .fourth_section_main_content {
-            margin-top: 20px;
-            width: 95%;
-        }
-
-        .list_cotainer {
-            margin-top: 25px;
-            height: 75%;
-            width: 95%;
-            background: #adc5cf;
-            border-radius: 15px;
-            padding: 20px;
-
-
-            .list_content {
-                margin: 20px;
-                padding: 10px;
-
-                .fourth_section_list {
-                    list-style-type: none;
-                }
-
-                .fourth_section_list li {
-                    position: relative;
-                    margin-left: 20px;
-                }
-
-                .fourth_section_list li::before {
-                    content: '\2713';
-                    color: green;
-                    /* position: absolute; */
-                    margin-right: 10px;
-                    text-indent: 40px;
-                }
-            }
-        }
-        .free_consultation {
-            margin-top: 20px;
-            margin-left: 5px;
-            width: 95%;
-        }
-
-        .free_consultation_btn {
-            margin-top: 50px;
-        }
-
-        .consultation_button {
-            padding: 10px;
-            border-radius: 25px;
-            background: #336e87;
-            color: #eff3f5;
-            border: none;
-        }
-    }
 }
 
-.fifth_section {
-    width: inherit;
-    height: 800px;
-    margin: 0;
+.fifth_section_cards{
+  
+  display: block;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  font-family: "Open Sans";
+  margin: 2%;
+  overflow: hidden;
+
 }
 
-.fifth_section {
-    .team_banner {
-        margin: 45px 0px;
-        text-align: center;
-        color: #002535;
-        font-size: 2.5em;
-        font-family: charter;
-        font-weight: bold;
-        font-style: italic;
-    }
+.fifth_section_cards h3{
 
-    .team_members {
-        display: flex;
-        flex-direction: row;
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 3px;
 
-        /* justify-content: space-between; */
-        .member {
-            /* background: #000; */
-            height: 550px;
-            width: 900px;
-            margin: 50px;
-
-            .member_image_container {
-                margin: 30px 40px;
-                width: 80%;
-                height: 40%;
-
-                .member_image {
-                    width: 100%;
-                    height: 100%;
-                    background: #000;
-                }
-            }
-
-            .member_name {
-                color: #eff3f5;
-                font-size: larger;
-                font-weight: bold;
-                font-style: italic;
-                text-align: center;
-            }
-
-            .member_designation {
-                margin-top: 10px;
-                text-align: center;
-                font-weight: bold;
-                font-size: .8em;
-                letter-spacing: .2em;
-            }
-
-            .about_member {
-                margin-top: 18px;
-                margin-left: 43px;
-                width: 80%;
-                text-align: justify;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                font-weight: 400;
-            }
-        }
-    }
 }
 
-.sixth_section {
-    width: inherit;
-    height: 1400px;
-    margin: 0;
-    padding: 10px;
-    background: #F2F4F5;
+.fifth_section_cards p{
 
-    .more_members {
-        margin-left: 80px;
-        width: 90%;
-        margin-top:30px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+  font-family: "Open Sans";
+  font-size: 16px;
+  margin-top: 6%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 15%;
 
-        .added_members {
-            margin: 10px;
-            padding: 10px;
-            height: 300px;
-            width: 250;
-
-            .more_member_image_container {
-                width: 250px;
-                height: 200px;
-                
-
-                .added_member_image {
-                    width: 100%;
-                    height: 100%;
-                    
-                }
-            }
-
-            .more_member_name {
-                margin-top: 10px;
-                text-align: center;
-            }
-
-            .member_designation {
-                margin-top: 10px;
-                text-align: center;
-                letter-spacing: .2em;
-                width: inherit;
-            }
-
-        }
-
-    }
 }
 
-.faqs {
-    margin-top: 40px;
-    margin-left: 200px;
-    width: 1000px;
-    padding: 30px;
+.fifth_section_cards a{
 
-    .faqs_heading {
-        color: #002535;
-        letter-spacing: 0.4em;
-    }
+  text-decoration: none;
+  text-align: center;
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 20px;
+  color:#004A69BF;
+}
 
-    .questions {
-        margin-top: 30px;
-    }
+.fifth_section_innersection1_btn1{
 
-    .questions ul {
-        list-style-type: none;
-    }
+	background-color: #336E87;
+	height:53px;
+	color: #f2f4f5 ;
+	border:0px;
+	width:344px;
+	padding:1px;
+	border-radius: 50px;
+	margin-top:15%;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px;
 
-    .questions ul li {
-        margin-top: 20px;
-        margin-bottom: 10px;
-        color: #002535;
-    }
+	@media(max-width: 992px){
+		width:300px;
+		height: 50px;
+	}
+  
+}
 
-    .last_consultant_btn {
-        margin-top: 30px;
 
-        .last_consultant_button {
-            padding: 10px;
-            border-radius: 25px;
-            width: 200px;
-            letter-spacing: .2em;
-            background: #eff3f5;
-            border: none;
-        }
-    }
+.fifth_section_image{
+
+  font-family: "Open Sans";
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+
+.fifth_section_image_middle{
+
+  left: -479px;
+  position: relative;
+  max-width: unset;
+  width: 950px;
+}
+
+.fifth_section_bottom{
+
+  position: relative;
+  background-color: #ffffff;
+
+}
+
+.fifth_section_bottom_middle{
+
+  position: relative;
+  top: -175px;
+  background-color: #ffffff;
+
+}
+
+.ninth_section{
+
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-bottom: 10%;
+
+}
+
+.ninth_section_banner_img_container{
+
+  overflow: hidden;
+  margin-top:5%
+
+}
+
+.ninth_section_banner_img{
+
+  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/About_1.jpg");
+  background-size: cover;
+  width: 143%;
+  height: 848px;
+  left: -41%;
+  position: relative;
+  overflow: hidden;
+  top:-215px;
+}
+
+.ninth_section_divider_paragraph{
+
+  margin-top: -10%;
+
+}
+
+.ninth_section_divider_paragraph p{
+
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 24px;
+
+}
+
+.ninth_section_btn_container{
+
+  margin-top: 5%;
+}
+
+.ninth_section_btn1{
+
+  border:1px solid #336e87;
+	background-color: #336e87;
+	height:53px;
+	color:white;
+	width:398px;
+	border-radius: 50px;
+	font-family: "Open Sans";
+	font-size: 16px;
+	letter-spacing: 3.2px;
+	font-weight: bold;
+
+}
+
+
+.third_section{
+
+	height:500px;
+	display: inline;
+	max-width:100vw;
+	font-family: "Open Sans";
+ 
+}
+
+.third_section_row{
+
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
+
+}
+
+.third_section_innersection1{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	height:auto;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
+}
+
+.third_section_innersection1_content{
+
+	font-family: "Open Sans";
+	color:#002535;
+	position: relative;
+	margin-top: 15%;
+  margin-left: 0%;
+  margin-right: 25%;
+  
+}
+
+.third_section_innersection1_btn1{
+
+	
+	background-color: #EFF3F5;
+	height:53px;
+	color:#002535;
+	border:0px;
+	width:398px;
+	padding:1px;
+	border-radius: 50px;
+	margin-left:25px;
+	margin-top:30px;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px; 
+	
+  }
+
+
+
+.third_section_innersection1_content h1{
+
+	margin-left:25px;
+	margin-top:60px;
+	font-family: "Charter Bold Italic";
+	font-size: 48px;
+
+}
+
+.third_section_innersection1_content p{
+
+	margin-left:25px;
+	margin-top:10px;
+	margin-right: 10px;
+	font-family: "Open Sans";
+	font-size: 24px;
+	line-height: 1.3;
+	color: #002535;
+
+}
+
+
+
+.third_section_innersection2{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
+	@media(max-width: 992px){
+		display:none;
+	}
+
+}
+
+.third_section_innersection2_content{
+
+	font-family: "Open Sans";
+	
+	position: relative;
+	margin-top: 16%;
+	margin-left: 30%;
+  overflow: hidden;
+  width:536px;
+  height:667px;
+  
+}
+
+.third_section_innersection2_img{
+
+  width:1000px;
+  max-width: max-content;
+  position: relative;
+  left: -230px;
+
+}
+
+
+
+.sixth_section{
+
+  display:block;
+  margin:1px;
+  max-width:100vw;
+  background-color:#f2f4f5;
+  padding: 6%;
+  
+}
+
+.sixth_section_innersection1{
+
+  position:relative;
+  margin-left:10%;
+  margin-top: 8%;
+  margin-bottom: 10%;
+
+}
+
+.sixth_section_innersection1_nslogo{
+
+  max-width: 60%;
+  margin-left: 22px;
+  margin-bottom: 4%;
+
+}
+
+.sixth_section_innersection1_content{
+
+  height:250px;
+  position: relative;
+  
+}
+
+.sixth_section_innersection1_content h3{
+
+  margin-left:25px;
+  margin-top:10px;
+  font-family: "Open Sans";
+  color:#F2F4F5;
+  font-weight: bold;
+  font-size:30px;
+  letter-spacing: 6px;
+}
+
+.sixth_section_innersection1_content p{
+
+  margin-left:25px;
+  margin-top:10px;
+  font-size:24px;
+  color: #002535;
+  font-family: "Open Sans";
+
+}
+
+
+
+.sixth_section_innersection1_btn1{
+
+  background-color:#EFF3F5;
+  height:101px;
+  color:#002535;
+  border:0px;
+  width:398px;
+  padding:20px;
+  font-weight: bold;
+  border-radius: 50px;
+  margin-left:25px;
+  margin-top:50px;
+ 
+}
+
+.banner_section{
+
+  
+  height:176px;
+  background-color: #002535;
+  margin-top: 0px;
+  font-family: "Open Sans";
+  max-width:100vw;
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  @media (max-width: 992px) {
+    padding-left: 6%;
+  }
+}
+
+.banner_section h2{
+
+  color: #EFF3F5;
+  font-size: 30px;
+  letter-spacing: 3px;
+
+}
+
+
+.second_section{
+
+	height:auto;
+	display: inline;
+	max-width:100vw;
+	font-family: "Open Sans";
+
+}
+
+.second_section_row{
+
+  @extend .row;
+  display: flex;
+  @media (max-width: 992px) {
+    display: block;
+  }
+
+}
+
+.second_section_innersection1{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	height:auto;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
+}
+
+.second_section_innersection1_content{
+
+	color:#002535;
+	position: relative;
+	margin: 10%;
+  overflow: hidden;
+
+}
+
+.second_section_innersection2_content_img{
+
+  width: auto;
+  max-width: unset;
+  width: auto;
+  height: 1700px;
+  left: -630px;
+  position: relative;
+
+}
+
+.second_section_innersection1_content h2{
+
+	font-family: "Charter Bold";
+	font-size: 48px;
+
+}
+
+.second_section_innersection1_content p{
+
+	font-family: "Open Sans";
+	font-size: 24px;
+	line-height: 1.3;
+	color: #002535;
+  margin-top: 5%;
+
+}
+
+.second_section_innersection1_btn1{
+
+	background-color: #336e87;
+	height:53px;
+	color:#eff3f5;
+	border:0px;
+	width:398px;
+	padding:1px;
+	border-radius: 50px;
+	margin-top:5%;
+	font-family: "Open Sans";
+	font-weight: bold;
+	letter-spacing: 2.8px; 
+  
+}
+
+.second_section_innersection2{
+
+	@extend .col-xs-12;
+	@extend .col-sm-12;
+	@extend .col-lg-6;
+	background-color:#D6E2E7;
+	font-family: "Open Sans";
+
+	@media(max-width: 992px){
+		display:none;
+	}
+}
+
+.second_section_innersection2_content{
+
+	font-family: "Open Sans";	
+	position: relative;
+ 
+}
+
+.second_section_bold{
+
+  font-weight:bold;
+
+}
+
+.imgback{
+
+  position:relative;
+  margin:5px;
+  font-family: OpenSans;
+  background-color:rgb(255, 211, 129);
+  width:117px;
+  height:117px;
+  border-radius: 50%;
+
+ }
+
+ .innercard p{
+
+  margin-bottom: 3%;
+
+ }
+
+ .innercard p b{
+
+  font-family: "Open Sans";
+
+ }
+
+ .innercard li{
+
+  list-style-type:none;
+  position: relative;
+  line-height: 40px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  font-size: 20px;
+
+ }
+
+ .innercard li img{
+
+  height:25px;
+  position: relative;
+  top:5px;
+
+ }
+
+ .innercard{
+
+  padding-top: 3%;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 8%;
+  background-color: #ADC5CF;
+
+ }
+
+ .imgback img{
+
+  position:relative;
+  font-family: OpenSans;
+}
+
+.members_row{
+
+  @extend .row;
+  display: flex;
+
+}
+
+.added_members{
+
+  text-align: center;
+  margin-top: 5%;
+
+}
+
+.more_member_name h3{
+
+  font-family: "Charter Bold Italic";
+  font-size: 40px;
+
+}
+
+.member_designation p{
+
+  font-family: "Open Sans";
+  font-weight: bold;
+  letter-spacing: 3.0px;
+  color: #002535;
+  margin-top: 4%;
+  font-size: 19px;
+
+}
+
+.more_member_image_container{
+
+  margin: auto;
+  max-width: 80%;
+  margin-bottom: 5%;
+
 }
 
 </style>
 </head>
 
 <body>
-    <section class="first_section">
-        <div class="first_section_content">
-            <h2 class="page_name">About Us</h2>
-            <h1 class="section_main_content">A NetSuite Consultant <br>dedicated to your <i>success.</i></h1>
-            <p class="supportive_section_content">Work with ERP experts who support your goals and company vision.</p>
-
-            <button class="first_section_innersection1_btn1"> Schedule Your Consultation</button>
-        </div>
-
-        <div class="first_section_image">
-            <img src="" alt="">
-        </div>
-    </section>
-
-    <section class="second_section">
-        <div class="second_section_banner_1">
-            <div class="second_section_banner_1_image">
-                <img src="" alt="">
-            </div>
-            <div class="second_section_banner_1_content">
-                <div class="banner_1_content_heading">
-                    <h2>Discover how SuiteDynamics can <br>ease your NetSuite journey.</h2>
-                </div>
-                <div class="banner_1_main_content">
-                    <p>A NetSuite Enterprise Resource Planning (ERP) platform is a powerful yet massive system that’s
-                        difficult to implement and requires extensive coding knowledge to customize fully. You need a
-                        trusted consultant to ensure your software works and suits your needs. At times, that’s a tall
-                        order. <br><br>We know how hard it is to find a NetSuite consultant with solid project management
-                        skills, sufficient business understanding, and adequate software expertise. That’s why we exist.
+    <div class="first_section">
+        <div class="first_section_row">
+            <div class="first_section_innersection1 col-lg-7 col-xs-12">
+                <div class="first_section_innersection1_content">
+                    <h3>ABOUT US</h3>
+                    <H1>A NetSuite Consultant <br>dedicated to your <i>success.</i></H1>
+  
+                    <p>
+                        Work with ERP experts who support your goals and company vision
                     </p>
+                    <button class="first_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+                    
+  
                 </div>
+                
+  
             </div>
+            <div class="first_section_innersection2 col-lg-5 col-xs-12"></div>
         </div>
-        <div class="second_section_divider_paragraph">
+    </div>
+
+
+    <div class="eigth_section">
+        <div class="eigth_section_row">
+          <div class="eigth_section_innersection2 col-lg-4 col-md-6 col-xs-12">
+              <div class="eigth_section_innersection2_content">
+                  <div class="eigth_section_innersection2_content_img"></div>
+                  <!-- <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/HomePage_3.jpg"> -->
+              </div>
+              
+          </div>
+    
+          <div class="eigth_section_innersection1 col-lg-8 col-md-6 col-xs-12">
+              <div class="eigth_section_innersection1_content">
+                  <h1>Discover how SuiteDynamics can <br>ease your NetSuite journey.</h1>
+                  
+                  <p>A NetSuite Enterprise Resource Planning (ERP) platform is a powerful yet massive system that’s
+                    difficult to implement and requires extensive coding knowledge to customize fully. You need a
+                    trusted consultant to ensure your software works and suits your needs. At times, that’s a tall
+                    order. <br><br>We know how hard it is to find a NetSuite consultant with solid project management
+                    skills, sufficient business understanding, and adequate software expertise. That’s why we exist.
+                  </p>
+    
+              </div>
+              
+    
+          </div>
+        </div>
+    </div>
+    <div class="ninth_section">
+        <div class="ninth_section_divider_paragraph">
             <p>Discover how our founder and CEO, Jake Kleiner, turned his own
                 negative implementation experience into a reliable company designed to support your business growth.</p>
         </div>
-        <div class="second_section_banner_2">
-            <img src="img.jpg" >
+        <div class="ninth_section_banner_img_container">
+        <div class="ninth_section_banner_img"></div>
         </div>
-        <div class="second_section_divider_paragraph">
+        <div class="ninth_section_divider_paragraph">
             <p>SuiteDynamics employs a staff of reliable software and financial
                 experts who can’t wait to watch you succeed. Start your NetSuite journey today.</p>
         </div>
-        <div class="free_consultation_btn">
-            <button type="button" class="consultation_button">SCHEDULE YOUR CONSULTATION</button>
+        <div class="ninth_section_btn_container">
+            <button type="button" class="ninth_section_btn1">SCHEDULE YOUR CONSULTATION</button>
         </div>
-    </section>
-
-    <section class="third_section">
-        <div class="third_section_netsuit">
-            <p style="font-size:40px;"><b>ORACLE NET</b>SUITE</p><br>
-            <h2 style="font-size:30px;font-weight: 200; margin-top:20px;">Alliance Partner</h2>
-        </div>
-        <div class="third_section_content">
-            <p>As a certified NetSuite Alliance Partner, SuiteDynamics works alongside Oracle NetSuite to serve
-                companies from various industries. We also have access to NetSuite resources and system experts that
-                equip us to offer the best possible implementation and customization services. <br> <br><b>This
-                    designation
-                    highlights the quality work you can expect from the SuiteDynamics team and the exciting results
-                    you’ll
-                    experience after go-live.</b></p>
-        </div>
-        <div class="third_section_button">
-            <button type="button" id="cunsultation_btn">
-                <p>SCHEDULE YOUR CONSULTATION</p>
-            </button>
-        </div>
-    </section>
-
-    <div class="divider_banner">
-        <h1>GET A SIMPLIFIED, SUCCESSFUL ERP WITH SUITEDYNAMICS</h1>
     </div>
 
-    <section class="fourth_section">
-        <div class="fourth_section_image_div">
-            <img src="img.jpg">
-        </div>
-        <div class="fourth_section_content">
-            <div class="doller_image_container">
-                <img src="" alt="doller image" class="doller_image">
-            </div>
-            <div class="fourth_section_heading">
-                <h1>Work With a NetSuite <br>Partner That <i>Gets Results</i></h1>
-            </div>
-            <div class="fourth_section_main_content">
-                <p>Maybe you’re swamped in ERP research, trying to find software to help your company grow. Or you’ve
-                    already chosen a system but need to add new features. Perhaps you’ve tried implementing NetSuite,and
-                    everything went wrong.
-                    <br><br> <b>The point is that you’ve put a lot of work into this ERP already.Don’t waste it by
-                        hiring an unreliable NetSuite partner.</b>
-                </p>
-            </div>
-            <div class="list_cotainer">
-                <div class="list_heading">
-                    <p>We know how much you have riding on this system. <b>SuiteDynamics offers positive NetSuite
-                            experiences that end in successful go-lives and quick returns on investment.</b> When you
-                        work with us, you can expect:</p>
-                </div>
-                <div class="list_content">
-                    <ul class="fourth_section_list">
-                        <li>Solid software advice backed by real-world experience in finance, tech, and business.</li>
-                        <li>A wide array of NetSuite services performed by experienced implementers and developers.</li>
-                        <li>A dedicated team of experts who follow your project from its initial stages to completion.
-                        </li>
-                        <li>Quick and honest responses from our staff as a part of our open communication policy.</li>
-                        <li>A well-managed project completed with careful consideration of your timeline and budget.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="free_consultation">
-                <p><b>Schedule a free consultation with SuiteDynamics experts and discover how successful you can become
-                        with a perfectly customized and implemented NetSuite ERP. We can’t wait to see how your business
-                        grows.</b></p>
-            </div>
-            <div class="free_consultation_btn">
-                <button type="button" class="consultation_button">SCHEDULE YOUR CONSULTATION</button>
-            </div>
-        </div>
-    </section>
 
-    <section class="team fifth_section">
-        <div class="team_banner">
-            <h3>Meet the team</h3>
+    <div class="sixth_section">
+        <div class="sixth_section_innersection1">
+            <div class="sixth_section_innersection1_nslogo">
+                <img src="https://www.suitedynamics.co/SiteImages/Logos/logo-oracle-netsuite-alliance-partner-03.png" alt="">
+            </div>
+            <div class="sixth_section_innersection1_content">
+                <p>As a certified NetSuite Alliance Partner, SuiteDynamics works alongside Oracle NetSuite to serve
+                    companies from various industries. We also have access to NetSuite resources and system experts that
+                    equip us to offer the best possible implementation and customization services. <br> <br><b>This
+                        designation
+                        highlights the quality work you can expect from the SuiteDynamics team and the exciting results
+                        you’ll
+                        experience after go-live.</b></p>
+               
+                <button class="sixth_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
+                
+  
+            </div>
+            
+  
+    
         </div>
-        <div class="team_members">
-            <div class="member">
-                <div class="member_image_container">
-                    <img src="" alt="" class="member_image">
+    </div>
+
+    <div class="banner_section">
+        <div>
+      
+            <h2>GET A SIMPLIFIED, SUCCESSFUL ERP WITH SUITEDYNAMICS</h2>
+        </div>
+      
+    </div>
+
+    <div class="second_section">
+        <div class="second_section_row">
+            <div class="second_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+                <div class="second_section_innersection2_content">
+                    <img class="second_section_innersection2_content_img"src="https://www.suitedynamics.co/SiteImages/LandingPageImages/About_4.jpg" height="800px" width="600px">
                 </div>
-                <div class="member_name">
-                    <h3>Jake Kleiner</h3>
-                </div>
-                <div class="member_designation">
-                    <p>CHIEF EXECUTIVE OFFICER</p>
-                </div>
-                <div class="about_member">
-                    <p>An entrepreneur at heart, Jake has 10+ years of experience owning and operating companies. In
-                        this time, he has self-implemented NetSuite, SuiteCommerce, and SuiteCommerce Advanced.
-                        Additionally, Jake has 15+ years of C-Suite experience, tailoring technical and financial
-                        solutions for key stakeholders and decision-makers.</p>
-                </div>
+                
             </div>
-            <div class="member">
-                <div class="member_image_container"> <img src="" alt="" class="member_image">
+  
+            <div class="second_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+                <div class="second_section_innersection1_content">
+                    <div class="imgback"><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-199.png"></div>
+                    <h2>Work With a NetSuite Partner That Gets Results</h2>
+                    
+                    <p>
+                        Maybe you’re swamped in ERP research, trying to find software to help your company grow. Or you’ve already chosen a system but need to add new features. Perhaps you’ve tried implementing NetSuite, and everything went wrong. 
+                        
+                        <br><b>The point is that you’ve put a lot of work into this ERP already. Don’t waste it by hiring an unreliable NetSuite partner.</b><br><br></p>
+  
+                        <div class="innercard">
+                            <p>We know how much you have riding on this system. <b> SuiteDynamics offers positive NetSuite experiences that end in successful go-lives and quick returns on investment. </b> When you work with us, you can expect:</p>
+                            <ul>
+                            <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Solid software advice backed by real-world experience in finance, tech, and business.</li>
+                            <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> A wide array of NetSuite services performed by experienced implementers and developers.</li>
+                            <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> A dedicated team of experts who follow your project from its initial stages to completion.</li>
+                            <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> Quick and honest responses from our staff as a part of our open communication policy. </li>
+                            <li><img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/Careers/BENEFITS.png"> A well-managed project completed with careful consideration of your timeline and budget.</li>
+  
+                        </ul>
+                            
+                        </div>
+                    
+                        <p class="second_section_bold">Schedule a free consultation with SuiteDynamics experts and discover how successful you can become with a perfectly customized and implemented NetSuite ERP. We can’t wait to see how your business grows.</p>
+                    </p>
+  
+                        
+                    </p>
+                    <button class="second_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+                    
+  
                 </div>
-                <div class="member_name">
-                    <h3>Joe Palmetto</h3>
-                </div>
-                <div class="member_designation">
-                    <p>CHIEF OPERATING OFFICER</p>
-                </div>
-                <div class="about_member">
-                    <p>An entrepreneur at heart, Jake has 10+ years of experience owning and operating companies. In
-                        this time, he has self-implemented NetSuite, SuiteCommerce, and SuiteCommerce Advanced.
-                        Additionally, Jake has 15+ years of C-Suite experience, tailoring technical and financial
-                        solutions for key stakeholders and decision-makers.</p>
-                </div>
-            </div>
-            <div class="member">
-                <div class="member_image_container"> <img src="" alt="" class="member_image">
-                </div>
-                <div class="member_name">
-                    <h3>Ben Sherman</h3>
-                </div>
-                <div class="member_designation">
-                    <p>CHIEF REVENUE OFFICER</p>
-                </div>
-                <div class="about_member">
-                    <p>Ben began his career in technology, founding an IT implementation company in Israel. He has since
-                        led several successful businesses and technology initiatives within the fintech and insurance
-                        industries. Ben has a Bachelor of Science in Technology Management and an MBA from the Blekinge
-                        Institute of Technology in Sweden.</p>
-                </div>
+                
+  
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="fifth_section">
+        <div class="fifth_section1">
+          <div class="fifth_section_cards">
+              <img class="fifth_section_image" src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Jake.jpg">
+              <div class="fifth_section_bottom">
+                <h1>Jake Kleiner</h1>
+                <h3 style="text-align: center; color:#002535;">CHIEF EXECUTIVE OFFICER</h3>
+                <p style="text-align:center;">An entrepreneur at heart, Jake has 10+ years of experience owning and operating companies. In this time, he has self-implemented NetSuite, SuiteCommerce, and SuiteCommerce Advanced. Additionally, Jake has 15+ years of C-Suite experience, tailoring technical and financial solutions for key stakeholders and decision-makers.</p>
+              </div>      
+            </div>
+          <div class="fifth_section_cards">
+              <img class="fifth_section_image" src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Joe.jpg">
+              <div class="fifth_section_bottom">
+                <h1>Joe Pometto</h1>
+                <h3 style="text-align: center; color:#002535;">CHIEF OPERATING OFFICER</h3>
+                <p style="text-align:center;">An entrepreneur at heart, Jake has 10+ years of experience owning and operating companies. In this time, he has self-implemented NetSuite, SuiteCommerce, and SuiteCommerce Advanced. Additionally, Jake has 15+ years of C-Suite experience, tailoring technical and financial solutions for key stakeholders and decision-makers.</p>
+              </div>
+          </div>
+          <div class="fifth_section_cards">
+              <img class="fifth_section_image" src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Kevin.jpg">
+              <div class="fifth_section_bottom">
+                <h1>Kevin Klepeis</h1>
+                <h3 style="text-align: center;color:#002535;">DIRECTOR OF MARKETING</h3>
+                <p style="text-align:center;">Ben began his career in technology, founding an IT implementation company in Israel. He has since led several successful businesses and technology initiatives within the fintech and insurance industries. Ben has a Bachelor of Science in Technology Management and an MBA from the Blekinge Institute of Technology in Sweden.</p>
+              </div>
+            </div>
+        </div>
+  
+    </div>
 
     <section class="sixth_section">
-        <div class="more_members">
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+        <div class="members_row">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Madhu.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Madhurima Sundersen</h3>
@@ -700,8 +1080,8 @@ body{
                     <p>PRINCIPAL NETSUITE <br>CONSULTANT</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Grace.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Grace Martin</h3>
@@ -710,8 +1090,8 @@ body{
                     <p>NETSUITE FINANCIAL <br>LEAD CONSULTANT</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Chaise.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Chaise Katzer</h3>
@@ -720,8 +1100,8 @@ body{
                     <p>PROJECT MANAGEMENT LEAD</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Jill.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Jill Kubiesa</h3>
@@ -730,8 +1110,10 @@ body{
                     <p>PROJECT MANAGER</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+        </div>
+        <div class="members_row">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/David.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>David Miatech</h3>
@@ -740,8 +1122,8 @@ body{
                     <p>PRINCIPAL NETSUITE <br>CONSULTANT</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Quinn.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Quinn Johns</h3>
@@ -750,8 +1132,8 @@ body{
                     <p>TECHNICAL LEAD</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Derek.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Derek Kalvin</h3>
@@ -760,48 +1142,8 @@ body{
                     <p>IMPLEMENTATION LEAD</p>
                 </div>
             </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
-                </div>
-                <div class="more_member_name">
-                    <h3>Frances Kocher</h3>
-                </div>
-                <div class="member_designation">
-                    <p>SALES EXECUTIVE</p>
-                </div>
-            </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
-                </div>
-                <div class="more_member_name">
-                    <h3>Madison Smith</h3>
-                </div>
-                <div class="member_designation">
-                    <p>BUSINESS DEVELOPMENT <br> REPRESENTATIVE</p>
-                </div>
-            </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
-                </div>
-                <div class="more_member_name">
-                    <h3>Angelina Martinez</h3>
-                </div>
-                <div class="member_designation">
-                    <p>BUSINESS DEVELOPMENT <br> REPRESENTATIVE</p>
-                </div>
-            </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
-                </div>
-                <div class="more_member_name">
-                    <h3>Derek Kalvin</h3>
-                </div>
-                <div class="member_designation">
-                    <p>IMPLEMENTATION LEAD</p>
-                </div>
-            </div>
-            <div class="added_members">
-                <div class="more_member_image_container"> <img src="" alt="" class="added_member_image">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Frances.jpg" alt="" class="added_member_image">
                 </div>
                 <div class="more_member_name">
                     <h3>Frances Kocher</h3>
@@ -811,9 +1153,51 @@ body{
                 </div>
             </div>
         </div>
+        <div class="members_row">
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Madison.jpg" alt="" class="added_member_image">
+                </div>
+                <div class="more_member_name">
+                    <h3>Madison Smith</h3>
+                </div>
+                <div class="member_designation">
+                    <p>BUSINESS DEVELOPMENT <br> REPRESENTATIVE</p>
+                </div>
+            </div>
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/AngelinaHeadshot.jpg" alt="" class="added_member_image">
+                </div>
+                <div class="more_member_name">
+                    <h3>TBD</h3>
+                </div>
+                <div class="member_designation">
+                    <p>TBD</p>
+                </div>
+            </div>
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Geoff.jpg" alt="" class="added_member_image">
+                </div>
+                <div class="more_member_name">
+                    <h3>Derek Kalvin</h3>
+                </div>
+                <div class="member_designation">
+                    <p>IMPLEMENTATION LEAD</p>
+                </div>
+            </div>
+            <div class="added_members col-lg-3 col-md-6 col-xs-12">
+                <div class="more_member_image_container"> <img src="https://www.suitedynamics.co/SiteImages/Headshots/Headshots/Eric.jpg" alt="" class="added_member_image">
+                </div>
+                <div class="more_member_name">
+                    <h3>Eric Laylan</h3>
+                </div>
+                <div class="member_designation">
+                    <p>Technical Lead</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="faqs">
+    <!-- <section class="faqs">
         <div class="faqs_heading">
             <h2>FREQUENTLY ASKED QUESTIONS</h2>
         </div>
@@ -834,7 +1218,7 @@ body{
         <div class="last_consultant_btn">
             <button type="button" class="last_consultant_button">SCHEDULE YOUR <br>CONSULTATION</button>
         </div>
-    </section>
+    </section> -->
 </body>
 
 </html>

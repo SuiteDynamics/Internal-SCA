@@ -1,46 +1,55 @@
-// @module AG.SavedSearchResults.SearchResultsModule
-define('SD.SavedSearchResults.SearchResultsModule.View'
+// @module SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions
+define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 ,	[
-	'sd_savedsearchresults_searchresultsmodule.tpl'
+	'suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl'
 	
-	,	'SD.SavedSearchResults.SearchResultsModule.Model'
+	,	'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model'
 	
 	,	'Backbone'
 	,	'Utils'
-	,	'underscore'
-	,	'GlobalViews.Pagination.View'
-	,	'UrlHelper'
     ]
 , function (
-	sd_savedsearchresults_searchresultsmodule_tpl
+	suitedynamics_zonesubscriptions_zonesubscriptions_list_tpl
 	
-	,	SearchResultsModel
+	,	ZoneSubscriptionsSS2Model
 	
 	,	Backbone
 	,	Utils
-	,	_
-	,	GlobalViewsPaginationModule
-	,	UrlHelperModule
 )
 {
     'use strict';
 
-	
-	// @class AG.SavedSearchResults.SearchResultsModule.View @extends Backbone.View
+	// @class SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View @extends Backbone.View
 	return Backbone.View.extend({
 
-		template: sd_savedsearchresults_searchresultsmodule_tpl
+		template: suitedynamics_zonesubscriptions_zonesubscriptions_list_tpl
 
 	,	initialize: function (options) {
 
-		console.log('list view')
-		this.on('afterViewRender', function() {
+			/*  Uncomment to test backend communication with an example service
+				(you'll need to deploy and activate the extension first)
+			*/
+			if(!this.subscriptions){
+				this.subscriptions = [];
+			}
 
-			$("#zab-item").find("p").hide();
-			$("#zab-item").find("div").hide();
-			
-	 	 });
-			
+			this.model = new ZoneSubscriptionsSS2Model();
+			var self = this;
+         	this.model.fetch().done(function(result) {
+				console.log('ZAB Subscriptions', result)
+				self.subscriptions = result;
+				self.render();
+      		});
+
+
+			console.log('list view')
+			this.on('afterViewRender', function() {
+	
+				$("#zab-item").find("p").hide();
+				$("#zab-item").find("div").hide();
+				
+			});
+				  
 			this.savedSearchId = (options.routerArguments && options.routerArguments[0]);
 			var urlOptions = Utils.parseUrlOptions(options.routerArguments && options.routerArguments[1]);
 			var page = urlOptions['page'] || '1';
@@ -57,7 +66,6 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 			
 			this.formattedResults = [];
 			
-			this.model = new SearchResultsModel();
 			this.loading = true;
 			
 			var self = this;
@@ -75,19 +83,12 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 				reqObj.groupIndex = groupIndex;
 				this.showReturn = true;
 			}
-			
-         	this.model.save(reqObj).done(function() {
-				
-				self.loading = false;
-				self.formatResults();
-				self.render();
-				
-      		});
+				  
 
 
 		}
 
-	,	events: {
+		,	events: {
 			'click [data-sort]': 'sortData',
 			'click [data-group]': 'drillDownView',
 			'click .return-summary-link': 'returnSummary',
@@ -222,18 +223,16 @@ define('SD.SavedSearchResults.SearchResultsModule.View'
 		}                    
 	}
 
-		//@method getContext @return AG.SavedSearchResults.SearchResultsModule.View.Context
+		//@method getContext @return SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 	,	getContext: function getContext()
 		{
-			//@class AG.SavedSearchResults.SearchResultsModule.View.Context
-			
+
+			console.log('getcontext', this)
+			//@class SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
+			// this.message = this.message || 'Hello World!!'
 			return {
-				loading: this.loading,
-				columns: this.model.get('columns',[]),
-				results: this.formattedResults,
-				tabLabel: this.tabLabel,
-				hasResults: (this.formattedResults.length > 0),
-				showReturn: this.showReturn || false
+				hasResults: (this.subscriptions.length > 0),
+				subscriptions: this.subscriptions
 			};
 		}
 	});

@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": { 
+        "ZoneSubscriptions.config": {
+            "group": "extensions",
+            "subtab": "ZoneSubscriptions_subtab",
+            "type": "string",
+            "title": "ZoneSubscriptions_Title",
+            "description": "Config description example",
+            "default": "Default config example"
+        }
+    }
+}

@@ -42,21 +42,7 @@ define('SuiteDynamics.MotusPayments.PaymentMethodList.View'
 		template: suitedynamics_motuspayments_paymentmethodlist_tpl
 
 	,	initialize: function (options) {
-	// 	this.on('afterViewRender',function(){
-	// 		$('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-	// 		$('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
-	// 		$('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-	// 	   console.log('add init listener')
-	// 	   jQuery(document).ready(function(){
-	// 		   console.log('view render')
-	// 		   $('head').append('<script src="https://api.paytrace.com/assets/e2ee/paytrace-e2ee.js"></script>');
-	// 		   jQuery('head').append('<script src="https://protect.sandbox.paytrace.com/js/protect.min.js" type="application/javascript"></script>');
-			   
-
-	// 		   // console.log('setpaytrace', paytrace)
-	// 		   // paytrace.setKeyAjax("https://7050356-sb1.app.netsuite.com/core/media/media.nl?id=15579&c=7050356_SB1&h=GyGcwcnLfnS9NWCfcjBji8Ttk2kbyhmRI7WnbemgxZpU5kQE&_xt=.cer");
-	// 	   })
-	//    })
+		
 	}
 
 	,	events: {

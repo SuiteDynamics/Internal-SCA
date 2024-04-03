@@ -48,10 +48,6 @@ define(
 			var motusSelf = this
 			motusSelf.motusCollection = new MotusPaymentsCollection();
 			motusSelf.motusActive = false;
-			motusSelf.motusCollection.on('add', function (model) {	
-				console.log('add listener')				
-				// motusSelf.render()
-			});
 
 			var checkout = container.getComponent("Checkout");
 			//TOUCHPOINT 1: Add Module to final step of checkout on submit. This module will trigger the SDK Popup
@@ -89,8 +85,7 @@ define(
 					console.log('payment methods', payment_methods)
 					var motus = _.findWhere(payment_methods,{ name: 'Motus' });
 
-					// var	profile = _.has(ProfileModel,'ProfileModel')? ProfileModel.ProfileModel: ProfileModel;
-					// 	self = this;
+					if(motus.imagesrc)
 
 					this.modules.push({
 						classModule: SuitedynamicsMotusPaymentsMethodSelector,
