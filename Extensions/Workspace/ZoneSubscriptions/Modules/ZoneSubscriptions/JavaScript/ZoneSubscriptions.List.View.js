@@ -42,12 +42,12 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 
 
 				console.log('list view')
-				this.on('afterViewRender', function () {
+				// this.on('afterViewRender', function () {
 
-					$("#zab-item").find("p").hide();
-					$("#zab-item").find("div").hide();
+				// 	$("#zab-item").find("p").hide();
+				// 	$("#zab-item").find("div").hide();
 
-				});
+				// });
 
 				this.savedSearchId = (options.routerArguments && options.routerArguments[0]);
 				var urlOptions = Utils.parseUrlOptions(options.routerArguments && options.routerArguments[1]);
@@ -203,25 +203,38 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				this.formattedResults = formattedResults;
 			}
 			, expandTable: function (event) {
+				let $target = $(event.target);
 
-				console.log(event.target)
-
-				let targetID = $(event.target)[0].id;
-
-				console.log(targetID)
-				if (targetID == "zab-detail-button") {
-					return
+				// Comprobamos si el clic ocurrió en el botón de detalles, si es así, no hacemos nada.
+				if ($target.is('#zab-detail-button')) {
+					return;
 				}
-				event.stopPropagation();
-				var $target = $(event.target);
-				if ($target.closest("td").attr("colspan") >= 0) {
-					$target.slideUp();
-				} else {
-					var $nextRow = $target.closest("tr").next("tr#zab-item");
-					$nextRow.slideToggle();
 
+				// Detenemos la propagación del evento para evitar que se ejecuten otras acciones en elementos superiores.
+				event.stopPropagation();
+
+				// Obtenemos el elemento td más cercano al que se hizo clic.
+				let $closestTd = $target.closest('td');
+
+				// Verificamos si la celda tiene un colspan mayor o igual a 0.
+				if ($closestTd.attr('colspan') >= 1) {
+					// Si es así, no hacemos nada.
+					return;
+				}
+
+				// Obtenemos la fila actual en la que se hizo clic.
+				let $currentRow = $closestTd.closest('tr');
+
+				// Obtenemos la siguiente fila con el ID "zab-item" después de la fila actual.
+				let $nextRow = $currentRow.next('tr#zab-item');
+
+				// Verificamos si la fila siguiente existe y no es una fila de detalles.
+				if ($nextRow.length && !$nextRow.hasClass('details-row')) {
+					// Expandimos o contraemos la siguiente fila.
+					$nextRow.slideToggle();
 				}
 			}
+
 
 			//@method getContext @return SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 			, getContext: function getContext() {
