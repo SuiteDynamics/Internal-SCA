@@ -53,6 +53,7 @@
 	font-family: "Open Sans";
 	padding: 0px;
 	font-size: 0;
+  overflow: hidden;
 
     @media (max-width: 992px) {
       margin-top: 10%;
@@ -89,16 +90,24 @@
   @media (max-width: 992px) {
     font-size: 40px;
   }
+
+  @media (max-width: 1400px) {
+    font-size: 44px;
+  }
   }
 
   
   .first_section_innersection1_content P{
 
-	margin-top: 5%;
-	font-family: "Open Sans";
-	color: #002535;
-	font-size: 24px;
-	letter-spacing: -.5px;
+    margin-top: 5%;
+    font-family: "Open Sans";
+    color: #002535;
+    font-size: 24px;
+    letter-spacing: -.5px;
+
+    @media (max-width: 1200px) {
+      font-size: 20px;
+    }
   }
 
   .first_section_innersection1_content_buttons{
@@ -112,7 +121,7 @@
 	background-color: #F93A30;
 	height:101px;
 	color:white;
-	width:398px;
+	width:330px;
 	padding:25px;
 	border-radius: 50px;
 	margin-top:10px;
@@ -124,6 +133,13 @@
   @media (max-width: 992px) {
     font-size: 10px;
   }
+
+  @media (max-width: 1500px) {
+    width: 200px;
+    font-size: 12px;
+    height: 80px;
+  }
+	
 	
   }
   
@@ -133,7 +149,7 @@
 	background-color:white;
 	height: 101px;
 	color:#F93A30;
-	width:398px;
+	width:330px;
 	padding:25px;
 	border-radius: 50px;
 	margin-left:15px;
@@ -146,10 +162,17 @@
   @media (max-width: 992px) {
     font-size: 10px;
   }
+  @media (max-width: 1500px) {
+    width: 200px;
+    font-size: 12px;
+    height: 80px;
+  }
   }
 
 .first_section_innersection2_image{
-	max-width: 150%;
+	max-width: 175%;
+  position: relative;
+  left: -190px;
 }
 
 
@@ -1067,7 +1090,7 @@ margin-inline: auto;
   font-weight: bold;
   font-size: 14px;
   width: 513px;
-  height: 68px;
+  height:53px;
   margin-bottom: 3%;
 
   @media (max-width: 992px) {
@@ -1136,8 +1159,12 @@ margin-inline: auto;
               </p>
 
               <div class="first_section_innersection1_content_buttons">
-                  <button class="first_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
-                  <button class="first_section_innersection1_btn2"> REQUEST A DEMO</button>
+                  <a href="#schedule-a-consultation">
+                    <button class="first_section_innersection1_btn1" id="schedule-your-consultation"> SCHEDULE YOUR CONSULTATION</button>
+                  </a>
+                  <a href="#schedule-a-consultation">
+                    <button class="first_section_innersection1_btn2"> REQUEST A DEMO</button>
+                  </a>
               </div>
 
       
@@ -1179,9 +1206,9 @@ margin-inline: auto;
   
               
           </p>
-
-    <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
-
+    <a href="#schedule-a-consultation">      
+      <button id="schedule-your-consultation" class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
+    </a>  
     
 
   </div>
@@ -1243,7 +1270,9 @@ margin-inline: auto;
       <div class="fourth_section_middle3">
           <div class="fsis1_section2">
               <p>Our team will help implement a precise finance and accounting <br> system that keeps your business operating at 100%.</p>
-              <button class="fsis1_btn">Schedule Your Consultaion</button>
+              <a href="#schedule-a-consultation">
+                <button id="schedule-your-consultation" class="fsis1_btn">Schedule Your Consultaion</button>
+              </a>
           </div>
       </div>
 
@@ -1309,7 +1338,9 @@ margin-inline: auto;
 <div class="sixthsection_innsersection">
   <h3>NEED A SPECIAL INTEGRATION?</h3>
   <p>SuiteDynamics experts can connect your NetSuite ERP to a <br>wide range of third-party applications, ensuring your <br> company has the functionality it needs to succeed.</p>
-  <button class="sixthsectionbtn">Schedule Your Consultation</button>
+  <a>
+    <button id="schedule-your-consultation" class="sixthsectionbtn">Schedule Your Consultation</button>
+  </a>
 </div>
 
 </div>
@@ -1358,8 +1389,9 @@ margin-inline: auto;
 
                   
               </p>
-              <button class="eigth_section_innersection1_btn1"> Schedule Your Consultation</button>
-              
+              <a href="#schedule-a-consultation">
+                <button id="schedule-your-consultation" class="eigth_section_innersection1_btn1"> Schedule Your Consultation</button>
+              </a>
 
           </div>
       </div>

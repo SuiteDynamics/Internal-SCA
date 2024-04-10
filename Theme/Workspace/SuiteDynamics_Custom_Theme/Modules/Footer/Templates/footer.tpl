@@ -29,6 +29,17 @@
 	</div>
 </div>
 
+<div class="footer-bottom">
+	<div class="footer-logo">
+		<img src="https://www.suitedynamics.co/SiteImages/Logos/SD_White_Stacked_RGB.png">
+	</div>
+	<div class="footer-address">
+		<p>2913 University Ave</p>
+		<p>Madison, WI 53705</p>
+		<p>608.492.3997</p>
+	</div>
+</div>
+
 
 {{!----
 Use the following context variables when customizing this template:

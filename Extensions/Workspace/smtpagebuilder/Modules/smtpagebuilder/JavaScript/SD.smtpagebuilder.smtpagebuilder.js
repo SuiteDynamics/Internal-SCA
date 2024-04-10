@@ -2,16 +2,29 @@
 define(
 	'SD.smtpagebuilder.smtpagebuilder'
 	, [
-		'SD.smtpagebuilder.smtpagebuilder.View'
+		'SD.smtpagebuilder.smtpagebuilder.View',
+		'jQuery'
 	]
 	, function (
-		smtpagebuilderView
+		smtpagebuilderView,
+		jQuery
 	) {
 		'use strict';
 
 		return {
 			mountToApp: function mountToApp(container) {
 				console.log('smt')
+
+
+				// jQuery(document).ready(function(){
+				// 		console.log('elemetn', $("#schedule-your-consultation"))
+					
+				// 		document.getElementById("schedule-your-consultation").onclick = function () {
+				// 		console.log('click')
+				// 		location.href = "https://www.suitedynamics.co/schedule-a-consultation";
+					
+                //  }
+				// });
 
 				var pageTypeComponent = container.getComponent("PageType");
 

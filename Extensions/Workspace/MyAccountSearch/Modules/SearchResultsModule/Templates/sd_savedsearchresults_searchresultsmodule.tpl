@@ -60,9 +60,6 @@
 						</div>					
 	
 					</td>
-					<td colspan="3">
-						<p class="zab-item-description">Development Services for any Netsuite request. Take your Netsuite environment to the next level.</p>
-					</td>
 					<td>
 						<p>rate: $200</p>
 					</td>
