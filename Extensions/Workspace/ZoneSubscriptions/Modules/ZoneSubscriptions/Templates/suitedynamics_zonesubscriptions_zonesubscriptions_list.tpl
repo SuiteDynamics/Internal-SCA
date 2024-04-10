@@ -10,7 +10,7 @@
     </div>
     {{/if}}
   <div class="searchresults-table-container">
-  <table data-action="expand-table">
+  <table data-action="expand-table" class="custom-table">
     <thead>
     <tr>
     <th></th>
@@ -18,7 +18,9 @@
     <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Start Date</th>
     <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>End Date</th>
     <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Charge Schedule</th>
-    <th></th>
+    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Subscription Status</th>
+    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Order Date</th>
+    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Total cost</th>
     </tr>
     </thead>
     
@@ -34,35 +36,65 @@
           <td>{{startDate}}</td>
           <td>{{endDate}}</td>
           <td>{{chargeSchedule}}</td>
-          <td>
-              <a id="zab-detail-button" href="/subscription-detail" class="zab-detail-modal-popup-button" data-toggle="show-in-modal">Details</a>
-          </td>
+          <td>{{subscriptionStatus}}</td>
+          <td>{{orderDate}}</td>
+          <td>{{totalCost}}</td>
+          
       </tr>
-      {{#each items}}
-          <tr id="zab-item">
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="clearfix zab-item-name-image-container">
-                <img class="zab-item-image" src="https://7050356.app.netsuite.com/core/media/media.nl?id=20874&c=7050356&h=TB7MA5Bz_dcO-XFJFlPtoDL536DfsUPCTKeOJ3265gcP1-2b" alt="">
-                <div class="zab-item-name">{{itemID}}</div>
-              </div>					
+      {{#if items.length}}
+        {{#each items}}
+            <tr id="zab-item">
+              <td>
+              </td>
+              <td>
+              </td>
+              <td>
+                <div class="clearfix zab-item-name-image-container">
+                  <img class="zab-item-image" src={{itemImage}} alt="">
+                  <div class="zab-item-name">{{name}}</div>
+                </div>					
 
-            </td>
-            <td colspan="3">
-              <p class="zab-item-description">{{itemDesc}}</p>
-            </td>
-            <td>
-              <p>qty: {{itemQuantity}}</p>
-            </td>
-            <td>
-              <p>Total: $ {{itemTotal}}</p>
-            </td>
-          </tr>
+              </td>
+              <td>
+                <p class="zab-item-description">{{itemDesc}}</p>
+              </td>
+              <td>
+                <p>qty: {{itemQuantity}}</p>
+              </td>
+              <td>
+                <p>Total: $ {{itemTotal}}</p>
+              </td>
+              <td>
+              </td>
+              <td>
+              </td>
+            </tr>
+        {{/each}}
+        {{else}}
+      <tr id="zab-item">
+      <td>
+              </td>
+              <td>
+              </td>
+              
+              <td>
+              </td>
+        <td>
+        <p class="zab-item-description">There are no items related</p>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+    {{/if}}
       {{/each}}
-    {{/each}}
+    
     </tbody>
     
   </table>
@@ -72,5 +104,33 @@
   {{/if}}
   <div data-view="Pagination.View" class="searchresults-pagination"></div>
 {{/if}}
+<div>
+    <label for="status-filter">Status:</label>
+    <select id="status-filter">
+      <option value="all">All</option>
+      <option value="active">Active</option>
+      <option value="expired">Expired</option>
+      <option value="suspended">Suspended</option>
+      <option value="canceled">Canceled</option>
+    </select>
+  </div>
+   <script>
+        document.getElementById('status-filter').addEventListener('change', function () {
+            var selectedStatus = this.value.toLowerCase();
+            var rows = document.querySelectorAll('.custom-table tbody tr');
+
+            rows.forEach(function (row) {
+                var status = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+                if (selectedStatus === 'all' || status === selectedStatus) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+      $(document).ready(function() {
+          $("tr#zab-item").hide();
+      });
+    </script>
 
 </section>
