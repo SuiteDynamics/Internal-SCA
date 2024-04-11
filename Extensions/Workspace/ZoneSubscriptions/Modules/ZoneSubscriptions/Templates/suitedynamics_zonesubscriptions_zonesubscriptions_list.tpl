@@ -9,6 +9,16 @@
       <a class="return-summary-link">Return to Summary</a>
     </div>
     {{/if}}
+    <div>
+    <label for="status-filter">Status:</label>
+    <select id="status-filter">
+      <option value="all">All</option>
+      <option value="active">Active</option>
+      <option value="expired">Expired</option>
+      <option value="suspended">Suspended</option>
+      <option value="canceled">Canceled</option>
+    </select>
+  </div>
   <div class="searchresults-table-container">
   <table data-action="expand-table" class="custom-table">
     <thead>
@@ -53,7 +63,6 @@
                   <img class="zab-item-image" src={{itemImage}} alt="">
                   <div class="zab-item-name">{{name}}</div>
                 </div>					
-
               </td>
               <td>
                 <p class="zab-item-description">{{itemDesc}}</p>
@@ -104,16 +113,7 @@
   {{/if}}
   <div data-view="Pagination.View" class="searchresults-pagination"></div>
 {{/if}}
-<div>
-    <label for="status-filter">Status:</label>
-    <select id="status-filter">
-      <option value="all">All</option>
-      <option value="active">Active</option>
-      <option value="expired">Expired</option>
-      <option value="suspended">Suspended</option>
-      <option value="canceled">Canceled</option>
-    </select>
-  </div>
+
    <script>
         document.getElementById('status-filter').addEventListener('change', function () {
             var selectedStatus = this.value.toLowerCase();
@@ -124,6 +124,7 @@
                 if (selectedStatus === 'all' || status === selectedStatus) {
                     row.style.display = '';
                 } else {
+                  console.log('row',row)
                     row.style.display = 'none';
                 }
             });

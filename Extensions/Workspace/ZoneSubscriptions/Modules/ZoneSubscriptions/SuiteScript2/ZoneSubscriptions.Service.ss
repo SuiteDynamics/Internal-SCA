@@ -121,7 +121,7 @@
                         ]
                      })
 
-                     log.debug('itemLookup', itemLookup.storedisplayname.replace(/\s/g, ''))
+                     log.debug('itemLookup', 'https://www.suitedynamics.co/ItemImages/'+itemLookup.storedisplayname.replace(/\s/g, '')+'_01.png')
                      itemsObj.itemImage = 'https://www.suitedynamics.co/ItemImages/'+itemLookup.storedisplayname.replace(/\s/g, '')+'_01.png'
                      itemsObj.name = itemLookup.storedisplayname
       
