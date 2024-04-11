@@ -253,46 +253,40 @@
     }
 
     .first_section {
-      padding: 50px 0 50px 110px;
+      background-color: #f2f4f5;
+      padding: 50px 0;
       font-family: "Open Sans", sans-serif;
-      position: relative;
-      /* Establece la posición relativa para que los elementos absolutos se posicionen con respecto a este contenedor */
     }
 
-    .first_section_bg {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .first_section_row {
+      display: flex;
+    }
+
+    .first_section_innersection1 {
       width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, #f2f4f5 67%, transparent 0%), url('https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_1.jpg') no-repeat;
-      background-size: cover;
-      background-position: left;
-      z-index: -1;
-      /* Coloca la imagen de fondo en el fondo */
+      max-width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
     }
 
-    .first_section_content {
-      position: relative;
-      /* Establece la posición relativa para que los elementos absolutos se posicionen con respecto a este contenedor */
-      z-index: 2;
-      /* Coloca el contenido de texto encima de la imagen de fondo */
+    @media (min-width: 768px) {
+      .first_section_innersection1 {
+        flex: 0 0 100%;
+      }
     }
 
-    .arrow-image {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      z-index: 1;
-      height: 100%;
-      /* Coloca la segunda imagen en medio */
+    @media (min-width: 992px) {
+      .first_section_innersection1 {
+        max-width: 50%;
+        flex: 0 0 50%;
+      }
     }
 
     .first_section_innersection1_content {
-      color: #002535;
-      text-align: center;
+      width: 100%;
+      max-width: 40vw;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .first_section_innersection1_content h2 {
@@ -301,8 +295,6 @@
       letter-spacing: 2px;
       margin-top: 30px;
       margin-bottom: 10px;
-      font-size: 32px;
-      text-align: left;
     }
 
     .first_section_innersection1_content h1 {
@@ -310,8 +302,6 @@
       font-family: "Charter", sans-serif;
       margin-top: 10px;
       margin-bottom: 20px;
-      font-size: 72px;
-      text-align: left;
     }
 
     .first_section_innersection1_content h1 i {
@@ -320,13 +310,12 @@
     }
 
     .first_section_innersection1_content p {
+      color: #002535;
+      font-family: "Open Sans", sans-serif;
       margin-bottom: 20px;
-      font-size: 32px;
-      text-align: left;
     }
 
     .first_section_innersection1_btn1 {
-      text-align: left !important;
       background-color: #002535;
       color: white;
       border: none;
@@ -334,25 +323,64 @@
       border-radius: 50px;
       margin-top: 30px;
       font-family: "Open Sans", sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 1px;
       cursor: pointer;
+      display: block;
+      margin-left: auto;
       margin-right: auto;
     }
 
+    .first_section_innersection2 {
+      width: 100%;
+      max-width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
     @media (min-width: 768px) {
-      .first_section_innersection1 {
-        max-width: 50%;
+      .first_section_innersection2 {
+        flex: 0 0 100%;
       }
+    }
 
-      .first_section_content {
-        display: flex;
-        align-items: center;
-      }
-
+    @media (min-width: 992px) {
       .first_section_innersection2 {
         max-width: 50%;
+        flex: 0 0 50%;
       }
+    }
+
+
+    .first_section_innersection2 {
+      position: relative;
+      overflow: hidden;
+      /* Asegura que nada se desborde del contenedor */
+    }
+
+    .first_section_innersection2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30%;
+      height: 100%;
+      background-color: #f2f4f5;
+
+    }
+
+    .first_section_innersection2 img {
+      max-width: 90%;
+      width: 90%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin: 0 auto;
+      /* Centra la imagen horizontalmente */
+      position: relative;
+      z-index: 1;
+      /* Asegura que la imagen esté delante del pseudo-elemento */
     }
 
 
@@ -667,76 +695,42 @@
 
     .seventh_section {
       background-color: #D6E2E7;
-      padding: 50px 0 50px 0px;
+      padding: 50px 0;
       font-family: "Open Sans", sans-serif;
-      position: relative;
-    }
-
-    .seventh_section_bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, #f2f4f5 0%, transparent 0%), url('https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_3.jpg') no-repeat;
-      background-size: cover;
-      background-position: left;
-      z-index: 1;
-      /* Coloca la imagen de fondo en el fondo */
-    }
-
-    .seventh_section_content {
-      position: relative;
-      /* Establece la posición relativa para que los elementos absolutos se posicionen con respecto a este contenedor */
-      z-index: 2;
-      /* Coloca el contenido de texto encima de la imagen de fondo */
-    }
-
-    .arrow-image2 {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translate(-50%, -50%);
-      width: 125%;
-      z-index: 1;
-      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .seventh_section_innersection1 {
       width: 100%;
       max-width: 50%;
-      padding: 0 0px;
+      padding: 0 15px;
       box-sizing: border-box;
     }
 
     .seventh_section_innersection1_content {
-      color: #002535;
-      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
     }
-
-    /* .seventh_section_innersection1_content {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-        } */
 
     .seventh_section_innersection1_content h1 {
       color: #002535;
       font-family: "Open Sans", sans-serif;
       font-weight: bold;
-      font-size: 48px;
-      margin-top: 10px;
-      margin-bottom: 20px;
+      font-size: 24px;
+      margin-top: 20px;
+      margin-bottom: 10px;
       text-align: left;
     }
-
 
     .seventh_section_innersection1_content p {
       color: #002535;
       font-family: "Open Sans", sans-serif;
       margin-bottom: 20px;
       text-align: left;
-      font-size: 24px;
     }
 
     .seventh_section_innersection1_btn1 {
@@ -747,7 +741,7 @@
       border-radius: 50px;
       margin-top: 30px;
       font-family: "Open Sans", sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 1px;
       cursor: pointer;
       display: block;
@@ -755,29 +749,33 @@
       margin-right: auto;
     }
 
-
-    /* .seventh_section_innersection2 {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 50%;
-        } */
-
+    .seventh_section_innersection2 {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 50%;
+    }
 
 
 
-    @media (min-width: 768px) {
-      .seventh_section_innersection1 {
-        max-width: 50%;
-      }
+    .seventh_section_innersection2 img {
+      max-width: 100%;
+      /* Ajusta el ancho máximo de la imagen */
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      /* Centra la imagen horizontalmente */
+      position: relative;
+      z-index: 1;
+      /* Asegura que la imagen esté delante del pseudo-elemento */
+    }
 
-      .seventh_section_content {
-        display: flex;
-        align-items: center;
-      }
+    @media (max-width: 768px) {
 
+      .seventh_section_innersection1,
       .seventh_section_innersection2 {
-        max-width: 50%;
+        max-width: 100%;
       }
     }
 
@@ -888,28 +886,34 @@
 
 <body>
   <div class="first_section">
-    <div class="first_section_bg"></div> <!-- Imagen de fondo -->
     <div class="first_section_row">
       <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
-        <div class="first_section_content">
-          <div class="first_section_innersection1_content">
-            <h2>NETSUITE SERVICES</h2>
-            <h1>Get the ERP services you<br> need to become an<br> industry <i>success story</i>.</h1>
-            <p>
-              Have experts on hand to implement the NetSuite system, customize modules, integrate
-              third-party
-              software,
-              and
-              more.
-            </p>
-            <button class="first_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
-          </div>
+        <div class="first_section_innersection1_content">
+          <h2>NETSUITE SERVICES</h2>
+          <H1>Get the ERP services you<br> need to become an<br> industry <i>success story</i>.</H1>
+
+          <p>
+            Have experts on hand to implement the NetSuite system, customize modules, integrate third-party
+            software,
+            and
+            more.
+          </p>
+          <button class="first_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+
+
         </div>
+
+
       </div>
       <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
-        <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/Medium_Arrow-24.png" alt="Arrow Image"
-          class="arrow-image">
+        <img class="netsuite_implementation_image"
+          src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_1.jpg" height="430px"
+          width="500px">
+
       </div>
+    </div>
+    <div class="first_section_innersection2">
+
     </div>
   </div>
 
@@ -1114,32 +1118,27 @@
   </div>
 
   <div class="seventh_section">
-    <div class="seventh_section_bg"></div> <!-- Imagen de fondo -->
-    <div class="seventh_section_innersection1 col-lg-6 col-md-6 col-xs-12">
-      <div class="seventh_section_content">
-        <div class="seventh_section_innersection1_content">
-          <i>
-            <h1>Request Any<br>Netsuite Service</h1>
-          </i>
-          <p>
-            You’ve got a business like no other, and we want to see it soar with a system that grows and
-            evolves
-            with your
-            company. That’s why we’ve filled our office with experts who can perform any task that enhances
-            your
-            NetSuite
-            ERP. If you don’t see a service listed, that doesn’t mean we don’t offer it. Schedule your free
-            consultation
-            today, and tell us about how you want your system to function. We’ll work tirelessly to make it
-            happen.
-          </p>
-          <button class="seventh_section_innersection1_btn1">Schedule Your Consultation</button>
-        </div>
+    <div class="seventh_section_innersection1">
+      <div class="seventh_section_innersection1_content">
+        <i>
+          <h1>Request Any<br>Netsuite Service</h1>
+        </i>
+        <p>
+          You’ve got a business like no other, and we want to see it soar with a system that grows and evolves
+          with your
+          company. That’s why we’ve filled our office with experts who can perform any task that enhances your
+          NetSuite
+          ERP. If you don’t see a service listed, that doesn’t mean we don’t offer it. Schedule your free
+          consultation
+          today, and tell us about how you want your system to function. We’ll work tirelessly to make it
+          happen.
+        </p>
+        <button class="seventh_section_innersection1_btn1">Schedule Your Consultation</button>
       </div>
     </div>
-    <div class="seventh_section_innersection2 col-lg-6 col-md-6 col-xs-12">
-      <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/Medium_Arrow-29.png" alt="Arrow Image"
-        class="arrow-image2">
+    <div class="seventh_section_innersection2">
+      <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_3.jpg" height="400px"
+        width="700px;"> <!-- Ajusta el ancho de la imagen -->
     </div>
   </div>
 
