@@ -6,7 +6,7 @@
 			{{#if text}}
 				<li {{#if categories}}data-toggle="categories-menu"{{/if}}>
 					<a class="{{class}}" {{objectToAtrributes this}} {{#if categories}}aria-expanded="false"{{/if}}>
-					{{translate text}}
+					{{translate text}} 
 					</a>
 					{{#if categories}}
 					<ul class="header-menu-level-container">

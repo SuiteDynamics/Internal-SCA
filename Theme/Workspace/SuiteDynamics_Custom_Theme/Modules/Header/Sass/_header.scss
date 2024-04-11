@@ -44,6 +44,8 @@ $sc-sidebar-size: 246px;
 .header-main-nav {
 	
 	@extend .container;
+	margin-left: 0px;
+	margin-right: 0px;
 	min-height: $sc-main-nav-height;
 
 	a , button {
@@ -483,7 +485,7 @@ $sc-sidebar-size: 246px;
 
     background-color:#002535;
     height:53px;
-    color:white;
+    color:white !important;
     border:0px;
     width:398px;
     padding:1px;
@@ -492,6 +494,10 @@ $sc-sidebar-size: 246px;
     letter-spacing: 2.8px;
 	font-weight: 700;
 	font-size: 14px;
+	margin-top: 5px;
+	text-align: center;
+	line-height: 48px;
+	display: block;
        
   }
 

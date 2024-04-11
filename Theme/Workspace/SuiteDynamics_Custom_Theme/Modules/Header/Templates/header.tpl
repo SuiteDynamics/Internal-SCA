@@ -1,3 +1,8 @@
+<script type="text/javascript">
+
+
+</script>
+
 <div class="header-message" data-view="Message.Placeholder"></div>
 
 <div class="header-main-wrapper">
@@ -47,7 +52,7 @@
 				<div data-view="Header.Logo"></div>
 			</div>
             <div class="header-secondary-wrapper" data-view="Header.Menu" data-phone-template="header_sidebar" data-tablet-template="header_sidebar"></div>
-            <div><button class="header-menu-consult-btn"> SCHEDULE YOUR CONSULTATION</button></div>
+            <div><a href="#schedule-a-consultation" class="header-menu-consult-btn"> SCHEDULE YOUR CONSULTATION</a></div>
             <div class="header-right-menu">
             
                 {{#if isStandalone}}

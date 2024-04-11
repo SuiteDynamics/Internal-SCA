@@ -32,6 +32,10 @@ footer {
         font-weight: 300;
     }
 
+    li{
+        margin-top: $sc-margin-lv2;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         color: $sc-footer-headings-color;
     }
@@ -74,4 +78,14 @@ footer {
 
 .footer-content-col2 {
     @extend .col-md-2;
+}
+.footer-logo img{
+    max-width: 300px;
+}
+.footer-bottom{
+    padding-left: 30px;
+}
+.footer-address p{
+    color: #f2f4f5;
+    font-size: 24px;
 }

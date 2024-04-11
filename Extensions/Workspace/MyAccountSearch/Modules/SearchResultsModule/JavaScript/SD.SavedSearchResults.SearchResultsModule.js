@@ -25,15 +25,15 @@ define(
 			var MyAccountMenu = container.getComponent("MyAccountMenu");
 			var savedSearches = environment.getConfig('savedSearchesMyaccount',[]);
 			
-			// _.each(savedSearches,function(configObj){
+			_.each(savedSearches,function(configObj){
 				
-			// 	MyAccountMenu.addGroup({
-			// 		"id": ("search_" + configObj.savedSearchId),
-			// 		"name": configObj.tabLabel,
-			// 		"url": ("search/" + configObj.savedSearchId),
-			// 		"index": configObj.tabIndex
-			// 	});
-			// });
+				MyAccountMenu.addGroup({
+					"id": ("search_" + configObj.savedSearchId),
+					"name": configObj.tabLabel,
+					"url": ("search/" + configObj.savedSearchId),
+					"index": configObj.tabIndex
+				});
+			});
 
 			// MyAccountMenu.addGroup({
 			// 	"id": "zone_advanced_billing",
