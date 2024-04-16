@@ -253,8 +253,8 @@
         }
 
         .first_section {
-            padding: 50px 0;
             font-family: "Open Sans", sans-serif;
+            height: 350px;
         }
 
         .first_section_row {
@@ -321,7 +321,7 @@
             background-color: #336E87;
             color: #EFF3F5;
             border: none;
-            padding: 15px 100px;
+            padding: 15px 30px;
             border-radius: 50px;
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
@@ -329,21 +329,29 @@
             letter-spacing: 1px;
             cursor: pointer;
             display: block;
+            margin-left: auto;
             margin-right: auto;
         }
+
 
         .first_section_innersection2 {
             width: 100%;
             max-width: 100%;
             padding: 0 15px;
             box-sizing: border-box;
+            height: auto;
+            max-height: 300px;
+            /* Ajusta la altura automáticamente según el contenido */
         }
 
         @media (min-width: 768px) {
             .first_section_innersection2 {
                 flex: 0 0 100%;
+                max-width: 50%;
+                /* Mantiene el tamaño máximo del 50% para pantallas más grandes */
             }
         }
+
 
         @media (min-width: 992px) {
             .first_section_innersection2 {
@@ -361,102 +369,144 @@
 
 
         .first_section_innersection2 img {
-            max-width: 90%;
-            width: 90%;
+            max-width: 100%;
+            /* Ajusta la imagen para que no se extienda más allá del contenedor */
             height: auto;
+            /* Permite que la altura de la imagen se ajuste automáticamente */
             display: block;
             margin-left: auto;
             margin-right: auto;
-            margin: 0 auto;
-            /* Centra la imagen horizontalmente */
-            position: relative;
-            z-index: 1;
-            /* Asegura que la imagen esté delante del pseudo-elemento */
+            margin-bottom: 20px;
+            /* Añade un espacio entre la imagen y el texto */
         }
 
-
-
-        .third_section {
-
+        .third_section_container {
             background-color: #EFF3F5;
-            height: 1000px;
-            display: flex;
+            height: 1200px;
             max-width: 100vw;
             font-family: "Open Sans";
-
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
+        .third_section {
+            display: flex;
+            max-width: 100vw;
+            margin-top: 150px;
+        }
+
+        .third_section_innersection1 {
+            margin-left: 100px;
+        }
 
         .third_section_innersection1_content {
-
-            width: 38vw;
-            height: 300px;
+            width: 70%;
             font-family: "Open Sans";
             color: #002535;
-            position: relative;
-            left: 140px;
-            top: 20px;
-
+            margin-left: 25px;
+            margin-right: 25px;
         }
 
-
-
         .third_section_innersection1_content h1 {
-
-            margin-left: 25px;
-            margin-top: 60px;
             font-family: "Charter Bold Italic";
-            font-size: 60px;
+            font-size: 48px;
+            /* Adjusted */
             color: #336E87;
         }
 
         .third_section_innersection1_content p {
-
-            margin-left: 25px;
-            margin-top: 10px;
-            margin-right: 10px;
-            font-family: "Open Sans";
             font-size: 24px;
-            color: #002535;
+            /* Adjusted */
         }
 
         .third_section_innersection1_btn1 {
 
 
             background-color: #336E87;
-            height: 53px;
-            color: white;
-            border: 0px;
-            width: 398px;
-            padding: 1px;
+            color: #F2F4F5;
+            border: none;
+            padding: 15px 30px;
             border-radius: 50px;
-            margin-left: 25px;
             margin-top: 30px;
-            font-family: "Open Sans";
-            font-weight: 500;
+            font-family: "Open Sans", sans-serif;
             font-size: 14px;
-            letter-spacing: 2px;
-
-
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: block;
+            margin-left: 90px;
+            margin-right: auto;
         }
 
-        .third_section_innersection2 {
 
-            height: 600px;
-            width: 40vw;
-            font-family: "Open Sans";
+        .third_section_innersection2 {
+            width: 60%;
+            /* Adjusted */
         }
 
         .third_section_innersection2_content {
-
-            width: 38vw;
-            height: 300px;
-            font-family: "Open Sans";
-            position: relative;
-            left: 230px;
-            top: 100px;
-
+            margin-left: 70px;
+            height: 100%;
         }
+
+        .third_section_innersection2_content img {
+            height: 100%;
+        }
+
+
+
+
+        .bottom {
+            font-family: "Open Sans";
+            color: #002535;
+            margin-top: 20px;
+            width: 90%;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .bottom p {
+            font-size: 18px;
+            /* Adjusted */
+        }
+
+        .card {
+            background-color: #ADC5CF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .card h2 {
+            font-size: 24px;
+            color: #002535;
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #121212;
+            background-image: url(https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-200.png);
+            /* Establecer la imagen de la viñeta */
+            background-repeat: no-repeat;
+            /* Evitar que la imagen de la viñeta se repita */
+            background-size: 20px;
+            /* Ajustar el tamaño de la imagen de la viñeta */
+            padding-left: 30px;
+            /* Añadir espacio a la izquierda del texto para la viñeta */
+        }
+
+
+
+
 
         .fifth_section_row {
             display: flex;
@@ -605,6 +655,23 @@
             /* Para contener las tarjetas */
         }
 
+        .sixth_section_innersection2-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .sixth_section_innersection2-card {
+            background-color: #ADC5CF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
+
         .sixth_section h1 {
             margin-top: 50px;
             font-family: "Charter Bold", sans-serif;
@@ -635,6 +702,12 @@
             overflow: hidden;
         }
 
+        .sixth_section_innersection2-card h2 {
+            font-size: 20px;
+            color: #002535;
+            margin-bottom: 10px;
+        }
+
         .imgback1 {
             display: flex;
             justify-content: center;
@@ -658,6 +731,13 @@
 
 
 
+        .sixth_section h3 {
+
+            font-size: 17px;
+            /* text-align: center; */
+            margin: auto;
+        }
+
         .sixth_section_cards h3 {
             font-size: 24px;
             margin-top: 20px;
@@ -670,6 +750,38 @@
             font-size: 24px;
         }
 
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .rectangular-div {
+            width: 300px;
+            height: 150px;
+            /* background-color: #F2F4F5; */
+            /* margin: 0 10px; */
+            position: relative;
+            display: flex;
+            color: #002535;
+            font-family: OpenSans;
+        }
+
+        .circular-div {
+            width: 60px;
+            height: 60px;
+            background-color: #ADC5CF;
+            border-radius: 50%;
+            position: relative;
+            top: 50px;
+            left: 30px;
+            background-image: url(https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue_NoCircle_Icons/SD_Icons_NoCircle_Blue-200.png);
+            background-size: cover;
+            background-position: center;
+
+        }
+
         @media screen and (max-width: 768px) {
             .sixth_section_cards {
                 max-width: calc(50% - 20px);
@@ -678,7 +790,6 @@
         }
 
         .seventh_section {
-            background-color: #D6E2E7;
             padding: 50px 0;
             font-family: "Open Sans", sans-serif;
             display: flex;
@@ -694,35 +805,30 @@
             box-sizing: border-box;
         }
 
-        .seventh_section_innersection1_content {
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-        }
 
         .seventh_section_innersection1_content h1 {
             color: #002535;
-            font-family: "Open Sans", sans-serif;
+            font-family: "Charter Bold";
             font-weight: bold;
             font-size: 48px;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            /* margin-top: 20px; */
+            /* margin-bottom: 10px; */
             text-align: left;
         }
 
         .seventh_section_innersection1_content p {
             color: #002535;
             font-family: "Open Sans", sans-serif;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
             text-align: left;
             font-size: 24px;
         }
 
         .seventh_section_innersection1_btn1 {
-            background-color: #336E87;
+            background-color: #002535;
             color: #F2F4F5;
             border: none;
-            padding: 15px 100px;
+            padding: 15px 30px;
             border-radius: 50px;
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
@@ -731,6 +837,10 @@
             cursor: pointer;
             display: block;
             margin-right: auto;
+        }
+
+        .seventh_section_innersection2_content {
+            margin-left: 70px;
         }
 
         .seventh_section_innersection2 {
@@ -743,16 +853,10 @@
 
 
         .seventh_section_innersection2 img {
-            max-width: 100%;
-            /* Ajusta el ancho máximo de la imagen */
-            width: 100%;
-            height: auto;
             display: block;
             margin: 0 auto;
-            /* Centra la imagen horizontalmente */
             position: relative;
             z-index: 1;
-            /* Asegura que la imagen esté delante del pseudo-elemento */
         }
 
         @media (max-width: 768px) {
@@ -766,11 +870,12 @@
         .eight_section {
             padding: 50px 0;
             font-family: "Open Sans", sans-serif;
+            background-color: #85A8B7;
         }
 
         .eight_section_innersection1 {
             width: 100%;
-            max-width: 50%;
+            /* max-width: 50%; */
             padding: 0 15px;
             box-sizing: border-box;
         }
@@ -778,7 +883,7 @@
         .eight_section_innersection1_content {
             width: 100%;
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 100px;
         }
 
         .eight_section_innersection1_content h2 {
@@ -792,7 +897,7 @@
         }
 
         .eight_section_innersection1_content h1 {
-            color: #336E87;
+            color: #EFF3F5;
             font-family: 'Charter';
             font-weight: bold;
             font-size: 48px;
@@ -803,10 +908,10 @@
 
 
         .eight_section_innersection1_btn1 {
-            background-color: #002535;
-            color: #F2F4F5;
+            background-color: #EFF3F5;
+            color: #002535;
             border: none;
-            padding: 15px 100px;
+            padding: 15px 30px;
             border-radius: 50px;
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
@@ -815,6 +920,7 @@
             cursor: pointer;
             display: block;
             margin-right: auto;
+            font-weight: bold;
         }
 
         .eight_section_innersection2 {
@@ -949,110 +1055,186 @@
             top: 140px;
             margin: 2px;
         }
+
+        .donwcirc {
+            border-radius: 50%;
+            background-color: #ADC5CF;
+            height: 70px;
+            width: 70px;
+            position: relative;
+            background-image: url("https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_scripting.png");
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 
 <body>
     <div class="first_section">
         <div class="first_section_row">
-            <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
-                <img class="netsuite_implementation_image"
-                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuitecommerceTheme_1.jpg"
-                    height="430px" width="500px">
 
-            </div>
             <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
                 <div class="first_section_innersection1_content">
-                    <h2>SUITECOMMERCE THEMES</h2>
-                    <H1>Find the perfect web store<br>design to catch a customer’s eye.</H1>
+                    <h2>SUITECOMMERCE DEVELOPMENT</h2>
+                    <H1>Create a superior online customer experience.</H1>
 
-                    <p>
-                        Get helpful information for navigating NetSuite. Our blog includes step-by-step tutorials,
-                        NetSuite product descriptions, SuiteDynamics news, and more. Explore the material by topic or
-                        browse all articles at once.
-                    </p>
-                    <button class="first_section_innersection1_btn1">BROWSE ALL ARTICLES</button>
+                    <div class="donwcirc"></div>
 
 
                 </div>
 
 
             </div>
+            <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+                <img class="netsuite_implementation_image"
+                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_1.jpg"
+                    height="430px" width="500px">
+
+            </div>
+
+
 
         </div>
         <div class="first_section_innersection2">
 
         </div>
     </div>
-
-    <div class="third_section">
-
-
-
-        <div class="third_section_innersection1">
-            <div class="third_section_innersection1_content">
-
-                <h1>A thriving web store starts with a striking theme.</h1>
-
-
-                <p>
-                    We know your company’s online success hinges, in part, on a pleasing graphic design. That’s why
-                    SuiteDynamics experts offer careful advice on the best theme for your website. <br><br />
-                    SuiteCommerce themes
-                    determine your e-commerce site’s look, including fonts, colors, and layout. You can choose from the
-                    stock themes included with your SuiteCommerce license or have SuiteDynamics developers install a
-                    custom design. <br><br />
-                    Schedule a free consultation with SuiteDynamics experts today and start crafting an
-                    eye-catching site that keeps customers coming back for more.
-
-
-                </p>
-                <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
-
-
+    <div class="third_section_container">
+        <div class="third_section">
+            <div class="third_section_innersection2_content">
+                <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceDevelopment_2.jpg"
+                    height="724px" width="600px">
             </div>
-
-
+            <div class="third_section_innersection1">
+                <div class="third_section_innersection1_content">
+                    <i>
+                        <h1>Get tools and features that level up your SuiteCommerce store.</h1>
+                    </i>
+                    <p>
+                        A successful web store must do more than look good. It also has to create a positive shopping
+                        experience that keeps customers happy and spending.<br><br />
+                        SuiteCommerce extensions, bundles, applications, and integrations provide a SuiteCommerce site
+                        with
+                        extra functionalities. <br><br />
+                    </p>
+                    <div class="card">
+                        <h2>You can use these tools to add:</h2>
+                        <ul>
+                            <li>Gift Certificate Management</li>
+                            <li>Product Comparisons</li>
+                            <li>Photo Galleries</li>
+                            <li>Infinite Scroll</li>
+                            <li>Item Badges</li>
+                            <li>Blogs And More!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="third_section_innersection2_content">
-            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_2.jpg" height="700px"
-                width="600px">
+        <div class="bottom">
+            <p>
+                We believe your web store can captivate droves of customers and exceed all sales expectations.
+                SuiteDynamics developers will install the right SuiteCommerce modifications that boost your site’s
+                functionality and make that dream a reality.<br><br />
+                Schedule a free consultation today and start crafting an online presence customers won’t forget.
+            </p>
         </div>
+        <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
     </div>
+
+
     <div class="second_section">
 
-        <h2>BUILD A WEB STORE CUSTOMERS REMEMBER</h2>
+        <h2>BUILD A DYNAMIC WEB STORE AND WATCH SALES RISE</h2>
 
     </div>
 
 
 
 
-
+    <div class="sixth_section">
+        <div class="sixth_section_innersection2-card-container">
+            <div class="sixth_section_innersection2-card">
+                <h2>Your SuiteCommerce site comes fully integrated with your NetSuite ERP and CRM. You can extend its
+                    functionality further with other SuiteDynamics services.</h2>
+            </div>
+        </div>
+        <div class="sixth_section_innersection1">
+            <div class="sixth_section_innersection1_content">
+                <div class="row">
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">THEME<br>CHANGES</h3>
+                    </div>
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">CUSTOM<br>THEMES</h3>
+                    </div>
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">MODIFICATIONS TO<br>EXISTING THEMES</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">GOOGLE<br>TAG MANAGER</h3>
+                    </div>
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">GOOGLE<br>ANALYTICS</h3>
+                    </div>
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">CUSTOM <br>SUITECOMMERCE<br>EXTENSIONS</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">ALIGNING<br>ON-PAGE ELEMENTS</h3>
+                    </div>
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">UPGRADED SELLING<br>FUNCTIONALITY</h3>
+                    </div>
+                    <div class="rectangular-div">
+                        <div class="circular-div"></div>
+                        <h3 class="heading">CUSTOM<br>THIRD-PARTY<br>INTEGRATIONS</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="seventh_section">
+        <div class="seventh_section_innersection2">
+            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceDevelopment_3.jpg"
+                height="400px" width="700px;"> <!-- Ajusta el ancho de la imagen -->
+        </div>
         <div class="seventh_section_innersection1">
             <div class="seventh_section_innersection1_content">
                 <i>
-                    <h1>Cut through marketplace noise.</h1>
+                    <h1>Build a web store that puts customers first.</h1>
                 </i>
                 <p>
-                    We know it’s a challenge to stand out in the online marketplace. Retail sites have overrun the
-                    internet, and it feels impossible to rise above the crowd. <br><br />
-                    SuiteDynamics experts can help you craft
-                    an intuitive, responsive, and eye-catching website that prioritizes customer convenience. Together,
-                    we’ll create an e-commerce experience that drives sales and boosts shopper satisfaction.<br><br />
-                    Schedule a
-                    free consultation with our team today, and start building a web store customers remember.
+                    Don’t settle for an e-commerce site that frustrates customers and staff alike. Instead, invest in an
+                    online experience that fully showcases your goods or services and shortens your sales cycle.
+                    <br><br />
+                    We
+                    believe you can create a unique, intuitive web store that compels customers to buy. SuiteDynamics
+                    developers will use extensions, applications, integrations, and more to mold your SuiteCommerce
+                    instance into an e-commerce machine that drives sales.<br><br />
+                    Schedule a free consultation with
+                    SuiteDynamics today, and start creating an e-commerce site your customers will love.
+
+
                 </p>
                 <button class="seventh_section_innersection1_btn1">Schedule Your Consultation</button>
             </div>
         </div>
-        <div class="seventh_section_innersection2">
-            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_3.jpg" height="400px"
-                width="700px;"> <!-- Ajusta el ancho de la imagen -->
-        </div>
+
     </div>
 
     <div class="eight_section">

@@ -254,6 +254,7 @@
 
         .first_section {
             font-family: "Open Sans", sans-serif;
+            height: 500px;
         }
 
         .first_section_row {
@@ -316,30 +317,14 @@
             font-size: 24px;
         }
 
-        .first_section_innersection1_btn1 {
-            background-color: #336E87;
-            color: #EFF3F5;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            margin-top: 30px;
-            font-family: "Open Sans", sans-serif;
-            font-size: 14px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+
 
 
         .first_section_innersection2 {
             width: 100%;
             max-width: 100%;
-            padding: 0 15px;
             box-sizing: border-box;
-            height: auto;
-            max-height: 300px;
+            height: 100%;
             /* Ajusta la altura automáticamente según el contenido */
         }
 
@@ -370,7 +355,7 @@
         .first_section_innersection2 img {
             max-width: 100%;
             /* Ajusta la imagen para que no se extienda más allá del contenedor */
-            height: auto;
+            height: 100%;
             /* Permite que la altura de la imagen se ajuste automáticamente */
             display: block;
             margin-left: auto;
@@ -393,7 +378,6 @@
         .third_section {
             display: flex;
             max-width: 100vw;
-            margin-top: 150px;
         }
 
         .third_section_innersection1 {
@@ -425,23 +409,26 @@
             height: 53px;
             color: white;
             border: 0px;
-            width: 30%;
+            width: 50%;
             padding: 1px;
             border-radius: 50px;
-            margin-top: 20px;
+            margin-top: 50px;
             font-family: "Open Sans";
             font-weight: 500;
             font-size: 14px;
             letter-spacing: 2px;
         }
 
-        .third_section_innersection2 {
-            width: 60%;
-            /* Adjusted */
-        }
 
         .third_section_innersection2_content {
             margin-left: 70px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .third_section_innersection2_content img {
+            height: 100%;
+            width: 100%;
         }
 
 
@@ -718,6 +705,7 @@
         }
 
         .seventh_section {
+            background-color: #D6E2E7;
             padding: 50px 0;
             font-family: "Open Sans", sans-serif;
             display: flex;
@@ -733,27 +721,32 @@
             box-sizing: border-box;
         }
 
+        .seventh_section_innersection1_content {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
         .seventh_section_innersection1_content h1 {
             color: #002535;
-            font-family: "Charter Bold";
+            font-family: "Open Sans", sans-serif;
             font-weight: bold;
             font-size: 48px;
-            /* margin-top: 20px; */
-            /* margin-bottom: 10px; */
+            margin-top: 20px;
+            margin-bottom: 10px;
             text-align: left;
         }
 
         .seventh_section_innersection1_content p {
             color: #002535;
             font-family: "Open Sans", sans-serif;
-            /* margin-bottom: 20px; */
+            margin-bottom: 20px;
             text-align: left;
             font-size: 24px;
         }
 
         .seventh_section_innersection1_btn1 {
-            background-color: #002535;
+            background-color: #336E87;
             color: #F2F4F5;
             border: none;
             padding: 15px 30px;
@@ -764,12 +757,7 @@
             letter-spacing: 1px;
             cursor: pointer;
             display: block;
-            margin-left: auto;
             margin-right: auto;
-        }
-
-        .seventh_section_innersection2_content {
-            margin-left: 70px;
         }
 
         .seventh_section_innersection2 {
@@ -782,10 +770,16 @@
 
 
         .seventh_section_innersection2 img {
+            max-width: 100%;
+            /* Ajusta el ancho máximo de la imagen */
+            width: 100%;
+            height: auto;
             display: block;
             margin: 0 auto;
+            /* Centra la imagen horizontalmente */
             position: relative;
             z-index: 1;
+            /* Asegura que la imagen esté delante del pseudo-elemento */
         }
 
         @media (max-width: 768px) {
@@ -848,7 +842,6 @@
             letter-spacing: 1px;
             cursor: pointer;
             display: block;
-            margin-left: auto;
             margin-right: auto;
             font-weight: bold;
         }
@@ -992,7 +985,7 @@
             height: 70px;
             width: 70px;
             position: relative;
-            background-image: url("https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_scripting.png");
+            background-image: url("https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue Icons/SD_Arrow_Icon.png");
             background-size: cover;
             background-position: center;
         }
@@ -1005,8 +998,8 @@
 
             <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
                 <div class="first_section_innersection1_content">
-                    <h2>SUITECOMMERCE DEVELOPMENT</h2>
-                    <H1>Create a superior online customer experience.</H1>
+                    <h2>SUITECOMMERCE IMPLEMENTATION</h2>
+                    <H1>Enjoy a Web Store That Communicates Seamlessly With Your NetSuite ERP</H1>
 
                     <div class="donwcirc"></div>
 
@@ -1017,7 +1010,7 @@
             </div>
             <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
                 <img class="netsuite_implementation_image"
-                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_1.jpg"
+                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_4.jpg"
                     height="430px" width="500px">
 
             </div>
@@ -1032,50 +1025,39 @@
     <div class="third_section_container">
         <div class="third_section">
             <div class="third_section_innersection2_content">
-                <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceDevelopment_2.jpg"
+                <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_3.jpg"
                     height="724px" width="600px">
             </div>
             <div class="third_section_innersection1">
                 <div class="third_section_innersection1_content">
                     <i>
-                        <h1>Get tools and features that level up your SuiteCommerce store.</h1>
+                        <h1>Get your SuiteCommerce implementation right the first time.</h1>
                     </i>
                     <p>
-                        A successful web store must do more than look good. It also has to create a positive shopping
-                        experience that keeps customers happy and spending.<br><br />
-                        SuiteCommerce extensions, bundles, applications, and integrations provide a SuiteCommerce site
-                        with
-                        extra functionalities. <br><br />
+                        NetSuite’s SuiteCommerce platform can foster a perfect relationship between your client-facing
+                        web store and your back-office operations. However, that connection only happens if you
+                        implement it correctly.<br><br />
+                        We understand the system is complex and daunting, but we know it can
+                        revolutionize your operations. <br><br />
+
+                        SuiteDynamics experts are ready to navigate the system’s
+                        challenges for you. We’ll recommend the solutions that serve your business best and advise
+                        against software you don’t need. We’ll also teach you how to maximize the system, and we can
+                        remain on hand after go-live to tackle sudden issues. <br><br />
+                        Start your SuiteCommerce journey with
+                        SuiteDynamics today and discover how well your e-commerce business can run.
                     </p>
-                    <div class="card">
-                        <h2>You can use these tools to add:</h2>
-                        <ul>
-                            <li>Gift Certificate Management</li>
-                            <li>Product Comparisons</li>
-                            <li>Photo Galleries</li>
-                            <li>Infinite Scroll</li>
-                            <li>Item Badges</li>
-                            <li>Blogs And More!</li>
-                        </ul>
-                    </div>
                 </div>
+                <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
             </div>
         </div>
-        <div class="bottom">
-            <p>
-                We believe your web store can captivate droves of customers and exceed all sales expectations.
-                SuiteDynamics developers will install the right SuiteCommerce modifications that boost your site’s
-                functionality and make that dream a reality.<br><br />
-                Schedule a free consultation today and start crafting an online presence customers won’t forget.
-            </p>
-        </div>
-        <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
+
     </div>
 
 
     <div class="second_section">
 
-        <h2>BUILD A DYNAMIC WEB STORE AND WATCH SALES RISE</h2>
+        <h2>PARTNER WITH SUITECOMMERCE EXPERTS WHO CAN DO IT ALL</h2>
 
     </div>
 
@@ -1083,55 +1065,101 @@
 
 
     <div class="sixth_section">
-        <div class="sixth_section_innersection2">
-            <h2>Your SuiteCommerce site comes fully integrated with your NetSuite ERP and CRM. You can extend its
-                functionality further with other SuiteDynamics services.</h2>
-        </div>
-        <div class="sixth_section_innersection1">
-            <div class="sixth_section_innersection1_content">
-                <ul>
-                    <li>Gift Certificate Management</li>
-                    <li>Product Comparisons</li>
-                    <li>Photo Galleries</li>
-                    <li>Infinite Scroll</li>
-                    <li>Item Badges</li>
-                    <li>Blogs And More!</li>
-                    <li>Blogs And More!</li>
-                    <li>Blogs And More!</li>
-                    <li>Blogs And More!</li>
-                </ul>
+        <h1>The SuiteCommerce<br>Implementation Process</h1>
+        <div class="sixth_section1">
+            <div class="sixth_section_cards">
+                <div class="imgback1"><img
+                        src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_implementation.png"
+                        width="60px" height="60px"></div>
+                <h3>BUSINESS REQUIREMENTS ANALYSIS</h3>
+                <p>The first step in a SuiteDynamics implementation involves assessing your current business situation.
+                    We’ll conduct a Discovery Session to determine your goals and the SuiteCommerce features you need to
+                    reach them.</p>
+            </div>
+
+            <div class="sixth_section_cards">
+                <div class="imgback1"><img
+                        src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_financial_implementacion.png"
+                        width="60px" height="60px"></div>
+                <h3>WEBSITE DESIGN</h3>
+                <p>Our expert development team will work with your company to create a perfectly designed website that
+                    offers a pleasant and efficient shopping experience. Together, we’ll craft a web store that attracts
+                    repeat customers.</p>
+            </div>
+
+            <div class="sixth_section_cards">
+                <div class="imgback1"><img
+                        src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_Zone_billing.png"
+                        width="60px" height="60px"></div>
+                <h3>NETSUITE BUNDLE INSTALLATION AND CONFIGURATION</h3>
+                <p>Your online store may need functions that require extra set-up. We’ll install bundles and perform
+                    configurations that ensure your SuiteCommerce site operates flawlessly.</p>
+            </div>
+
+            <div class="sixth_section_cards">
+                <div class="imgback1"><img
+                        src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_salesforce.png"
+                        width="60px" height="60px"></div>
+                <h3>SUITECOMMERCE DEVELOPMENT</h3>
+                <p>If you can dream it, our developers can do it—even if “it” involves a feature not covered by a bundle
+                    or configuration. Our team can create custom extensions that manipulate your website in unique ways.
+                </p>
+            </div>
+
+            <div class="sixth_section_cards">
+                <div class="imgback1"><img
+                        src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_Ipaas.png"
+                        width="60px" height="60px"></div>
+                <h3>SUITECOMMERCE SEO</h3>
+                <p>What’s the point of perfecting your e-commerce site if it doesn’t show up in search engine rankings?
+                    Before your SuiteCommerce site goes live, our team will configure your website to maintain SEO
+                    optimization as you add new products.</p>
+            </div>
+
+            <div class="sixth_section_cards">
+                <div class="imgback1"><img
+                        src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_scripting.png"
+                        width="60px" height="60px"></div>
+                <h3>NETSUITE SCRIPTING</h3>
+                <p>After your website goes live, you may need further customization or other services. Our Managed
+                    Services Plans offer NetSuite ERP and SuiteCommerce support that will keep your web store running
+                    for years to come.</p>
             </div>
         </div>
     </div>
 
 
     <div class="seventh_section">
-        <div class="seventh_section_innersection2">
-            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceDevelopment_3.jpg"
-                height="400px" width="700px;"> <!-- Ajusta el ancho de la imagen -->
-        </div>
         <div class="seventh_section_innersection1">
             <div class="seventh_section_innersection1_content">
                 <i>
-                    <h1>Build a web store that puts customers first.</h1>
+                    <h1>Expand your brand with e-commerce done well.</h1>
                 </i>
                 <p>
-                    Don’t settle for an e-commerce site that frustrates customers and staff alike. Instead, invest in an
-                    online experience that fully showcases your goods or services and shortens your sales cycle.
-                    <br><br />
-                    We
-                    believe you can create a unique, intuitive web store that compels customers to buy. SuiteDynamics
-                    developers will use extensions, applications, integrations, and more to mold your SuiteCommerce
-                    instance into an e-commerce machine that drives sales.<br><br />
-                    Schedule a free consultation with
-                    SuiteDynamics today, and start creating an e-commerce site your customers will love.
-
-
+                    Don’t waste time and effort on a SuiteCommerce implementation without a reliable team of experts.
+                    You’ll
+                    feel plagued by errors. Or worse, you’ll get stuck with a low-grade implementation firm that doesn’t
+                    understand your industry and won’t return your calls. <br><br />
+                    We know how important your business is, and we
+                    won’t let software issues destroy your e-commerce revenue stream. SuiteDynamics offers a full suite
+                    of
+                    SuiteCommerce services, including implementation, customization, and development. Our experts will
+                    help
+                    you design a premium shopping experience for your customers that smashes your company’s sales
+                    goals.<br><br />
+                    See
+                    how high your sales can climb, and partner with SuiteDynamics for a perfectly customized and
+                    implemented
+                    e-commerce store.
                 </p>
+
                 <button class="seventh_section_innersection1_btn1">Schedule Your Consultation</button>
             </div>
         </div>
-
+        <div class="seventh_section_innersection2">
+            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_5.jpg"
+                height="400px" width="700px;"> <!-- Ajusta el ancho de la imagen -->
+        </div>
     </div>
 
     <div class="eight_section">
