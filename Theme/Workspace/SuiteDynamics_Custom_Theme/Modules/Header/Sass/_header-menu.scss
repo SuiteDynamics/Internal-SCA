@@ -155,7 +155,6 @@
 	background-color: $sc-main-navigation-submenu-background-color;
 	display: none;
 	position: absolute;
-	left: 0;
 	width: 45%;
 	min-height: 150px;
 	z-index: 1003;
@@ -167,10 +166,6 @@
 	> li {
 		@extend .container;
 	}
-
-	@media (max-width: 1400px) {
-		left:-38px
-	  }
 }
 
 //maxi menu opened
