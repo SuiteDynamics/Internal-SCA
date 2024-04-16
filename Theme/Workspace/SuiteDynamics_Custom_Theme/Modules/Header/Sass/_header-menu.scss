@@ -161,6 +161,7 @@
 	padding: $sc-padding-lv5 0;
 	border-bottom: 1px solid $sc-color-theme-border-light;
 	border-top: 1px solid $sc-color-theme-border-light;
+	min-width: 220px;
 	@include box-shadow(0 6px 12px transparentize($sc-neutral-shade-500, 1-0.175));
 
 	> li {
