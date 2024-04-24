@@ -13,1162 +13,1140 @@
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
   <style>
- /* Import font family */
- @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
- @font-face{font-family:'Charter';font-style:normal;font-weight:400;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_regular.woff2) format('woff2');}
- @font-face{font-family:'Charter Bold';font-style:normal;font-weight:bolder;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold.woff2) format('woff2');}
- @font-face{font-family:'Charter Bold Italic';font-style:italic;font-weight:bolder;src:url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold_italic.woff2) format('woff2');}
- /* @import url('https://7050356.app.netsuite.com/core/media/media.nl?id=97919&c=7050356&h=Vno8Uw3doQNCbov32H7-yznty3hIBUPqPFeyVrE4szrf8PUA&_xt=.woff2');
+    /* Import font family */
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+    /* @import url('https://7050356.app.netsuite.com/core/media/media.nl?id=97919&c=7050356&h=Vno8Uw3doQNCbov32H7-yznty3hIBUPqPFeyVrE4szrf8PUA&_xt=.woff2');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap'); */
 
- * {
-   margin: 0;
-   box-sizing: border-box;
+    * {
+      margin: 0;
+      box-sizing: border-box;
 
- }
+    }
 
- @font-face {
-   font-family: 'Charter';
-   font-style: normal;
-   font-weight: 400;
-   src: url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_regular.woff2) format('woff2');
- }
+    @font-face {
+      font-family: 'Charter';
+      font-style: normal;
+      font-weight: 400;
+      src: url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_regular.woff2) format('woff2');
+    }
 
- @font-face {
-   font-family: 'Charter Bold';
-   font-style: normal;
-   font-weight: bolder;
-   src: url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold.woff2) format('woff2');
- }
+    @font-face {
+      font-family: 'Charter Bold';
+      font-style: normal;
+      font-weight: bolder;
+      src: url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold.woff2) format('woff2');
+    }
 
- @font-face {
-   font-family: 'Charter Bold Italic';
-   font-style: italic;
-   font-weight: bolder;
-   src: url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold_italic.woff2) format('woff2');
- }
+    @font-face {
+      font-family: 'Charter Bold Italic';
+      font-style: italic;
+      font-weight: bolder;
+      src: url(https://www.suitedynamics.co/Fonts/Charter210112/WOFF2format/Charter/charter_bold_italic.woff2) format('woff2');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Open Sans";
 
- * {
-   margin: 0;
-   padding: 0;
-   font-family: "Open Sans";
+    }
 
- }
+    /* @font-face {
+	font-family: Charter;
+	src: "https://7050356.app.netsuite.com/core/media/media.nl?id=97919&c=7050356&h=Vno8Uw3doQNCbov32H7-yznty3hIBUPqPFeyVrE4szrf8PUA&_xt=.woff2";
+  font-weight: bold;
+  font-style: italic;
+}
 
- body {
-   margin: 0;
-   padding: 0;
-   width: 100%;
-   /* Opcional: asegura que el body ocupe todo el ancho de la ventana */
-   height: 100vh;
-   /* Establece la altura del body al 100% de la altura de la ventana */
-   overflow-x: hidden;
- }
+@font-face {
+	font-family: Charter;
+	src: "https://7050356.app.netsuite.com/core/media/media.nl?id=97924&c=7050356&h=soeHELjDFlY6zYxsg8Olweg21e_l_MhexmXC8OSBjXke1aTP&_xt=.woff2";
+  font-weight: bold;
+}
 
- .header {
+@font-face {
+	font-family: Charter;
+	src: "https://7050356.app.netsuite.com/core/media/media.nl?id=97923&c=7050356&h=AitE0i-V6CrCo5aqCQbvDL1YkOlBKK9K5fWatb7zovaqo2Qa&_xt=.woff2";
+  font-weight: regular;
+} */
 
-   max-width: 100vw;
-   height: 122px;
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      /* Opcional: asegura que el body ocupe todo el ancho de la ventana */
+      height: 100vh;
+      /* Establece la altura del body al 100% de la altura de la ventana */
+      overflow-x: hidden;
+    }
 
-   position: relative;
-   display: flex;
-   top: 0px;
-   margin: 1px;
-   background-color: #FFFFFF;
- }
+    .header {
 
- .cms-landing-page {
-   width: 100%;
- }
+      max-width: 100vw;
+      height: 122px;
 
+      position: relative;
+      display: flex;
+      top: 0px;
+      margin: 1px;
+      background-color: #FFFFFF;
+    }
 
- #his1 {
+    .cms-landing-page {
+      width: 100%;
+    }
 
-   width: 10vw;
 
- }
+    #his1 {
 
- #his2 {
+      width: 10vw;
 
-   width: 70vw;
+    }
 
+    #his2 {
 
+      width: 70vw;
 
- }
 
- #his3 {
 
-   width: 19vw;
+    }
 
- }
+    #his3 {
 
- .logo {
+      width: 19vw;
 
-   position: relative;
-   top: 50px;
-   font-size: 20px;
-   left: 5px;
- }
+    }
 
- .menu {
+    .logo {
 
-   position: relative;
-   left: 80px;
-   top: 37px;
- }
+      position: relative;
+      top: 50px;
+      font-size: 20px;
+      left: 5px;
+    }
 
- .dropbtn {
-   background-color: white;
-   color: black;
-   padding: 16px;
-   font-size: 16px;
-   width: auto;
-   font-family: "Open Sans";
-   margin-left: 25px;
-   border: none;
-   cursor: pointer;
-   position: relative;
- }
-
-
-
-
-
- .dropdown {
-   position: relative;
-   display: inline-block;
- }
-
-
- .dropdown-content {
-   display: none;
-   position: absolute;
-   background-color: #f9f9f9;
-   min-width: 170px;
-   font-family: "Open Sans";
-
-   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-   z-index: 1;
- }
-
-
- .dropdown-content a {
-   color: black;
-   padding: 12px 16px;
-   text-decoration: none;
-   display: block;
-   font-family: "Open Sans";
- }
-
-
- .dropdown-content a:hover {
-   background-color: #f1f1f1;
- }
-
-
- .dropdown:hover .dropdown-content {
-   display: block;
-   left: 32px;
- }
-
- .dropdown:hover .dropbtn {
-
-   text-decoration: underline;
- }
-
-
-
-
- #db1::after {
-   content: "\25BC";
-   font-size: 12px;
-   color: black;
-   position: absolute;
-   top: 50%;
-   right: 1px;
-   transform: translateY(-50%);
- }
-
- #db2::after {
-   content: "\25BC";
-   font-size: 12px;
-   color: black;
-   position: absolute;
-   top: 50%;
-   right: 2px;
-   transform: translateY(-50%);
- }
-
- #db3::after {
-   content: "\25BC";
-   font-size: 12px;
-   color: black;
-   position: absolute;
-   top: 50%;
-   right: 2px;
-   transform: translateY(-50%);
- }
-
- #db4::after {
-   content: "\25BC";
-   font-size: 12px;
-   color: black;
-   position: absolute;
-   top: 50%;
-   right: 2px;
-   transform: translateY(-50%);
-   font-family: "Open Sans";
- }
-
- .btn1 {
-
-   border-radius: 50px;
-   background-color: rgb(8, 8, 61);
-   position: relative;
-   top: 45px;
-   padding: 5px;
-   font-size: 16px;
-   width: 250px;
-   left: -50px;
-   color: white;
-   font-family: "Open Sans";
- }
-
- .first_section {
-
-	max-width:100vw;
-	font-family: "Open Sans";
-	height:auto;
-	background-color:#f2f4f5;
-
- }
-
- .first_section_row {
-  @extend .row;
-	display: flex;
-	@media (max-width: 992px) {
-        display: block;
-    };
- }
-
- .first_section_innersection1 {
-	@extend .col-xs-12;
-	@extend .col-sm-12;
-	@extend .col-lg-8;
-	height:auto;	
-	font-family: "Open Sans";
-  z-index: 1;
- }
-
- .first_section_innersection1_content {
-   width: 100%;
-   margin: 10%
- }
-
- .first_section_innersection1_content h2 {
-   color: #002535;
-   font-family: "Open Sans", sans-serif;
-   letter-spacing: 2px;
-   margin-top: 30px;
-   margin-bottom: 10px;
-   font-size: 32px;
-   font-weight: bold;
- }
-
- .first_section_innersection1_content h1 {
-   color: #5C8B9F;
-   font-family: "Charter Bold", sans-serif;
-   margin-top: 10px;
-   margin-bottom: 20px;
-   font-size: 72px;
- }
-
- .first_section_innersection1_content h1 i {
-   font-family: "Charter Bold", sans-serif;
-   font-style: italic;
- }
-
- .first_section_innersection1_content p {
-   color: #002535;
-   font-family: "Open Sans", sans-serif;
-   margin-bottom: 20px;
-   font-size: 32px;
-   line-height: 42px;
- }
-
- .first_section_innersection1_btn1 {
-   background-color: #002535;
-   color: white;
-   border: none;
-   padding: 15px 30px;
-   border-radius: 50px;
-   margin-top: 30px;
-   font-family: "Open Sans", sans-serif;
-   font-size: 16px;
-   letter-spacing: 1px;
-   cursor: pointer;
-   display: block;
-   margin-right: auto;
-   margin-top: 8%;
-   font-weight: bold;
-   letter-spacing: 3.8px;
- }
-
- .first_section_innersection2 {
-	@extend .col-xs-12;
-	@extend .col-sm-12;
-	@extend .col-lg-4;
-	/*@extend .col-sm-6; border:1px solid black; */
-	font-family: "Open Sans";
-	padding: 0px;
-	font-size: 0;
-  background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerce_1.jpg");
-  background-size: cover;
-  z-index: 0;
-
-    @media (max-width: 992px) {
+    .menu {
+
+      position: relative;
+      left: 80px;
+      top: 37px;
+    }
+
+    .dropbtn {
+      background-color: white;
+      color: black;
+      padding: 16px;
+      font-size: 16px;
+      width: auto;
+      font-family: "Open Sans";
+      margin-left: 25px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+
+
+
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 170px;
+      font-family: "Open Sans";
+
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-family: "Open Sans";
+    }
+
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      left: 32px;
+    }
+
+    .dropdown:hover .dropbtn {
+
+      text-decoration: underline;
+    }
+
+
+
+
+    #db1::after {
+      content: "\25BC";
+      font-size: 12px;
+      color: black;
+      position: absolute;
+      top: 50%;
+      right: 1px;
+      transform: translateY(-50%);
+    }
+
+    #db2::after {
+      content: "\25BC";
+      font-size: 12px;
+      color: black;
+      position: absolute;
+      top: 50%;
+      right: 2px;
+      transform: translateY(-50%);
+    }
+
+    #db3::after {
+      content: "\25BC";
+      font-size: 12px;
+      color: black;
+      position: absolute;
+      top: 50%;
+      right: 2px;
+      transform: translateY(-50%);
+    }
+
+    #db4::after {
+      content: "\25BC";
+      font-size: 12px;
+      color: black;
+      position: absolute;
+      top: 50%;
+      right: 2px;
+      transform: translateY(-50%);
+      font-family: "Open Sans";
+    }
+
+    .btn1 {
+
+      border-radius: 50px;
+      background-color: rgb(8, 8, 61);
+      position: relative;
+      top: 45px;
+      padding: 5px;
+      font-size: 16px;
+      width: 250px;
+      left: -50px;
+      color: white;
+      font-family: "Open Sans";
+    }
+
+    .first_section {
+      background-color: #f2f4f5;
+      padding: 50px 0;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .first_section_row {
+      display: flex;
+    }
+
+    .first_section_innersection1 {
+      width: 100%;
+      max-width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 768px) {
+      .first_section_innersection1 {
+        flex: 0 0 100%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .first_section_innersection1 {
+        max-width: 50%;
+        flex: 0 0 50%;
+      }
+    }
+
+    .first_section_innersection1_content {
+      width: 100%;
+      max-width: 40vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .first_section_innersection1_content h2 {
+      color: #002535;
+      font-family: "Open Sans", sans-serif;
+      letter-spacing: 2px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .first_section_innersection1_content h1 {
+      color: #5C8B9F;
+      font-family: "Charter", sans-serif;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-size: 72px;
+    }
+
+    .first_section_innersection1_content h1 i {
+      font-family: "Charter", sans-serif;
+      font-style: italic;
+    }
+
+    .first_section_innersection1_content p {
+      color: #002535;
+      font-family: "Open Sans", sans-serif;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .first_section_innersection1_btn1 {
+      background-color: #002535;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      margin-top: 30px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .first_section_innersection2 {
+      width: 100%;
+      max-width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 768px) {
+      .first_section_innersection2 {
+        flex: 0 0 100%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .first_section_innersection2 {
+        max-width: 50%;
+        flex: 0 0 50%;
+      }
+    }
+
+
+    .first_section_innersection2 {
+      position: relative;
+      overflow: hidden;
+      /* Asegura que nada se desborde del contenedor */
+    }
+
+    .first_section_innersection2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30%;
+      height: 100%;
+      background-color: #f2f4f5;
+
+    }
+
+    .first_section_innersection2 img {
+      max-width: 90%;
+      width: 90%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin: 0 auto;
+      /* Centra la imagen horizontalmente */
+      position: relative;
+      z-index: 1;
+      /* Asegura que la imagen esté delante del pseudo-elemento */
+    }
+
+
+
+    .third_section {
+
+      background-color: #D6E2E7;
+      height: 1200px;
+      display: flex;
+      max-width: 100vw;
+      font-family: "Open Sans";
+
+    }
+
+    .third_section_innersection1 {
+
+
+      height: 600px;
+      width: 60vw;
+      background-color: #D6E2E7;
+      font-family: "Open Sans";
+    }
+
+    .third_section_innersection1_content {
+
+      width: 38vw;
+      height: 300px;
+      font-family: "Open Sans";
+      color: #002535;
+      position: relative;
+      left: 140px;
+      top: 20px;
+
+    }
+
+
+
+    .third_section_innersection1_content h1 {
+
+      margin-left: 25px;
+      margin-top: 60px;
+      font-family: "Charter Bold Italic";
+      font-size: 48px;
+    }
+
+    .third_section_innersection1_content p {
+
+      margin-left: 25px;
+      margin-top: 10px;
+      margin-right: 10px;
+      font-family: "Open Sans";
+      font-size: 24px;
+    }
+
+    .third_section_innersection1_btn1 {
+
+
+      background-color: #336E87;
+      height: 53px;
+      color: white;
+      border: 0px;
+      width: 398px;
+      padding: 1px;
+      border-radius: 50px;
+      margin-left: 25px;
+      margin-top: 30px;
+      font-family: "Open Sans";
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 2px;
+
+
+    }
+
+    .third_section_innersection2 {
+
+      height: 600px;
+      width: 40vw;
+      font-family: "Open Sans";
+    }
+
+    .third_section_innersection2_content {
+
+      width: 38vw;
+      height: 300px;
+      font-family: "Open Sans";
+
+      position: relative;
+      left: 140px;
+      top: 80px;
+
+    }
+
+    .fifth_section_row {
+      display: flex;
+      /* margin-top: 10%; */
+      max-width: 100vw;
+      font-family: "Open Sans";
+    }
+
+    .fifth_section_row .row {
+      display: flex;
       margin-top: 10%;
+      max-width: 100vw;
+      font-family: "Open Sans";
     }
- }
-
- @media (min-width: 768px) {
-   .first_section_innersection2 {
-     flex: 0 0 100%;
-   }
- }
-
- @media (min-width: 992px) {
-   .first_section_innersection2 {
-     max-width: 50%;
-     flex: 0 0 50%;
-   }
- }
-
-
- .first_section_innersection2 {
-   position: relative;
-   overflow: hidden;
-   /* Asegura que nada se desborde del contenedor */
- }
-
- .first_section_innersection2::before {
-   content: '';
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 30%;
-   height: 100%;
-   background-color: #f2f4f5;
-
- }
-
- .first_section_innersection2 img {
-
-   max-width: 150%;
-
- }
-
-
-
- .third_section {
-
-   background-color: #D6E2E7;
-   display: flex;
-   max-width: 100vw;
-   font-family: "Open Sans";
-   padding-bottom: 10%;
-
- }
-
- .third_section_innersection1 {
-
-   width: 60vw;
-   background-color: #D6E2E7;
-   font-family: "Open Sans";
- }
-
- .third_section_innersection1_content {
-
-   width: 46vw;
-   font-family: "Open Sans";
-   color: #002535;
-   position: relative;
-   left: 140px;
-   top: 20px;
-
- }
-
-
-
- .third_section_innersection1_content h1 {
-
-   margin-left: 25px;
-   margin-top: 60px;
-   font-family: "Charter Bold Italic";
-   font-size: 48px;
- }
-
- .third_section_innersection1_content p {
-
-   margin-left: 25px;
-   margin-top: 20px;
-   margin-right: 10px;
-   font-family: "Open Sans";
-   font-size: 24px;
-
-   @media (max-width: 1400px) {
-		font-size: 20px;
-	}
- }
-
- .third_section_innersection1_btn1 {
-
-   background-color: #336E87;
-   height: 53px;
-   color: white;
-   border: 0px;
-   width: 398px;
-   padding: 1px;
-   border-radius: 50px;
-   margin-left: 25px;
-   margin-top: 30px;
-   font-family: "Open Sans";
-   font-weight: 500;
-   font-size: 14px;
-   letter-spacing: 3.8px;
-
-
- }
-
- .third_section_innersection2 {
-
-   width: 40vw;
-   font-family: "Open Sans";
- }
-
- .third_section_innersection2_content {
-
-   width: 38vw;
-   font-family: "Open Sans";
-
-   position: relative;
-   left: 140px;
-   top: 80px;
-
- }
-
- .fifth_section_row {
-   display: flex;
-   /* margin-top: 10%; */
-   max-width: 100vw;
-   font-family: "Open Sans";
- }
-
- .fifth_section_row .row {
-   display: flex;
-   margin-top: 10%;
-   max-width: 100vw;
-   font-family: "Open Sans";
- }
-
- @media (max-width: 992px) {
-   .fifth_section_row {
-     display: block;
-     margin-top: 8%;
-   }
- }
-
- .fifth_section {
-
-
-   max-width: 100vw;
-   font-family: "Open Sans";
-   padding: 50px 100px 100px 100px;
-   background-color: #E6EEF1;
-   color: #002535;
-
-
- }
-
- .fifth_section h1 {
-
-   text-align: center;
-   margin-top: 50px;
-   font-family: "Charter Bold";
-   color: #002535;
-   font-size: 60px;
- }
-
- .fifth_section1 {
-   font-family: "Open Sans";
-   display: flex;
-   flex-wrap: wrap;
-
- }
-
- .card-container {
-   display: flex;
-   justify-content: space-around;
-   margin-top: 50px;
-
-   @media (max-width: 992px) {
-		display: block;
-	  }
- }
-
- .column {
-   flex: 0 0 30%;
-   /* Ajusta el tamaño de la columna según tu preferencia */
- }
-
- .fifth_section_cards {
-   margin-bottom: 60px;
-   padding: 20px;
-   border: 1px solid #ccc;
-   border-radius: 8px;
-   text-align: center;
-   /* Altura fija para todas las tarjetas */
-   overflow: hidden;
-   /* Para evitar que el contenido desborde la tarjeta */
-   background-color: #f2f4f5;
-   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-   height: 500px;
-
-   @media (max-width: 1400px) {
-		height: 575px;
-	  }
-
-  @media (max-width: 992px) {
-    height: 500px;
-    }
-   
- }
-
- .fifth_section_cards p{
-
-  height: 160px;
-
-  @media (max-width: 1400px) {
-		font-size: 14px;
-    line-height: 22px;
-	  }
-
- }
-
- .learn_more {
-    position: relative;
-    top: 20px;
-    text-align: center;
-    color: #004A69BF;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: center;
-
-    @media (max-width: 1400px) {
-      margin-top: 25%;
-      top:45px;
-      }
 
     @media (max-width: 992px) {
-      margin-top: 0%;
+      .fifth_section_row {
+        display: block;
+        margin-top: 8%;
       }
- }
-
- .learn_more a {
-   margin-top: auto;
-   text-decoration: none;
-   /* Quita el subrayado del enlace */
-   font-family: "Open Sans-Bold";
-   /* Fuente */
-   color: #004A69BF;
-   /* Color */
-   font-size: 20px;
- }
-
-
-
-
-
-
- .fifth_section1 img {
-
-   position: relative;
-   left: 25px;
-   top: 5px;
- }
-
- .second_section {
-
-
-   height: 100px;
-   background-color: #002535;
-   margin: 1px;
-   margin-top: 0px;
-   text-align: center;
-   font-family: "Open Sans";
-   max-width: 100vw;
-   position: relative;
- }
-
- .second_section h2 {
-
-   position: relative;
-   top: 40px;
-   color: white;
-   font-family: "Open Sans";
-
-
-
- }
-
-
- .sixth_section {
-   max-width: 100vw;
-   font-family: "Open Sans", sans-serif;
-   padding-top: 20px;
-   background-color: #ffffff;
-   color: #002535;
-   overflow: hidden;
-   /* Para contener las tarjetas */
- }
-
- .sixth_section h1 {
-   margin-top: 50px;
-   font-family: "Charter Bold", sans-serif;
-   margin-left: 140px;
-   font-size: 60px;
- }
-
- .sixth_section1 {
-  @extend .row;
-   font-family: "Open Sans", sans-serif;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-around;
-   padding: 50px 50px 50px 110px;
-   display: flex;
-   /* Añadido para evitar que las tarjetas se desborden */
- }
-
- .sixth_section2{
-  @extend .row;
-  font-family: "Open Sans", sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 50px 0 50px 110px;
-  display: flex;
-  /* Añadido para evitar que las tarjetas se desborden */
- }
-
- .sixth_section_cards {
-
-
-	@extend .col-xs-12;
-	@extend .col-sm-12;
-	@extend .col-lg-4;
-
-   font-family: "Open Sans", sans-serif;
-   height: auto;
-   /* Ajustado para aproximadamente un tercio del ancho del contenedor */
-   background-color: #ffffff;
-   border-radius: 8px;
-   padding: 20px;
-   text-align: left;
-   /* Alinea el texto a la izquierda */
-   overflow: hidden;
- }
-
- .imgback1 {
-   display: flex;
-   justify-content: center;
-   /* Centra horizontalmente */
-   align-items: center;
-   /* Centra verticalmente */
-   margin: 0;
-   background-color: #5C8B9F;
-   width: 60px;
-   height: 60px;
-   border-radius: 50%;
-   margin-top: 30px;
- }
-
- .sixth_section1 img {
-   font-family: "Open Sans", sans-serif;
-   max-width: 100%;
-   /* Para asegurar que la imagen no exceda el tamaño del contenedor */
-   max-height: 100%;
-   /* Lo mismo para la altura */
- }
-
-
-
- .sixth_section_cards h3 {
-   font-size: 24px;
-   margin-top: 20px;
-   color: #002535;
- }
-
- .sixth_section_cards p {
-   color: #002535;
-   line-height: 1.6;
-   font-size: 24px;
-   margin-top: 6%;
- }
-
-
- .seventh_section {
-   background-color: #D6E2E7;
-   padding: 50px 0;
-   font-family: "Open Sans", sans-serif;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
- }
-
- .seventh_section_innersection1 {
-   width: 100%;
-   max-width: 50%;
-   padding: 0 15px;
-   box-sizing: border-box;
- }
-
- .seventh_section_innersection1_content {
-
-  margin: 10%;
-
- }
-
- .seventh_section_innersection1_content h1 {
-   color: #002535;
-   font-family: "Charter Bold Italic", sans-serif;
-   font-weight: bold;
-   font-size: 48px;
-   margin-top: 20px;
-   margin-bottom: 10px;
-   text-align: left;
- }
-
- .seventh_section_innersection1_content p {
-   color: #002535;
-   font-family: "Open Sans", sans-serif;
-   margin-bottom: 20px;
-   text-align: left;
-   font-size: 24px;
-   margin-top: 5%;
-   line-height: 33px;
- }
-
- .seventh_section_innersection1_btn1 {
-   background-color: #336e87;
-   color: white;
-   border: none;
-   padding: 15px 30px;
-   border-radius: 50px;
-   margin-top: 80px;
-   font-family: "Open Sans", sans-serif;
-   font-size: 16px;
-   letter-spacing: 3.8px;
-   cursor: pointer;
-   display: block;
-   margin-right: auto;
-   font-weight: bold;
-   width: 513px;
-   height: 68px;
- }
-
- .seventh_section_innersection2 {
-   position: relative;
-   overflow: hidden;
-   width: 100%;
-   max-width: 50%;
- }
-
-
-
- .seventh_section_innersection2 img {
-   max-width: 100%;
-   /* Ajusta el ancho máximo de la imagen */
-   width: 100%;
-   height: auto;
-   display: block;
-   margin: 0 auto;
-   /* Centra la imagen horizontalmente */
-   position: relative;
-   z-index: 1;
-   /* Asegura que la imagen esté delante del pseudo-elemento */
- }
-
- @media (max-width: 768px) {
-
-   .seventh_section_innersection1,
-   .seventh_section_innersection2 {
-     max-width: 100%;
-   }
- }
-
- /* footer */
-
- .footer {
-
-   background-color: #002535;
-   height: 520px;
-
-   font-family: "Open Sans";
-   max-width: 100vw;
- }
-
- .ninthsection1 {
-   height: 200px;
-   display: flex;
-   font-family: "Open Sans";
- }
-
- .ninthsection_innersection1 {
-
-   width: 300px;
-   height: 300px;
-   font-family: "Open Sans";
-   color: white;
-   font-family: "Open Sans";
- }
-
- .footer li {
-   list-style-type: none;
-   position: relative;
-   left: 80px;
-   top: 100px;
-   line-height: 2.5em;
-   font-family: "Open Sans";
- }
-
- li a {
-   color: white;
-   text-decoration: none;
- }
-
- .ninthsection_innersection1 p {
-
-   position: relative;
-   left: 80px;
-   top: 115px;
-   font-family: "Open Sans";
-
- }
-
- .p1 {
-   width: 230px;
-   position: relative;
-   margin-top: 40px;
-   font-family: "Open Sans";
- }
-
- #txt1 {
-
-   width: 220px;
-   position: relative;
-   left: 80px;
-   top: 130px;
-   height: 28px;
-   font-family: "Open Sans";
- }
-
- .ninthsection2 {
-
-
-   display: flex;
-   font-family: "Open Sans";
- }
-
- .ninthsection_innersection2 {
-
-
-   width: 600px;
-   height: 200px;
-   position: relative;
-   left: 60px;
-   top: 100px;
- }
-
- .ninthsection_innersection2 img {
-
-   margin-top: 20px;
-   margin-left: 10px;
- }
-
- .fa {
-   padding: 20px;
-   font-size: 30px;
-   width: 30px;
-   text-align: center;
-   text-decoration: none;
-   border-radius: 50%;
-   background-color: #E6EEF1;
-   position: relative;
-   left: 300px;
-   top: 140px;
-   margin: 2px;
- }
+    }
+
+    .fifth_section {
+
+
+      max-width: 100vw;
+      height: 1200px;
+      font-family: "Open Sans";
+      padding: 50px 0 50px 110px;
+      background-color: #E6EEF1;
+      color: #002535;
+
+
+    }
+
+    .fifth_section h1 {
+
+      text-align: center;
+      margin-top: 50px;
+      font-family: "Charter Bold";
+      color: #002535;
+      font-size: 60px;
+    }
+
+    .fifth_section1 {
+      font-family: "Open Sans";
+      display: flex;
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .column {
+      flex: 0 0 30%;
+      /* Ajusta el tamaño de la columna según tu preferencia */
+    }
+
+    .fifth_section_cards {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      height: 400px;
+      /* Altura fija para todas las tarjetas */
+      overflow: hidden;
+      /* Para evitar que el contenido desborde la tarjeta */
+    }
+
+
+    .learn_more {
+
+      position: relative;
+      top: 20px;
+      text-align: center;
+      color: #004A69BF;
+
+    }
+
+    .learn_more {
+      display: flex;
+      justify-content: center;
+    }
+
+    .learn_more a {
+      margin-top: auto;
+      text-decoration: none;
+      /* Quita el subrayado del enlace */
+      font-family: "Open Sans-Bold";
+      /* Fuente */
+      color: #004A69BF;
+      /* Color */
+      font-size: 20px;
+    }
+
+
+
+
+
+
+    .fifth_section1 img {
+
+      position: relative;
+      left: 25px;
+      top: 5px;
+    }
+
+    .second_section {
+
+
+      height: 100px;
+      background-color: #002535;
+      margin: 1px;
+      margin-top: 0px;
+      text-align: center;
+      font-family: "Open Sans";
+      max-width: 100vw;
+      position: relative;
+    }
+
+    .second_section h2 {
+
+      position: relative;
+      top: 40px;
+      color: white;
+      font-family: "Open Sans";
+
+
+
+    }
+
+
+    .sixth_section {
+      max-width: 100vw;
+      font-family: "Open Sans", sans-serif;
+      padding-top: 20px;
+      background-color: #ffffff;
+      color: #002535;
+      overflow: hidden;
+      /* Para contener las tarjetas */
+    }
+
+    .sixth_section h1 {
+      margin-top: 50px;
+      font-family: "Charter Bold", sans-serif;
+      margin-left: 140px;
+      font-size: 60px;
+    }
+
+    .sixth_section1 {
+      font-family: "Open Sans", sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 50px 0 50px 110px;
+      /* Añadido para evitar que las tarjetas se desborden */
+    }
+
+    .sixth_section_cards {
+      font-family: "Open Sans", sans-serif;
+      margin: 8px;
+      height: auto;
+      max-width: calc(33.3% - 16px);
+      /* Ajustado para aproximadamente un tercio del ancho del contenedor */
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: left;
+      /* Alinea el texto a la izquierda */
+      overflow: hidden;
+    }
+
+    .imgback1 {
+      display: flex;
+      justify-content: center;
+      /* Centra horizontalmente */
+      align-items: center;
+      /* Centra verticalmente */
+      margin: 0;
+      background-color: #5C8B9F;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .sixth_section1 img {
+      font-family: "Open Sans", sans-serif;
+      max-width: 100%;
+      /* Para asegurar que la imagen no exceda el tamaño del contenedor */
+      max-height: 100%;
+      /* Lo mismo para la altura */
+    }
+
+
+
+    .sixth_section_cards h3 {
+      font-size: 24px;
+      margin-top: 20px;
+      color: #002535;
+    }
+
+    .sixth_section_cards p {
+      color: #002535;
+      line-height: 1.6;
+      font-size: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sixth_section_cards {
+        max-width: calc(50% - 20px);
+        /* 50% de ancho para que quepan dos tarjetas en una fila en pantallas más pequeñas */
+      }
+    }
+
+    .seventh_section {
+      background-color: #D6E2E7;
+      padding: 50px 0;
+      font-family: "Open Sans", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .seventh_section_innersection1 {
+      width: 100%;
+      max-width: 50%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    .seventh_section_innersection1_content {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .seventh_section_innersection1_content h1 {
+      color: #002535;
+      font-family: "Open Sans", sans-serif;
+      font-weight: bold;
+      font-size: 48px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .seventh_section_innersection1_content p {
+      color: #002535;
+      font-family: "Open Sans", sans-serif;
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 24px;
+    }
+
+    .seventh_section_innersection1_btn1 {
+      background-color: #002535;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      margin-top: 30px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .seventh_section_innersection2 {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 50%;
+    }
+
+
+
+    .seventh_section_innersection2 img {
+      max-width: 100%;
+      /* Ajusta el ancho máximo de la imagen */
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      /* Centra la imagen horizontalmente */
+      position: relative;
+      z-index: 1;
+      /* Asegura que la imagen esté delante del pseudo-elemento */
+    }
+
+    @media (max-width: 768px) {
+
+      .seventh_section_innersection1,
+      .seventh_section_innersection2 {
+        max-width: 100%;
+      }
+    }
+
+    /* footer */
+
+    .footer {
+
+      background-color: #002535;
+      height: 520px;
+
+      font-family: "Open Sans";
+      max-width: 100vw;
+    }
+
+    .ninthsection1 {
+      height: 200px;
+      display: flex;
+      font-family: "Open Sans";
+    }
+
+    .ninthsection_innersection1 {
+
+      width: 300px;
+      height: 300px;
+      font-family: "Open Sans";
+      color: white;
+      font-family: "Open Sans";
+    }
+
+    .footer li {
+      list-style-type: none;
+      position: relative;
+      left: 80px;
+      top: 100px;
+      line-height: 2.5em;
+      font-family: "Open Sans";
+    }
+
+    li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .ninthsection_innersection1 p {
+
+      position: relative;
+      left: 80px;
+      top: 115px;
+      font-family: "Open Sans";
+
+    }
+
+    .p1 {
+      width: 230px;
+      position: relative;
+      margin-top: 40px;
+      font-family: "Open Sans";
+    }
+
+    #txt1 {
+
+      width: 220px;
+      position: relative;
+      left: 80px;
+      top: 130px;
+      height: 28px;
+      font-family: "Open Sans";
+    }
+
+    .ninthsection2 {
+
+
+      display: flex;
+      font-family: "Open Sans";
+    }
+
+    .ninthsection_innersection2 {
+
+
+      width: 600px;
+      height: 200px;
+      position: relative;
+      left: 60px;
+      top: 100px;
+    }
+
+    .ninthsection_innersection2 img {
+
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+
+    .fa {
+      padding: 20px;
+      font-size: 30px;
+      width: 30px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 50%;
+      background-color: #E6EEF1;
+      position: relative;
+      left: 300px;
+      top: 140px;
+      margin: 2px;
+    }
   </style>
 </head>
 
 <body>
-    <div class="first_section">
-      <div class="first_section_row">
-        <div class="first_section_innersection1 col-lg-8 col-md-8 col-xs-12">
-          <div class="first_section_innersection1_content">
-            <h2>NETSUITE SERVICES</h2>
-            <H1>Get the ERP services you<br> need to become an<br> industry <i>success story</i>.</H1>
-  
-            <p>
-              Have experts on hand to implement the NetSuite system, customize modules, integrate third-party
-              software,
-              and
-              more.
-            </p>
-            <button class="first_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
-  
-  
-          </div>
-  
-  
-        </div>
-        <div class="first_section_innersection2 col-lg-4 col-md-4 col-xs-12">
-      </div>
-      </div>
-    </div>
-  
-    <div class="third_section">
-  
-      <div class="third_section_innersection2">
-        <div class="third_section_innersection2_content">
-          <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_2.jpg" height="812px"
-            width="600px">
-        </div>
-  
-      </div>
-  
-      <div class="third_section_innersection1">
-        <div class="third_section_innersection1_content">
-          <i>
-            <h1>Enjoy Comprehensive Service From NetSuite Experts</h1>
-          </i>
-  
+  <div class="first_section">
+    <div class="first_section_row">
+      <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+        <div class="first_section_innersection1_content">
+          <h2>NETSUITE SERVICES</h2>
+          <H1>Get the ERP services you<br> need to become an<br> industry <i>success story</i>.</H1>
+
           <p>
-            A NetSuite Enterprise Resource Planning (ERP) system can be your company’s key to exponential growth—but only
-            if configured, customized, and operated correctly.<br><br>
-  
-            We know the system is massive, and molding it to your business’s needs seems like an enormous task. As a
-            certified NetSuite Alliance Partner, the SuiteDynamics team can evaluate your pain points before customizing
-            and implementing the right NetSuite modules or features to address them. <br><br>
-  
-            <b>Our experts will guide your company through an initial NetSuite ERP implementation, expand your current
-              system, save a failed implementation, or perform any task that maximizes your software. Explore our
-              signature services below and discover how we can help your business experience NetSuite success.</b>
-  
-  
+            Have experts on hand to implement the NetSuite system, customize modules, integrate third-party
+            software,
+            and
+            more.
           </p>
-          <button class="third_section_innersection1_btn1">LEARN MORE</button>
-  
-  
+          <button class="first_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
+
+
         </div>
-  
-  
+
+
+      </div>
+      <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+        <img class="netsuite_implementation_image"
+          src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_1.jpg" height="430px"
+          width="500px">
+
       </div>
     </div>
-    <div class="fifth_section_row ">
-      <div class="fifth_section">
-        <h1>Maximize NetSuite With Our Core ERP Services</h1>
-        <div class="card-container">
-          <div class="column">
-            <div class="fifth_section_cards">
-              <div class="imgback">
-                <img
-                  src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_implementation.png"
-                  width="84px" height="84px">
-              </div>
-              <h3 style="text-align: center; margin-top:40px; font-size: 24px;">NETSUITE <br>IMPLEMENTATION</h3>
-              <p style="margin:20px; text-align:center; font-size: 16px;">Enjoy a well-implemented cloud ERP designed to
-                your
-                specifications. As a trusted NetSuite consultant, we build core business processes and save failed
-                implementations with a sky-high success rate.</p>
-              <div class="learn_more"><a href="#">Learn More-></a></div>
+    <div class="first_section_innersection2">
+
+    </div>
+  </div>
+
+  <div class="third_section">
+
+    <div class="third_section_innersection2">
+      <div class="third_section_innersection2_content">
+        <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_2.jpg" height="812px"
+          width="600px">
+      </div>
+
+    </div>
+
+    <div class="third_section_innersection1">
+      <div class="third_section_innersection1_content">
+        <i>
+          <h1>Enjoy Comprehensive Service From NetSuite Experts</h1>
+        </i>
+
+        <p>
+          A NetSuite Enterprise Resource Planning (ERP) system can be your company’s key to exponential growth—but only
+          if configured, customized, and operated correctly.<br><br>
+
+          We know the system is massive, and molding it to your business’s needs seems like an enormous task. As a
+          certified NetSuite Alliance Partner, the SuiteDynamics team can evaluate your pain points before customizing
+          and implementing the right NetSuite modules or features to address them. <br><br>
+
+          <b>Our experts will guide your company through an initial NetSuite ERP implementation, expand your current
+            system, save a failed implementation, or perform any task that maximizes your software. Explore our
+            signature services below and discover how we can help your business experience NetSuite success.</b>
+
+
+        </p>
+        <button class="third_section_innersection1_btn1">LEARN MORE</button>
+
+
+      </div>
+
+
+    </div>
+  </div>
+  <div class="fifth_section_row ">
+    <div class="fifth_section">
+      <h1>Maximize NetSuite With Our Core ERP Services</h1>
+      <div class="card-container">
+        <div class="column">
+          <div class="fifth_section_cards">
+            <div class="imgback">
+              <img
+                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_implementation.png"
+                width="36px" height="36px">
             </div>
-            <div class="fifth_section_cards">
-              <div class="imgback">
-                <img
-                  src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_suitecommerce_development.png"
-                  width="84px" height="84px">
-              </div>
-              <h3 style="text-align: center; margin-top:40px; font-size: 24px;">SUITECOMMERCE DEVELOPMENT</h3>
-              <p style="margin:20px; text-align:center; font-size: 16px;">Capitalize on a SuiteCommerce or SuiteCommerce
-                Advanced
-                platform that seamlessly connects your back-office operations with your online store. We’ll even
-                customize the software and optimize your SEO.</p>
-              <div class="learn_more"><a href="#">Learn More-></a></div>
-            </div>
+            <h3 style="text-align: center; margin-top:40px; font-size: 24px;">NETSUITE <br>IMPLEMENTATION</h3>
+            <p style="margin:20px; text-align:center; font-size: 16px;">Enjoy a well-implemented cloud ERP designed to
+              your
+              specifications. As a trusted NetSuite consultant, we build core business processes and save failed
+              implementations with a sky-high success rate.</p>
+            <div class="learn_more"><a href="#">Learn More-></a></div>
           </div>
-          <div class="column">
-            <div class="fifth_section_cards">
-              <div class="imgback">
-                <img
-                  src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_scripting.png"
-                  width="84px" height="84px">
-              </div>
-              <h3 style="text-align: center; margin-top:40px; font-size: 24px;">NETSUITE SCRIPTING & CUSTOMIZATIONS
-              </h3>
-              <p style="margin:20px; text-align:center; font-size: 16px;">NetSuite Scripting & Customizations Get an ERP
-                that can meet
-                any company goal. Our team will use the SuiteScript programming language to manipulate your system
-                and adjust its function. We’ll also maintain data integrity and allow for automation and input
-                validation.</p>
-              <div class="learn_more"><a href="#" style="margin-top:-5px;">Learn More-></a></div>
+          <div class="fifth_section_cards">
+            <div class="imgback">
+              <img
+                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_suitecommerce_development.png"
+                width="36px" height="36px">
             </div>
-            <div class="fifth_section_cards">
-              <div class="imgback">
-                <img
-                  src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_integrations.png"
-                  width="84px" height="84px">
-              </div>
-              <h3 style="text-align: center; margin-top:40px;font-size: 24px;">NETSUITE <br>INTEGRATIONS</h3>
-              <p style="margin:20px; text-align:center; font-size: 16px;">Enjoy a system that’s adjusted to your
-                business’s needs. Our
-                developers will fine-tune an ERP to your specifications and extend NetSuite’s functionality beyond
-                its core features and operations. Tell us what you need, and we’ll make it happen.</p>
-              <div class="learn_more"><a href="#">Learn More-></a></div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="fifth_section_cards">
-              <div class="imgback">
-                <img
-                  src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_postgolive.png"
-                  width="84px" height="84px">
-              </div>
-              <h3 style="text-align: center; margin-top:40px;font-size: 24px;">NETSUITE POST<br> GO-LIVE SUPPORT</h3>
-              <p style="margin:20px; text-align:center; font-size: 16px;">Keep NetSuite admin and development costs down
-                while getting
-                the quick and effective assistance you need after go-live! Our Managed Services plans have fixed
-                prices so you can maximize your system without blowing your budget.</p>
-              <div class="learn_more"><a href="#">Learn More-></a></div>
-            </div>
-            <div class="fifth_section_cards">
-              <div class="imgback">
-                <img
-                  src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_training.png"
-                  width="84px" height="84px">
-              </div>
-              <h3 style="text-align: center; margin-top:40px;font-size: 24px;">NETSUITE <br>TRAINING</h3>
-              <p style="margin:20px; text-align:center; font-size: 16px;">You’ll never succeed with a system your team
-                can’t use.
-                SuiteDynamics offers instructional material and custom training programs that pair our NetSuite
-                experience with your educational objectives.</p>
-              <div class="learn_more"><a href="#">Learn More-></a></div>
-            </div>
+            <h3 style="text-align: center; margin-top:40px; font-size: 24px;">SUITECOMMERCE DEVELOPMENT</h3>
+            <p style="margin:20px; text-align:center; font-size: 16px;">Capitalize on a SuiteCommerce or SuiteCommerce
+              Advanced
+              platform that seamlessly connects your back-office operations with your online store. We’ll even
+              customize the software and optimize your SEO.</p>
+            <div class="learn_more"><a href="#">Learn More-></a></div>
           </div>
         </div>
-  
-      </div>
-    </div>
-  
-    <div class="second_section">
-  
-      <h2>YOU DON'T HAVE TO MANAGE A NETSUITE ERP ALONE</h2>
-  
-    </div>
-  
-  
-    <div class="sixth_section">
-      <h1>Fine-Tune NetSuite With <br>Our Specialty Services</h1>
-      <div class="sixth_section1">
-        <div class="sixth_section_cards col-lg-4 col-md-12 col-xs-12">
-          <div class="imgback1"><img
-              src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_implementation.png"
-              width="60px" height="60px"></div>
-          <h3>NETSUITE<br>IMPLEMENTATION</h3>
-          <p>You can still get a working NetSuite ERP, even if another implementation company didn’t deliver. Our
-            experts will finish what the other team started—on time and in budget.</p>
-        </div>
-  
-        <div class="sixth_section_cards col-lg-4 col-md-12 col-xs-12">
-          <div class="imgback1"><img
-              src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_financial_implementacion.png"
-              width="60px" height="60px"></div>
-          <h3>FINANCIAL<br>IMPLEMENTATION</h3>
-          <p>Enjoy a NetSuite financial system configured by finance and accounting experts. Our team understands
-            how this software should function and will ensure it performs as expected.</p>
-        </div>
-  
-        <div class="sixth_section_cards col-lg-4 col-md-12 col-xs-12">
-          <div class="imgback1"><img
-              src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_Zone_billing.png"
-              width="60px" height="60px"></div>
-          <h3>ZONEBILLING<br>IMPLEMENTATION</h3>
-          <p>Streamline complex subscriptions and contracts! Our experts will set up ZoneBilling for your company
-            that integrates with NetSuite to ensure flawless billing processes.</p>
-        </div>
-      </div>
-      <div class="sixth_section2">
-        <div class="sixth_section_cards col-lg-4 col-md-12 col-xs-12">
-            <div class="imgback1"><img
-                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_salesforce.png"
-                width="60px" height="60px"></div>
-            <h3>SALESFORCE IMPLEMENTATION & INTEGRATION WITH NETSUITE</h3>
-            <p>Track customer interactions and sales information easily. SuiteDynamics experts will implement a
-                Salesforce CRM you can pair with NetSuite to create a data-driven powerhouse.</p>
+        <div class="column">
+          <div class="fifth_section_cards">
+            <div class="imgback">
+              <img
+                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_scripting.png"
+                width="36px" height="36px">
             </div>
-    
-            <div class="sixth_section_cards col-lg-4 col-md-12 col-xs-12">
-            <div class="imgback1"><img
-                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_Ipaas.png"
-                width="60px" height="60px"></div>
-            <h3>IPAAS<br>IMPLEMENTATION</h3>
-            <p>Ensure your NetSuite ERP and third-party applications coordinate seamlessly. SuiteDynamics experts
-                will install integration platforms like Celigo, Boomi, Workato, Mulesoft, and more so all your
-                software connects.</p>
+            <h3 style="text-align: center; margin-top:40px; font-size: 24px;">NETSUITE SCRIPTING & CUSTOMIZATIONS
+            </h3>
+            <p style="margin:20px; text-align:center; font-size: 16px;">NetSuite Scripting & Customizations Get an ERP
+              that can meet
+              any company goal. Our team will use the SuiteScript programming language to manipulate your system
+              and adjust its function. We’ll also maintain data integrity and allow for automation and input
+              validation.</p>
+            <div class="learn_more"><a href="#" style="margin-top:-5px;">Learn More-></a></div>
+          </div>
+          <div class="fifth_section_cards">
+            <div class="imgback">
+              <img
+                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_integrations.png"
+                width="36px" height="36px">
             </div>
-    
-            <div class="sixth_section_cards col-lg-4 col-md-12 col-xs-12">
-            <div class="imgback1"><img
-                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_scripting.png"
-                width="60px" height="60px"></div>
-            <h3>NETSUITE<br>SCRIPTING</h3>
-            <p>Get a system with the unique functions your company needs. NetSuite’s scripted solutions help
-                maintain data integrity and create space within an ERP for automation and input validation.</p>
+            <h3 style="text-align: center; margin-top:40px;font-size: 24px;">NETSUITE <br>INTEGRATIONS</h3>
+            <p style="margin:20px; text-align:center; font-size: 16px;">Enjoy a system that’s adjusted to your
+              business’s needs. Our
+              developers will fine-tune an ERP to your specifications and extend NetSuite’s functionality beyond
+              its core features and operations. Tell us what you need, and we’ll make it happen.</p>
+            <div class="learn_more"><a href="#">Learn More-></a></div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="fifth_section_cards">
+            <div class="imgback">
+              <img
+                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_postgolive.png"
+                width="36px" height="36px">
             </div>
+            <h3 style="text-align: center; margin-top:40px;font-size: 24px;">NETSUITE POST<br> GO-LIVE SUPPORT</h3>
+            <p style="margin:20px; text-align:center; font-size: 16px;">Keep NetSuite admin and development costs down
+              while getting
+              the quick and effective assistance you need after go-live! Our Managed Services plans have fixed
+              prices so you can maximize your system without blowing your budget.</p>
+            <div class="learn_more"><a href="#">Learn More-></a></div>
+          </div>
+          <div class="fifth_section_cards">
+            <div class="imgback">
+              <img
+                src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetsuiteServices/SD_Icons_netsuite_training.png"
+                width="36px" height="36px">
+            </div>
+            <h3 style="text-align: center; margin-top:40px;font-size: 24px;">NETSUITE <br>TRAINING</h3>
+            <p style="margin:20px; text-align:center; font-size: 16px;">You’ll never succeed with a system your team
+              can’t use.
+              SuiteDynamics offers instructional material and custom training programs that pair our NetSuite
+              experience with your educational objectives.</p>
+            <div class="learn_more"><a href="#">Learn More-></a></div>
+          </div>
         </div>
       </div>
+
     </div>
-  
-    <div class="seventh_section">
-      <div class="seventh_section_innersection1">
-        <div class="seventh_section_innersection1_content">
-          <i>
-            <h1>Request Any<br>Netsuite Service</h1>
-          </i>
-          <p>
-            You’ve got a business like no other, and we want to see it soar with a system that grows and evolves
-            with your
-            company. That’s why we’ve filled our office with experts who can perform any task that enhances your
-            NetSuite
-            ERP. If you don’t see a service listed, that doesn’t mean we don’t offer it. Schedule your free
-            consultation
-            today, and tell us about how you want your system to function. We’ll work tirelessly to make it
-            happen.
-          </p>
-          <button class="seventh_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
-        </div>
+  </div>
+
+  <div class="second_section">
+
+    <h2>YOU DON'T HAVE TO MANAGE A NETSUITE ERP ALONE</h2>
+
+  </div>
+
+
+  <div class="sixth_section">
+    <h1>Fine-Tune NetSuite With <br>Our Specialty Services</h1>
+    <div class="sixth_section1">
+      <div class="sixth_section_cards">
+        <div class="imgback1"><img
+            src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_implementation.png"
+            width="60px" height="60px"></div>
+        <h3>NETSUITE IMPLEMENTATION</h3>
+        <p>You can still get a working NetSuite ERP, even if another implementation company didn’t deliver. Our
+          experts will finish what the other team started—on time and in budget.</p>
       </div>
-      <div class="seventh_section_innersection2">
-        <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_3.jpg" height="400px"
-          width="700px;"> <!-- Ajusta el ancho de la imagen -->
+
+      <div class="sixth_section_cards">
+        <div class="imgback1"><img
+            src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_financial_implementacion.png"
+            width="60px" height="60px"></div>
+        <h3>FINANCIAL IMPLEMENTATION</h3>
+        <p>Enjoy a NetSuite financial system configured by finance and accounting experts. Our team understands
+          how this software should function and will ensure it performs as expected.</p>
+      </div>
+
+      <div class="sixth_section_cards">
+        <div class="imgback1"><img
+            src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_Zone_billing.png"
+            width="60px" height="60px"></div>
+        <h3>ZONEBILLING IMPLEMENTATION</h3>
+        <p>Streamline complex subscriptions and contracts! Our experts will set up ZoneBilling for your company
+          that integrates with NetSuite to ensure flawless billing processes.</p>
+      </div>
+
+      <div class="sixth_section_cards">
+        <div class="imgback1"><img
+            src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_salesforce.png"
+            width="60px" height="60px"></div>
+        <h3>SALESFORCE IMPLEMENTATION & INTEGRATION WITH NETSUITE</h3>
+        <p>Track customer interactions and sales information easily. SuiteDynamics experts will implement a
+          Salesforce CRM you can pair with NetSuite to create a data-driven powerhouse.</p>
+      </div>
+
+      <div class="sixth_section_cards">
+        <div class="imgback1"><img
+            src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_Ipaas.png"
+            width="60px" height="60px"></div>
+        <h3>IPAAS IMPLEMENTATION</h3>
+        <p>Ensure your NetSuite ERP and third-party applications coordinate seamlessly. SuiteDynamics experts
+          will install integration platforms like Celigo, Boomi, Workato, Mulesoft, and more so all your
+          software connects.</p>
+      </div>
+
+      <div class="sixth_section_cards">
+        <div class="imgback1"><img
+            src="https://www.suitedynamics.co/SiteImages/Icons/SD_Website_Elements/NetSuiteSpecialityServices/SD_Icons_netsuite_scripting.png"
+            width="60px" height="60px"></div>
+        <h3>NETSUITE SCRIPTING</h3>
+        <p>Get a system with the unique functions your company needs. NetSuite’s scripted solutions help
+          maintain data integrity and create space within an ERP for automation and input validation.</p>
       </div>
     </div>
-  
-  
-  </body>
+  </div>
+
+  <div class="seventh_section">
+    <div class="seventh_section_innersection1">
+      <div class="seventh_section_innersection1_content">
+        <i>
+          <h1>Request Any<br>Netsuite Service</h1>
+        </i>
+        <p>
+          You’ve got a business like no other, and we want to see it soar with a system that grows and evolves
+          with your
+          company. That’s why we’ve filled our office with experts who can perform any task that enhances your
+          NetSuite
+          ERP. If you don’t see a service listed, that doesn’t mean we don’t offer it. Schedule your free
+          consultation
+          today, and tell us about how you want your system to function. We’ll work tirelessly to make it
+          happen.
+        </p>
+        <button class="seventh_section_innersection1_btn1">Schedule Your Consultation</button>
+      </div>
+    </div>
+    <div class="seventh_section_innersection2">
+      <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_3.jpg" height="400px"
+        width="700px;"> <!-- Ajusta el ancho de la imagen -->
+    </div>
+  </div>
+
+
+</body>
 
 </html>

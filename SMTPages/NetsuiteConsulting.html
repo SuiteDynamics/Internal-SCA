@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page8</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-<style>
-    *{
-      margin:0;
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page8</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+
     }
-    
-    .cms-landing-page{
-      width:100%;
+
+    .cms-landing-page {
+      width: 100%;
     }
-    
+
     body {
       overflow-x: hidden;
-      font-family:"Open Sans";
+      font-family: "Open Sans";
     }
-    
-    .first_section_row{
+
+    .first_section_row {
       @extend .row;
       display: flex;
+
       @media (max-width: 992px) {
-            display: block;
-        }
+        display: block;
+      }
     }
-    
-    .first_section{
-    
-      margin:1px;
-      max-width:100vw;
+
+    .first_section {
+
+      margin: 1px;
+      max-width: 100vw;
       font-family: "Open Sans";
-      height:auto;
+      height: auto;
     }
-    
-    .first_section_innersection1{
-    
+
+    .first_section_innersection1 {
+
       @extend .col-xs-12;
       @extend .col-sm-12;
       @extend .col-lg-6;
-      height:auto;
-      background-color:#002535;
+      height: auto;
+      background-color: #002535;
       font-family: "Open Sans";
-    
+
     }
-    
-    .first_section_innersection2{
-    
+
+    .first_section_innersection2 {
+
       @extend .col-xs-12;
       @extend .col-sm-12;
       @extend .col-lg-6;
@@ -59,726 +62,746 @@
       font-family: "Open Sans";
       padding: 0px;
       font-size: 0;
-    
+
     }
-    
-    .first_section_innersection2 img{
-    
-      width:110%;
+
+    .first_section_innersection2 img {
+
+      width: 110%;
       max-width: unset;
-    
+
     }
-    
-    .first_section_innersection1_content{
-    
-      width:40vw;
-      height:300px;
+
+    .first_section_innersection1_content {
+
+      width: 40vw;
+      height: 300px;
       font-family: "Open Sans";
       position: relative;
-      left:110px;
-      top:40px;
-      
+      left: 110px;
+      top: 40px;
+
     }
-    
-    .first_section_innersection1_content h3{
-    
-      margin-left:25px;
-      margin-top:100px;
+
+    .first_section_innersection1_content h3 {
+
+      margin-left: 25px;
+      margin-top: 100px;
       font-family: "Open Sans";
-      color:#ADC5CF;
+      color: #ADC5CF;
       font-size: 32px;
       letter-spacing: 6px;
-    
+
     }
-    
-    .first_section_innersection1_content h1{
-    
-      margin-left:25px;
-      margin-top:10px;
+
+    .first_section_innersection1_content h1 {
+
+      margin-left: 25px;
+      margin-top: 10px;
       font-family: "Charter Bold Italic";
       color: #EFF3F5;
       font-weight: bold;
       font-style: italic;
       font-size: 48px;
-    
+
     }
-    
-    .first_section_innersection1_content p{
-    
-      margin-left:25px;
-      margin-top:20px;
+
+    .first_section_innersection1_content p {
+
+      margin-left: 25px;
+      margin-top: 20px;
       margin-right: 20px;
       font-family: "Open Sans";
-      color:#002535;
-      
+      color: #002535;
+
     }
-    
-    .first_section_innersection1_btn1{
-    
-      background-color:#002535;
-      height:30px;
-      color:white;
-      border:0px;
-      width:200px;
-      padding:1px;
+
+    .first_section_innersection1_btn1 {
+
+      background-color: #002535;
+      height: 30px;
+      color: white;
+      border: 0px;
+      width: 200px;
+      padding: 1px;
       border-radius: 50px;
-      margin-left:25px;
-      margin-top:50px;
+      margin-left: 25px;
+      margin-top: 50px;
       font-family: "Open Sans";
       letter-spacing: 2.8px;
-      
+
     }
-    
-    .imgback{
-    
-      position:relative;
-        
-        margin:5px;
-        left:20px;
-        top:20px;
-        font-family: OpenSans;
-        background-color:#ADC5CF;
-        width:70px;
-        height:60px;
-        border-radius: 50%;
-        margin-bottom: 10%;
+
+    .imgback {
+
+      position: relative;
+
+      margin: 5px;
+      left: 20px;
+      top: 20px;
+      font-family: OpenSans;
+      background-color: #ADC5CF;
+      width: 70px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 10%;
     }
-    
-    .imgback img{
-    
-      position:relative;
-      
-      
-      top:10px;
-      left:15px;
+
+    .imgback img {
+
+      position: relative;
+
+
+      top: 10px;
+      left: 15px;
       font-family: OpenSans;
     }
-    
-    .eigth_section{
-    
-      max-width:100vw;
+
+    .eigth_section {
+
+      max-width: 100vw;
       font-family: "Open Sans";
       background-color: #ffffff;
-    
+
     }
-    
-    .eigth_section_img{
-    
+
+    .eigth_section_img {
+
       background-image: url("https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerce_2.jpg");
       width: 100vw;
       height: 100vh;
       position: relative;
       margin-top: -725px;
+
       @media (max-width: 992px) {
         display: none;
       }
-    
+
     }
-    
-    
-    
-    .eigth_section_row{
-    
+
+
+
+    .eigth_section_row {
+
       @extend .row;
       display: flex;
+
       @media (max-width: 992px) {
         display: block;
       }
-      
+
     }
-    
-    .eigth_section_innersection1{
-    
+
+    .eigth_section_innersection1 {
+
       @extend .col-xs-12;
       @extend .col-sm-12;
       @extend .col-lg-6;
-      height:auto;
+      height: auto;
       font-family: "Open Sans";
-      
+
     }
-    
-    .eigth_section_innersection1_content{
-    
+
+    .eigth_section_innersection1_content {
+
       font-family: "Open Sans";
-      color:#002535;
+      color: #002535;
       position: relative;
       margin: 15%;
-      
+
     }
-    
-    .eigth_section_innersection1_content h1{
-    
-      height:auto;
+
+    .eigth_section_innersection1_content h1 {
+
+      height: auto;
       font-family: "Charter Bold";
-      color:#002535;
+      color: #002535;
       font-size: 60px;
-    
+
     }
-    
-    .eigth_section_innersection1_content p{
-    
-      margin-top:5%;
+
+    .eigth_section_innersection1_content p {
+
+      margin-top: 5%;
       margin-right: 10px;
       font-family: "Open Sans";
       font-size: 16px;
       line-height: 1.3;
       color: #002535;
-    
-      }
-    
-      .eigth_section_innersection1_btn1{
-    
-      
-        background-color: #336E87;
-        height:53px;
-        color:#f2f4f5;
-        border:0px;
-        width:398px;
-        padding:1px;
-        border-radius: 50px;
-        margin-top: 15%;
-        font-family: "Open Sans";
-        font-weight: bold;
-        letter-spacing: 2.8px; 
-        
-      }
-    
-      .eigth_section_innersection2_content2_img{
-    
-        width:115%;
-    
-      }
-    
-      .eigth_section_innersection1_content2{
-    
-        font-family: "Open Sans";
-        color:#002535;
-        position: relative;
-        margin: 15%;
-        
-      }
-      
-      .eigth_section_innersection1_content2 h1{
-      
-        height:auto;
-        font-family: "Charter Bold";
-        color:#002535;
-        font-size: 48px;
-        font-style: italic;
-      
-      }
-      
-      .eigth_section_innersection1_content2 p{
-      
-        margin-top:5%;
-        margin-right: 10px;
-        font-family: "Open Sans";
-        font-size: 16px;
-        line-height: 1.3;
-        color: #002535;
-      
-        }
-      
-        .eigth_section_innersection1_btn2{
-      
-        
-          background-color: #002535;
-          height:53px;
-          color:#f2f4f5;
-          border:0px;
-          width:398px;
-          padding:1px;
-          border-radius: 50px;
-          margin-top: 10%;
-          font-family: "Open Sans";
-          font-weight: bold;
-          letter-spacing: 2.8px; 
-          
-        }
-    
-    .eigth_section_innersection2{
-        @extend .col-xs-12;
-        @extend .col-sm-12;
-        @extend .col-lg-6;
-        font-family: "Open Sans";
-    
-        @media(max-width: 992px){
-          display:none;
-        }
-    
+
     }
-    
-    .eigth_section_innersection2_content_img{
-    
+
+    .eigth_section_innersection1_btn1 {
+
+
+      background-color: #336E87;
+      height: 53px;
+      color: #f2f4f5;
+      border: 0px;
+      width: 398px;
+      padding: 1px;
+      border-radius: 50px;
+      margin-top: 15%;
+      font-family: "Open Sans";
+      font-weight: bold;
+      letter-spacing: 2.8px;
+
     }
-    
-    .eigth_section_innersection2_content{
-    
+
+    .eigth_section_innersection2_content2_img {
+
+      width: 115%;
+
+    }
+
+    .eigth_section_innersection1_content2 {
+
+      font-family: "Open Sans";
+      color: #002535;
+      position: relative;
+      margin: 15%;
+
+    }
+
+    .eigth_section_innersection1_content2 h1 {
+
+      height: auto;
+      font-family: "Charter Bold";
+      color: #002535;
+      font-size: 48px;
+      font-style: italic;
+
+    }
+
+    .eigth_section_innersection1_content2 p {
+
+      margin-top: 5%;
+      margin-right: 10px;
+      font-family: "Open Sans";
+      font-size: 16px;
+      line-height: 1.3;
+      color: #002535;
+
+    }
+
+    .eigth_section_innersection1_btn2 {
+
+
+      background-color: #002535;
+      height: 53px;
+      color: #f2f4f5;
+      border: 0px;
+      width: 398px;
+      padding: 1px;
+      border-radius: 50px;
+      margin-top: 10%;
+      font-family: "Open Sans";
+      font-weight: bold;
+      letter-spacing: 2.8px;
+
+    }
+
+    .eigth_section_innersection2 {
+      @extend .col-xs-12;
+      @extend .col-sm-12;
+      @extend .col-lg-6;
+      font-family: "Open Sans";
+
+      @media(max-width: 992px) {
+        display: none;
+      }
+
+    }
+
+    .eigth_section_innersection2_content_img {}
+
+    .eigth_section_innersection2_content {
+
       margin-left: 45%;
       margin-top: 15%;
-    
+
     }
-    
-    .banner_section{
-    
-      
-      height:176px;
+
+    .banner_section {
+
+
+      height: 176px;
       background-color: #002535;
       margin-top: 0px;
       font-family: "Open Sans";
-      max-width:100vw;
-      position:relative;
+      max-width: 100vw;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-    
-    
+
+
       @media (max-width: 992px) {
         padding-left: 6%;
       }
     }
-    
-    .banner_section h2{
-    
+
+    .banner_section h2 {
+
       color: #EFF3F5;
       font-size: 30px;
       letter-spacing: 3px;
-    
+
     }
-    
-    .third_section{
-    
-      
-      height:400px;
-      display:flex;
-      max-width:100vw;
+
+    .third_section {
+
+
+      height: 400px;
+      display: flex;
+      max-width: 100vw;
       font-family: OpenSans;
-      background-color:#ffffff;
-    
+      background-color: #ffffff;
+
     }
-    
-    .third_section_innersection1{
-    
-      
-      height:400px;
-      width:60vw;
-      
+
+    .third_section_innersection1 {
+
+
+      height: 400px;
+      width: 60vw;
+
       font-family: OpenSans;
     }
-    
-    .third_section_innersection1_content{
-    
-      width:38vw;
-      height:300px;
+
+    .third_section_innersection1_content {
+
+      width: 38vw;
+      height: 300px;
       font-family: OpenSans;
-      color:#002535;
+      color: #002535;
       position: relative;
-      left:50px;
-      top:20px;
-      
+      left: 50px;
+      top: 20px;
+
     }
-    
-    
-    
-    .third_section_innersection1_content h1{
-    
-      margin-left:25px;
-      margin-top:60px;
+
+
+
+    .third_section_innersection1_content h1 {
+
+      margin-left: 25px;
+      margin-top: 60px;
       font-family: OpenSans;
     }
-    
-    .third_section_innersection1_content p{
-    
-      margin-left:25px;
-      margin-top:10px;
+
+    .third_section_innersection1_content p {
+
+      margin-left: 25px;
+      margin-top: 10px;
       margin-right: 10px;
       font-family: OpenSans;
     }
-    
-    .third_section_innersection1_btn1{
-    
-      
+
+    .third_section_innersection1_btn1 {
+
+
       background-color: #336E87;
-      height:30px;
-      color:white;
-      border:0px;
-      width:200px;
-      padding:1px;
+      height: 30px;
+      color: white;
+      border: 0px;
+      width: 200px;
+      padding: 1px;
       border-radius: 50px;
-      margin-left:25px;
-      margin-top:30px;
+      margin-left: 25px;
+      margin-top: 30px;
       font-family: OpenSans;
-      
-      
+
+
     }
-    
-    .third_section_innersection2{
-    
-     
-      height:400px;
-      width:40vw;
+
+    .third_section_innersection2 {
+
+
+      height: 400px;
+      width: 40vw;
       font-family: OpenSans;
     }
-    
-    .third_section_innersection2_content{
-    
-      width:38vw;
-      height:300px;
+
+    .third_section_innersection2_content {
+
+      width: 38vw;
+      height: 300px;
       font-family: OpenSans;
-      
+
       position: relative;
-      left:140px;
-      top:80px;
-      
+      left: 140px;
+      top: 80px;
+
     }
-    
-    .second_section{
-    
-      
-      height:100px;
+
+    .second_section {
+
+
+      height: 100px;
       background-color: #002535;
-      margin:1px;
+      margin: 1px;
       margin-top: 0px;
       text-align: center;
       font-family: OpenSans;
-      max-width:100vw;
-      position:relative;
-    }
-    
-    .second_section h2{
-    
+      max-width: 100vw;
       position: relative;
-      top:40px;
-      color:white;
-      font-family: OpenSans;
-      
-    
-      
     }
-    
-    
-    .sixth_section{
-     
-       
-      max-width:100vw;
+
+    .second_section h2 {
+
+      position: relative;
+      top: 40px;
+      color: white;
+      font-family: OpenSans;
+
+
+
+    }
+
+
+    .sixth_section {
+
+
+      max-width: 100vw;
       font-family: "Open Sans";
-      padding-top:20px;
-     
-      color:#002535;
-      position:relative;
-    
-      padding:6%;
+      padding-top: 20px;
+
+      color: #002535;
+      position: relative;
+
+      padding: 6%;
       background-color: #d6e2e7;
-    
-      }
-    
-      
-    
-      .sixth_section h1{
-    
+
+    }
+
+
+
+    .sixth_section h1 {
+
       margin-top: 3%;
       font-family: "Charter Bold";
       font-size: 60px;
-    
-      }
-    
-      .sixth_section p{
-    
-     margin-top: 1%;
-     font-family: "Open Sans";
-     font-size: 24px;
-     letter-spacing: -.4px;
-     color: #002535;
-    
-     }
-    
-      .sixth_section1{
-    
+
+    }
+
+    .sixth_section p {
+
+      margin-top: 1%;
+      font-family: "Open Sans";
+      font-size: 24px;
+      letter-spacing: -.4px;
+      color: #002535;
+
+    }
+
+    .sixth_section1 {
+
       @extend .row;
       font-family: "Open Sans";
-      display:flex;
+      display: flex;
       flex-wrap: wrap;
       /* flex-basis: 33%; */
-      }
-    
-     .sixth_section_cards{
-      
+    }
+
+    .sixth_section_cards {
+
       @extend .col-xs-12;
       @extend .col-sm-6;
       @extend .col-lg-4;
       font-family: "Open Sans";
-      position:relative;
-      padding-left: 3%;
-    
-     }
-    
-     .sixth_section_cards p{
-      
-     font-family: "Open Sans";
-     font-size: 24px;
-     letter-spacing: -.5px;
-     
-    }
-    
-    .sixth_section_cards h3{
-      
-     margin-top: 15%;
-     padding-bottom: 3% ;
-     font-family: "Open Sans";
-     font-weight: bold;
-     color:#002535;
-     
-    }
-    
-    
-    
-     .imgback1{
-    
-      position:relative;
-      
-      margin:8px;
-      top:40px;
-      font-family: "Open Sans";
-      background-color:#f6c9c6;
-      width:80px;
-      height:60px;
-      border-radius: 50%;
-    
-      
-     
-      
-     }
-    
-     .sixth_section1 img{
-    
-      position:relative;
-      
-      
-      top:10px;
-      left:15px;
-      font-family: "Open Sans";
-      }
-    
-    .fourth_section{
-    
-      
-      height:400px;
-      display:flex;
-      max-width:100vw;
-      font-family: OpenSans;
-      background-color:#ffffff;
-    
-    }
-    
-    .fourth_section_innersection1{
-    
-      
-      height:400px;
-      width:50vw;
-      
-      font-family: OpenSans;
-    }
-    
-    .fourth_section_innersection1_content{
-    
-      width:26vw;
-      height:300px;
-      font-family: OpenSans;
-      color:#002535;
       position: relative;
-      left:50px;
-      top:20px;
-      
+      padding-left: 3%;
+
     }
-    
-    
-    
-    .fourth_section_innersection1_content h1{
-    
-      margin-left:25px;
-      margin-top:60px;
+
+    .sixth_section_cards p {
+
+      font-family: "Open Sans";
+      font-size: 24px;
+      letter-spacing: -.5px;
+
+    }
+
+    .sixth_section_cards h3 {
+
+      margin-top: 15%;
+      padding-bottom: 3%;
+      font-family: "Open Sans";
+      font-weight: bold;
+      color: #002535;
+
+    }
+
+
+
+    .imgback1 {
+
+      position: relative;
+
+      margin: 8px;
+      top: 40px;
+      font-family: "Open Sans";
+      background-color: #f6c9c6;
+      width: 80px;
+      height: 60px;
+      border-radius: 50%;
+
+
+
+
+    }
+
+    .sixth_section1 img {
+
+      position: relative;
+
+
+      top: 10px;
+      left: 15px;
+      font-family: "Open Sans";
+    }
+
+    .fourth_section {
+
+
+      height: 400px;
+      display: flex;
+      max-width: 100vw;
+      font-family: OpenSans;
+      background-color: #ffffff;
+
+    }
+
+    .fourth_section_innersection1 {
+
+
+      height: 400px;
+      width: 50vw;
+
       font-family: OpenSans;
     }
-    
-    .fourth_section_innersection1_content p{
-    
-      margin-left:25px;
-      margin-top:10px;
+
+    .fourth_section_innersection1_content {
+
+      width: 26vw;
+      height: 300px;
+      font-family: OpenSans;
+      color: #002535;
+      position: relative;
+      left: 50px;
+      top: 20px;
+
+    }
+
+
+
+    .fourth_section_innersection1_content h1 {
+
+      margin-left: 25px;
+      margin-top: 60px;
+      font-family: OpenSans;
+    }
+
+    .fourth_section_innersection1_content p {
+
+      margin-left: 25px;
+      margin-top: 10px;
       margin-right: 10px;
       font-family: OpenSans;
     }
-    
-    .fourth_section_innersection1_btn1{
-    
-      
+
+    .fourth_section_innersection1_btn1 {
+
+
       background-color: #002535;
-      height:30px;
-      color:white;
-      border:0px;
-      width:200px;
-      padding:1px;
+      height: 30px;
+      color: white;
+      border: 0px;
+      width: 200px;
+      padding: 1px;
       border-radius: 50px;
-      margin-left:25px;
-      margin-top:30px;
+      margin-left: 25px;
+      margin-top: 30px;
       font-family: OpenSans;
-      
-      
+
+
     }
-    
-    .fourth_section_innersection2{
-    
-     
-      height:400px;
-      width:50vw;
+
+    .fourth_section_innersection2 {
+
+
+      height: 400px;
+      width: 50vw;
       font-family: OpenSans;
     }
-    
-    .fourth_section_innersection2_content{
-    
-      width:48vw;
-      height:300px;
+
+    .fourth_section_innersection2_content {
+
+      width: 48vw;
+      height: 300px;
       font-family: OpenSans;
-      
+
       position: relative;
-      left:140px;
-      top:80px;
-      
+      left: 140px;
+      top: 80px;
+
     }
-    </style>
+  </style>
 </head>
+
 <body>
 
   <div class="first_section">
-      <div class="first_section_row">
-          <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
-              <div class="first_section_innersection1_content">
-                  <h3>NETSUITE CONSULTING</h3>
-                  <H1>Real NetSuite Solutions. <br> From Real NetSuite Experts.</H1>
+    <div class="first_section_row">
+      <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+        <div class="first_section_innersection1_content">
+          <h3>NETSUITE CONSULTING</h3>
+          <H1>Real NetSuite Solutions. <br> From Real NetSuite Experts.</H1>
 
-              
-                  <div class="imgback"><img src="img.jpg" width="36px" height="36px"></div>
-                  
 
-              </div>
-              
+          <div class="imgback"><img src="img.jpg" width="36px" height="36px"></div>
 
-          </div>
-          <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
-              <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteConsulting_1.jpg" height="300px" width="670px">
-              
-          </div>
+
+        </div>
+
+
       </div>
+      <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+        <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteConsulting_1.jpg" height="300px"
+          width="670px">
+
+      </div>
+    </div>
   </div>
 
 
   <div class="eigth_section">
-      <div class="eigth_section_row">
-        <div class="eigth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
-            <div class="eigth_section_innersection2_content">
-                <div class="eigth_section_innersection2_content_img"></div>
-                <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteConsulting_2.jpg">
-            </div>
-            
+    <div class="eigth_section_row">
+      <div class="eigth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+        <div class="eigth_section_innersection2_content">
+          <div class="eigth_section_innersection2_content_img"></div>
+          <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteConsulting_2.jpg">
         </div>
-  
-        <div class="eigth_section_innersection1 col-lg-6 col-md-6 col-xs-12">
-            <div class="eigth_section_innersection1_content">
-                <h1>Find the missing piece to your ERP puzzle.</h1>
-                
-                <p> Get expert guidance on software that can help your company work faster, produce more, and beat the competition. As a trusted NetSuite consultant, we believe you can thrive in your industry. We’re prepared to walk you through a digital evolution that ends in triumph. <br><br>
-                  
-                  Your NetSuite success story starts with a free consultation from a SuiteDynamics expert.</p>
-                <a href="#schedule-a-consultation">
-                  <button id="schedule-your-consultation" class="eigth_section_innersection1_btn1"> SCHEDULE YOUR CONSULTATION</button>
-                </a>
-  
-            </div>
-            
-  
-        </div>
+
       </div>
+
+      <div class="eigth_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+        <div class="eigth_section_innersection1_content">
+          <h1>Find the missing piece to your ERP puzzle.</h1>
+
+          <p> Get expert guidance on software that can help your company work faster, produce more, and beat the
+            competition. As a trusted NetSuite consultant, we believe you can thrive in your industry. We’re prepared to
+            walk you through a digital evolution that ends in triumph. <br><br>
+
+            Your NetSuite success story starts with a free consultation from a SuiteDynamics expert.</p>
+          <a href="#schedule-a-consultation">
+            <button id="schedule-your-consultation" class="eigth_section_innersection1_btn1"> SCHEDULE YOUR
+              CONSULTATION</button>
+          </a>
+
+        </div>
+
+
+      </div>
+    </div>
   </div>
 
   <div class="banner_section">
-      <div>
-    
-          <h2>A NETSUITE CONSULTANT EQUIPS YOUR FOR SUCCESS</h2>
-      </div>
-    
+    <div>
+
+      <h2>A NETSUITE CONSULTANT EQUIPS YOUR FOR SUCCESS</h2>
+    </div>
+
   </div>
 
   <div class="sixth_section">
-  
-      <div class="sixth_section1">
-      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
-          <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-          <h3>SYSTEM <br>CONFIGURATION</h3>
-          <p style="margin-top:20px; ">Enjoy a NetSuite ERP that’s configured to your company’s unique structure. Our NetSuite consultants can establish user roles and permissions; customize forms, workflows, and dashboards; define financial and operational processes; integrate third-party applications; and more.</p>
-          
-      </div>
-      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
-          <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-          <h3>DATA <br> MIGRATION</h3>
-          <p style="margin-top:20px; ">Have your data safely transferred to NetSuite from legacy systems and other platforms. Our team will maintain the information’s accuracy and integrity throughout the process. This service includes data mapping, cleansing, and validation, ensuring a smooth and successful data migration.</p>
-          
-      </div>
-      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
-          <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-          <h3 style=" margin-top: 50px;">CUSTOMIZATION  <br>& DEVELOPMENT</h3>
-          <p style="margin-top:20px; ">Employ a software system that’s tailored to your company’s processes and works well with third-party systems. Our NetSuite consultants can create custom scripts, reports, workflows, and integrations that extend NetSuite’s functionality and offer seamless data exchange with outside software.</p>
-          
-      </div>
 
+    <div class="sixth_section1">
       <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
-          <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-          <h3>TRAINING AND <br> SUPPORT</h3>
-          <p style="margin-top:20px;">Receive thorough training from experienced NetSuite consultants. We’ll ensure your team can fully utilize your ERP system. You can also partner with us for ongoing support and get troubleshooting assistance for any issues that arise after implementation.</p>
-          
-      </div>
-      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
-          <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-          <h3>PROCESS <br> IMPROVEMENT</h3>
-          <p style="margin-top:20px;">Get a comprehensive business analysis and recommendations for reducing manual efforts and enhancing efficiency. This service may involve process mapping, gap analysis, and identification of automation opportunities.</p>
-          
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3>SYSTEM <br>CONFIGURATION</h3>
+        <p style="margin-top:20px; ">Enjoy a NetSuite ERP that’s configured to your company’s unique structure. Our
+          NetSuite consultants can establish user roles and permissions; customize forms, workflows, and dashboards;
+          define financial and operational processes; integrate third-party applications; and more.</p>
 
       </div>
       <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
-          <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
-          <h3>PROJECT  <br>MANAGEMENT</h3>
-          <p style="margin-top:20px; ">Find competent assistance with project management activities. Our NetSuite consultants will help plan, execute, monitor, and control NetSuite implementation projects, ensuring they get completed on-time and within budget.</p>
-        
-      </div>
-  </div>
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3>DATA <br> MIGRATION</h3>
+        <p style="margin-top:20px; ">Have your data safely transferred to NetSuite from legacy systems and other
+          platforms. Our team will maintain the information’s accuracy and integrity throughout the process. This
+          service includes data mapping, cleansing, and validation, ensuring a smooth and successful data migration.</p>
 
- 
+      </div>
+      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3 style=" margin-top: 50px;">CUSTOMIZATION <br>& DEVELOPMENT</h3>
+        <p style="margin-top:20px; ">Employ a software system that’s tailored to your company’s processes and works well
+          with third-party systems. Our NetSuite consultants can create custom scripts, reports, workflows, and
+          integrations that extend NetSuite’s functionality and offer seamless data exchange with outside software.</p>
+
+      </div>
+
+      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3>TRAINING AND <br> SUPPORT</h3>
+        <p style="margin-top:20px;">Receive thorough training from experienced NetSuite consultants. We’ll ensure your
+          team can fully utilize your ERP system. You can also partner with us for ongoing support and get
+          troubleshooting assistance for any issues that arise after implementation.</p>
+
+      </div>
+      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3>PROCESS <br> IMPROVEMENT</h3>
+        <p style="margin-top:20px;">Get a comprehensive business analysis and recommendations for reducing manual
+          efforts and enhancing efficiency. This service may involve process mapping, gap analysis, and identification
+          of automation opportunities.</p>
+
+
+      </div>
+      <div class="sixth_section_cards col-lg-4 col-md-4 col-xs-1">
+        <div class="imgback1"><img src="img.jpg" width="36px" height="36px"></div>
+        <h3>PROJECT <br>MANAGEMENT</h3>
+        <p style="margin-top:20px; ">Find competent assistance with project management activities. Our NetSuite
+          consultants will help plan, execute, monitor, and control NetSuite implementation projects, ensuring they get
+          completed on-time and within budget.</p>
+
+      </div>
+    </div>
+
+
 
   </div>
 
   <div class="eigth_section">
-      <div class="eigth_section_row">
-        <div class="eigth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
-            <div class="eigth_section_innersection2_content">
-                <div class="eigth_section_innersection2_content2_img">
-                  <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteConsulting_3.jpg">
-                </div>
-              </div>
-            
+    <div class="eigth_section_row">
+      <div class="eigth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+        <div class="eigth_section_innersection2_content">
+          <div class="eigth_section_innersection2_content2_img">
+            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/NetsuiteConsulting_3.jpg">
+          </div>
         </div>
-  
-        <div class="eigth_section_innersection1 col-lg-6 col-md-6 col-xs-12">
-            <div class="eigth_section_innersection1_content2">
-                <h1>Put your faith<br> in our team.</h1>
-                
-                <p> Trust us to deliver reliable NetSuite consulting solutions that help your business thrive in today’s competitive landscape. Schedule a consultation and take your NetSuite experience to the next level.</p>
-                <a href="#schedule-a-consultation">
-                  <button id="schedule-your-consultation" class="eigth_section_innersection1_btn2"> SCHEDULE YOUR CONSULTATION</button>
-                </a>
-            </div>
-            
-  
-        </div>
+
       </div>
+
+      <div class="eigth_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+        <div class="eigth_section_innersection1_content2">
+          <h1>Put your faith<br> in our team.</h1>
+
+          <p> Trust us to deliver reliable NetSuite consulting solutions that help your business thrive in today’s
+            competitive landscape. Schedule a consultation and take your NetSuite experience to the next level.</p>
+          <a href="#schedule-a-consultation">
+            <button id="schedule-your-consultation" class="eigth_section_innersection1_btn2"> SCHEDULE YOUR
+              CONSULTATION</button>
+          </a>
+        </div>
+
+
+      </div>
+    </div>
   </div>
 
 </body>
+
 </html>
