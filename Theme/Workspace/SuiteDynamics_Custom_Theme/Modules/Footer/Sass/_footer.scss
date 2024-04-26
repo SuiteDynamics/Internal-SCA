@@ -61,6 +61,7 @@ footer {
     margin: auto;
     text-align: center;
     padding: $sc-padding-lv6 0 0;
+    margin-left: 5%;
     
     @media (min-width: $screen-sm-min) {
         padding-top: $sc-padding-lv5;
@@ -84,6 +85,7 @@ footer {
 }
 .footer-bottom{
     padding-left: 30px;
+    margin-left: 5%;
 }
 .footer-address p{
     color: #f2f4f5;

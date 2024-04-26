@@ -332,6 +332,10 @@ $sc-sidebar-size: 246px;
 			height: 0;
 		}
 	}
+	@media (max-width: $screen-sm-max) {
+		position:absolute;
+		z-index: -1;
+	}
 }
 
 
@@ -386,7 +390,7 @@ $sc-sidebar-size: 246px;
 	border-bottom: 1px solid $sc-top-menu-border-color;
 
 	@media(min-width: $screen-sm-min) {
-		display: block;
+		display: none;
 	}
 }
 
@@ -498,6 +502,14 @@ $sc-sidebar-size: 246px;
 	text-align: center;
 	line-height: 48px;
 	display: block;
+	margin-left: 50px;
+
+	@media (max-width: $screen-lg-min) {
+
+		width: 250px;
+		font-size: 12px;
+		letter-spacing: 1.8px;
+	}
        
   }
 

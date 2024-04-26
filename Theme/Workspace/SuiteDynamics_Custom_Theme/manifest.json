@@ -2,7 +2,7 @@
     "name": "SuiteDynamics_Custom_Theme",
     "fantasyName": "SuiteDynamics Custom Theme",
     "vendor": "SuiteDynamics",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "type": "theme",
     "target": "SCA,SCS",
     "target_version": {

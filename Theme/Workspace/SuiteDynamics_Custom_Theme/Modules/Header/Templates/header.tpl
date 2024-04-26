@@ -52,7 +52,7 @@
 				<div data-view="Header.Logo"></div>
 			</div>
             <div class="header-secondary-wrapper" data-view="Header.Menu" data-phone-template="header_sidebar" data-tablet-template="header_sidebar"></div>
-            <div><a href="#schedule-a-consultation" class="header-menu-consult-btn"> SCHEDULE YOUR CONSULTATION</a></div>
+            <div><a href="#schedule-a-consultation"><button class="header-menu-consult-btn"> SCHEDULE YOUR CONSULTATION</button></a></div>
             <div class="header-right-menu">
             
                 {{#if isStandalone}}

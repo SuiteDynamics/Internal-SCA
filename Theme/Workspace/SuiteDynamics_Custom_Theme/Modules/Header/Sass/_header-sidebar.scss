@@ -19,8 +19,11 @@
 
 .header-sidebar-wrapper {
     display: none;
-    height: 100%;
 	@extend %scroll-y;
+
+	@media (max-width: $screen-sm-max) {
+		display: block;
+	}
 
     &-visible {
         display: block;
