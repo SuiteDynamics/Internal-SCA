@@ -262,10 +262,8 @@
         }
 
         .first_section_innersection1 {
-            width: 100%;
-            max-width: 100%;
-            padding: 0 15px;
-            box-sizing: border-box;
+            max-width: 60%;
+            flex: 0 0 60%;
         }
 
         @media (min-width: 768px) {
@@ -283,18 +281,18 @@
 
         .first_section_innersection1_content {
             width: 100%;
-            max-width: 40vw;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 60vw;
+            margin-left: 100px;
         }
 
         .first_section_innersection1_content h2 {
             color: #85A8B7;
             font-family: "Open Sans", sans-serif;
-            letter-spacing: 2px;
+            letter-spacing: 6.4px;
             margin-top: 30px;
             margin-bottom: 10px;
             font-size: 32px;
+            font-weight: bold;
         }
 
         .first_section_innersection1_content h1 {
@@ -303,6 +301,7 @@
             margin-top: 10px;
             margin-bottom: 20px;
             font-size: 60px;
+            font-style: italic;
         }
 
         .first_section_innersection1_content h1 i {
@@ -321,11 +320,14 @@
 
 
         .first_section_innersection2 {
+
+
             width: 100%;
             max-width: 100%;
+            padding: 0 15px;
             box-sizing: border-box;
-            height: 100%;
-            /* Ajusta la altura automáticamente según el contenido */
+            height: auto;
+            max-height: 500px;
         }
 
         @media (min-width: 768px) {
@@ -336,6 +338,10 @@
             }
         }
 
+        .first_section_innersection2 {
+            max-width: 50%;
+            flex: 0 0 50%;
+        }
 
         @media (min-width: 992px) {
             .first_section_innersection2 {
@@ -351,18 +357,18 @@
             /* Asegura que nada se desborde del contenedor */
         }
 
-
         .first_section_innersection2 img {
             max-width: 100%;
             /* Ajusta la imagen para que no se extienda más allá del contenedor */
-            height: 100%;
+            height: auto;
             /* Permite que la altura de la imagen se ajuste automáticamente */
             display: block;
-            margin-left: auto;
+            margin-left: 100px;
             margin-right: auto;
             margin-bottom: 20px;
             /* Añade un espacio entre la imagen y el texto */
         }
+
 
         .third_section_container {
             background-color: #EFF3F5;
@@ -382,18 +388,17 @@
 
         .third_section_innersection1 {
             margin-left: 100px;
+            flex: 0 0 50%;
         }
 
         .third_section_innersection1_content {
-            width: 70%;
+            width: 100%;
             font-family: "Open Sans";
             color: #002535;
-            margin-left: 25px;
-            margin-right: 25px;
         }
 
         .third_section_innersection1_content h1 {
-            font-family: "Charter Bold Italic";
+            font-family: "Charter Bold";
             font-size: 48px;
             /* Adjusted */
             color: #336E87;
@@ -405,7 +410,7 @@
         }
 
         .third_section_innersection1_btn1 {
-            background-color: #336E87;
+            background-color: #002535;
             height: 53px;
             color: white;
             border: 0px;
@@ -416,12 +421,12 @@
             font-family: "Open Sans";
             font-weight: 500;
             font-size: 14px;
-            letter-spacing: 2px;
+            letter-spacing: 2.8px;
         }
 
 
         .third_section_innersection2_content {
-            margin-left: 70px;
+            margin-left: 100px;
             height: 100%;
             width: 100%;
         }
@@ -600,10 +605,8 @@
         .second_section {
 
 
-            height: 100px;
             background-color: #002535;
-            margin: 1px;
-            margin-top: 0px;
+
             text-align: center;
             font-family: "Open Sans";
             max-width: 100vw;
@@ -613,9 +616,10 @@
         .second_section h2 {
 
             position: relative;
-            top: 30px;
+            padding: 50px;
             color: white;
             font-family: "Open Sans";
+            font-weight: bold;
 
 
 
@@ -633,7 +637,7 @@
         }
 
         .sixth_section h1 {
-            margin-top: 50px;
+            margin-top: 120px;
             font-family: "Charter Bold", sans-serif;
             margin-left: 140px;
             font-size: 60px;
@@ -689,6 +693,7 @@
             font-size: 24px;
             margin-top: 20px;
             color: #002535;
+            font-weight: bold;
         }
 
         .sixth_section_cards p {
@@ -716,7 +721,7 @@
 
         .seventh_section_innersection1 {
             width: 100%;
-            max-width: 50%;
+            max-width: 65%;
             padding: 0 15px;
             box-sizing: border-box;
         }
@@ -735,6 +740,7 @@
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
+            font-style: italic;
         }
 
         .seventh_section_innersection1_content p {
@@ -754,17 +760,20 @@
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 2.8px;
             cursor: pointer;
             display: block;
             margin-right: auto;
+            text-transform: uppercase;
+            width: 428px;
         }
 
         .seventh_section_innersection2 {
             position: relative;
             overflow: hidden;
             width: 100%;
-            max-width: 50%;
+            max-width: 35%;
+            height: 100vh;
         }
 
 
@@ -773,7 +782,7 @@
             max-width: 100%;
             /* Ajusta el ancho máximo de la imagen */
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             margin: 0 auto;
             /* Centra la imagen horizontalmente */
@@ -798,7 +807,6 @@
 
         .eight_section_innersection1 {
             width: 100%;
-            /* max-width: 50%; */
             padding: 0 15px;
             box-sizing: border-box;
         }
@@ -817,6 +825,7 @@
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
+            padding-left: 140px;
         }
 
         .eight_section_innersection1_content h1 {
@@ -827,11 +836,13 @@
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
+            padding-left: 140px;
+            font-style: italic;
         }
 
 
         .eight_section_innersection1_btn1 {
-            background-color: #EFF3F5;
+            background-color: #336E87;
             color: #002535;
             border: none;
             padding: 15px 30px;
@@ -839,11 +850,15 @@
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 2.8px;
             cursor: pointer;
             display: block;
             margin-right: auto;
             font-weight: bold;
+            margin-left: 140px;
+            text-transform: uppercase;
+            width: 428px;
+            opacity: 1;
         }
 
         .eight_section_innersection2 {
@@ -981,13 +996,23 @@
 
         .donwcirc {
             border-radius: 50%;
-            background-color: #ADC5CF;
-            height: 70px;
-            width: 70px;
+            height: 90px;
+            width: 90px;
             position: relative;
             background-image: url("https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue Icons/SD_Arrow_Icon.png");
             background-size: cover;
             background-position: center;
+            margin-top: 80px;
+        }
+
+        .netsuite_implementation_image {
+            background: url(https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_1.jpg) 50% 50%;
+            background-size: cover;
+        }
+
+        .netsuite_implementation_image_seventh {
+            background: url(https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_5.jpg) 50% 50%;
+            background-size: cover;
         }
     </style>
 </head>
@@ -1010,8 +1035,7 @@
             </div>
             <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
                 <img class="netsuite_implementation_image"
-                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_4.jpg"
-                    height="430px" width="500px">
+                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_4.jpg">
 
             </div>
 
@@ -1157,8 +1181,9 @@
             </div>
         </div>
         <div class="seventh_section_innersection2">
-            <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_5.jpg"
-                height="400px" width="700px;"> <!-- Ajusta el ancho de la imagen -->
+            <img class="netsuite_implementation_image_seventh"
+                src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuiteCommerceImplementation_5.jpg">
+            <!-- Ajusta el ancho de la imagen -->
         </div>
     </div>
 

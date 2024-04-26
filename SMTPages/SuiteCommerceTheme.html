@@ -265,7 +265,6 @@
         .first_section_innersection1 {
             width: 100%;
             max-width: 100%;
-            padding: 0 15px;
             box-sizing: border-box;
         }
 
@@ -285,8 +284,9 @@
         .first_section_innersection1_content {
             width: 100%;
             max-width: 40vw;
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: 30px;
+
+
         }
 
         .first_section_innersection1_content h2 {
@@ -296,6 +296,8 @@
             margin-top: 30px;
             margin-bottom: 10px;
             font-size: 32px;
+            letter-spacing: 6.4px;
+            opacity: 1;
         }
 
         .first_section_innersection1_content h1 {
@@ -327,52 +329,33 @@
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 2.8px;
             cursor: pointer;
             display: block;
             margin-right: auto;
+            font-weight: bold;
         }
 
         .first_section_innersection2 {
-            width: 100%;
-            max-width: 100%;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-
-        @media (min-width: 768px) {
-            .first_section_innersection2 {
-                flex: 0 0 100%;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .first_section_innersection2 {
-                max-width: 50%;
-                flex: 0 0 50%;
-            }
-        }
-
-
-        .first_section_innersection2 {
-            position: relative;
+            @extend .col-xs-12;
+            @extend .col-sm-12;
+            @extend .col-lg-5;
+            /*@extend .col-sm-6; border:1px solid black; */
+            font-family: "Open Sans";
+            padding: 0px;
+            font-size: 0;
             overflow: hidden;
-            /* Asegura que nada se desborde del contenedor */
+
+            @media (max-width: 992px) {
+                margin-top: 10%;
+            }
         }
 
 
-        .first_section_innersection2 img {
-            max-width: 90%;
-            width: 90%;
-            height: auto;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin: 0 auto;
-            /* Centra la imagen horizontalmente */
+        .netsuite_implementation_image {
+            max-width: 175%;
             position: relative;
-            z-index: 1;
-            /* Asegura que la imagen esté delante del pseudo-elemento */
+            left: -190px;
         }
 
 
@@ -406,7 +389,7 @@
 
             margin-left: 25px;
             margin-top: 60px;
-            font-family: "Charter Bold Italic";
+            font-family: "Charter Bold";
             font-size: 60px;
             color: #336E87;
         }
@@ -420,6 +403,7 @@
             font-size: 24px;
             color: #002535;
         }
+
 
         .third_section_innersection1_btn1 {
 
@@ -454,9 +438,41 @@
             height: 300px;
             font-family: "Open Sans";
             position: relative;
-            left: 230px;
+            left: 100px;
             top: 100px;
 
+        }
+
+        @media (max-width: 1300px) {
+
+            /* .third_section_innersection1,
+            .third_section_innersection2_content {
+                width: 100%;
+            } */
+            .third_section {
+                height: 800px;
+            }
+
+
+
+            .third_section_innersection1_content h1 {
+
+                font-size: 40px;
+            }
+
+            .third_section_innersection1_content p {
+
+                font-size: 16px;
+            }
+
+            .third_section_innersection1_btn1 {
+
+
+
+                font-size: 14px;
+
+
+            }
         }
 
         .fifth_section_row {
@@ -690,7 +706,7 @@
 
         .seventh_section_innersection1 {
             width: 100%;
-            max-width: 50%;
+            max-width: 60%;
             padding: 0 15px;
             box-sizing: border-box;
         }
@@ -709,6 +725,7 @@
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
+            padding-left: 60px;
         }
 
         .seventh_section_innersection1_content p {
@@ -717,6 +734,7 @@
             margin-bottom: 20px;
             text-align: left;
             font-size: 24px;
+            padding-left: 60px;
         }
 
         .seventh_section_innersection1_btn1 {
@@ -728,17 +746,19 @@
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 2.8px;
             cursor: pointer;
             display: block;
             margin-right: auto;
+            text-transform: uppercase;
+            margin-left: 60px;
         }
 
         .seventh_section_innersection2 {
             position: relative;
             overflow: hidden;
             width: 100%;
-            max-width: 50%;
+            max-width: 40%;
         }
 
 
@@ -790,6 +810,7 @@
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
+            padding-left: 140px;
         }
 
         .eight_section_innersection1_content h1 {
@@ -800,6 +821,8 @@
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
+            padding-left: 140px;
+            font-style: italic;
         }
 
 
@@ -811,11 +834,14 @@
             border-radius: 50px;
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
-            font-size: 14px;
-            letter-spacing: 1px;
+            font-size: 16px;
+            letter-spacing: 3.2px;
             cursor: pointer;
             display: block;
             margin-right: auto;
+            margin-left: 140px;
+            text-transform: uppercase;
+            width: 397px;
         }
 
         .eight_section_innersection2 {
@@ -958,8 +984,7 @@
         <div class="first_section_row">
             <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
                 <img class="netsuite_implementation_image"
-                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuitecommerceTheme_1.jpg"
-                    height="430px" width="500px">
+                    src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuitecommerceTheme_1.jpg">
 
             </div>
             <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
@@ -990,7 +1015,7 @@
 
 
 
-        <div class="third_section_innersection1">
+        <div class="third_section_innersection1 col-lg-6 col-md-6 col-xs-12">
             <div class="third_section_innersection1_content">
 
                 <h1>A thriving web store starts with a striking theme.</h1>
@@ -1015,7 +1040,7 @@
 
 
         </div>
-        <div class="third_section_innersection2_content">
+        <div class="third_section_innersection2_content col-lg-5 col-xs-12">
             <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_2.jpg" height="700px"
                 width="600px">
         </div>
@@ -1050,7 +1075,7 @@
                 <button class="seventh_section_innersection1_btn1">Schedule Your Consultation</button>
             </div>
         </div>
-        <div class="seventh_section_innersection2">
+        <div class="seventh_section_innersection2 col-lg-5 col-xs-12">
             <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_3.jpg" height="400px"
                 width="700px;"> <!-- Ajusta el ancho de la imagen -->
         </div>
