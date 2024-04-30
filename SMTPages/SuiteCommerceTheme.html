@@ -254,8 +254,8 @@
         }
 
         .first_section {
-            padding: 50px 0;
             font-family: "Open Sans", sans-serif;
+            display:flex;
         }
 
         .first_section_row {
@@ -263,6 +263,9 @@
         }
 
         .first_section_innersection1 {
+          @extend .col-xs-12;
+          @extend .col-sm-12;
+          @extend .col-lg-7;
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
@@ -276,16 +279,24 @@
 
         @media (min-width: 992px) {
             .first_section_innersection1 {
-                max-width: 50%;
-                flex: 0 0 50%;
+                flex: 0 0 65%;
             }
         }
 
         .first_section_innersection1_content {
             width: 100%;
-            max-width: 40vw;
-            margin-left: 30px;
+            margin-left: 125px;
+            margin-top: 75px;
 
+            @media (max-width: 1500px) {
+              margin-top: 40px;
+              margin-left: 75px;
+            }
+
+            @media (max-width: 992px) {
+                margin-top: 40px;
+                margin-left: 10px;
+              }
 
         }
 
@@ -306,6 +317,18 @@
             margin-top: 10px;
             margin-bottom: 20px;
             font-size: 60px;
+
+            @media (max-width: 1700px) {
+              font-size: 46px;
+            }
+
+            @media (max-width: 1500px) {
+              font-size: 38px;
+            }
+
+            @media (max-width: 1200px) {
+              font-size: 30px;
+            }
         }
 
         .first_section_innersection1_content h1 i {
@@ -318,13 +341,20 @@
             font-family: "Open Sans", sans-serif;
             margin-bottom: 20px;
             font-size: 24px;
+
+            @media (max-width: 1700px) {
+              font-size: 18px;
+            }
+
+            @media (max-width: 1500px) {
+              font-size: 16px;
+            }
         }
 
         .first_section_innersection1_btn1 {
             background-color: #336E87;
             color: #EFF3F5;
             border: none;
-            padding: 15px 100px;
             border-radius: 50px;
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
@@ -334,6 +364,14 @@
             display: block;
             margin-right: auto;
             font-weight: bold;
+            margin-bottom: 20px;
+            width: 398px;
+            height: 53px;
+
+            @media (max-width: 992px) {
+                width:280px;
+                font-size: 10px;
+            }
         }
 
         .first_section_innersection2 {
@@ -344,18 +382,16 @@
             font-family: "Open Sans";
             padding: 0px;
             font-size: 0;
-            overflow: hidden;
 
             @media (max-width: 992px) {
                 margin-top: 10%;
+                display: none;
             }
         }
 
 
         .netsuite_implementation_image {
-            max-width: 175%;
             position: relative;
-            left: -190px;
         }
 
 
@@ -363,23 +399,31 @@
         .third_section {
 
             background-color: #EFF3F5;
-            height: 1000px;
             display: flex;
             max-width: 100vw;
             font-family: "Open Sans";
 
         }
 
+        .third_section_innersection1{
+
+            margin-bottom: 60px;
+        }
+
 
         .third_section_innersection1_content {
 
-            width: 38vw;
-            height: 300px;
+            width: 46vw;
             font-family: "Open Sans";
             color: #002535;
             position: relative;
-            left: 140px;
+            left: 70px;
             top: 20px;
+
+            @media (max-width: 992px) {
+                position: unset;
+                width: auto;
+            }
 
         }
 
@@ -392,16 +436,24 @@
             font-family: "Charter Bold";
             font-size: 60px;
             color: #336E87;
+
+            @media (max-width: 1500px) {
+              font-size: 50px;
+            }
         }
 
         .third_section_innersection1_content p {
 
             margin-left: 25px;
-            margin-top: 10px;
+            margin-top: 20px;
             margin-right: 10px;
             font-family: "Open Sans";
             font-size: 24px;
             color: #002535;
+
+            @media (max-width: 1500px) {
+              font-size: 20px;
+            }
         }
 
 
@@ -418,9 +470,14 @@
             margin-left: 25px;
             margin-top: 30px;
             font-family: "Open Sans";
-            font-weight: 500;
+            font-weight: bold;
             font-size: 14px;
             letter-spacing: 2px;
+            margin-bottom: 20px;
+
+            @media (max-width: 992px) {
+                width:280px
+            }
 
 
         }
@@ -441,18 +498,13 @@
             left: 100px;
             top: 100px;
 
+            @media (max-width: 992px) {
+                display: none;
+            }
+            
         }
 
         @media (max-width: 1300px) {
-
-            /* .third_section_innersection1,
-            .third_section_innersection2_content {
-                width: 100%;
-            } */
-            .third_section {
-                height: 800px;
-            }
-
 
 
             .third_section_innersection1_content h1 {
@@ -469,8 +521,8 @@
 
 
 
-                font-size: 14px;
-
+                font-size: 10px;
+                margin-bottom: 20px;
 
             }
         }
@@ -590,9 +642,8 @@
         .second_section {
 
 
-            height: 100px;
+            height: 176px;
             background-color: #002535;
-            margin: 1px;
             margin-top: 0px;
             text-align: center;
             font-family: "Open Sans";
@@ -603,11 +654,15 @@
         .second_section h2 {
 
             position: relative;
-            top: 30px;
+            top: 70px;
             color: white;
             font-family: "Open Sans";
+            font-size: 32px;
+            letter-spacing: 3.8px;
 
-
+            @media (max-width: 992px) {
+                font-size: 20px;
+            }
 
         }
 
@@ -719,13 +774,17 @@
 
         .seventh_section_innersection1_content h1 {
             color: #002535;
-            font-family: "Open Sans", sans-serif;
+            font-family: "Charter Bold Italic", sans-serif;
             font-weight: bold;
             font-size: 48px;
             margin-top: 20px;
             margin-bottom: 10px;
             text-align: left;
             padding-left: 60px;
+
+            @media (max-width: 992px) {
+                padding-left: 10px;
+            }
         }
 
         .seventh_section_innersection1_content p {
@@ -735,13 +794,18 @@
             text-align: left;
             font-size: 24px;
             padding-left: 60px;
+            line-height: 1.4;
+            @media (max-width: 992px) {
+                padding-left: 10px;
+            }
         }
 
         .seventh_section_innersection1_btn1 {
             background-color: #336E87;
             color: #F2F4F5;
             border: none;
-            padding: 15px 100px;
+            padding-left:50px;
+            padding-right: 50px;
             border-radius: 50px;
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
@@ -752,6 +816,15 @@
             margin-right: auto;
             text-transform: uppercase;
             margin-left: 60px;
+            font-weight: bold;
+            height: 53px;
+            margin-bottom: 20px;
+
+            @media (max-width: 992px) {
+                margin-left: 10px;
+                width: auto;
+                font-size: 10px;
+            }
         }
 
         .seventh_section_innersection2 {
@@ -811,6 +884,10 @@
             margin-bottom: 10px;
             text-align: left;
             padding-left: 140px;
+
+            @media (max-width: 992px) {
+                padding-left: 10px;
+            }
         }
 
         .eight_section_innersection1_content h1 {
@@ -823,6 +900,10 @@
             text-align: left;
             padding-left: 140px;
             font-style: italic;
+
+            @media (max-width: 992px) {
+                padding-left: 10px;
+            }
         }
 
 
@@ -835,6 +916,7 @@
             margin-top: 30px;
             font-family: "Open Sans", sans-serif;
             font-size: 16px;
+            font-weight: bold;
             letter-spacing: 3.2px;
             cursor: pointer;
             display: block;
@@ -842,6 +924,12 @@
             margin-left: 140px;
             text-transform: uppercase;
             width: 397px;
+
+            @media (max-width: 992px) {
+                padding: 15px 0px 15px 0px;
+                width: auto;
+                margin-left: 10px;
+            }
         }
 
         .eight_section_innersection2 {
@@ -982,45 +1070,46 @@
 <body>
     <div class="first_section">
         <div class="first_section_row">
-            <div class="first_section_innersection2 col-lg-6 col-md-6 col-xs-12">
+            <div class="first_section_innersection2 col-lg-4 col-md-6 col-xs-12">
                 <img class="netsuite_implementation_image"
                     src="https://www.suitedynamics.co/SiteImages/LandingPageImages/SuitecommerceTheme_1.jpg">
-
+  
             </div>
-            <div class="first_section_innersection1 col-lg-6 col-md-6 col-xs-12">
+            <div class="first_section_innersection1 col-lg-8 col-md-6 col-xs-12">
                 <div class="first_section_innersection1_content">
                     <h2>SUITECOMMERCE THEMES</h2>
                     <H1>Find the perfect web store<br>design to catch a customer’s eye.</H1>
-
+  
                     <p>
                         Get helpful information for navigating NetSuite. Our blog includes step-by-step tutorials,
                         NetSuite product descriptions, SuiteDynamics news, and more. Explore the material by topic or
                         browse all articles at once.
                     </p>
-                    <button class="first_section_innersection1_btn1">BROWSE ALL ARTICLES</button>
-
-
+                    <a href="#schedule-a-consultation">
+                      <button class="first_section_innersection1_btn1">BROWSE ALL ARTICLES</button>
+                    </a>  
+  
                 </div>
-
-
+  
+  
             </div>
-
+  
         </div>
         <div class="first_section_innersection2">
-
+  
         </div>
     </div>
-
+  
     <div class="third_section">
-
-
-
+  
+  
+  
         <div class="third_section_innersection1 col-lg-6 col-md-6 col-xs-12">
             <div class="third_section_innersection1_content">
-
+  
                 <h1>A thriving web store starts with a striking theme.</h1>
-
-
+  
+  
                 <p>
                     We know your company’s online success hinges, in part, on a pleasing graphic design. That’s why
                     SuiteDynamics experts offer careful advice on the best theme for your website. <br><br />
@@ -1030,15 +1119,16 @@
                     custom design. <br><br />
                     Schedule a free consultation with SuiteDynamics experts today and start crafting an
                     eye-catching site that keeps customers coming back for more.
-
-
+  
+  
                 </p>
-                <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
-
-
+                <a href="#schedule-a-consultation">
+                  <button class="third_section_innersection1_btn1">SCHEDULE YOUR CONSULTATION</button>
+                </a>
+  
             </div>
-
-
+  
+  
         </div>
         <div class="third_section_innersection2_content col-lg-5 col-xs-12">
             <img src="https://www.suitedynamics.co/SiteImages/LandingPageImages/netsuite_services_2.jpg" height="700px"
@@ -1046,17 +1136,17 @@
         </div>
     </div>
     <div class="second_section">
-
+  
         <h2>BUILD A WEB STORE CUSTOMERS REMEMBER</h2>
-
+  
     </div>
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
     <div class="seventh_section">
         <div class="seventh_section_innersection1">
             <div class="seventh_section_innersection1_content">
@@ -1080,7 +1170,7 @@
                 width="700px;"> <!-- Ajusta el ancho de la imagen -->
         </div>
     </div>
-
+  
     <div class="eight_section">
         <div class="eight_section_innersection1">
             <div class="eight_section_innersection1_content">
@@ -1092,8 +1182,8 @@
             </div>
         </div>
     </div>
-
-
-</body>
+  
+  
+  </body>
 
 </html>
