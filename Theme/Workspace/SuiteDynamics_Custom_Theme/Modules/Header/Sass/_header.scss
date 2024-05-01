@@ -81,6 +81,7 @@ $sc-sidebar-size: 246px;
 		a {
 			color: $sc-header-link-text-color;
 			text-transform: $sc-header-link-text-transform;
+			white-space: nowrap;
 
 			i {
 				color: $sc-header-link-text-color;
@@ -504,11 +505,12 @@ $sc-sidebar-size: 246px;
 	display: block;
 	margin-left: 50px;
 
-	@media (max-width: $screen-lg-min) {
+	@media (max-width: 1400px) {
 
 		width: 250px;
-		font-size: 12px;
+		font-size: 10px;
 		letter-spacing: 1.8px;
+
 	}
        
   }
