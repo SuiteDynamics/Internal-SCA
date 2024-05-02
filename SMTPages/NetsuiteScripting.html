@@ -25,6 +25,12 @@
   width:100%;
 }
 
+.cms-landing-page-row-full-col{
+
+  padding: 0px;
+  
+}
+
     body {
       overflow-x: hidden;
       font-family: "Open Sans";
@@ -318,7 +324,12 @@
 
     }
 
-    .eigth_section_innersection2_content_img {}
+    .eigth_section_innersection2_content img {
+
+      @media(min-width: 1600px) {
+        max-width: 80%;
+      }
+    }
 
     .eigth_section_innersection2_content {
 
@@ -771,18 +782,26 @@
       font-family: "Charter Bold";
       color: #002535;
       font-weight: bold;
-      font-size: 48px;
-      letter-spacing: 6px;
+      font-size: 44px;
+      letter-spacing: 3px;
       font-style: italic;
+
+      @media (max-width: 1700px) {
+        font-size: 26px;
+      }
     }
 
     .seventh_section_innersection1_content p {
 
       margin-left: 25px;
-      margin-top: 10px;
+      margin-top: 20px;
       font-size: 24px;
       color: #002535;
       font-family: "Open Sans";
+
+      @media (max-width: 1700px) {
+        font-size: 18px;
+      }
 
     }
 
