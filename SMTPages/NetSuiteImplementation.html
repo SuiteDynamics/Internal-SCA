@@ -384,7 +384,15 @@ body {
 }
 
 .fourth_section_innersection2_content_video {
-    min-height: 500px;
+
+    height: 700px;
+    width: 700px;
+
+    @media (max-width: 1400px) {
+        width: 400px;
+        height: 400px;
+    }
+
 }
 
 .fourth_section_inner_card {
@@ -983,10 +991,9 @@ width:90vw;
 
 		<div class="fourth_section_innersection2 col-lg-6 col-md-6 col-xs-12">
 			<div class="fourth_section_innersection2_content">
-				<video class="fourth_section_innersection2_content_video" controls>
-					<source src="movie.mp4" type="video/mp4">
-					<source src="movie.ogg" type="video/ogg">
-				</video>
+                <iframe class="fourth_section_innersection2_content_video" src="https://www.youtube.com/embed/htS0bMe4gG8?si=pTC-UEeaEhEHYXbP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+                </iframe>
 
 			</div>
 
@@ -1149,5 +1156,4 @@ width:90vw;
 	</div>
 
 </body>
-
 </html>
