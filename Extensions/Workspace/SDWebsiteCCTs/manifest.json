@@ -1,0 +1,70 @@
+{
+    "name": "SDWebsiteCCTs",
+    "fantasyName": "SuiteDynamics Website CCTs",
+    "vendor": "SuiteDynamics",
+    "type": "extension",
+    "cct": [
+        {
+            "icon": "img/cct_suitedynamics_maintitlecct_icon.svg",
+            "settings_record": "customrecord_sd_cct_main_title",
+            "registercct_id": "sd_cct_maintitle",
+            "label": "Main title CCT",
+            "description": "This CCT adds a customizable main title section to a CMS page. It supports title text, a subtitle, an optional image, and background color."
+        }
+    ],
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": ">=19.1.0",
+        "SCS": ">=19.1.0"
+    },
+    "version": "1.0.0",
+    "description": "A set of CCTs to be used on the SuiteDynamics website",
+    "assets": {
+        "img": {
+            "files": [
+                "img/cct_suitedynamics_maintitlecct_icon.svg"
+            ]
+        },
+        "fonts": {
+            "files": []
+        },
+        "services": {
+            "files": []
+        }
+    },
+    "templates": {
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl"
+                ]
+            }
+        }
+    },
+    "sass": {
+        "entry_points": {
+            "shopping": "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss"
+        },
+        "files": [
+            "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss",
+            "Modules/MainTitleCCT/Sass/_maintitlecct.scss"
+        ]
+    },
+    "javascript": {
+        "entry_points": {
+            "shopping": "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js"
+        },
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MainTitleCCT/JavaScript/MainTitleCCT.View.js",
+                    "Modules/MainTitleCCT/JavaScript/MainTitleCCT.js",
+                    "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js"
+                ]
+            }
+        }
+    },
+    "suitescript2": {
+        "files": []
+    }
+}
