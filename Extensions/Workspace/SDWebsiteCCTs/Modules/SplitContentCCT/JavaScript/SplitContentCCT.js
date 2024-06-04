@@ -5,18 +5,18 @@ define('SuiteDynamics.SDWebsiteCCTs.SplitContentCCT',
     function SplitContentCCT(
         SplitContentCCTView
     )
-    {
-        'use strict';
+{
+    'use strict';
 
-        return  {
-            mountToApp: function(container) {
-                container.getComponent('CMS').registerCustomContentType({
-                    id: 'sd_cct_splitcontent',
-                    view: SplitContentCCTView,
-                    options: {
-                        container: container
-                    }
-                });
-            }
-        };
-    });
+    return {
+        mountToApp: function(container) {
+            container.getComponent('CMS').registerCustomContentType({
+                id: 'sd_cct_splitcontent',
+                view: SplitContentCCTView,
+                options: {
+                    container: container
+                }
+            });
+        }
+    };
+});
