@@ -7,12 +7,6 @@ $text-color: #EFF3F5;
     justify-content: space-between;
 }
 
-@mixin absolute-full-height {
-    height: 100%;
-    position: absolute;
-    top: 0;
-}
-
 .cms-cct-text-banner-container {
     @include flex-center-space-between;
     background-color: $primary-bg-color;
@@ -27,8 +21,9 @@ $text-color: #EFF3F5;
 
 .cms-cct-text-banner-left-arrows-wrapper,
 .cms-cct-text-banner-right-arrows-wrapper {
-    @include absolute-full-height;
-    display: none;
+    height: 100%;
+    position: absolute;
+    top: 0;
 }
 
 .cms-cct-text-banner-left-arrows-wrapper {
