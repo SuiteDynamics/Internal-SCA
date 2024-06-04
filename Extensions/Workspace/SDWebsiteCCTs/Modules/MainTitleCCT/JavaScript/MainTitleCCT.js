@@ -2,7 +2,7 @@ define('SuiteDynamics.SDWebsiteCCTs.MainTitleCCT',
 	[
 		'SuiteDynamics.SDWebsiteCCTs.MainTitleCCT.View'
 	],
-	function MainTitleCCTView (
+	function MainTitleCCT(
 		MainTitleCCTView
 	)
 {

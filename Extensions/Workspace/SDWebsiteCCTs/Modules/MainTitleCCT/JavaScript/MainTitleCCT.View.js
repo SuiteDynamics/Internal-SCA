@@ -6,7 +6,7 @@ define('SuiteDynamics.SDWebsiteCCTs.MainTitleCCT.View',
         'underscore',
         'Utils'
 	],
-    function MainTitleCCTView (
+    function MainTitleCCTView(
 		CustomContentTypeBaseView,
         maintitlecct_tpl,
         jQuery,
