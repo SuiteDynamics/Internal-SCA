@@ -1,11 +1,13 @@
 define('SuiteDynamics.SDWebsiteCCTs.Entrypoint',
     [
         'SuiteDynamics.SDWebsiteCCTs.MainTitleCCT',
-        'SuiteDynamics.SDWebsiteCCTs.SplitContentCCT'
+        'SuiteDynamics.SDWebsiteCCTs.SplitContentCCT',
+        'SuiteDynamics.SDWebsiteCCTs.TextBannerCCT'
     ],
     function Entrypoint(
         MainTitleCCT,
-        SplitContentCCT
+        SplitContentCCT,
+        TextBannerCCT
     )
 {
     'use strict';
@@ -14,6 +16,7 @@ define('SuiteDynamics.SDWebsiteCCTs.Entrypoint',
         mountToApp: function(container) {
             MainTitleCCT.mountToApp(container);
             SplitContentCCT.mountToApp(container);
+            TextBannerCCT.mountToApp(container);
         }
     }
 });
