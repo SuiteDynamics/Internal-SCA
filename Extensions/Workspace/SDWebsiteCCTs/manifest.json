@@ -9,7 +9,14 @@
             "settings_record": "customrecord_sd_cct_main_title",
             "registercct_id": "sd_cct_maintitle",
             "label": "Main title CCT",
-            "description": "This CCT adds a customizable main title section to a CMS page. It supports title text, a subtitle, an optional image, and background color."
+            "description": "Adds a customizable main title section to a CMS page. It supports title text, a subtitle, an optional image, and background color."
+        },
+        {
+            "icon": "img/cct_suitedynamics_splitcontentcct_icon.svg",
+            "settings_record": "customrecord_sd_cct_splitcontent",
+            "registercct_id": "sd_cct_splitcontent",
+            "label": "Split Content CCT",
+            "description": "Add a split content section to a CMS page with an optional image, information, and a CTA button."
         }
     ],
     "target": "SCA,SCS",
@@ -22,7 +29,8 @@
     "assets": {
         "img": {
             "files": [
-                "img/cct_suitedynamics_maintitlecct_icon.svg"
+                "img/cct_suitedynamics_maintitlecct_icon.svg",
+                "img/cct_suitedynamics_splitcontentcct_icon.svg"
             ]
         },
         "fonts": {
@@ -36,7 +44,8 @@
         "application": {
             "shopping": {
                 "files": [
-                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl"
+                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
+                    "Modules/SplitContentCCT/Templates/splitcontentcct.tpl"
                 ]
             }
         }
@@ -47,7 +56,8 @@
         },
         "files": [
             "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss",
-            "Modules/MainTitleCCT/Sass/_maintitlecct.scss"
+            "Modules/MainTitleCCT/Sass/_maintitlecct.scss",
+            "Modules/SplitContentCCT/Sass/_splitcontentcct.scss"
         ]
     },
     "javascript": {
@@ -59,7 +69,9 @@
                 "files": [
                     "Modules/MainTitleCCT/JavaScript/MainTitleCCT.View.js",
                     "Modules/MainTitleCCT/JavaScript/MainTitleCCT.js",
-                    "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js"
+                    "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js",
+                    "Modules/SplitContentCCT/JavaScript/SplitContentCCT.js",
+                    "Modules/SplitContentCCT/JavaScript/SplitContentCCT.View.js"
                 ]
             }
         }
