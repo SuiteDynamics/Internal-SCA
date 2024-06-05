@@ -14,7 +14,7 @@ $text-color: #EFF3F5;
     position: relative;
     overflow: hidden;
 
-    @media (min-width: 768px) {
+    @media (min-width: $screen-sm-min) {
         padding: 40px 15px;
     }
 }
@@ -34,7 +34,7 @@ $text-color: #EFF3F5;
     right: -130px;
     transform: rotate(180deg);
 
-    @media (min-width: 768px) {
+    @media (min-width: $screen-sm-min) {
         right: -115px;
     }
 }
@@ -57,7 +57,7 @@ $text-color: #EFF3F5;
     color: $text-color;
     letter-spacing: 3px;
 
-    @media (min-width: 768px) {
+    @media (min-width: $screen-sm-min) {
         font: normal bold 25px/35px "Open Sans", sans-serif;
     }
 }
