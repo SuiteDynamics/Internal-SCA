@@ -2,14 +2,7 @@
     "name": "SDWebsiteCCTs",
     "fantasyName": "SuiteDynamics Website CCTs",
     "vendor": "SuiteDynamics",
-    "version": "1.0.0",
     "type": "extension",
-    "target": "SCA,SCS",
-    "target_version": {
-        "SCA": ">=19.1.0",
-        "SCS": ">=19.1.0"
-    },
-    "description": "A set of CCTs to be used on the SuiteDynamics website",
     "cct": [
         {
             "icon": "img/cct_suitedynamics_maintitlecct_icon.svg",
@@ -31,15 +24,30 @@
             "registercct_id": "sd_cct_textbanner",
             "label": "Text banner CCT",
             "description": "Adds a customizable text banner to a CMS section."
+        },
+        {
+            "icon": "img/cct_suitedynamics_infocardsgridcct_icon.svg",
+            "settings_record": "customrecord_sd_cct_infocardsgrid",
+            "registercct_id": "sd_cct_infocardsgrid",
+            "label": "Info Cards Grid CCT",
+            "description": "Adds a grid of informational cards. Each card can include an image, title, and text."
         }
     ],
-    "skins": [],
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": ">=19.1.0",
+        "SCS": ">=19.1.0"
+    },
+    "version": "1.0.0",
+    "description": "A set of CCTs to be used on the SuiteDynamics website",
     "assets": {
         "img": {
             "files": [
                 "img/cct_suitedynamics_maintitlecct_icon.svg",
                 "img/cct_suitedynamics_splitcontentcct_icon.svg",
-                "img/cct_suitedynamics_textbannercct_icon.svg"
+                "img/cct_suitedynamics_textbannercct_icon.svg",
+                "img/cct_suitedynamics_infocardsgridcct_icon.svg",
+                "img/text-banner-arrows.png"
             ]
         },
         "fonts": {
@@ -47,6 +55,18 @@
         },
         "services": {
             "files": []
+        }
+    },
+    "templates": {
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
+                    "Modules/SplitContentCCT/Templates/splitcontentcct.tpl",
+                    "Modules/TextBannerCCT/Templates/textbannercct.tpl",
+                    "Modules/InfoCardsGridCCT/Templates/infocardsgridcct.tpl"
+                ]
+            }
         }
     },
     "sass": {
@@ -57,19 +77,9 @@
             "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss",
             "Modules/MainTitleCCT/Sass/_maintitlecct.scss",
             "Modules/SplitContentCCT/Sass/_splitcontentcct.scss",
-            "Modules/TextBannerCCT/Sass/_textbannercct.scss"
+            "Modules/TextBannerCCT/Sass/_textbannercct.scss",
+            "Modules/InfoCardsGridCCT/Sass/_infocardsgridcct.scss"
         ]
-    },
-    "templates": {
-        "application": {
-            "shopping": {
-                "files": [
-                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
-                    "Modules/SplitContentCCT/Templates/splitcontentcct.tpl",
-                    "Modules/TextBannerCCT/Templates/textbannercct.tpl"
-                ]
-            }
-        }
     },
     "javascript": {
         "entry_points": {
@@ -84,12 +94,13 @@
                     "Modules/SplitContentCCT/JavaScript/SplitContentCCT.js",
                     "Modules/SplitContentCCT/JavaScript/SplitContentCCT.View.js",
                     "Modules/TextBannerCCT/JavaScript/TextBannerCCT.js",
-                    "Modules/TextBannerCCT/JavaScript/TextBannerCCT.View.js"
+                    "Modules/TextBannerCCT/JavaScript/TextBannerCCT.View.js",
+                    "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.js",
+                    "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.View.js"
                 ]
             }
         }
     },
-    "local_folder": "Workspace/SDWebsiteCCTs",
     "suitescript2": {
         "files": []
     }
