@@ -1,0 +1,106 @@
+$sc-font-open-sans: 'Open Sans', sans-serif !default;
+$sc-font-charter: 'Charter', serif !default;
+
+.cms-cct-cta-block-container {
+    @extend .row;
+
+    background: #85A8B7;
+    padding: 55px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (min-width: 768px) {
+        padding: 70px 95px;
+    }
+
+    @media (min-width: 1200px) {
+        padding: 70px 320px;
+    }
+}
+
+.cms-cct-cta-block-title {
+    text-align: left;
+    font: normal normal bold 13px/13px $sc-font-open-sans;
+    letter-spacing: 3px;
+    margin-top: 0;
+    color: #002535;
+
+    @media (min-width: 768px) {
+        font: normal normal bold 22px/22px $sc-font-open-sans;
+        letter-spacing: 5px;
+    }
+}
+
+.cms-cct-cta-block-subtitle-wrapper {
+    margin-top: 5px;
+}
+
+.cms-cct-cta-block-subtitle {
+    text-align: left;
+    font: italic normal bold 21px/28px $sc-font-charter;
+    letter-spacing: 0;
+    color: #EFF3F5;
+    margin-top: 0;
+
+    @media (min-width: 768px) {
+        font: italic normal bold 44px/50px $sc-font-charter;
+    }
+}
+
+.cms-cct-cta-block-body-wrapper {
+    max-width: 680px;
+    margin-top: 30px;
+
+    &.cms-cct-cta-block-centered {
+        text-align: center;
+    }
+}
+
+.cms-cct-cta-block-body {
+    font: normal normal normal 13px/13px $sc-font-open-sans;
+    color: #002535;
+}
+
+.cms-cct-cta-block-cta-btn-wrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 768px) {
+        &:not(.cms-cct-cta-block-centered) {
+            justify-content: flex-start;
+        }
+    }
+}
+
+.cms-cct-cta-block-cta-btn {
+    background: #EFF3F5 0 0 no-repeat padding-box;
+    border-radius: 50px;
+    text-align: center;
+    font: normal normal bold 12px / 17px $sc-font-open-sans;
+    letter-spacing: 3px;
+    color: #002535;
+    width: 277px;
+    height: 65px;
+    padding: 15px 40px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &.cms-cct-cta-block-cta-btn-large {
+        min-width: 325px;
+        width: 325px;
+        height: 53px;
+        line-height: 19px;
+        padding: 18px 0;
+
+        @media (min-width: 768px) {
+            width: 398px;
+        }
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: #002535;
+    }
+}

@@ -3,13 +3,15 @@ define('SuiteDynamics.SDWebsiteCCTs.Entrypoint',
         'SuiteDynamics.SDWebsiteCCTs.MainTitleCCT',
         'SuiteDynamics.SDWebsiteCCTs.SplitContentCCT',
         'SuiteDynamics.SDWebsiteCCTs.TextBannerCCT',
-        'SuiteDynamics.SDWebsiteCCTs.InfoCardsGridCCT'
+        'SuiteDynamics.SDWebsiteCCTs.InfoCardsGridCCT',
+        'SuiteDynamics.SDWebsiteCCTs.CTABlockCCT'
     ],
     function Entrypoint(
         MainTitleCCT,
         SplitContentCCT,
         TextBannerCCT,
-        InfoCardsGridCCT
+        InfoCardsGridCCT,
+        CTABlockCCT
     )
 {
     'use strict';
@@ -20,6 +22,7 @@ define('SuiteDynamics.SDWebsiteCCTs.Entrypoint',
             SplitContentCCT.mountToApp(container);
             TextBannerCCT.mountToApp(container);
             InfoCardsGridCCT.mountToApp(container);
+            CTABlockCCT.mountToApp(container);
         }
     }
 });

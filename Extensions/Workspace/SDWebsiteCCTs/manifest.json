@@ -31,6 +31,13 @@
             "registercct_id": "sd_cct_infocardsgrid",
             "label": "Info Cards Grid CCT",
             "description": "Adds a grid of informational cards. Each card can include an image, title, and text."
+        },
+        {
+            "icon": "img/cct_suitedynamics_ctablockcct_icon.svg",
+            "settings_record": "customrecord_sd_cct_cta_block",
+            "registercct_id": "sd_cct_ctablock",
+            "label": "CTA Block CCT",
+            "description": "Adds a customizable section that includes a title, subtitle, body, and CTA button"
         }
     ],
     "target": "SCA,SCS",
@@ -47,7 +54,8 @@
                 "img/cct_suitedynamics_splitcontentcct_icon.svg",
                 "img/cct_suitedynamics_textbannercct_icon.svg",
                 "img/cct_suitedynamics_infocardsgridcct_icon.svg",
-                "img/text-banner-arrows.png"
+                "img/text-banner-arrows.png",
+                "img/cct_suitedynamics_ctablockcct_icon.svg"
             ]
         },
         "fonts": {
@@ -64,7 +72,8 @@
                     "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
                     "Modules/SplitContentCCT/Templates/splitcontentcct.tpl",
                     "Modules/TextBannerCCT/Templates/textbannercct.tpl",
-                    "Modules/InfoCardsGridCCT/Templates/infocardsgridcct.tpl"
+                    "Modules/InfoCardsGridCCT/Templates/infocardsgridcct.tpl",
+                    "Modules/CTABlockCCT/Templates/ctablockcct.tpl"
                 ]
             }
         }
@@ -78,7 +87,8 @@
             "Modules/MainTitleCCT/Sass/_maintitlecct.scss",
             "Modules/SplitContentCCT/Sass/_splitcontentcct.scss",
             "Modules/TextBannerCCT/Sass/_textbannercct.scss",
-            "Modules/InfoCardsGridCCT/Sass/_infocardsgridcct.scss"
+            "Modules/InfoCardsGridCCT/Sass/_infocardsgridcct.scss",
+            "Modules/CTABlockCCT/Sass/_ctablockcct.scss"
         ]
     },
     "javascript": {
@@ -96,7 +106,9 @@
                     "Modules/TextBannerCCT/JavaScript/TextBannerCCT.js",
                     "Modules/TextBannerCCT/JavaScript/TextBannerCCT.View.js",
                     "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.js",
-                    "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.View.js"
+                    "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.View.js",
+                    "Modules/CTABlockCCT/JavaScript/CTABlockCCT.js",
+                    "Modules/CTABlockCCT/JavaScript/CTABlockCCT.View.js"
                 ]
             }
         }
