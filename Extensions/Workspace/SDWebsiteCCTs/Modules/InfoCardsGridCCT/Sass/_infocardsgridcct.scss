@@ -1,7 +1,7 @@
 $background-color: #f5f8f9;
 $card-bg-color: #f6c9c6;
 $primary-color: #002535;
-$font-family: "Open Sans", sans-serif;
+$sc-font-open-sans: 'Open Sans', sans-serif !default;
 
 .cms-card-grid-row {
     @extend .row;
@@ -75,7 +75,7 @@ $font-family: "Open Sans", sans-serif;
 }
 
 .cms-cct-card-title {
-    font: normal normal bold 18px/28px $font-family;
+    font: normal normal bold 18px/28px $sc-font-open-sans;
     color: $primary-color;
     letter-spacing: 4px;
     margin: 0;
@@ -89,6 +89,6 @@ $font-family: "Open Sans", sans-serif;
 }
 
 .cms-cct-card-content {
-    font: normal normal normal 16px/24px $font-family;
+    font: normal normal normal 16px/24px $sc-font-open-sans;
     margin: 0;
 }

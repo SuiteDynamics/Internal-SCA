@@ -1,5 +1,6 @@
 $primary-bg-color: #002535;
 $text-color: #EFF3F5;
+$sc-font-open-sans: 'Open Sans', sans-serif !default;
 
 @mixin flex-center-space-between {
     display: flex;
@@ -53,11 +54,11 @@ $text-color: #EFF3F5;
 
 .cms-cct-text-banner-text {
     margin: 0;
-    font: normal bold 20px/30px "Open Sans", sans-serif;
+    font: normal bold 20px/30px $sc-font-open-sans;
     color: $text-color;
     letter-spacing: 3px;
 
     @media (min-width: $screen-sm-min) {
-        font: normal bold 25px/35px "Open Sans", sans-serif;
+        font: normal bold 25px/35px $sc-font-open-sans;
     }
 }

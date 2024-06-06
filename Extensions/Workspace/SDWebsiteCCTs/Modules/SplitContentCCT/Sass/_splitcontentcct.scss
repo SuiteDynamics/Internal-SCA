@@ -1,3 +1,6 @@
+$sc-font-open-sans: 'Open Sans', sans-serif !default;
+$sc-font-charter: 'Charter', serif !default;
+
 .cms-cct-split-content-block-container {
    display: flex;
    flex-direction: column;
@@ -85,18 +88,18 @@
 }
 
 .cms-cct-split-content-block-right-interior-title {
-    font: normal normal bold 40px/52px Charter;
+    font: normal normal bold 40px/52px $sc-font-charter;
     margin-top: 0;
     color: #002535;
     text-align: left;
     letter-spacing: 0;
 
     @media (min-width: $screen-md-min) {
-        font: normal normal bold 60px/68px Charter;
+        font: normal normal bold 60px/68px $sc-font-charter;
     }
 
     @media (min-width: $screen-lg-min) {
-        font: normal normal bold 44px/52px Charter;
+        font: normal normal bold 44px/52px $sc-font-charter;
     }
 }
 
@@ -104,7 +107,7 @@
     margin-top: 30px;
     margin-bottom: 0;
     flex-grow: 1;
-    font: normal normal normal 16px/24px Open Sans;
+    font: normal normal normal 16px/24px $sc-font-open-sans;
 
     &.cms-cct-split-content-block-centered {
         @media (min-width: $screen-sm-min) {
@@ -130,7 +133,7 @@
     height: 53px;
     padding: 18px 0;
     border-radius: 50px;
-    font: normal normal bold 12px/19px Open Sans;
+    font: normal normal bold 12px/19px $sc-font-open-sans;
     text-align: center;
     letter-spacing: 3px;
     text-decoration: none;

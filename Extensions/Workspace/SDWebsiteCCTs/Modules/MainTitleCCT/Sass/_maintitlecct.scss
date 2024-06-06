@@ -1,5 +1,7 @@
 $title-color: #ADC5CF;
 $subtitle-color: #EFF3F5;
+$sc-font-open-sans: 'Open Sans', sans-serif !default;
+$sc-font-charter: 'Charter', serif !default;
 
 @mixin flex-center {
     display: flex;
@@ -35,7 +37,7 @@ $subtitle-color: #EFF3F5;
         margin: 40px 0;
 
         &-title {
-            font: normal normal bold 19px/19px Open Sans;
+            font: normal normal bold 19px/19px $sc-font-open-sans;
             color: $title-color;
             letter-spacing: 6px;
             text-align: left;
@@ -45,7 +47,7 @@ $subtitle-color: #EFF3F5;
 
         &-subtitle {
             margin-top: 8px;
-            font: italic normal bold 29px/29px Charter;
+            font: italic normal bold 29px/29px $sc-font-charter;
             color: $subtitle-color;
             font-weight: 500;
             font-style: italic;
@@ -93,11 +95,11 @@ $subtitle-color: #EFF3F5;
         width: auto;
 
         &-title {
-            font: normal normal bold 19px/19px Open Sans;
+            font: normal normal bold 19px/19px $sc-font-open-sans;
         }
 
         &-subtitle {
-            font: italic normal bold 26px/33px Charter;
+            font: italic normal bold 26px/33px $sc-font-charter;
         }
 
         &-title,
@@ -120,11 +122,11 @@ $subtitle-color: #EFF3F5;
             margin-bottom: 60px;
 
             &-title {
-                font: normal normal bold 22px/22px Open Sans;
+                font: normal normal bold 22px/22px $sc-font-open-sans;
             }
 
             &-subtitle {
-                font: italic normal bold 36px/43px Charter;
+                font: italic normal bold 36px/43px $sc-font-charter;
             }
 
             &-subtitle {
@@ -144,11 +146,11 @@ $subtitle-color: #EFF3F5;
         margin-bottom: 60px;
 
         &-title {
-            font: normal normal bold 28px/28px Open Sans;
+            font: normal normal bold 28px/28px $sc-font-open-sans;
         }
 
         &-subtitle {
-            font: italic normal bold 44px/48px Charter;
+            font: italic normal bold 44px/48px $sc-font-charter;
         }
 
         &-img {
