@@ -2,8 +2,9 @@ $background-color: #f5f8f9;
 $card-bg-color: #f6c9c6;
 $primary-color: #002535;
 $sc-font-open-sans: 'Open Sans', sans-serif !default;
+$sc-font-charter: 'Charter', serif !default;
 
-.cms-card-grid-row {
+.cms-cct-card-grid-row {
     @extend .row;
 }
 
@@ -12,16 +13,30 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     background: $background-color;
 }
 
-.card-grid {
+.cms-card-grid-section-title {
+    margin-top: 40px;
+}
+
+.cms-card-grid-section-title {
+    text-align: center;
+    font: italic normal bold 40px / 40px $sc-font-charter;
+}
+
+.cms-cct-card-grid {
     display: grid;
     grid-template-columns: repeat(1, minmax(315px, 1fr));
     padding: 55px 0;
     gap: 30px;
 
+    &.cms-cct-card-grid-style-team {
+        padding: 55px 15px;
+        justify-items: center;
+    }
+
     @media (min-width: $screen-sm-min) {
         grid-template-columns: repeat(2, minmax(330px, 1fr));
         padding: 70px 15px;
-        gap: 40px;
+        gap: 39px;
     }
 
     @media (min-width: $screen-md-min) {
@@ -30,7 +45,13 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     }
 
     @media (min-width: $screen-lg-min) {
-        padding: 120px 80px;
+        &.cms-cct-card-grid-style-team {
+        }
+    }
+
+    @media (min-width: 1400px) {
+        &.cms-cct-card-grid-style-team {
+        }
     }
 }
 
@@ -40,6 +61,11 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     align-items: flex-start;
     padding: 20px 15px;
     box-sizing: border-box;
+
+    &.cms-cct-card-grid-style-team {
+        align-items: center;
+        max-width: 375px;
+    }
 
     @media (min-width: $screen-sm-min) {
         padding: 10px 0;
@@ -51,6 +77,10 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+
+    &.cms-cct-card-grid-style-team {
+        justify-content: center;
+    }
 }
 
 .cms-cct-card-img-background {
@@ -60,11 +90,22 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     background-color: $card-bg-color;
     border-radius: 50%;
     padding: 16px;
+
+    &.cms-cct-card-grid-style-team {
+        border-radius: 0;
+        padding: 0;
+        background-color: unset;
+    }
 }
 
 .cms-cct-card-img {
     width: 31px;
     height: 31px;
+
+    &.cms-cct-card-grid-style-team {
+        width: auto;
+        height: auto;
+    }
 }
 
 .cms-cct-card-title-wrapper {
@@ -72,6 +113,11 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     justify-content: flex-start;
     width: 100%;
     margin-top: 15px;
+
+    &.cms-cct-card-grid-style-team {
+        justify-content: center;
+        margin-top: 30px;
+    }
 }
 
 .cms-cct-card-title {
@@ -79,6 +125,32 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     color: $primary-color;
     letter-spacing: 4px;
     margin: 0;
+
+    &.cms-cct-card-grid-style-team {
+        font: italic normal bold 40px/40px $sc-font-charter;
+        color: #336E87;
+    }
+}
+
+.cms-cct-card-subtitle-wrapper {
+    margin-top: 10px;
+}
+
+.cms-cct-card-subtitle {
+    font: normal normal bold 17px/17px $sc-font-open-sans;
+    letter-spacing: 4px;
+
+    @media (min-width: $screen-md-min) {
+        &.cms-cct-card-grid-style-team {
+            letter-spacing: 1px;
+        }
+    }
+
+    @media (min-width: $screen-lg-min) {
+        &.cms-cct-card-grid-style-team {
+            letter-spacing: 4px;
+        }
+    }
 }
 
 .cms-cct-card-content-wrapper {
@@ -86,9 +158,17 @@ $sc-font-open-sans: 'Open Sans', sans-serif !default;
     justify-content: flex-start;
     width: 100%;
     margin-top: 15px;
+
+    &.cms-cct-card-grid-style-team {
+        margin-top: 20px;
+    }
 }
 
 .cms-cct-card-content {
     font: normal normal normal 16px/24px $sc-font-open-sans;
     margin: 0;
+
+    &.cms-cct-card-grid-style-team {
+        text-align: center;
+    }
 }
