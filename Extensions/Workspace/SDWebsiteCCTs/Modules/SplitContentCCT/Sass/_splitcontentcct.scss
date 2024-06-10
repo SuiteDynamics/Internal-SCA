@@ -84,11 +84,7 @@ $sc-font-charter: 'Charter', serif !default;
     object-fit: cover;
 
     @media (min-width: $screen-sm-min) {
-        width: 84%;
-
-        &.cms-cct-split-content-block-full-width {
-            width: 100%;
-        }
+        width: 100%;
     }
 }
 
@@ -105,22 +101,34 @@ $sc-font-charter: 'Charter', serif !default;
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
-    padding: 25px 8px;
+    padding: 0 45px;
+
+    &.cms-cct-split-content-block-full-width {
+        padding: 25px 8px;
+    }
 
     @media (min-width: $screen-sm-min) {
-        padding: 5%;
+        &.cms-cct-split-content-block-full-width {
+            padding: 5%;
+        }
     }
 
     @media (min-width: $screen-md-min) {
-        padding: 8%;
+        &.cms-cct-split-content-block-full-width {
+            padding: 7%;
+        }
     }
 
     @media (min-width: $screen-lg-min) {
-        padding: 15%;
+        &.cms-cct-split-content-block-full-width {
+            padding: 15%;
+        }
     }
     
     @media (min-width: 1400px) {
-        max-width: 840px;
+        &.cms-cct-split-content-block-full-width {
+            max-width: 840px;
+        }
     }
 }
 
@@ -132,11 +140,7 @@ $sc-font-charter: 'Charter', serif !default;
     letter-spacing: 0;
 
     @media (min-width: $screen-md-min) {
-        font: normal normal bold 60px/68px $sc-font-charter;
-    }
-
-    @media (min-width: $screen-lg-min) {
-        font: normal normal bold 44px/52px $sc-font-charter;
+        font: normal normal bold 44px/48px $sc-font-charter;
     }
 }
 
@@ -216,7 +220,7 @@ $sc-font-charter: 'Charter', serif !default;
 .cms-cct-split-content-block-right-interior-btn {
     background: #336e87 0 0 no-repeat padding-box;
     color: #eff3f5;
-    width: 398px;
+    width: 323px;
     height: 53px;
     padding: 18px 0;
     border-radius: 50px;
@@ -233,20 +237,19 @@ $sc-font-charter: 'Charter', serif !default;
     }
 
     &.cms-cct-split-content-block-centered {
+        width: 310px;
         background: #002535;
-        min-width: 325px;
+        min-width: 310px;
+    }
+
+    @media (min-width: 990px) {
+        width: 398px;
     }
 }
 
 .cms-cct-split-content-block-left-interior-img-wrapper {
     &.cms-cct-split-content-block-centered {
         justify-content: flex-end;
-    }
-}
-
-.cms-cct-split-content-block-left-interior-img {
-    &.cms-cct-split-content-block-centered {
-        width: 100%;
     }
 }
 
@@ -268,6 +271,12 @@ $sc-font-charter: 'Charter', serif !default;
 .cms-cct-split-content-block-right-interior {
     &.cms-cct-split-content-block-centered {
         margin-left: 0;
+        padding-left: 20px;
+        padding-right: 0;
+        
+        @media (min-width: $screen-md-min) {
+            padding-left: 60px;
+        }
     }
 }
 

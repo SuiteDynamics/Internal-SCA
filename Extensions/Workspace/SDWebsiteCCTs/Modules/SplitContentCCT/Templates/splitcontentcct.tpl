@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="cms-cct-split-content-block-right {{rightColumnClasses}}">
-            <div class="cms-cct-split-content-block-right-interior {{#if centerContent}}cms-cct-split-content-block-centered{{/if}}">
+            <div class="cms-cct-split-content-block-right-interior {{#if fullWidth}}cms-cct-split-content-block-full-width{{/if}} {{#if centerContent}}cms-cct-split-content-block-centered{{/if}}">
                 <h2
                         class="cms-cct-split-content-block-right-interior-title {{#if centerContent}}cms-cct-split-content-block-centered{{/if}}"
                         style="{{#if titleColor}}color: {{titleColor}};{{/if}}"
