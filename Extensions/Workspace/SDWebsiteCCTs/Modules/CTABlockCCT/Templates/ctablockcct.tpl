@@ -19,6 +19,7 @@
             <div class="cms-cct-cta-block-cta-btn-wrapper {{#if ctaCentered}} cms-cct-cta-block-centered{{/if}}">
                 <a
                         class="cms-cct-cta-block-cta-btn {{#if useCtaLargeButton}}cms-cct-cta-block-cta-btn-large{{/if}}"
+                        {{#if isExternalLink}}href="{{ctaLink}}" target="_blank" {{else}} data-touchpoint="home" data-hashtag="#{{ctaLink}}"{{/if}}
                         style="{{#if ctaTextColor}}color: {{ctaTextColor}};{{/if}} {{#if ctaBackgroundColor}}background-color: {{ctaBackgroundColor}};{{/if}}"
                 >{{ctaText}}</a>
             </div>

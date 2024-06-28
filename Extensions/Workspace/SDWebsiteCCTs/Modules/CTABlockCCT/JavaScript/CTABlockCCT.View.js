@@ -39,6 +39,8 @@ define('SuiteDynamics.SDWebsiteCCTs.CTABlockCCT.View',
 			var body = Utils.trim(this.settings.custrecord_cct_cb_body);
 			var bodyCentered = this.settings.custrecord_cct_cb_content_centered === 'T';
 			var ctaText = Utils.trim(this.settings.custrecord_cct_cb_cta_button_text);
+			var ctaLink = Utils.trim(this.settings.custrecord_cta_button_link);
+			var isExternalLink = ctaLink && ctaLink.indexOf('http') > -1;
 			var defulatCtaTextColor = '#002535';
 			var ctaTextColor = Utils.trim(this.settings.custrecord_cct_cb_cta_text_color_hex) || defulatCtaTextColor;
 			var defaultCtaBackgroundColor = '#EFF3F5';
@@ -56,6 +58,8 @@ define('SuiteDynamics.SDWebsiteCCTs.CTABlockCCT.View',
 				subtitleCentered: subtitleCentered,
 				body: body,
 				bodyCentered: bodyCentered,
+				ctaLink: ctaLink,
+				isExternalLink: isExternalLink,
 				ctaText: ctaText,
 				ctaTextColor: ctaTextColor,
 				ctaBackgroundColor: ctaBackgroundColor,

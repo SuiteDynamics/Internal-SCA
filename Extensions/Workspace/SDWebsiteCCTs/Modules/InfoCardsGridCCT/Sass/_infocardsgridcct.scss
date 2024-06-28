@@ -199,7 +199,6 @@ $sc-font-charter: 'Charter', serif !default;
         padding: 15px 22px;
         text-decoration: none;
         cursor: pointer;
-        text-transform: uppercase;
 
         @media (min-width: $screen-sm-min) {
             font: normal normal bold 10px / 17px $sc-font-open-sans;
