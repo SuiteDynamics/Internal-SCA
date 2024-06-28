@@ -1,4 +1,7 @@
-<section class="cms-cct-cta-block-container" {{#if sectionBackgroundColor}}style="background-color: {{sectionBackgroundColor}};"{{/if}}>
+<section class="cms-cct-cta-block-container" style="{{#if sectionBackgroundColor}}--opacity-color: {{opacityColor}};{{/if}}">
+    {{#if backgroundImageUrl}}
+        <img src="{{backgroundImageUrl}}" class="cms-cct-cta-block-background-image" alt="Background Image">
+    {{/if}}
     <div class="cms-cct-cta-block">
         {{#if subtitle}}
             <div class="cms-cct-cta-block-title-wrapper">
