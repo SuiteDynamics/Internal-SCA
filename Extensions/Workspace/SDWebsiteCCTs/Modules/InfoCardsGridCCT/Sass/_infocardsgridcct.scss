@@ -13,13 +13,23 @@ $sc-font-charter: 'Charter', serif !default;
     background: $background-color;
 }
 
-.cms-card-grid-section-title {
+.cms-card-grid-section-title-wrapper {
     margin-top: 40px;
+    margin-bottom: 30px;
 }
 
 .cms-card-grid-section-title {
     text-align: center;
     font: italic normal bold 40px / 40px $sc-font-charter;
+}
+
+.cms-card-grid-section-subtitle-wrapper {
+    @extend .container;
+    margin-bottom: 30px;
+
+    .cms-card-grid-section-subtitle {
+        text-align: center;
+    }
 }
 
 .cms-cct-card-grid {
@@ -29,7 +39,7 @@ $sc-font-charter: 'Charter', serif !default;
     gap: 30px;
 
     &.cms-cct-card-grid-style-team {
-        padding: 55px 15px;
+        padding: 0 15px 55px;
         justify-items: center;
     }
 
@@ -158,6 +168,7 @@ $sc-font-charter: 'Charter', serif !default;
     justify-content: flex-start;
     width: 100%;
     margin-top: 15px;
+    flex-grow: 1;
 
     &.cms-cct-card-grid-style-team {
         margin-top: 20px;
@@ -170,5 +181,34 @@ $sc-font-charter: 'Charter', serif !default;
 
     &.cms-cct-card-grid-style-team {
         text-align: center;
+    }
+}
+
+.cms-cct-card-cta-btn-wrapper {
+    margin-top: 35px;
+
+    .cms-cct-card-cta-btn {
+        background: #336E87 0 0 no-repeat padding-box;
+        border-radius: 50px;
+        text-align: center;
+        font: normal normal bold 11px / 17px $sc-font-open-sans;
+        letter-spacing: 3px;
+        color: #EFF3F5;
+        width: 277px;
+        height: 65px;
+        padding: 15px 22px;
+        text-decoration: none;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        @media (min-width: $screen-sm-min) {
+            font: normal normal bold 10px / 17px $sc-font-open-sans;
+            padding: 15px;
+        }
+
+        @media (min-width: $screen-lg-min) {
+            font: normal normal bold 12px / 17px $sc-font-open-sans;
+            padding: 15px 25px;
+        }
     }
 }

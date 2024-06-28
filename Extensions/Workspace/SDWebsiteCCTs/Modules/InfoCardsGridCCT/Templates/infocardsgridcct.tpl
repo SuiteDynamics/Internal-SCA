@@ -4,6 +4,11 @@
             <h2 class="cms-card-grid-section-title">{{sectionTitle}}</h2>
         </div>
     {{/if}}
+    {{#if sectionSubtitle}}
+        <div class="cms-card-grid-section-subtitle-wrapper">
+            <div class="cms-card-grid-section-subtitle">{{{sectionSubtitle}}}</div>
+        </div>
+    {{/if}}
     <div class="cms-card-grid-container {{gridStyleClass}}" style="{{#if sectionBackgroundColor}}background-color: {{sectionBackgroundColor}};{{/if}}">
         <div class="cms-cct-card-grid {{gridStyleClass}}">
             {{#each infoCards}}
@@ -32,6 +37,15 @@
                     <div class="cms-cct-card-content-wrapper {{../gridStyleClass}}">
                         <p class="cms-cct-card-content {{../gridStyleClass}}">{{{cardBody}}}</p>
                     </div>
+                    {{#if cardCtaLink}}
+                        <div class="cms-cct-card-cta-btn-wrapper">
+                            <a
+                                    class="cms-cct-card-cta-btn"
+                                {{#if isExternalLink}}href="{{cardCtaLink}}" target="_blank" {{else}} data-touchpoint="home" data-hashtag="#{{cardCtaLink}}"{{/if}}
+                                    style="{{#if cardCtaTextColor}}color: {{cardCtaTextColor}};{{/if}}{{#if cardCtaBackgroundColor}}background-color: {{cardCtaBackgroundColor}};{{/if}}"
+                            >{{cardCtaText}}</a>
+                        </div>
+                    {{/if}}
                 </div>
             {{/each}}
         </div>
