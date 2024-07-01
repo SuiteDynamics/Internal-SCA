@@ -56,17 +56,72 @@ $sc-font-charter: 'Charter', serif !default;
             width: 100%;
         }
 
-        &-img-wrapper {
-            width: 100%;
+        &-row {
             display: flex;
+            align-items: center;
             justify-content: flex-start;
-        }
-
-        &-img {
-            max-height: 45px;
+            width: 100%;
             margin-top: 30px;
+
+            &-img-wrapper {
+                margin-right: 10px;
+                width: auto;
+                display: flex;
+                justify-content: flex-start;
+
+                img {
+                    max-height: 45px;
+                }
+            }
+
+            &-btn-wrapper {
+                display: flex;
+                flex: 1;
+                justify-content: flex-start;
+            }
+
+            &-btn {
+                background: #EFF3F5 0 0 no-repeat padding-box;
+                border-radius: 50px;
+                text-align: center;
+                font: normal normal bold 11px / 17px $sc-font-open-sans;
+                letter-spacing: 3px;
+                color: #002535;
+                width: 233px;
+                height: 57px;
+                padding: 11px 40px;
+                text-decoration: none;
+                cursor: pointer;
+
+                @media (min-width: $screen-md-min) {
+                    font: normal normal bold 12px / 17px $sc-font-open-sans;
+                    width: 277px;
+                    height: 65px;
+                    padding: 15px 40px;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    color: #002535;
+                }
+            }
         }
     }
+}
+
+.cms-cct-maintitle-content-left-interior-row-btn-align-left {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.cms-cct-maintitle-content-left-interior-row-btn-align-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.cms-cct-maintitle-content-left-interior-row-btn-align-right {
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .cms-cct-maintitle-content-right {
