@@ -4,6 +4,9 @@
 
 .shopping-layout-header {
 	box-shadow: 3px 0 6px 0 $sc-color-theme-500;
+	position: sticky;
+	top: 0;
+	z-index: 3000;
 
   	@media (min-width: $screen-sm-min){
 	}
