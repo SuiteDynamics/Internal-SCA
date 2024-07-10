@@ -43,17 +43,23 @@
         "application": {
             "shopping": {
                 "files": [
-                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl"
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl",
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions.tpl",
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_detailed.tpl"
                 ]
             },
             "myaccount": {
                 "files": [
-                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl"
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl",
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions.tpl",
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_detailed.tpl"
                 ]
             },
             "checkout": {
                 "files": [
-                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl"
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_list.tpl",
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions.tpl",
+                    "Modules/ZoneSubscriptions/Templates/suitedynamics_zonesubscriptions_zonesubscriptions_detailed.tpl"
                 ]
             }
         }
@@ -68,24 +74,28 @@
             "shopping": {
                 "files": [
                     "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.js",
-                    "Modules/ZoneSubscriptions/JavaScript/ZoneSubscriptions.List.View.js",
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View.js",
                     "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Model.js",
-                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model.js"
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model.js",
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed.View.js"
                 ]
             },
             "myaccount": {
                 "files": [
                     "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.js",
-                    "Modules/ZoneSubscriptions/JavaScript/ZoneSubscriptions.List.View.js",
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View.js",
                     "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Model.js",
-                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model.js"
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model.js",
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed.View.js"
                 ]
             },
             "checkout": {
                 "files": [
                     "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.js",
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View.js",
                     "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Model.js",
-                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model.js"
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model.js",
+                    "Modules/ZoneSubscriptions/JavaScript/SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed.View.js"
                 ]
             }
         }

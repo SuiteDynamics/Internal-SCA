@@ -44,6 +44,7 @@ $sc-sidebar-size: 246px;
 .header-main-nav {
 	
 	@extend .container;
+	width: 100%;
 	margin-left: 0px;
 	margin-right: 0px;
 	min-height: $sc-main-nav-height;
@@ -135,24 +136,36 @@ $sc-sidebar-size: 246px;
 }
 
 .header-content {
-	display: flex;
-	margin: $sc-margin-lv6;
+	display: block;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 15px;
 	@extend .clearfix;
+
+	@media (min-width: $screen-md-min) {
+		display: flex;
+	}
 }
 ///////////////////////////////////////////////////////////////
 //header logo
 
 .header-logo-wrapper {
-	float: left;
+	float: unset;
+	text-align: center;
+	
+	@media (min-width: $screen-sm-min) {
+		float: left;
+		text-align: left;
+	}
 }
 
 ///////////////////////////////////////////////////////////////
 //header sidebar toggle
 .header-sidebar-toggle-wrapper {
-	margin-top: (($sc-main-nav-height) - ($sc-main-nav-link-height)) * 0.5;
-	margin-bottom: (($sc-main-nav-height) - ($sc-main-nav-link-height)) * 0.5;
+	margin-top: 26px;
 	margin-right: $sc-margin-lv3;
 	float: left;
+
 
 	@media(min-width: $screen-md-min) {
 		display: none;
@@ -164,7 +177,7 @@ $sc-sidebar-size: 246px;
 	width: $sc-target-size;
 	height: $sc-target-size;
 	text-align: center;
-	margin-left: -$sc-margin-lv2;
+	vertical-align: middle;
 }
 
 .header-main-nav button i.header-sidebar-toggle-icon {
@@ -179,10 +192,9 @@ $sc-sidebar-size: 246px;
 //main nav positioning
 
 .header-right-menu {
-	display:none;
+	flex: 0 1 auto;
+	align-self: flex-end;
 	float: right;
-	margin-top: (($sc-main-nav-height) - ($sc-main-nav-link-height)) * 0.5;
-	margin-bottom: (($sc-main-nav-height) - ($sc-main-nav-link-height)) * 0.5;
 
     .header-subheader-settings-link {
         display: block;
@@ -319,9 +331,10 @@ $sc-sidebar-size: 246px;
 	top: 0;
 	bottom: 0;
 	left: - ($sc-sidebar-size);
-	width: 55%;
+	width: 100%;
 	background-color: $sc-mobile-navigation-background-color;
 	z-index: 1000;
+	display: block;
 
 	@media (min-width: $screen-md-min) {
 		background-color: $sc-main-navigation-background-color;
@@ -329,6 +342,10 @@ $sc-sidebar-size: 246px;
 		bottom: auto;
 		left: auto;
 		width: 80%;
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: center;
+
 		&.header-secondary-wrapper-standalone {
 			height: 0;
 		}
@@ -336,6 +353,7 @@ $sc-sidebar-size: 246px;
 	@media (max-width: $screen-sm-max) {
 		position:absolute;
 		z-index: -1;
+		display: block;
 	}
 }
 
@@ -486,32 +504,54 @@ $sc-sidebar-size: 246px;
 }
 
 //Custom CSS
-.header-menu-consult-btn{
+.header-consultation-btn-wrapper {
+	margin-left: 40px;
 
-    background-color:#002535;
-    height:53px;
-    color:white !important;
-    border:0px;
-    width:398px;
-    padding:1px;
-    border-radius: 50px;
-    font-family: "Open Sans";
-    letter-spacing: 2.8px;
-	font-weight: 700;
-	font-size: 14px;
-	margin-top: 5px;
-	text-align: center;
-	line-height: 48px;
-	display: block;
-	margin-left: 50px;
-
-	@media (max-width: 1400px) {
-
-		width: 250px;
-		font-size: 10px;
-		letter-spacing: 1.8px;
-
+	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+		margin-left: 12px;
 	}
-       
-  }
+
+	@media (min-width: $screen-lg-min) {
+		margin-left: 50px;
+	}
+}
+
+.header-consultation-btn {
+	background-color: #002535;
+	height: 53px;
+	color: white !important;
+	border: 0;
+	width: 323px;
+	padding: 18px 0;
+	border-radius: 50px;
+	font: normal normal bold 12px / 19px $sc-font-open-sans;
+	letter-spacing: 3px;
+	text-align: center;
+	text-transform: uppercase !important;
+	display: none;
+	text-decoration: none;
+	margin-top: 2px;
+	white-space: normal !important;
+
+	&:hover {
+		color: white !important;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		display: block;
+	}
+
+	@media (min-width: $screen-md-min) {
+		display: block;
+		width: 196px;
+        font: normal normal bold 11px / 19px $sc-font-open-sans;
+		padding: 8px 11px;
+	}
+
+	@media (min-width: $screen-lg-min) {
+		width: 323px;
+		font: normal normal bold 12px / 19px $sc-font-open-sans;
+		padding: 18px 0;
+	}
+}
 

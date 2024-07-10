@@ -1,7 +1,7 @@
 // Model.js
 // -----------------------
 // @module Case
-define("SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model", ["Backbone", "Utils"], function(
+define("SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model", ["Backbone", "Utils"], function (
     Backbone,
     Utils
 ) {
@@ -16,5 +16,5 @@ define("SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.SS2Model", ["Backbone"
             ),
             true
         )
-});
+    });
 });

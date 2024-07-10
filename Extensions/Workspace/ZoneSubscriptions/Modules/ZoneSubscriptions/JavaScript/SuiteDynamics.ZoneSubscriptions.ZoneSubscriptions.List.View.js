@@ -7,6 +7,9 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 
 		, 'Backbone'
 		, 'Utils'
+		, 'UrlHelper'
+		, 'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Model'
+		, 'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed.View'
 	]
 	, function (
 		suitedynamics_zonesubscriptions_zonesubscriptions_list_tpl
@@ -15,6 +18,9 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 
 		, Backbone
 		, Utils
+		, UrlHelperModule
+		, Model
+		, SubscriptionDetailedView
 	) {
 		'use strict';
 
@@ -28,6 +34,8 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				/*  Uncomment to test backend communication with an example service
 					(you'll need to deploy and activate the extension first)
 				*/
+				this.application = options.application;
+				console.log('mainView38', options)
 				if (!this.subscriptions) {
 					this.subscriptions = [];
 				}
@@ -40,8 +48,6 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 					self.render();
 				});
 
-
-				console.log('list view')
 				// this.on('afterViewRender', function () {
 
 				// 	$("#zab-item").find("p").hide();
@@ -89,9 +95,11 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 
 			, events: {
 				'click [data-sort]': 'sortData',
-				'click [data-group]': 'drillDownView',
+				//'click [data-group]': 'drillDownView',
 				'click .return-summary-link': 'returnSummary',
-				'click [data-action="expand-table"]': 'expandTable',
+				'click [data-action="showDetails"]': 'showDetails'
+				// ,
+				// 'click [data-action="expand-table"]': 'expandTable',
 			}
 			, returnSummary: function () {
 				var UrlHelper = _.has(UrlHelperModule, 'UrlHelper') ? UrlHelperModule.UrlHelper : UrlHelperModule;
@@ -107,52 +115,45 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				Backbone.history.navigate(url, { trigger: true });
 			}
 			, drillDownView: function (e) {
-				var value = this.$(e.currentTarget).attr('data-group');
-				var colindex = this.$(e.currentTarget).attr('data-colindex');
 
-				var UrlHelper = _.has(UrlHelperModule, 'UrlHelper') ? UrlHelperModule.UrlHelper : UrlHelperModule;
+				try {
 
 
-				var url = Backbone.history.fragment;
 
-				url = UrlHelper.setUrlParameter(url, 'groupValue', value);
-				url = UrlHelper.setUrlParameter(url, 'groupIndex', colindex);
-				url = UrlHelper.removeUrlParameter(url, 'page');
-				url = UrlHelper.removeUrlParameter(url, 'sortCol');
-				url = UrlHelper.removeUrlParameter(url, 'order');
+					var value = this.$(e.currentTarget).attr('data-group');
+					var colindex = this.$(e.currentTarget).attr('data-colindex');
 
-				Backbone.history.navigate(url, { trigger: true });
+
+
+					var UrlHelper = _.has(UrlHelperModule, 'UrlHelper') ? UrlHelperModule.UrlHelper : UrlHelperModule;
+
+
+					var url = Backbone.history.fragment;
+
+
+					url = UrlHelper.setUrlParameter(url, 'groupValue', value);
+					url = UrlHelper.setUrlParameter(url, 'groupIndex', colindex);
+
+					url = UrlHelper.removeUrlParameter(url, 'page');
+					url = UrlHelper.removeUrlParameter(url, 'sortCol');
+					url = UrlHelper.removeUrlParameter(url, 'order');
+
+					Backbone.history.navigate(url, { trigger: true });
+
+				} catch (error) {
+					console.error('Error in drillDown', error)
+				}
 			}
-			// , 	childViews: {
-			// 		'Pagination.View': function() {
 
-			// 			var defaultPaginationSettings = this.options.environment.getConfig('defaultPaginationSettings',{});
-
-			// 			var PaginationView = _.has(GlobalViewsPaginationModule,'GlobalViewsPaginationView')? GlobalViewsPaginationModule.GlobalViewsPaginationView: GlobalViewsPaginationModule;
-
-			// 			return new PaginationView(
-			// 				_.extend(
-			// 					{
-			// 						totalPages: Math.ceil(
-			// 							this.totalRecords / this.recordsPerPage
-			// 						)
-			// 					},
-			// 					defaultPaginationSettings
-			// 				)
-			// 			);
-			// 		}
-			// 	}
 			, getSelectedMenu: function () {
 				return 'search_' + this.savedSearchId;
 			}
 			, sortData: function (e) {
-				console.log('Entering here')
 				var UrlHelper = _.has(UrlHelperModule, 'UrlHelper') ? UrlHelperModule.UrlHelper : UrlHelperModule;
 
 				var columnIndex = this.$(e.currentTarget).attr('data-index');
 
 				var sortdir = this.$(e.currentTarget).attr('data-sortdir');
-				console.log(sortdir)
 				var sortOrder = (sortdir == "DESC") ? '0' : '1';
 
 				var url = Backbone.history.fragment;
@@ -202,7 +203,31 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 
 				this.formattedResults = formattedResults;
 			}
-			, expandTable: function (event) {
+			, showDetails: function showDetails(e) {
+
+				var $selectedItem = (e.currentTarget) ? jQuery(e.currentTarget) : jQuery(e);
+				var subscriptionId = $selectedItem.attr('data-group');
+
+				this.getChildViewInstance('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed').initialize({
+					subscriptionId: subscriptionId,
+					model: this.model,
+					application: this.application,
+					showInModal: true,
+					subscriptions: this.subscriptions
+				});
+			}
+
+			, childViews: {
+				'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed': function SubscriptionDetail() {
+					var model = new Model();
+					return new SubscriptionDetailedView({
+						model: model,
+						application: this.application
+					});
+				}
+
+			},
+			expandTable: function (event) {
 				let $target = $(event.target);
 
 				// Comprobamos si el clic ocurrió en el botón de detalles, si es así, no hacemos nada.
@@ -239,7 +264,6 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 			//@method getContext @return SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 			, getContext: function getContext() {
 
-				console.log('getcontext', this)
 				//@class SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 				// this.message = this.message || 'Hello World!!'
 				return {

@@ -1,0 +1,119 @@
+{
+    "name": "SDWebsiteCCTs",
+    "fantasyName": "SuiteDynamics Website CCTs",
+    "vendor": "SuiteDynamics",
+    "type": "extension",
+    "cct": [
+        {
+            "icon": "img/cct_suitedynamics_maintitlecct_icon.svg",
+            "settings_record": "customrecord_sd_cct_main_title",
+            "registercct_id": "sd_cct_maintitle",
+            "label": "Main title CCT",
+            "description": "Adds a customizable main title section to a CMS section. It supports title text, a subtitle, an optional image, and background color."
+        },
+        {
+            "icon": "img/cct_suitedynamics_splitcontentcct_icon.svg",
+            "settings_record": "customrecord_sd_cct_splitcontent",
+            "registercct_id": "sd_cct_splitcontent",
+            "label": "Split Content CCT",
+            "description": "Adds a split content section to a CMS section with an optional image, information, and a CTA button."
+        },
+        {
+            "icon": "img/cct_suitedynamics_textbannercct_icon.svg",
+            "settings_record": "customrecord_sd_cct_textbanner",
+            "registercct_id": "sd_cct_textbanner",
+            "label": "Text banner CCT",
+            "description": "Adds a customizable text banner to a CMS section."
+        },
+        {
+            "icon": "img/cct_suitedynamics_infocardsgridcct_icon.svg",
+            "settings_record": "customrecord_sd_cct_infocardsgrid",
+            "registercct_id": "sd_cct_infocardsgrid",
+            "label": "Info Cards Grid CCT",
+            "description": "Adds a grid of informational cards. Each card can include an image, title, and text."
+        },
+        {
+            "icon": "img/cct_suitedynamics_ctablockcct_icon.svg",
+            "settings_record": "customrecord_sd_cct_cta_block",
+            "registercct_id": "sd_cct_ctablock",
+            "label": "CTA Block CCT",
+            "description": "Adds a customizable section that includes a title, subtitle, body, and CTA button"
+        }
+    ],
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": ">=19.1.0",
+        "SCS": ">=19.1.0"
+    },
+    "version": "1.0.0",
+    "description": "A set of CCTs to be used on the SuiteDynamics website",
+    "assets": {
+        "img": {
+            "files": [
+                "img/cct_suitedynamics_maintitlecct_icon.svg",
+                "img/cct_suitedynamics_splitcontentcct_icon.svg",
+                "img/cct_suitedynamics_textbannercct_icon.svg",
+                "img/cct_suitedynamics_infocardsgridcct_icon.svg",
+                "img/text-banner-arrows.png",
+                "img/cct_suitedynamics_ctablockcct_icon.svg"
+            ]
+        },
+        "fonts": {
+            "files": []
+        },
+        "services": {
+            "files": []
+        }
+    },
+    "templates": {
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
+                    "Modules/SplitContentCCT/Templates/splitcontentcct.tpl",
+                    "Modules/TextBannerCCT/Templates/textbannercct.tpl",
+                    "Modules/InfoCardsGridCCT/Templates/infocardsgridcct.tpl",
+                    "Modules/CTABlockCCT/Templates/ctablockcct.tpl"
+                ]
+            }
+        }
+    },
+    "sass": {
+        "entry_points": {
+            "shopping": "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss"
+        },
+        "files": [
+            "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss",
+            "Modules/MainTitleCCT/Sass/_maintitlecct.scss",
+            "Modules/SplitContentCCT/Sass/_splitcontentcct.scss",
+            "Modules/TextBannerCCT/Sass/_textbannercct.scss",
+            "Modules/InfoCardsGridCCT/Sass/_infocardsgridcct.scss",
+            "Modules/CTABlockCCT/Sass/_ctablockcct.scss"
+        ]
+    },
+    "javascript": {
+        "entry_points": {
+            "shopping": "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js"
+        },
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MainTitleCCT/JavaScript/MainTitleCCT.View.js",
+                    "Modules/MainTitleCCT/JavaScript/MainTitleCCT.js",
+                    "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js",
+                    "Modules/SplitContentCCT/JavaScript/SplitContentCCT.js",
+                    "Modules/SplitContentCCT/JavaScript/SplitContentCCT.View.js",
+                    "Modules/TextBannerCCT/JavaScript/TextBannerCCT.js",
+                    "Modules/TextBannerCCT/JavaScript/TextBannerCCT.View.js",
+                    "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.js",
+                    "Modules/InfoCardsGridCCT/JavaScript/InfoCardsGridCCT.View.js",
+                    "Modules/CTABlockCCT/JavaScript/CTABlockCCT.js",
+                    "Modules/CTABlockCCT/JavaScript/CTABlockCCT.View.js"
+                ]
+            }
+        }
+    },
+    "suitescript2": {
+        "files": []
+    }
+}

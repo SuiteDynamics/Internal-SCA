@@ -20,29 +20,26 @@
     </select>
   </div>
   <div class="searchresults-table-container">
-  <table data-action="expand-table" class="custom-table">
-    <thead>
+  <table data-action="expand-table" class="order-history-list-recordviews-actionable-table">
+    <thead class="order-history-list-recordviews-actionable-header">
     <tr>
-    <th></th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Subscription ID</th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Start Date</th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>End Date</th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Charge Schedule</th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Subscription Status</th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Order Date</th>
-    <th data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Total cost</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Subscription ID</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Start Date</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>End Date</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Charge Schedule</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Subscription Status</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Order Date</th>
+    <th class="order-history-list-recordviews-actionable-title-header" data-sort data-index="{{@index}}" {{#if sortdir}}data-sortdir="{{sortdir}}"{{/if}}>Total cost</th>
     </tr>
     </thead>
     
-    <tbody>
+    <tbody class="order-history-list">
     
     {{#each subscriptions}}
     {{log this}}
       <tr>
-          <td class="zab-detail-expand-icon">
-              <img class="zab-detail-expand-icon-img" src="https://7050356.secure.netsuite.com/core/media/media.nl?id=20875&c=7050356&h=2nZeettnjgZ1BrO5MY_85cq4fIFMsa3QROs3X_vE-i9Js1Nf" alt="">
-          </td>
-          <td>{{idNumber}}</td>
+          
+          <td> <a data-group="{{billTo}}" data-hashtag="#subscription-detail" data-colindex="0"  data-action="showDetails">{{idNumber}}</a>
           <td>{{startDate}}</td>
           <td>{{endDate}}</td>
           <td>{{chargeSchedule}}</td>
@@ -133,5 +130,7 @@
           $("tr#zab-item").hide();
       });
     </script>
-
+<section class="shipping-status-details">
+			<div data-view="SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed"></div>
+		</section>
 </section>

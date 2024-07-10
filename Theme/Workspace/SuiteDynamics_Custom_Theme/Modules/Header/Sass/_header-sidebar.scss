@@ -255,5 +255,33 @@
 	color: $sc-color-copy;
 }
 
+.header-sidebar-consultation-btn-wrapper {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-top: 20px;
+	margin-left: 20px;
+}
 
+.header-sidebar-consultation-btn {
+	background-color: #002535;
+	height: 53px;
+	color: white !important;
+	border: 0;
+	border-radius: 50px;
+	letter-spacing: 3px;
+	text-align: center;
+	text-transform: uppercase !important;
+	text-decoration: none;
+	margin-top: 2px;
+	white-space: normal !important;
+	display: block;
+	width: 196px;
+	font: normal normal bold 11px / 19px $sc-font-open-sans;
+	padding: 8px 11px;
+
+	&:hover {
+		color: white !important;
+	}
+}
 
