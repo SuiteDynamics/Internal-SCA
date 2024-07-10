@@ -40,9 +40,6 @@
             "description": "Adds a customizable section that includes a title, subtitle, body, and CTA button"
         }
     ],
-<<<<<<< HEAD
-    "skins": [],
-=======
     "target": "SCA,SCS",
     "target_version": {
         "SCA": ">=19.1.0",
@@ -50,7 +47,6 @@
     },
     "version": "1.0.0",
     "description": "A set of CCTs to be used on the SuiteDynamics website",
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
     "assets": {
         "img": {
             "files": [
@@ -69,22 +65,6 @@
             "files": []
         }
     },
-<<<<<<< HEAD
-    "sass": {
-        "entry_points": {
-            "shopping": "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss"
-        },
-        "files": [
-            "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss",
-            "Modules/MainTitleCCT/Sass/_maintitlecct.scss",
-            "Modules/SplitContentCCT/Sass/_splitcontentcct.scss",
-            "Modules/TextBannerCCT/Sass/_textbannercct.scss",
-            "Modules/InfoCardsGridCCT/Sass/_infocardsgridcct.scss",
-            "Modules/CTABlockCCT/Sass/_ctablockcct.scss"
-        ]
-    },
-=======
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
     "templates": {
         "application": {
             "shopping": {
@@ -98,8 +78,6 @@
             }
         }
     },
-<<<<<<< HEAD
-=======
     "sass": {
         "entry_points": {
             "shopping": "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss"
@@ -113,7 +91,6 @@
             "Modules/CTABlockCCT/Sass/_ctablockcct.scss"
         ]
     },
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
     "javascript": {
         "entry_points": {
             "shopping": "Modules/Entrypoint/JavaScript/SuiteDynamics.SDWebsiteCCTs.Entrypoint.js"
@@ -136,10 +113,6 @@
             }
         }
     },
-<<<<<<< HEAD
-    "local_folder": "Workspace\\SDWebsiteCCTs",
-=======
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
     "suitescript2": {
         "files": []
     }
