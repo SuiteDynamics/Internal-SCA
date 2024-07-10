@@ -277,7 +277,7 @@ define(
 
 	,	addMotusPayment: function(e)
 	{
-		console.log('addMotusPayment', this)
+		console.log('addMotusPayment', this.options.collection.models[0].get('clientkey'))
 		console.log('crypto', crypto.randomUUID())
 		$("#sensepass-modal-close").click(function(){
 			$(".sensepass-modal").fadeOut();
@@ -391,7 +391,8 @@ define(
 			$('.order-wizard-step-button-continue').prop("disabled",true);
 			$('.btn').prop("disabled",true);
 			self.collection.add(newPaymentModel, { at: self.collection.length - 1 }).save().then(function(result){
-				console.log('token result', result.cardDetails.response.customers[0].credit_card.expiration_month);
+				console.log('token result 1', result);
+				console.log('token result 2', result.cardDetails.response.customers[0].credit_card.expiration_month);
 				if(result.status == 'Success'){
 	
 					self.removeActive();

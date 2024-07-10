@@ -188,7 +188,7 @@
 
                         //Use filler address because the customer has not submitted their address in checkout yet
                         var motusBody = {
-                            "customer_id":data.uuid,
+                            "customer_id":"1233434",
                             "hpf_token":data.hpf_token,
                             "enc_key":data.enc_key,
                             "integrator_id": motusCredentials.integrationid,

@@ -1,0 +1,64 @@
+$primary-bg-color: #002535;
+$text-color: #EFF3F5;
+$sc-font-open-sans: 'Open Sans', sans-serif !default;
+
+@mixin flex-center-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cms-cct-text-banner-container {
+    @include flex-center-space-between;
+    background-color: $primary-bg-color;
+    padding: 10px 0;
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: $screen-sm-min) {
+        padding: 40px 15px;
+    }
+}
+
+.cms-cct-text-banner-left-arrows-wrapper,
+.cms-cct-text-banner-right-arrows-wrapper {
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.cms-cct-text-banner-left-arrows-wrapper {
+    margin-left: -130px;
+}
+
+.cms-cct-text-banner-right-arrows-wrapper {
+    right: -130px;
+    transform: rotate(180deg);
+
+    @media (min-width: $screen-sm-min) {
+        right: -115px;
+    }
+}
+
+.cms-cct-text-banner-left-arrows,
+.cms-cct-text-banner-right-arrows {
+    height: 100%;
+    width: 235px;
+}
+
+.cms-cct-text-banner-text-wrapper {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 100px;
+}
+
+.cms-cct-text-banner-text {
+    margin: 0;
+    font: normal bold 20px/30px $sc-font-open-sans;
+    color: $text-color;
+    letter-spacing: 3px;
+
+    @media (min-width: $screen-sm-min) {
+        font: normal bold 25px/35px $sc-font-open-sans;
+    }
+}
