@@ -25,7 +25,32 @@ define('SuiteDynamics.SDWebsiteCCTs.CTABlockCCT.View',
 			return jQuery.Deferred().resolve();
 		},
 
+<<<<<<< HEAD
         getContext: function() {
+=======
+		hexToRgba: function(hex, opacity) {
+			hex = hex.replace('#', '');
+
+			if (hex.length === 3) {
+				hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+			}
+
+			var r = parseInt(hex.substring(0, 2), 16);
+			var g = parseInt(hex.substring(2, 4), 16);
+			var b = parseInt(hex.substring(4, 6), 16);
+
+			var a = Math.round(opacity * 255).toString(16).toUpperCase();
+			if (a.length === 1) {
+				a = '0' + a;
+			}
+
+			return '#' + (r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2, '0') + a).toUpperCase();
+		},
+
+        getContext: function() {
+			var backgroundImageUrl = Utils.trim(this.settings.custrecord_cct_cb_bg_image_src);
+			var opacityColor = parseFloat(Utils.trim(this.settings.custrecord_cct_cb_bg_opacity) || 1);
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 			var defaultSectionBackgroundColor = '#85A8B7';
 			var sectionBackgroundColor = Utils.trim(this.settings.custrecord_cct_cb_bg_color_hex) || defaultSectionBackgroundColor;
 			var title = Utils.trim(this.settings.custrecord_cct_cb_title);
@@ -39,6 +64,11 @@ define('SuiteDynamics.SDWebsiteCCTs.CTABlockCCT.View',
 			var body = Utils.trim(this.settings.custrecord_cct_cb_body);
 			var bodyCentered = this.settings.custrecord_cct_cb_content_centered === 'T';
 			var ctaText = Utils.trim(this.settings.custrecord_cct_cb_cta_button_text);
+<<<<<<< HEAD
+=======
+			var ctaLink = Utils.trim(this.settings.custrecord_cta_button_link);
+			var isExternalLink = ctaLink && ctaLink.indexOf('http') > -1;
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 			var defulatCtaTextColor = '#002535';
 			var ctaTextColor = Utils.trim(this.settings.custrecord_cct_cb_cta_text_color_hex) || defulatCtaTextColor;
 			var defaultCtaBackgroundColor = '#EFF3F5';
@@ -47,7 +77,13 @@ define('SuiteDynamics.SDWebsiteCCTs.CTABlockCCT.View',
 			var ctaCentered = this.settings.custrecord_cct_cb_cta_centered === 'T';
 
 			return {
+<<<<<<< HEAD
 				sectionBackgroundColor: sectionBackgroundColor,
+=======
+				backgroundImageUrl: backgroundImageUrl,
+				opacityColor: this.hexToRgba(sectionBackgroundColor, opacityColor),
+				sectionBackgroundColor: sectionBackgroundColor && this.hexToRgba(sectionBackgroundColor, opacityColor),
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 				title: title,
 				titleColor: titleColor,
 				titleCentered: titleCentered,
@@ -56,6 +92,11 @@ define('SuiteDynamics.SDWebsiteCCTs.CTABlockCCT.View',
 				subtitleCentered: subtitleCentered,
 				body: body,
 				bodyCentered: bodyCentered,
+<<<<<<< HEAD
+=======
+				ctaLink: ctaLink,
+				isExternalLink: isExternalLink,
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 				ctaText: ctaText,
 				ctaTextColor: ctaTextColor,
 				ctaBackgroundColor: ctaBackgroundColor,

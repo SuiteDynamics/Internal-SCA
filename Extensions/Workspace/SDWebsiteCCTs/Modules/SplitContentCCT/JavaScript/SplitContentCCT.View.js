@@ -65,6 +65,11 @@ define('SuiteDynamics.SDWebsiteCCTs.SplitContentCCT.View',
             var imageSrc = Utils.trim(this.settings.custrecord_cct_sc_image_src);
             var imageAltText = Utils.trim(this.settings.custrecord_cct_sc_image_alt_text);
             var imageSize = this.settings.custrecord_cct_sc_image_size + '';
+<<<<<<< HEAD
+=======
+            var hideMobileImage = this.settings.custrecord_cct_sc_hide_mobile_img === 'T';
+            var centerMobileImage = this.settings.custrecord_cct_sc_center_mobile_img === 'T';
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
             var columnClasses = this.getColumnClasses(imageSize);
             var title = Utils.trim(this.settings.custrecord_cct_sc_title);
             var defaultTitleColor = '#002535';
@@ -91,10 +96,19 @@ define('SuiteDynamics.SDWebsiteCCTs.SplitContentCCT.View',
             return {
                 imageSrc: imageSrc,
                 imageAltText: imageAltText,
+<<<<<<< HEAD
+=======
+                hideMobileImage: hideMobileImage,
+                centerMobileImage: centerMobileImage,
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
                 leftColumnClasses: columnClasses.left,
                 rightColumnClasses: columnClasses.right,
                 title: title,
                 titleColor: titleColor,
+<<<<<<< HEAD
+=======
+                showImageOnPhoneDevices: !!imageSrc,
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
                 sectionIntro: sectionIntro,
                 showInnerSection: showInnerSection,
                 innerSectionBackgroundColor: innerSectionBackgroundColor,

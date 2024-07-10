@@ -16,6 +16,17 @@
                         style="{{#if titleColor}}color: {{titleColor}};{{/if}}"
                 >{{{title}}}</h2>
 
+<<<<<<< HEAD
+=======
+                {{#if imageSrc}}
+                    {{#unless hideMobileImage}}
+                        <div class="cms-cct-split-content-block-right-interior-mobile-img-wrapper {{#if centerMobileImage}} cms-cct-split-content-block-right-interior-mobile-img-centered{{/if}}">
+                            <img src="{{imageSrc}}" class="cms-cct-split-content-block-right-interior-mobile-img {{#if centerMobileImage}} cms-cct-split-content-block-right-interior-mobile-img-centered{{/if}}" alt="{{imageAltText}}">
+                        </div>
+                    {{/unless}}
+                {{/if}}
+
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
                 {{#if sectionIntro}}
                     <div class="cms-cct-split-content-block-right-interior-text {{#if centerContent}}cms-cct-split-content-block-centered{{/if}}">{{{sectionIntro}}}</div>
                 {{/if}}

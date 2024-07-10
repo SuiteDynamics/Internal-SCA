@@ -285,3 +285,39 @@ $sc-font-charter: 'Charter', serif !default;
         font-style: italic;
     }
 }
+<<<<<<< HEAD
+=======
+
+.cms-cct-split-content-block-right-interior-mobile-img-wrapper {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 30px;
+    display: block;
+
+    &.cms-cct-split-content-block-right-interior-mobile-img-centered {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        left: unset;
+        right: unset;
+    }
+
+    .cms-cct-split-content-block-right-interior-mobile-img {
+        width: 100%;
+        height: auto;
+        display: block;
+
+        &.cms-cct-split-content-block-right-interior-mobile-img-centered {
+            display: inline-block;
+        }
+    }
+
+    @media (min-width: $screen-sm-min) {
+        display: none;
+    }
+}
+>>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af

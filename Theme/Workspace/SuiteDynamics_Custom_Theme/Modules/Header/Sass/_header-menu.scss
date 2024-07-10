@@ -3,6 +3,10 @@
 .header-menu-secondary-nav {
 	width:80%;
 	@extend .container;
+
+	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+		width: 93%;
+	}
 }
 
 ///////////////////////////////////////////////////////////////

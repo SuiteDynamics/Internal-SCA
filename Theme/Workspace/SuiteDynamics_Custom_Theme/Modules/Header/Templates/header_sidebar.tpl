@@ -76,6 +76,10 @@
 
 	</div>
 
+    <div class="header-sidebar-consultation-btn-wrapper">
+        <a class="header-sidebar-consultation-btn" data-touchpoint="home" data-hashtag="#schedule-a-consultation">{{translate 'Schedule your consultation'}}</a>
+    </div>
+
 	{{#if showExtendedMenu}}
 	<a class="header-sidebar-user-logout" href="#" data-touchpoint="logout" name="logout">
 		<i class="header-sidebar-user-logout-icon"></i>
