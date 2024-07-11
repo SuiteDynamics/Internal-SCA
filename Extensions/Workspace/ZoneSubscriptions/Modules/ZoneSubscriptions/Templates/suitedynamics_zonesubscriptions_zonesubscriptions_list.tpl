@@ -39,7 +39,7 @@
     {{log this}}
       <tr>
           
-          <td> <a data-group="{{billTo}}" data-hashtag="#subscription-detail" data-colindex="0"  data-action="showDetails">{{idNumber}}</a>
+        <td> <a data-group="{{billTo}}" data-hashtag="#subscription-detail" data-colindex="0"  data-action="showDetails">{{idNumber}}</a>
           <td>{{startDate}}</td>
           <td>{{endDate}}</td>
           <td>{{chargeSchedule}}</td>

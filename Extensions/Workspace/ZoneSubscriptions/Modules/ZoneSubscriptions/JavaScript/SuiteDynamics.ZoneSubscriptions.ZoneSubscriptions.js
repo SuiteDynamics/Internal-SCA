@@ -18,10 +18,11 @@ define(
 
 				/** @type {LayoutComponent} */
 
-				console.log('zone')
+				console.log('zone', this)
 				var pageType = container.getComponent('PageType');
 				var environment = container.getComponent("Environment");
 				var MyAccountMenu = container.getComponent("MyAccountMenu");
+				var layout = container.getComponent('Layout');
 
 				MyAccountMenu.addGroup({
 					"id": "zone_advanced_billing",
@@ -37,19 +38,21 @@ define(
 					options: {
 						container: container,
 						environment: environment,
+						layout: layout
 					},
 					view: ZoneSubscriptionsListView
 				});
 
-				pageType.registerPageType({
-					name: 'SubscriptionDetailView',
-					routes: ['subscription-detail'],
-					view: ZoneSubscriptionsListView,
-					options: {
-						application: container,
-						environment: environment,
-					}
-				});
+				// pageType.registerPageType({
+				// 	name: 'SubscriptionDetailView',
+				// 	routes: ['subscriptions/subscription-detail'],
+				// 	view: ZoneSubscriptionsListView,
+				// 	options: {
+				// 		application: container,
+				// 		environment: environment,
+				// 		showInModal: true
+				// 	}
+				// });
 
 				var layout = container.getComponent('Layout');
 

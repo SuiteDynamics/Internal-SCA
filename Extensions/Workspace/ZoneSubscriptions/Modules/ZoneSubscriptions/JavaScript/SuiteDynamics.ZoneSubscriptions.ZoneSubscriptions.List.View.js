@@ -204,29 +204,16 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				this.formattedResults = formattedResults;
 			}
 			, showDetails: function showDetails(e) {
-
-				var $selectedItem = (e.currentTarget) ? jQuery(e.currentTarget) : jQuery(e);
-				var subscriptionId = $selectedItem.attr('data-group');
-
-				this.getChildViewInstance('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed').initialize({
-					subscriptionId: subscriptionId,
-					model: this.model,
-					application: this.application,
-					showInModal: true,
-					subscriptions: this.subscriptions
+				console.log('this', this)
+				var SubscriptionView = new SubscriptionDetailedView({
+					container: this.options.container
 				});
+				//SubscriptionView.showInModal({ className: 'zonesubscriptions-modal', dontScroll: true });
+				this.options.layout.showContent(SubscriptionView, { showInModal: true });
+				
 			}
 
-			, childViews: {
-				'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed': function SubscriptionDetail() {
-					var model = new Model();
-					return new SubscriptionDetailedView({
-						model: model,
-						application: this.application
-					});
-				}
-
-			},
+			,
 			expandTable: function (event) {
 				let $target = $(event.target);
 
