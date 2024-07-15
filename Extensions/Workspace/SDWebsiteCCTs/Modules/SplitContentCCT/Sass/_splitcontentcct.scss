@@ -24,6 +24,10 @@ $sc-font-charter: 'Charter', serif !default;
     @media (min-width: $screen-sm-min) {
         padding: 9% 7%;
 
+        &.cms-cct-split-content-block-flip-content {
+            flex-direction: row-reverse;
+        }
+
         &.cms-cct-split-content-block-full-width {
             padding: 0;
         }
@@ -285,8 +289,6 @@ $sc-font-charter: 'Charter', serif !default;
         font-style: italic;
     }
 }
-<<<<<<< HEAD
-=======
 
 .cms-cct-split-content-block-right-interior-mobile-img-wrapper {
     position: relative;
@@ -320,4 +322,3 @@ $sc-font-charter: 'Charter', serif !default;
         display: none;
     }
 }
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af

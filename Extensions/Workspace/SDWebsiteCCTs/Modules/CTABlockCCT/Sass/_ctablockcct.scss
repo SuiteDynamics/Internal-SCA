@@ -4,19 +4,13 @@ $sc-font-charter: 'Charter', serif !default;
 .cms-cct-cta-block-container {
     @extend .row;
 
-<<<<<<< HEAD
-=======
     position: relative;
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
     background: #85A8B7;
     padding: 55px 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
-=======
     z-index: 1;
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 
     @media (min-width: 768px) {
         padding: 70px 95px;
@@ -25,8 +19,6 @@ $sc-font-charter: 'Charter', serif !default;
     @media (min-width: 1200px) {
         padding: 70px 320px;
     }
-<<<<<<< HEAD
-=======
 
     &:before {
         content: '';
@@ -48,7 +40,6 @@ $sc-font-charter: 'Charter', serif !default;
     height: 100%;
     object-fit: cover;
     z-index: -2;
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 }
 
 .cms-cct-cta-block-title {

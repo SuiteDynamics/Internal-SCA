@@ -397,6 +397,41 @@
 	.zab-detail-modal-details {}
 }
 
+.request-cancellation {
+	text-align: center;
+	/* Center the button */
+	margin: 20px 0;
+	/* Add some margin for spacing */
+}
+
+.request-cancellation-link {
+	display: inline-block;
+	/* Make the link behave like a button */
+	padding: 10px 20px;
+	/* Add padding for better appearance */
+	font-size: 16px;
+	/* Increase the font size */
+	color: white;
+	/* Button text color */
+	background-color: #e65300;
+	/* Button background color */
+	border: none;
+	/* Remove border */
+	border-radius: 5px;
+	/* Rounded corners */
+	text-decoration: none;
+	/* Remove underline */
+	cursor: pointer;
+	/* Pointer cursor on hover */
+	transition: background-color 0.3s;
+	/* Smooth transition for hover effect */
+}
+
+.request-cancellation-link:hover {
+	background-color: #e65300;
+	/* Darken the button on hover */
+}
+
 .zab-detail-modal-container {}
 
 .zab-detail-modal-title {}

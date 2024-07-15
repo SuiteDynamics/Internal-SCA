@@ -35,7 +35,6 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 					(you'll need to deploy and activate the extension first)
 				*/
 				this.application = options.application;
-				console.log('mainView38', options)
 				if (!this.subscriptions) {
 					this.subscriptions = [];
 				}
@@ -43,7 +42,6 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				this.model = new ZoneSubscriptionsSS2Model();
 				var self = this;
 				this.model.fetch().done(function (result) {
-					console.log('ZAB Subscriptions', result)
 					self.subscriptions = result;
 					self.render();
 				});
@@ -204,13 +202,22 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				this.formattedResults = formattedResults;
 			}
 			, showDetails: function showDetails(e) {
-				console.log('this', this)
+				var data = this.model.attributes
+				var subscriptionId = this.$(e.currentTarget).attr('data-group');
+				var subscriptionDetailed = []
+				for (let key in data) {
+					if (data[key].billTo === subscriptionId) {
+						subscriptionDetailed.push(data[key])
+					}
+				}
 				var SubscriptionView = new SubscriptionDetailedView({
-					container: this.options.container
+					container: this.options.container,
+					hasResults: (subscriptionDetailed.length > 0),
+					subscriptions: subscriptionDetailed
 				});
 				//SubscriptionView.showInModal({ className: 'zonesubscriptions-modal', dontScroll: true });
 				this.options.layout.showContent(SubscriptionView, { showInModal: true });
-				
+
 			}
 
 			,

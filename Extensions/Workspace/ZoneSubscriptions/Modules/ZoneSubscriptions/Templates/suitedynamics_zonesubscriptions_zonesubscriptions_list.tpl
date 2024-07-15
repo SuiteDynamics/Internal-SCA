@@ -48,57 +48,7 @@
           <td>{{totalCost}}</td>
           
       </tr>
-      {{#if items.length}}
-        {{#each items}}
-            <tr id="zab-item">
-              <td>
-              </td>
-              <td>
-              </td>
-              <td>
-                <div class="clearfix zab-item-name-image-container">
-                  <img class="zab-item-image" src={{itemImage}} alt="">
-                  <div class="zab-item-name">{{name}}</div>
-                </div>					
-              </td>
-              <td>
-                <p class="zab-item-description">{{itemDesc}}</p>
-              </td>
-              <td>
-                <p>qty: {{itemQuantity}}</p>
-              </td>
-              <td>
-                <p>Total: $ {{itemTotal}}</p>
-              </td>
-              <td>
-              </td>
-              <td>
-              </td>
-            </tr>
-        {{/each}}
-        {{else}}
-      <tr id="zab-item">
-      <td>
-              </td>
-              <td>
-              </td>
-              
-              <td>
-              </td>
-        <td>
-        <p class="zab-item-description">There are no items related</p>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-      </tr>
-    {{/if}}
+      
       {{/each}}
     
     </tbody>
@@ -114,10 +64,11 @@
    <script>
         document.getElementById('status-filter').addEventListener('change', function () {
             var selectedStatus = this.value.toLowerCase();
-            var rows = document.querySelectorAll('.custom-table tbody tr');
+            var rows = document.querySelectorAll('.order-history-list-recordviews-actionable-table tbody tr');
 
             rows.forEach(function (row) {
-                var status = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+                var status = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+                console.log('status',status)
                 if (selectedStatus === 'all' || status === selectedStatus) {
                     row.style.display = '';
                 } else {

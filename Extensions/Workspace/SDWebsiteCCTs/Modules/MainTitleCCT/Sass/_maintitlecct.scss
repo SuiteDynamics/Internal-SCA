@@ -56,17 +56,6 @@ $sc-font-charter: 'Charter', serif !default;
             width: 100%;
         }
 
-<<<<<<< HEAD
-        &-img-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-        }
-
-        &-img {
-            max-height: 45px;
-            margin-top: 30px;
-=======
         &-row {
             display: flex;
             align-items: center;
@@ -116,13 +105,10 @@ $sc-font-charter: 'Charter', serif !default;
                     color: #002535;
                 }
             }
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
         }
     }
 }
 
-<<<<<<< HEAD
-=======
 .cms-cct-maintitle-content-left-interior-row-btn-align-left {
     justify-content: flex-start;
     align-items: flex-start;
@@ -138,7 +124,6 @@ $sc-font-charter: 'Charter', serif !default;
     align-items: flex-end;
 }
 
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 .cms-cct-maintitle-content-right {
     @include flex-center;
     @extend .col-xs-12;

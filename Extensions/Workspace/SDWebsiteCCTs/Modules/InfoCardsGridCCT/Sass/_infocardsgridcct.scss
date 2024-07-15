@@ -13,14 +13,9 @@ $sc-font-charter: 'Charter', serif !default;
     background: $background-color;
 }
 
-<<<<<<< HEAD
-.cms-card-grid-section-title {
-    margin-top: 40px;
-=======
 .cms-card-grid-section-title-wrapper {
     margin-top: 40px;
     margin-bottom: 30px;
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 }
 
 .cms-card-grid-section-title {
@@ -28,8 +23,6 @@ $sc-font-charter: 'Charter', serif !default;
     font: italic normal bold 40px / 40px $sc-font-charter;
 }
 
-<<<<<<< HEAD
-=======
 .cms-card-grid-section-subtitle-wrapper {
     @extend .container;
     margin-bottom: 30px;
@@ -39,7 +32,6 @@ $sc-font-charter: 'Charter', serif !default;
     }
 }
 
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 .cms-cct-card-grid {
     display: grid;
     grid-template-columns: repeat(1, minmax(315px, 1fr));
@@ -47,11 +39,7 @@ $sc-font-charter: 'Charter', serif !default;
     gap: 30px;
 
     &.cms-cct-card-grid-style-team {
-<<<<<<< HEAD
-        padding: 55px 15px;
-=======
         padding: 0 15px 55px;
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
         justify-items: center;
     }
 
@@ -180,10 +168,7 @@ $sc-font-charter: 'Charter', serif !default;
     justify-content: flex-start;
     width: 100%;
     margin-top: 15px;
-<<<<<<< HEAD
-=======
     flex-grow: 1;
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
 
     &.cms-cct-card-grid-style-team {
         margin-top: 20px;
@@ -198,8 +183,6 @@ $sc-font-charter: 'Charter', serif !default;
         text-align: center;
     }
 }
-<<<<<<< HEAD
-=======
 
 .cms-cct-card-cta-btn-wrapper {
     margin-top: 35px;
@@ -228,4 +211,3 @@ $sc-font-charter: 'Charter', serif !default;
         }
     }
 }
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
