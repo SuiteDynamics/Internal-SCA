@@ -24,6 +24,10 @@ $sc-font-charter: 'Charter', serif !default;
     @media (min-width: $screen-sm-min) {
         padding: 9% 7%;
 
+        &.cms-cct-split-content-block-flip-content {
+            flex-direction: row-reverse;
+        }
+
         &.cms-cct-split-content-block-full-width {
             padding: 0;
         }
