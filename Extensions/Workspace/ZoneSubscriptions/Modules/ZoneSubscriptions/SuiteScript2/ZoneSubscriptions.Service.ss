@@ -7,6 +7,8 @@
       return {
          service: function (ctx) {
 
+            log.error('ctx',ctx)
+
                //Retrieve Subscriptions for customer
                var customrecordzab_subscriptionSearchObj = search.create({
                   type: "customrecordzab_subscription",
@@ -34,7 +36,7 @@
                   ]
                });
                var searchResultCount = customrecordzab_subscriptionSearchObj.runPaged().count;
-               log.debug("customrecordzab_subscriptionSearchObj result count",searchResultCount);
+               log.error("customrecordzab_subscriptionSearchObj result count",searchResultCount);
 
                var subscriptionsArray = [];
 
@@ -72,7 +74,7 @@
 
                function retrieveZabItems(id){
 
-                  log.debug('ZAB Item 2', id)
+                  log.error('ZAB Item 2', id)
 
 
                   var customrecordzab_itemSearchObj = search.create({
@@ -99,7 +101,7 @@
                      ]
                   });
                   var searchResultCount = customrecordzab_itemSearchObj.runPaged().count;
-                  log.debug("customrecordzab_itemSearchObj result count",searchResultCount);
+                  log.error("customrecordzab_itemSearchObj result count",searchResultCount);
       
                   var itemArray = [];
       
@@ -121,7 +123,7 @@
                         ]
                      })
 
-                     log.debug('itemLookup', 'https://www.suitedynamics.co/ItemImages/'+itemLookup.storedisplayname.replace(/\s/g, '')+'_01.png')
+                     log.error('itemLookup', 'https://www.suitedynamics.co/ItemImages/'+itemLookup.storedisplayname.replace(/\s/g, '')+'_01.png')
                      itemsObj.itemImage = 'https://www.suitedynamics.co/ItemImages/'+itemLookup.storedisplayname.replace(/\s/g, '')+'_01.png'
                      itemsObj.name = itemLookup.storedisplayname
       

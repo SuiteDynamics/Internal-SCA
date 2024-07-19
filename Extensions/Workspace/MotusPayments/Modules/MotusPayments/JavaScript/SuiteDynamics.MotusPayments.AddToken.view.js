@@ -327,6 +327,7 @@ define('SuiteDynamics.MotusPayments.AddToken.View'
 	,	getContext: function getContext()
 		{
 
+            console.log('Add Token', this)
 			//@class SuiteDynamics.MotusPayments.MotusPayments.View.Context
 			this.message = this.message || 'Hello World!!'
 			return {

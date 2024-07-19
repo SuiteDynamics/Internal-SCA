@@ -17,7 +17,7 @@ try{
     }
     var current_domain = _getDomain();
     var Configuration = require('Configuration');
-    Configuration.overwriteByDomain({"www.suitedynamics.co":{"customFields":{"checkout":{"requiredError":"Field {{field}} is required.","requiredGeneralError":"Please fill required fields below before continuing.","loadingMessage":"Loading additional information...","loadingError":"There was a problem loading the section. Please reload the page.","savingError":"There was a problem saving. Please reload the page."},"pdp":{"fields":[{"fieldid":"UPC CODE: [[upccode]]","show":false,"schema":""},{"fieldid":"MANUFACTURER: [[manufacturer]]","show":false,"schema":"manufacturer"},{"fieldid":"MPN: [[mpn]]","show":false,"schema":"mpn"},{"fieldid":"MANUFACTURER COUNTRY: [[countryofmanufacture]]","show":false,"schema":""},{"fieldid":"ITEM WEIGHT: [[weight]] [[weightunit]]","show":false,"schema":"weight"}]}},"MotusPDP":{"config":"Default config example"},"MotusPayments":{"config":"Default config example"},"blog":{"blogHomeTitle":"Blog","readMoreLabel":"Read More","allArticlesTaxonomyName":"All Articles","showFeaturedArticlesInPagination":true,"moreArticlesLabel":"More Articles","searchLabel":"Search This Blog","searchHint":"Search","searchResultsLabel":"Search Results","noSearchResultsLabel":"Not many results for [[term]]","noResultsArticleSuggestionMessage":"Search again or see these articles:","searchCloseButtonLabel":"Close","taxonomyNavigationTitle":"Categories","paginationLabel":"Read More Articles","backToTopLabel":"Back To Top","largeImageResizeId":"zoom","thumbnailImageResizeId":"zoom","articlesByPage":"20","emptyStateLabel":"Articles are coming soon!","emptyStateMessage":"Meanwhile, visit our shop","emptyStateButtonLabel":"Shop Now","showLatestPostsSection":true,"latestPostsLabel":"Latest Articles","latestPostsCarouselInterval":"5 sec","showRssFeedLink":false},"featuredproduct":{"fieldset":""},"contactUsForm":{"subsidiary":"","defaultName":"No Name","defaultLastname":"No Last Name","defaultCompany":"No Company","defaultSubject":"No Subject"}}});
+    Configuration.overwriteByDomain({"www.suitedynamics.co":{"customFields":{"checkout":{"requiredError":"Field {{field}} is required.","requiredGeneralError":"Please fill required fields below before continuing.","loadingMessage":"Loading additional information...","loadingError":"There was a problem loading the section. Please reload the page.","savingError":"There was a problem saving. Please reload the page."},"pdp":{"fields":[{"fieldid":"UPC CODE: [[upccode]]","show":false,"schema":""},{"fieldid":"MANUFACTURER: [[manufacturer]]","show":false,"schema":"manufacturer"},{"fieldid":"MPN: [[mpn]]","show":false,"schema":"mpn"},{"fieldid":"MANUFACTURER COUNTRY: [[countryofmanufacture]]","show":false,"schema":""},{"fieldid":"ITEM WEIGHT: [[weight]] [[weightunit]]","show":false,"schema":"weight"}]}},"MotusPDP":{"config":"Default config example"},"MotusPayments":{"config":"Default config example"},"ZoneSubscriptions":{"config":"Default config example"},"blog":{"blogHomeTitle":"Blog","readMoreLabel":"Read More","allArticlesTaxonomyName":"All Articles","showFeaturedArticlesInPagination":true,"moreArticlesLabel":"More Articles","searchLabel":"Search This Blog","searchHint":"Search","searchResultsLabel":"Search Results","noSearchResultsLabel":"Not many results for [[term]]","noResultsArticleSuggestionMessage":"Search again or see these articles:","searchCloseButtonLabel":"Close","taxonomyNavigationTitle":"Categories","paginationLabel":"Read More Articles","backToTopLabel":"Back To Top","largeImageResizeId":"zoom","thumbnailImageResizeId":"zoom","articlesByPage":"20","emptyStateLabel":"Articles are coming soon!","emptyStateMessage":"Meanwhile, visit our shop","emptyStateButtonLabel":"Shop Now","showLatestPostsSection":true,"latestPostsLabel":"Latest Articles","latestPostsCarouselInterval":"5 sec","showRssFeedLink":false},"featuredproduct":{"fieldset":""},"contactUsForm":{"subsidiary":"","defaultName":"No Name","defaultLastname":"No Last Name","defaultCompany":"No Company","defaultSubject":"No Subject"},"newsletterSignUp":{"genericFirstName":"[[email]]","genericLastName":"Last Name","createCompanyLeads":false,"companyName":"[[email]]"}}});
     require('SCA');
     var extensions = {};
      var srcDefine = define;
@@ -432,611 +432,603 @@ try{
               }
           };
       });
-            // Model.js
-            // -----------------------
-            // @module SezzleSdk.Model
-            define("MotusPayments.Model",  [
-                "SC.Model",
-                "SC.Models.Init",
-                "LiveOrder.Model",
-                "Application",
-                "underscore"
-                ], function(
-                SCModel,
-                ModelsInit,
-                LiveOrderModel,
-                Application,
-                _
-            ) {
-                "use strict";
-                // @class SezzleSdk.Model @extends SC.Model
-                return SCModel.extend({
-                
-                    name: "MotusPayments.Model",
-                    getTokens: function()
-                    {
-                        nlapiLogExecution('DEBUG', 'getTokens', nlapiGetUser());
-                        var filters = [
-                                        ["custrecord_motus_cc_token_customer","anyof", nlapiGetUser()], 
-                                        "AND", 
-                                        ["isinactive","is","F"]
-                                        ];
-                        var columns = [
-                            //new nlobjSearchColumn('custrecord_motus_cc_csc'),
-                            new nlobjSearchColumn('custrecord_sd_motus_cc_last_4'),
-                            new nlobjSearchColumn('custrecord_motus_cc_token_card_type'),
-                            new nlobjSearchColumn('custrecord_motus_cc_token_card_name'),
-                            new nlobjSearchColumn('custrecord_sd_motus_is_default_card'),
-                            new nlobjSearchColumn('custrecord_motus_cc_token_exp_month'),
-                            new nlobjSearchColumn('custrecord_motus_cc_token_exp_year'),
-                            new nlobjSearchColumn('custrecord_motus_cc_token_token'),
-                            new nlobjSearchColumn('custrecord_motus_cus_prof_id'),
-                            new nlobjSearchColumn('internalid')
-                        ];
-                        var search_results = Application.getAllSearchResults('customrecord_motus_cc_token', filters, columns);
-                        nlapiLogExecution('DEBUG', 'search_results', search_results);
-                        var motusCardsArr = [];
-                        if(search_results && search_results.length){
-                            search_results.forEach(function (card) {
-                                nlapiLogExecution('ERROR', 'card', JSON.stringify(card));
-                                var motus_card = {};
-                                motus_card.last_four = card.getValue('custrecord_sd_motus_cc_last_4');
-                                motus_card.card_type = card.getValue('custrecord_motus_cc_token_card_type');
-                                motus_card.card_name = card.getValue('custrecord_motus_cc_token_card_name');
-                                motus_card.exp_month = card.getValue('custrecord_motus_cc_token_exp_month');
-                                motus_card.exp_year = card.getValue('custrecord_motus_cc_token_exp_year');
-                                motus_card.token = card.getValue('custrecord_motus_cc_token_token');
-                                motus_card.uuid = card.getValue('custrecord_motus_cus_prof_id');
-                                motus_card.id = card.getValue('internalid');
-                                motus_card.active = false;
-                        
-                                if(card.getValue('custrecord_sd_motus_is_default_card') == 'T'){
-                                    motus_card.default_card = true 
-                                }else{
-                                    motus_card.default_card = false 
+                // Model.js
+                // -----------------------
+                // @module SezzleSdk.Model
+                define("MotusPayments.Model",  [
+                    "SC.Model",
+                    "SC.Models.Init",
+                    "LiveOrder.Model",
+                    "Application",
+                    "underscore"
+                    ], function(
+                    SCModel,
+                    ModelsInit,
+                    LiveOrderModel,
+                    Application,
+                    _
+                ) {
+                    "use strict";
+                    // @class SezzleSdk.Model @extends SC.Model
+                    return SCModel.extend({
+                    
+                        name: "MotusPayments.Model",
+                        getTokens: function()
+                        {
+                            nlapiLogExecution('DEBUG', 'getTokens', nlapiGetUser());
+                            var filters = [
+                                            ["custrecord_motus_cc_token_customer","anyof", nlapiGetUser()], 
+                                            "AND", 
+                                            ["isinactive","is","F"]
+                                            ];
+                            var columns = [
+                                //new nlobjSearchColumn('custrecord_motus_cc_csc'),
+                                new nlobjSearchColumn('custrecord_sd_motus_cc_last_4'),
+                                new nlobjSearchColumn('custrecord_motus_cc_token_card_type'),
+                                new nlobjSearchColumn('custrecord_motus_cc_token_card_name'),
+                                new nlobjSearchColumn('custrecord_sd_motus_is_default_card'),
+                                new nlobjSearchColumn('custrecord_motus_cc_token_exp_month'),
+                                new nlobjSearchColumn('custrecord_motus_cc_token_exp_year'),
+                                new nlobjSearchColumn('custrecord_motus_cc_token_token'),
+                                new nlobjSearchColumn('custrecord_motus_cus_prof_id'),
+                                new nlobjSearchColumn('internalid')
+                            ];
+                            var search_results = Application.getAllSearchResults('customrecord_motus_cc_token', filters, columns);
+                            nlapiLogExecution('DEBUG', 'search_results', search_results);
+                            var motusCardsArr = [];
+                            if(search_results && search_results.length){
+                                search_results.forEach(function (card) {
+                                    nlapiLogExecution('ERROR', 'card', JSON.stringify(card));
+                                    var motus_card = {};
+                                    motus_card.last_four = card.getValue('custrecord_sd_motus_cc_last_4');
+                                    motus_card.card_type = card.getValue('custrecord_motus_cc_token_card_type');
+                                    motus_card.card_name = card.getValue('custrecord_motus_cc_token_card_name');
+                                    motus_card.exp_month = card.getValue('custrecord_motus_cc_token_exp_month');
+                                    motus_card.exp_year = card.getValue('custrecord_motus_cc_token_exp_year');
+                                    motus_card.token = card.getValue('custrecord_motus_cc_token_token');
+                                    motus_card.uuid = card.getValue('custrecord_motus_cus_prof_id');
+                                    motus_card.id = card.getValue('internalid');
+                                    motus_card.active = false;
+                            
+                                    if(card.getValue('custrecord_sd_motus_is_default_card') == 'T'){
+                                        motus_card.default_card = true 
+                                    }else{
+                                        motus_card.default_card = false 
+                                    }
+                                    motusCardsArr.push(motus_card)
+                                })
+                            }
+                            //Push a placeholder model for 'New Card' icon in front end
+                            motusCardsArr.push({
+                                isNewPaymentMethod : true,
+                                last_four: "",
+                                card_type: "",
+                                card_name: "",
+                                exp_month: "",
+                                exp_year: ""
+                            });
+                            
+                            var motusCredentials = this.getMotusCredentials();
+                            var oauthResp = this.getOauthToken(motusCredentials)
+                            var oauthResponseBody = JSON.parse(oauthResp.getBody());
+                            nlapiLogExecution('ERROR', 'BODY', JSON.stringify(oauthResponseBody));
+                            nlapiLogExecution('ERROR', 'TOKEN', oauthResponseBody.access_token);
+                            
+                            var headerObj = {
+                                "Authorization" : "Bearer " + oauthResponseBody.access_token,
+                                "Content-Type": "application/json"
+                            }
+                            
+                            var response = nlapiRequestURL(motusCredentials.baseurl + '/v1/payment_fields/token/create', null, headerObj, 'POST')
+                            nlapiLogExecution('ERROR', 'PROTECT TOKEN RESP', JSON.stringify(response));
+                            motusCardsArr[0].clientkey = JSON.parse(response.getBody()).clientKey
+                            
+                            return JSON.stringify(motusCardsArr);
+                        },
+                        submitToken: function(data){
+                            nlapiLogExecution('ERROR', 'submit', JSON.stringify(data));
+                            var userId = nlapiGetUser();
+                            var credentials_object = this.getMotusCredentials()
+                            var oauthTokenData = this.getOauthToken(credentials_object);
+                            // var authReponse = this.getAuthResponse(credentials_object,JSON.parse(oauthTokenData.getBody()),cardData);
+                            //Removed for Paytrace since there is no storage of profile or card data
+                            
+                            //nlapiLogExecution('ERROR', 'TOKEN REC CREATED', JSON.stringify(tokenRec));
+                            var motusProfileSubmit = this.submitCustomerProfile(credentials_object,JSON.parse(oauthTokenData.getBody()), data, userId, tokenRec);
+                            
+                            nlapiLogExecution('ERROR', 'motusProfileSubmit', JSON.stringify(motusProfileSubmit));
+                            if(motusProfileSubmit.status == 'Success'){
+                                try{    
+                                    var cardDetails = this.getCardDetails(motusProfileSubmit,JSON.parse(oauthTokenData.getBody()), credentials_object);
+                                    nlapiLogExecution('ERROR', 'before', JSON.stringify(cardDetails));
+                                    var tokenRec = this.createTokenRecord(data, cardDetails)
+                                }catch(e){
+                                    nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
+                                        message: e,
+                                        user: userId,
+                                        action: 'Token created in CardPointe, Netsuite token record failure'
+                                    }));
+                                    return{
+                                        status: 'Failed to create token'
+                                    }
                                 }
-                                motusCardsArr.push(motus_card)
-                            })
-                        }
-                        //Push a placeholder model for 'New Card' icon in front end
-                        motusCardsArr.push({
-                            isNewPaymentMethod : true,
-                            last_four: "",
-                            card_type: "",
-                            card_name: "",
-                            exp_month: "",
-                            exp_year: ""
-                        });
-                        
-                        var motusCredentials = this.getMotusCredentials();
-                        var oauthResp = this.getOauthToken(motusCredentials)
-                        var oauthResponseBody = JSON.parse(oauthResp.getBody());
-                        nlapiLogExecution('DEBUG', 'BODY', JSON.stringify(oauthResponseBody));
-                        nlapiLogExecution('DEBUG', 'TOKEN', oauthResponseBody.access_token);
-                        
-                        var headerObj = {
-                            "Authorization" : "Bearer " + oauthResponseBody.access_token,
-                            "Content-Type": "application/json"
-                        }
-                        
-                        var response = nlapiRequestURL(motusCredentials.baseurl + '/v1/payment_fields/token/create', null, headerObj, 'POST')
-                        nlapiLogExecution('DEBUG', 'PROTECT TOKEN RESP', JSON.stringify(response));
-                        motusCardsArr[0].clientkey = JSON.parse(response.getBody()).clientKey
-                        
-                        return JSON.stringify(motusCardsArr);
-                    },
-                    submitToken: function(data){
-                        nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
-                        var userId = nlapiGetUser();
-                        var credentials_object = this.getMotusCredentials()
-                        var oauthTokenData = this.getOauthToken(credentials_object);
-                        // var authReponse = this.getAuthResponse(credentials_object,JSON.parse(oauthTokenData.getBody()),cardData);
-                        //Removed for Paytrace since there is no storage of profile or card data
-                        
-                        nlapiLogExecution('DEBUG', 'TOKEN REC CREATED', JSON.stringify(tokenRec));
-                        var motusProfileSubmit = this.submitCustomerProfile(credentials_object,JSON.parse(oauthTokenData.getBody()), data, userId, tokenRec);
-                        
-                        nlapiLogExecution('DEBUG', 'motusProfileSubmit', JSON.stringify(motusProfileSubmit));
-                        if(motusProfileSubmit.status == 'Success'){
-                            try{    
-                                var cardDetails = this.getCardDetails(motusProfileSubmit,JSON.parse(oauthTokenData.getBody()), credentials_object);
-                                nlapiLogExecution('DEBUG', 'before', JSON.stringify(cardDetails));
-                                var tokenRec = this.createTokenRecord(data, cardDetails)
-                            }catch(e){
-                                nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
-                                    message: e,
+                            
+                            }else{
+                                nlapiLogExecution('ERROR', 'ERR_CARDPOINTE_TOKEN_CREATE_FAILURE', {
+                                    message: motusProfileSubmit,
                                     user: userId,
-                                    action: 'Token created in CardPointe, Netsuite token record failure'
-                                }));
+                                    action: 'Token not created.'
+                                });
                                 return{
                                     status: 'Failed to create token'
                                 }
                             }
-                        
-                        }else{
-                            nlapiLogExecution('ERROR', 'ERR_CARDPOINTE_TOKEN_CREATE_FAILURE', {
-                                message: motusProfileSubmit,
-                                user: userId,
-                                action: 'Token not created.'
-                            });
-                            return{
-                                status: 'Failed to create token'
+                            if(tokenRec){
+                                try{
+                                    //Since we will want to make the new card the default card, we will need to remove the default from the other card
+                                    this.resetTokenDefaults(userId,tokenRec);
+                                    return{
+                                        status: 'Success',
+                                        id:tokenRec,
+                                        cardDetails: cardDetails
+                                        //type: motusProfileSubmit.accttype
+                                    }
+                                }catch(e){
+                                    nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
+                                        message: e,
+                                        user: userId,
+                                        action: 'Token created in CardPointe, Netsuite token record created, failed to restore defaults'
+                                    }));
+                                    return{
+                                        status: 'Failed to reset defaults'
+                                    }
+                                }
                             }
-                        }
-                        if(tokenRec){
+                        },
+                        updateTokens: function(data){
+                            nlapiLogExecution('ERROR', 'update', 'update');
+                            return {'Test': 'test'};
+                        },
+                        deleteToken: function(id)
+                        {
+                            nlapiLogExecution('ERROR', 'deleteToken', id);
                             try{
-                                //Since we will want to make the new card the default card, we will need to remove the default from the other card
-                                this.resetTokenDefaults(userId,tokenRec);
+                                var fields = [
+                                    'isinactive'
+                                ];
+                                var values = [
+                                    'T'
+                                ];
+                                nlapiSubmitField('customrecord_motus_cc_token', id, fields, values);
+                                //nlapiDeleteRecord('customrecord_motus_cc_token', id)
                                 return{
-                                    status: 'Success',
-                                    id:tokenRec,
-                                    cardDetails: cardDetails
-                                    //type: motusProfileSubmit.accttype
+                                    status: 'Success'
                                 }
                             }catch(e){
-                                nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
+                                nlapiLogExecution('ERROR', 'ERR_TOKEN_DELETE_FAILURE', JSON.stringify({
                                     message: e,
-                                    user: userId,
-                                    action: 'Token created in CardPointe, Netsuite token record created, failed to restore defaults'
+                                    user: nlapiGetUser(),
+                                    action: 'Token not Deleted'
                                 }));
-                                return{
-                                    status: 'Failed to reset defaults'
-                                }
-                            }
-                        }
-                    },
-                    updateTokens: function(data){
-                        nlapiLogExecution('DEBUG', 'update', 'update');
-                        return {'Test': 'test'};
-                    },
-                    deleteToken: function(id)
-                    {
-                        nlapiLogExecution('DEBUG', 'deleteToken', id);
-                        try{
-                            var fields = [
-                                'isinactive'
-                            ];
-                            var values = [
-                                'T'
-                            ];
-                            nlapiSubmitField('customrecord_motus_cc_token', id, fields, values);
-                            //nlapiDeleteRecord('customrecord_motus_cc_token', id)
-                            return{
-                                status: 'Success'
-                            }
-                        }catch(e){
-                            nlapiLogExecution('ERROR', 'ERR_TOKEN_DELETE_FAILURE', JSON.stringify({
-                                message: e,
-                                user: nlapiGetUser(),
-                                action: 'Token not Deleted'
-                            }));
-                        }
-                        
-                        return {'Test': 'test'};
-                    },
-
-                    submitCustomerProfile: function(motusCredentials, oauthToken, data, user, nstokenID){
-                        // nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
-                        nlapiLogExecution('DEBUG', 'PROFILE_TOKENDataCSC', JSON.stringify(data));
-                        nlapiLogExecution('DEBUG', 'PROFILE_OAUTHTOKENData', JSON.stringify(oauthToken));
-
-                        //Use filler address because the customer has not submitted their address in checkout yet
-                        var motusBody = {
-                            "customer_id":data.uuid,
-                            "hpf_token":data.hpf_token,
-                            "enc_key":data.enc_key,
-                            "integrator_id": motusCredentials.integrationid,
-                            "phone"		: data.phone,
-                            "email"		: data.email,
-                            "billing_address":{
-                                "name": data.billingAddr.name,
-                                "street_address": data.billingAddr.street_address,
-                                "street_address2": data.billingAddr.street_address2,
-                                "city": data.billingAddr.city,
-                                "state": data.billingAddr.state,
-                                "zip": data.billingAddr.zip,
-                                "country": data.billingAddr.country,
-                            }
-                        }
-
-                        //Build header object
-                        var headerObj = {
-                            'Authorization': oauthToken.token_type + " " + oauthToken.access_token,
-                            "Access-Control-Allow-Origin": "*",
-                            "Accept": "application/json",
-                            "Accept-Encoding": "gzip, deflate, br",
-                            "Content-Type": "application/json"
-                        }
-                        var motusPaymentsApiUrl = motusCredentials.baseurl + '/v1/customer/pt_protect_create'
-                        nlapiLogExecution('DEBUG', 'body', JSON.stringify(motusBody));
-                        nlapiLogExecution('DEBUG', 'motusPaymentsApiUrl', motusPaymentsApiUrl);
-                        nlapiLogExecution('DEBUG', 'headers', JSON.stringify(headerObj));
-                        // var response = nlapiRequestURL(motusPaymentsApiUrl, body, headerObj)
-                        nlapiLogExecution('ERROR', 'PROFILE submit', JSON.stringify(motusBody));
-                        var response = nlapiRequestURL(motusPaymentsApiUrl, JSON.stringify(motusBody), headerObj, 'POST')
-                        // var response = nlapiRequestURL(url, body, header, null, "POST");
-                        nlapiLogExecution('DEBUG', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
-                        var responseBody = JSON.parse(response.getBody());
-                        nlapiLogExecution('ERROR', 'PROFILE_RESPONSE', JSON.stringify(responseBody));
-                        
-                        if (response.getCode() == 200 && responseBody.success == true) {
-                        
-                            //if new profile, submit id to customer
-                            // if(userMotusId == ""){
-                            //     nlapiSubmitField('customer', user, 'custentity_profile_id_motus', responseBody.profileid);
-                            // }
-                            
-                            return{
-                                status: 'Success',
-                                response: responseBody
                             }
                             
-                        }else{
-                            nlapiLogExecution('ERROR', 'CUST_PROFILE_ERR', JSON.stringify(responseBody));
-                            return{
-                                status: 'Error',
-                                response: responseBody
+                            return {'Test': 'test'};
+                        },
+                        submitCustomerProfile: function(motusCredentials, oauthToken, data, user, nstokenID){
+                            // nlapiLogExecution('ERROR', 'submit', JSON.stringify(data));
+                            nlapiLogExecution('ERROR', 'PROFILE_TOKENDataCSC', JSON.stringify(data));
+                            nlapiLogExecution('ERROR', 'PROFILE_OAUTHTOKENData', JSON.stringify(oauthToken));
+                            //Use filler address because the customer has not submitted their address in checkout yet
+                            var motusBody = {
+                                "customer_id":data.uuid,
+                                "hpf_token":data.hpf_token,
+                                "enc_key":data.enc_key,
+                                "integrator_id": motusCredentials.integrationid,
+                                "phone"		: data.phone,
+                                "email"		: data.email
+                                // "billing_address":{
+                                //     "name": data.billingAddr.name,
+                                //     "street_address": data.billingAddr.street_address,
+                                //     "street_address2": data.billingAddr.street_address2,
+                                //     "city": data.billingAddr.city,
+                                //     "state": data.billingAddr.state,
+                                //     "zip": data.billingAddr.zip,
+                                //     "country": data.billingAddr.country,
+                                // }
                             }
-                        }
-                    },
-                    submitBillingAddress: function(motusCredentials, oauthToken, data){
-                        // nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
-                        nlapiLogExecution('DEBUG', 'submitBillingAddressdata', JSON.stringify(data));
-                        nlapiLogExecution('DEBUG', 'submitBillingAddressoauth', JSON.stringify(oauthToken));
-
-                        hpf_enc = nlapiLookupField('customrecord_motus_cc_token', data.id,['custrecord_motus_cc_token_enc','custrecord_motus_cc_token_hpf'])
-                        
-                        //Use filler address because the customer has not submitted their address in checkout yet
-                        var motusBody = {
-                            "customer_id": data.uuid,
-                            "hpf_token":hpf_enc.custrecord_motus_cc_token_hpf,
-                            "enc_key":hpf_enc.custrecord_motus_cc_token_enc,
-                            "integrator_id": motusCredentials.integrationid,
-                            "phone"		: data.phone,
-                            "email"		: data.email,
-                            "billing_address":{
-                                "name": data.data.billingAddrObj.name,
-                                "street_address":data.data.billingAddrObj.street_address,
-                                //"street_address2":data.data.billingAddrObj.street_address2,
-                                "city":data.data.billingAddrObj.city,
-                                "state":data.data.billingAddrObj.state,
-                                "zip":data.data.billingAddrObj.zip
+                            //Build header object
+                            var headerObj = {
+                                'Authorization': oauthToken.token_type + " " + oauthToken.access_token,
+                                "Access-Control-Allow-Origin": "*",
+                                "Accept": "application/json",
+                                "Accept-Encoding": "gzip, deflate, br",
+                                "Content-Type": "application/json"
                             }
-                        }
-                        nlapiLogExecution('DEBUG', 'submitBillingAddressbody', JSON.stringify(motusBody))
-                        //Build header object
-                        var headerObj = {
-                            'Authorization': oauthToken.token_type + " " + oauthToken.access_token,
-                            "Access-Control-Allow-Origin": "*",
-                            "Accept": "application/json",
-                            "Accept-Encoding": "gzip, deflate, br",
-                            "Content-Type": "application/json"
-                        }
-                        var motusUpdateCustApiUrl = motusCredentials.baseurl + '/v1/customer/pt_protect_update'
-                        nlapiLogExecution('DEBUG', 'body', JSON.stringify(motusBody));
-                        nlapiLogExecution('DEBUG', 'motusPaymentsApiUrl', motusUpdateCustApiUrl);
-                        nlapiLogExecution('DEBUG', 'headers', JSON.stringify(headerObj));
-                        // var response = nlapiRequestURL(motusUpdateCustApiUrl, body, headerObj)
-                        nlapiLogExecution('ERROR', 'PROFILE submit', JSON.stringify(motusBody));
-                        var response = nlapiRequestURL(motusUpdateCustApiUrl, JSON.stringify(motusBody), headerObj, 'POST')
-                        // var response = nlapiRequestURL(url, body, header, null, "POST");
-                        nlapiLogExecution('DEBUG', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
-                        var responseBody = JSON.parse(response.getBody());
-                        nlapiLogExecution('ERROR', 'PROFILE_RESPONSE', JSON.stringify(responseBody));
-                        
-                        if (response.getCode() == 200 && responseBody.success == true) {
-                        
-                            //if new profile, submit id to customer
-                            // if(userMotusId == ""){
-                            //     nlapiSubmitField('customer', user, 'custentity_profile_id_motus', responseBody.profileid);
-                            // }
+                            var motusPaymentsApiUrl = motusCredentials.baseurl + '/v1/customer/pt_protect_create'
+                            nlapiLogExecution('ERROR', 'body', JSON.stringify(motusBody));
+                            nlapiLogExecution('ERROR', 'motusPaymentsApiUrl', motusPaymentsApiUrl);
+                            nlapiLogExecution('ERROR', 'headers', JSON.stringify(headerObj));
+                            // var response = nlapiRequestURL(motusPaymentsApiUrl, body, headerObj)
+                            nlapiLogExecution('ERROR', 'PROFILE submit', JSON.stringify(motusBody));
+                            var response = nlapiRequestURL(motusPaymentsApiUrl, JSON.stringify(motusBody), headerObj, 'POST')
+                            // var response = nlapiRequestURL(url, body, header, null, "POST");
+                            nlapiLogExecution('ERROR', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
+                            var responseBody = JSON.parse(response.getBody());
+                            nlapiLogExecution('ERROR', 'PROFILE_RESPONSE', JSON.stringify(responseBody));
                             
-                            return{
-                                status: 'Success',
-                                response: responseBody
-                            }
+                            if (response.getCode() == 200 && responseBody.success == true) {
                             
-                        }else{
-                            nlapiLogExecution('ERROR', 'UPDATE_CUST_PROFILE_ERR', JSON.stringify(responseBody));
-                            return{
-                                status: 'Error',
-                                response: responseBody
-                            }
-                        }
-                    },
-                    getCardDetails: function(motusProfileSubmit, oauthToken, motusCredentials){
-                        // nlapiLogExecution('DEBUG', 'submit', JSON.stringify(data));
-                        // nlapiLogExecution('DEBUG', 'PROFILE_TOKENDataCSC', JSON.stringify(data));
-                        nlapiLogExecution('DEBUG', 'GETPROFILE_OAUTHTOKENData', JSON.stringify(oauthToken));
-
-                        var motusBody = {
-                            "customer_id":motusProfileSubmit.response.customer_id,
-                            "integrator_id": motusCredentials.integrationid
-                        }
-
-                        //Build header object
-                        var headerObj = {
-                            'Authorization': oauthToken.token_type + " " + oauthToken.access_token,
-                            "Access-Control-Allow-Origin": "*",
-                            "Accept": "application/json",
-                            "Accept-Encoding": "gzip, deflate, br",
-                            "Content-Type": "application/json"
-                        }
-                        var motusgetProfileApiUrl = motusCredentials.baseurl + '/v1/customer/export'
-                        nlapiLogExecution('DEBUG', 'body', JSON.stringify(motusBody));
-                        nlapiLogExecution('DEBUG', 'motusGEtProfileApiUrl', motusgetProfileApiUrl);
-                        nlapiLogExecution('DEBUG', 'headers', JSON.stringify(headerObj));
-                        // var response = nlapiRequestURL(motusPaymentsApiUrl, body, headerObj)
-                        nlapiLogExecution('ERROR', 'GET PROFILE submit', JSON.stringify(motusBody));
-                        var response = nlapiRequestURL(motusgetProfileApiUrl, JSON.stringify(motusBody), headerObj, 'POST')
-                        // var response = nlapiRequestURL(url, body, header, null, "POST");
-                        nlapiLogExecution('DEBUG', 'RAW_GETPROFILE_RESPONSE', JSON.stringify(response));
-                        var responseBody = JSON.parse(response.getBody());
-                        nlapiLogExecution('ERROR', 'GETPROFILE_RESPONSE', JSON.stringify(responseBody));
-                        
-                        if (response.getCode() == 200 && responseBody.success == true) {
-                        
-                            //if new profile, submit id to customer
-                            // if(userMotusId == ""){
-                            //     nlapiSubmitField('customer', user, 'custentity_profile_id_motus', responseBody.profileid);
-                            // }
-                            
-                            return{
-                                status: 'Success',
-                                response: responseBody
-                            }
-                            
-                        }else{
-                            nlapiLogExecution('ERROR', 'CUST_PROFILE_ERR', JSON.stringify(responseBody));
-                            return{
-                                status: 'Error',
-                                response: responseBody
-                            }
-                        }
-                    },
-                    createTokenRecord: function(tokenData, cardDetails){
-
-                        motusTokenRecord = nlapiCreateRecord('customrecord_motus_cc_token');
-                        motusTokenRecord.setFieldValue('custrecord_motus_cc_token_customer', nlapiGetUser());
-                        motusTokenRecord.setFieldValue('custrecord_motus_cus_prof_id', tokenData.uuid);
-                        motusTokenRecord.setFieldValue('custrecord_motus_cc_token_exp_month', cardDetails.response.customers[0].credit_card.expiration_month.toString());
-                        motusTokenRecord.setFieldValue('custrecord_motus_cc_token_exp_year', cardDetails.response.customers[0].credit_card.expiration_year.toString());
-                        motusTokenRecord.setFieldValue('custrecord_sd_motus_cc_last_4', cardDetails.response.customers[0].credit_card.masked_number.slice(-4));
-                        motusTokenRecord.setFieldValue('name', cardDetails.response.customers[0].credit_card.masked_number.slice(-4));
-                        motusTokenRecord.setFieldValue('custrecord_motus_cc_token_hpf', tokenData.enc_key);
-                        motusTokenRecord.setFieldValue('custrecord_motus_cc_token_enc', tokenData.enc_key);
-
-                        newRec = nlapiSubmitRecord(motusTokenRecord);
-                        nlapiLogExecution('ERROR', 'newRec id', newRec);
-                        return newRec;
-                    },
-                    processOrder: function(cardData){
-                        nlapiLogExecution('DEBUG', 'processOrder', JSON.stringify(cardData));
-                        var credentials_object = this.getMotusCredentials()
-                        if (credentials_object) {
-                            var oauthTokenData = this.getOauthToken(credentials_object);
-                            nlapiLogExecution('DEBUG', 'oauthToken', JSON.stringify(oauthTokenData.getBody()));
-                            
-                            
-                            //this.submitBillingAddress(credentials_object,JSON.parse(oauthTokenData.getBody()), cardData)
-                            
-                            
-                            var authReponse = this.getAuthResponse(credentials_object,JSON.parse(oauthTokenData.getBody()),cardData);
-                            nlapiLogExecution('DEBUG', 'AUTH_RESPONSE_FULL', JSON.stringify(authReponse));
-                            var responseBody = JSON.parse(authReponse.getBody());
-                            var myresponse_code = authReponse.getCode();
-                            nlapiLogExecution('DEBUG', 'AUTH_RESPONSE_CODE', JSON.stringify(myresponse_code));
-                            if (myresponse_code == 101 || myresponse_code == '101' || myresponse_code == 200 || myresponse_code == '200') {
+                                //if new profile, submit id to customer
+                                // if(userMotusId == ""){
+                                //     nlapiSubmitField('customer', user, 'custentity_profile_id_motus', responseBody.profileid);
+                                // }
                                 
                                 return{
                                     status: 'Success',
                                     response: responseBody
                                 }
+                                
                             }else{
-                                    nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
-                                    message: JSON.stringify(response),
-                                    // user: userId,
-                                    action: 'AUTH Failure. No Authorization occured'
-                                }));
+                                nlapiLogExecution('ERROR', 'CUST_PROFILE_ERR', JSON.stringify(responseBody));
                                 return{
                                     status: 'Error',
                                     response: responseBody
                                 }
                             }
-                        }
-                    },
-                    getOauthToken: function(credentialsObj){
-                        var response = null;
-                        try {
-                            if (credentialsObj) {
+                        },
+                        submitBillingAddress: function(motusCredentials, oauthToken, data){
+                            // nlapiLogExecution('ERROR', 'submit', JSON.stringify(data));
+                            nlapiLogExecution('ERROR', 'submitBillingAddressdata', JSON.stringify(data));
+                            nlapiLogExecution('ERROR', 'submitBillingAddressoauth', JSON.stringify(oauthToken));
+                            hpf_enc = nlapiLookupField('customrecord_motus_cc_token', data.id,['custrecord_motus_cc_token_enc','custrecord_motus_cc_token_hpf'])
+                            
+                            //Use filler address because the customer has not submitted their address in checkout yet
+                            var motusBody = {
+                                "customer_id": data.uuid,
+                                "hpf_token":hpf_enc.custrecord_motus_cc_token_hpf,
+                                "enc_key":hpf_enc.custrecord_motus_cc_token_enc,
+                                "integrator_id": motusCredentials.integrationid,
+                                "phone"		: data.phone,
+                                "email"		: data.email,
+                                "billing_address":{
+                                    "name": data.data.billingAddrObj.name,
+                                    "street_address":data.data.billingAddrObj.street_address,
+                                    //"street_address2":data.data.billingAddrObj.street_address2,
+                                    "city":data.data.billingAddrObj.city,
+                                    "state":data.data.billingAddrObj.state,
+                                    "zip":data.data.billingAddrObj.zip
+                                }
+                            }
+                            nlapiLogExecution('ERROR', 'submitBillingAddressbody', JSON.stringify(motusBody))
+                            //Build header object
+                            var headerObj = {
+                                'Authorization': oauthToken.token_type + " " + oauthToken.access_token,
+                                "Access-Control-Allow-Origin": "*",
+                                "Accept": "application/json",
+                                "Accept-Encoding": "gzip, deflate, br",
+                                "Content-Type": "application/json"
+                            }
+                            var motusUpdateCustApiUrl = motusCredentials.baseurl + '/v1/customer/pt_protect_update'
+                            nlapiLogExecution('ERROR', 'body', JSON.stringify(motusBody));
+                            nlapiLogExecution('ERROR', 'motusPaymentsApiUrl', motusUpdateCustApiUrl);
+                            nlapiLogExecution('ERROR', 'headers', JSON.stringify(headerObj));
+                            // var response = nlapiRequestURL(motusUpdateCustApiUrl, body, headerObj)
+                            nlapiLogExecution('ERROR', 'PROFILE submit', JSON.stringify(motusBody));
+                            var response = nlapiRequestURL(motusUpdateCustApiUrl, JSON.stringify(motusBody), headerObj, 'POST')
+                            // var response = nlapiRequestURL(url, body, header, null, "POST");
+                            nlapiLogExecution('ERROR', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
+                            var responseBody = JSON.parse(response.getBody());
+                            nlapiLogExecution('ERROR', 'PROFILE_RESPONSE', JSON.stringify(responseBody));
+                            
+                            if (response.getCode() == 200 && responseBody.success == true) {
+                            
+                                //if new profile, submit id to customer
+                                // if(userMotusId == ""){
+                                //     nlapiSubmitField('customer', user, 'custentity_profile_id_motus', responseBody.profileid);
+                                // }
+                                
+                                return{
+                                    status: 'Success',
+                                    response: responseBody
+                                }
+                                
+                            }else{
+                                nlapiLogExecution('ERROR', 'UPDATE_CUST_PROFILE_ERR', JSON.stringify(responseBody));
+                                return{
+                                    status: 'Error',
+                                    response: responseBody
+                                }
+                            }
+                        },
+                        getCardDetails: function(motusProfileSubmit, oauthToken, motusCredentials){
+                            // nlapiLogExecution('ERROR', 'submit', JSON.stringify(data));
+                            // nlapiLogExecution('ERROR', 'PROFILE_TOKENDataCSC', JSON.stringify(data));
+                            nlapiLogExecution('ERROR', 'GETPROFILE_OAUTHTOKENData', JSON.stringify(oauthToken));
+                            var motusBody = {
+                                "customer_id":motusProfileSubmit.response.customer_id,
+                                "integrator_id": motusCredentials.integrationid
+                            }
+                            //Build header object
+                            var headerObj = {
+                                'Authorization': oauthToken.token_type + " " + oauthToken.access_token,
+                                "Access-Control-Allow-Origin": "*",
+                                "Accept": "application/json",
+                                "Accept-Encoding": "gzip, deflate, br",
+                                "Content-Type": "application/json"
+                            }
+                            var motusgetProfileApiUrl = motusCredentials.baseurl + '/v1/customer/export'
+                            nlapiLogExecution('ERROR', 'body', JSON.stringify(motusBody));
+                            nlapiLogExecution('ERROR', 'motusGEtProfileApiUrl', motusgetProfileApiUrl);
+                            nlapiLogExecution('ERROR', 'headers', JSON.stringify(headerObj));
+                            // var response = nlapiRequestURL(motusPaymentsApiUrl, body, headerObj)
+                            nlapiLogExecution('ERROR', 'GET PROFILE submit', JSON.stringify(motusBody));
+                            var response = nlapiRequestURL(motusgetProfileApiUrl, JSON.stringify(motusBody), headerObj, 'POST')
+                            // var response = nlapiRequestURL(url, body, header, null, "POST");
+                            nlapiLogExecution('ERROR', 'RAW_GETPROFILE_RESPONSE', JSON.stringify(response));
+                            var responseBody = JSON.parse(response.getBody());
+                            nlapiLogExecution('ERROR', 'GETPROFILE_RESPONSE', JSON.stringify(responseBody));
+                            
+                            if (response.getCode() == 200 && responseBody.success == true) {
+                            
+                                //if new profile, submit id to customer
+                                // if(userMotusId == ""){
+                                //     nlapiSubmitField('customer', user, 'custentity_profile_id_motus', responseBody.profileid);
+                                // }
+                                
+                                return{
+                                    status: 'Success',
+                                    response: responseBody
+                                }
+                                
+                            }else{
+                                nlapiLogExecution('ERROR', 'CUST_PROFILE_ERR', JSON.stringify(responseBody));
+                                return{
+                                    status: 'Error',
+                                    response: responseBody
+                                }
+                            }
+                        },
+                        createTokenRecord: function(tokenData, cardDetails){
+                            motusTokenRecord = nlapiCreateRecord('customrecord_motus_cc_token');
+                            motusTokenRecord.setFieldValue('custrecord_motus_cc_token_customer', nlapiGetUser());
+                            motusTokenRecord.setFieldValue('custrecord_motus_cus_prof_id', tokenData.uuid);
+                            motusTokenRecord.setFieldValue('custrecord_motus_cc_token_exp_month', cardDetails.response.customers[0].credit_card.expiration_month.toString());
+                            motusTokenRecord.setFieldValue('custrecord_motus_cc_token_exp_year', cardDetails.response.customers[0].credit_card.expiration_year.toString());
+                            motusTokenRecord.setFieldValue('custrecord_sd_motus_cc_last_4', cardDetails.response.customers[0].credit_card.masked_number.slice(-4));
+                            motusTokenRecord.setFieldValue('name', cardDetails.response.customers[0].credit_card.masked_number.slice(-4));
+                            motusTokenRecord.setFieldValue('custrecord_motus_cc_token_hpf', tokenData.enc_key);
+                            motusTokenRecord.setFieldValue('custrecord_motus_cc_token_enc', tokenData.enc_key);
+                            newRec = nlapiSubmitRecord(motusTokenRecord);
+                            nlapiLogExecution('ERROR', 'newRec id', newRec);
+                            return newRec;
+                        },
+                        processOrder: function(cardData){
+                            nlapiLogExecution('ERROR', 'processOrder', JSON.stringify(cardData));
+                            var credentials_object = this.getMotusCredentials()
+                            if (credentials_object) {
+                                var oauthTokenData = this.getOauthToken(credentials_object);
+                                nlapiLogExecution('ERROR', 'oauthToken', JSON.stringify(oauthTokenData.getBody()));
+                                
+                                
+                                //this.submitBillingAddress(credentials_object,JSON.parse(oauthTokenData.getBody()), cardData)
+                                
+                                
+                                var authReponse = this.getAuthResponse(credentials_object,JSON.parse(oauthTokenData.getBody()),cardData);
+                                nlapiLogExecution('ERROR', 'AUTH_RESPONSE_FULL', JSON.stringify(authReponse));
+                                var responseBody = JSON.parse(authReponse.getBody());
+                                var myresponse_code = authReponse.getCode();
+                                nlapiLogExecution('ERROR', 'AUTH_RESPONSE_CODE', JSON.stringify(myresponse_code));
+                                if (myresponse_code == 101 || myresponse_code == '101' || myresponse_code == 200 || myresponse_code == '200') {
+                                    
+                                    return{
+                                        status: 'Success',
+                                        response: responseBody
+                                    }
+                                }else{
+                                        nlapiLogExecution('ERROR', 'ERR_NS_AUTH_FAILURE', JSON.stringify({
+                                        message: JSON.stringify(response),
+                                        // user: userId,
+                                        action: 'AUTH Failure. No Authorization occured'
+                                    }));
+                                    return{
+                                        status: 'Error',
+                                        response: responseBody
+                                    }
+                                }
+                            }
+                        },
+                        getOauthToken: function(credentialsObj){
+                            var response = null;
+                            try {
+                                if (credentialsObj) {
+                                    var urlBase = "";
+                                    var username = credentialsObj.username;
+                                    var password = credentialsObj.password;
+                                    var grantType = credentialsObj.granttype;
+                                    urlBase = credentialsObj.baseurl;
+                    
+                                    var headerObj = {
+                                        "Access-Control-Allow-Origin": "*",
+                                        "Accept": "*/*",
+                                        "Accept-Encoding": "gzip, deflate, br",
+                                        "Content-Type": "application/json"
+                                    };
+                    
+                                    var requestBody = {
+                                        "username": username,
+                                        "password": password,
+                                        "grant_type": grantType
+                                    }
+
+                                    nlapiLogExecution('ERROR', 'RAW_OAUTH_BODY', JSON.stringify(urlBase));
+                    
+                                    //var stringifyObj = JSON.stringify(requestBody);
+                                    var response = nlapiRequestURL(urlBase + '/oauth/token', JSON.stringify(requestBody), headerObj, 'POST')
+                                    nlapiLogExecution('ERROR', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
+                                    return response;
+                                }
+                    
+                            } catch (error) {
+                                nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
+                                    message: error,
+                                    //user: userId,
+                                    action: 'Error on Oauth token retrieval'
+                                }));
+                                return{
+                                    status: 'Error',
+                                    response: error
+                                }
+                                
+                            }
+                    
+                            return response;
+                        },
+                        getAuthResponse: function(credentialsObj,tokenData,data){
+                            nlapiLogExecution('ERROR', 'AUTH_TOKENData', JSON.stringify(tokenData));
+                            nlapiLogExecution('ERROR', 'AUTH_TOKENDataCSC', JSON.stringify(data));
+                            nlapiLogExecution('ERROR', 'AUTH_TOKENtype', tokenData.token_type);
+                            nlapiLogExecution('ERROR', 'AUTH_TOKENtoken', tokenData.access_token);
+                            var response = null;
+                            try {
                                 var urlBase = "";
-                                var username = credentialsObj.username;
-                                var password = credentialsObj.password;
-                                var grantType = credentialsObj.granttype;
+                                var uuid;
                                 urlBase = credentialsObj.baseurl;
-                
-                                var headerObj = {
+                                var motusPaymentsApiUrl = credentialsObj.baseurl + '/auth'
+                                //var orderid = newRecord.getValue('transactionnumber');
+                                var headerObjKeyed = {
+                                    'Authorization': tokenData.token_type + " " + tokenData.access_token,
                                     "Access-Control-Allow-Origin": "*",
                                     "Accept": "*/*",
                                     "Accept-Encoding": "gzip, deflate, br",
                                     "Content-Type": "application/json"
                                 };
-                
-                                var requestBody = {
-                                    "username": username,
-                                    "password": password,
-                                    "grant_type": grantType
+                                if(data.uuid){
+                                    uuid = data.uuid
+                                }else{
+                                    uuid = nlapiLookupField('customrecord_motus_cc_token', data.id,'custrecord_motus_cus_prof_id')
                                 }
-                
-                                //var stringifyObj = JSON.stringify(requestBody);
-                                var response = nlapiRequestURL(urlBase + '/oauth/token', JSON.stringify(requestBody), headerObj, 'POST')
-                                nlapiLogExecution('DEBUG', 'RAW_OAUTH_RESPONSE', JSON.stringify(response));
+                                nlapiLogExecution('ERROR', 'AUTH_TOKENDataCSCuuid', uuid);
+                                var requestBodyKeyed = {
+                                    "amount": data.amount,
+                                    "customer_id": uuid,    
+                                    "integrator_id": credentialsObj.integrationid
+                                }
+                                nlapiLogExecution('ERROR', 'motusPaymentsApiUrl', motusPaymentsApiUrl);
+                                nlapiLogExecution('ERROR', 'Auth Header', JSON.stringify(headerObjKeyed));
+                                nlapiLogExecution('ERROR', 'requestBodyKeyed', JSON.stringify(requestBodyKeyed));
+                                nlapiLogExecution('ERROR', 'base url', urlBase);
+                                // var stringifyObj = JSON.stringify(requestBodyKeyed);
+                                var response = nlapiRequestURL(urlBase + '/v1/transactions/authorization/by_customer', JSON.stringify(requestBodyKeyed), headerObjKeyed, 'POST')
                                 return response;
+                    
+                            } catch (error) {
+                                nlapiLogExecution('ERROR', 'AUTH_RESPONSE_ERROR', JSON.stringify(error));
+                                return{
+                                    status: 'Error',
+                                    response: error
+                                }
+                                
                             }
-                
-                        } catch (error) {
-                            nlapiLogExecution('ERROR', 'ERR_NS_TOKEN_CREATE_FAILURE', JSON.stringify({
-                                message: error,
-                                //user: userId,
-                                action: 'Error on Oauth token retrieval'
-                            }));
-                            return{
-                                status: 'Error',
-                                response: error
-                            }
-                            
-                        }
-                
-                        return response;
-                    },
-                    getAuthResponse: function(credentialsObj,tokenData,data){
-                        nlapiLogExecution('DEBUG', 'AUTH_TOKENData', JSON.stringify(tokenData));
-                        nlapiLogExecution('DEBUG', 'AUTH_TOKENDataCSC', JSON.stringify(data));
-                        nlapiLogExecution('DEBUG', 'AUTH_TOKENtype', tokenData.token_type);
-                        nlapiLogExecution('DEBUG', 'AUTH_TOKENtoken', tokenData.access_token);
-                        var response = null;
-                        try {
-                            var urlBase = "";
-                            var uuid;
-                            urlBase = credentialsObj.baseurl;
-                            var motusPaymentsApiUrl = credentialsObj.baseurl + '/auth'
-                            //var orderid = newRecord.getValue('transactionnumber');
-                            var headerObjKeyed = {
-                                'Authorization': tokenData.token_type + " " + tokenData.access_token,
-                                "Access-Control-Allow-Origin": "*",
-                                "Accept": "*/*",
-                                "Accept-Encoding": "gzip, deflate, br",
-                                "Content-Type": "application/json"
-                            };
-                            if(data.uuid){
-                                uuid = data.uuid
-                            }else{
-                                uuid = nlapiLookupField('customrecord_motus_cc_token', data.id,'custrecord_motus_cus_prof_id')
-                            }
-                            nlapiLogExecution('DEBUG', 'AUTH_TOKENDataCSCuuid', uuid);
-                            var requestBodyKeyed = {
-                                "amount": data.amount,
-                                "customer_id": uuid,    
-                                "integrator_id": credentialsObj.integrationid
-                            }
-                            nlapiLogExecution('DEBUG', 'motusPaymentsApiUrl', motusPaymentsApiUrl);
-                            nlapiLogExecution('DEBUG', 'Auth Header', JSON.stringify(headerObjKeyed));
-                            nlapiLogExecution('DEBUG', 'requestBodyKeyed', JSON.stringify(requestBodyKeyed));
-                            nlapiLogExecution('DEBUG', 'base url', urlBase);
-                            // var stringifyObj = JSON.stringify(requestBodyKeyed);
-                            var response = nlapiRequestURL(urlBase + '/v1/transactions/authorization/by_customer', JSON.stringify(requestBodyKeyed), headerObjKeyed, 'POST')
-
+                    
                             return response;
-                
-                        } catch (error) {
-                            nlapiLogExecution('ERROR', 'AUTH_RESPONSE_ERROR', JSON.stringify(error));
-                            return{
-                                status: 'Error',
-                                response: error
+                        },
+                        voidAuth: function(auth){
+                            if (auth.merchid && auth.retref) {
+                                var credentials_object = this.getMotusCredentials();
+                                var motusVoidApiUrl = credentials_object.baseurl + '/void'
+                                var headerObj = {
+                                    'Authorization': credentials_object.tokenKey,
+                                    "Access-Control-Allow-Origin": "*",
+                                    "Accept": "application/json",
+                                    "Accept-Encoding": "gzip, deflate, br",
+                                    "Content-Type": "application/json"
+                                };
+                    
+                                var requestBody = {
+                                    "merchid": auth.merchid,
+                                    "retref": auth.retref
+                                }
+                                nlapiLogExecution('ERROR', 'void requestBody', JSON.stringify(requestBody));
+                                //log.audit('stringifyObj98', stringifyObj)
+                                var voidResponse = nlapiRequestURL(motusVoidApiUrl, JSON.stringify(requestBody), headerObj, 'POST')
+                                // var myresponse_body = response.body;
+                                nlapiLogExecution('ERROR', 'RAW_VOID_RESPONSE', JSON.stringify(voidResponse));
+                                var responseBody = JSON.parse(voidResponse.getBody());
+                                nlapiLogExecution('ERROR', 'RAW_VOID_RESPONSE_BODY', JSON.stringify(responseBody));
                             }
-                            
-                        }
-                
-                        return response;
-                    },
-                    voidAuth: function(auth){
-                        if (auth.merchid && auth.retref) {
-                            var credentials_object = this.getMotusCredentials();
-                            var motusVoidApiUrl = credentials_object.baseurl + '/void'
-                            var headerObj = {
-                                'Authorization': credentials_object.tokenKey,
-                                "Access-Control-Allow-Origin": "*",
-                                "Accept": "application/json",
-                                "Accept-Encoding": "gzip, deflate, br",
-                                "Content-Type": "application/json"
-                            };
-                
-                            var requestBody = {
-                                "merchid": auth.merchid,
-                                "retref": auth.retref
-                            }
-                            nlapiLogExecution('DEBUG', 'void requestBody', JSON.stringify(requestBody));
-                            //log.audit('stringifyObj98', stringifyObj)
-                            var voidResponse = nlapiRequestURL(motusVoidApiUrl, JSON.stringify(requestBody), headerObj, 'POST')
-                            // var myresponse_body = response.body;
-                            nlapiLogExecution('DEBUG', 'RAW_VOID_RESPONSE', JSON.stringify(voidResponse));
-                            var responseBody = JSON.parse(voidResponse.getBody());
-                            nlapiLogExecution('DEBUG', 'RAW_VOID_RESPONSE_BODY', JSON.stringify(responseBody));
-                        }
-                    },
-                    resetTokenDefaults: function(user,newTokenRec){
-                        nlapiLogExecution('DEBUG', 'resetTokenDefaults', newTokenRec);
-                        var filters = [
-                            ["custrecord_motus_cc_token_customer","anyof", user], 
-                            "AND", 
-                            ["custrecord_sd_motus_is_default_card","is","T"],
-                            "AND", 
-                            ["internalid","noneof",newTokenRec]
+                        },
+                        resetTokenDefaults: function(user,newTokenRec){
+                            nlapiLogExecution('ERROR', 'resetTokenDefaults', newTokenRec);
+                            var filters = [
+                                ["custrecord_motus_cc_token_customer","anyof", user], 
+                                "AND", 
+                                ["custrecord_sd_motus_is_default_card","is","T"],
+                                "AND", 
+                                ["internalid","noneof",newTokenRec]
+                                ];
+                            var columns = [
+                                new nlobjSearchColumn('internalid')
                             ];
-                        var columns = [
-                            new nlobjSearchColumn('internalid')
-                        ];
-                        var search_results = Application.getAllSearchResults('customrecord_motus_cc_token', filters, columns);
-                        if(search_results && search_results.length){
-                        search_results.forEach(function (card) {
-                            var removeDefaultId = card.getValue('internalid');
-                            nlapiLogExecution('DEBUG', 'remove default card', removeDefaultId);
-                            nlapiSubmitField('customrecord_motus_cc_token', removeDefaultId, 'custrecord_sd_motus_is_default_card', 'F');
-                        })
-                        }
-                        return;
-                    },
-                    getMotusCredentials: function(){
-                        var motusCreds = nlapiSearchRecord(
-                            'customrecord_motus_credentials',
-                            null,
-                            null,
-                            [
-                            new nlobjSearchColumn('custrecord_motus_cred_token_key'),
-                            new nlobjSearchColumn('custrecord_sd_motus_merchantid'),
-                            new nlobjSearchColumn('custrecord_motus_cred_base_url'),
-                            new nlobjSearchColumn('custrecord_motus_grant_type'),
-                            new nlobjSearchColumn('custrecord_motus_username'),
-                            new nlobjSearchColumn('custrecord_motus_password'),
-                            new nlobjSearchColumn('custrecord_motus_integration_id')
-                            // new nlobjSearchColumn('id')
-                            ]
-                        );
-                        var result = {};
-                        if(motusCreds.length > 0){
-                            for (var i = 0; i < motusCreds.length; i++) {
-                                nlapiLogExecution('DEBUG', 'result', motusCreds[i].getValue("custrecord_motus_cred_base_url"));
-                                result.tokenKey = motusCreds[i].getValue("custrecord_motus_cred_token_key");
-                                result.merchantid = motusCreds[i].getValue("custrecord_sd_motus_merchantid");
-                                result.baseurl = motusCreds[i].getValue("custrecord_motus_cred_base_url");
-                                result.granttype = motusCreds[i].getValue("custrecord_motus_grant_type");
-                                result.username = motusCreds[i].getValue("custrecord_motus_username");
-                                result.password = motusCreds[i].getValue("custrecord_motus_password");
-                                result.integrationid = motusCreds[i].getValue("custrecord_motus_integration_id");
+                            var search_results = Application.getAllSearchResults('customrecord_motus_cc_token', filters, columns);
+                            if(search_results && search_results.length){
+                            search_results.forEach(function (card) {
+                                var removeDefaultId = card.getValue('internalid');
+                                nlapiLogExecution('ERROR', 'remove default card', removeDefaultId);
+                                nlapiSubmitField('customrecord_motus_cc_token', removeDefaultId, 'custrecord_sd_motus_is_default_card', 'F');
+                            })
                             }
-                        }
-                        // var sitchCreds = nlapiLookupField('customrecord_motus_credentials', 1, ['custrecord_motus_cred_base_url','custrecord_motus_cred_token_key','custrecord_sd_motus_merchantid']);
-                        nlapiLogExecution('DEBUG', 'get credentials', JSON.stringify(result));
-                        return result;
-                    },
-                    updateToken: function(data){
-                        if(data.data.submit == true){
-
-                            return this.processOrder(data)
-                        }else{
-                            nlapiLogExecution('DEBUG', 'put default', data.id);
-                            nlapiSubmitField('customrecord_motus_cc_token', data.id, 'custrecord_sd_motus_is_default_card', 'T');
-                            
-                            this.resetTokenDefaults(nlapiGetUser(),data.id);
-                            
-                            return{
-                                status: 'Success'
+                            return;
+                        },
+                        getMotusCredentials: function(){
+                            var motusCreds = nlapiSearchRecord(
+                                'customrecord_motus_credentials',
+                                null,
+                                null,
+                                [
+                                new nlobjSearchColumn('custrecord_motus_cred_token_key'),
+                                new nlobjSearchColumn('custrecord_sd_motus_merchantid'),
+                                new nlobjSearchColumn('custrecord_motus_cred_base_url'),
+                                new nlobjSearchColumn('custrecord_motus_grant_type'),
+                                new nlobjSearchColumn('custrecord_motus_username'),
+                                new nlobjSearchColumn('custrecord_motus_password'),
+                                new nlobjSearchColumn('custrecord_motus_integration_id')
+                                // new nlobjSearchColumn('id')
+                                ]
+                            );
+                            var result = {};
+                            if(motusCreds.length > 0){
+                                for (var i = 0; i < motusCreds.length; i++) {
+                                    nlapiLogExecution('ERROR', 'result', motusCreds[i].getValue("custrecord_motus_cred_base_url"));
+                                    result.tokenKey = motusCreds[i].getValue("custrecord_motus_cred_token_key");
+                                    result.merchantid = motusCreds[i].getValue("custrecord_sd_motus_merchantid");
+                                    result.baseurl = motusCreds[i].getValue("custrecord_motus_cred_base_url");
+                                    result.granttype = motusCreds[i].getValue("custrecord_motus_grant_type");
+                                    result.username = motusCreds[i].getValue("custrecord_motus_username");
+                                    result.password = motusCreds[i].getValue("custrecord_motus_password");
+                                    result.integrationid = motusCreds[i].getValue("custrecord_motus_integration_id");
+                                }
                             }
-                        }
-                    },
+                            // var sitchCreds = nlapiLookupField('customrecord_motus_credentials', 1, ['custrecord_motus_cred_base_url','custrecord_motus_cred_token_key','custrecord_sd_motus_merchantid']);
+                            nlapiLogExecution('ERROR', 'get credentials', JSON.stringify(result));
+                            return result;
+                        },
+                        updateToken: function(data){
+                            if(data.data.submit == true){
+                                return this.processOrder(data)
+                            }else{
+                                nlapiLogExecution('ERROR', 'put default', data.id);
+                                nlapiSubmitField('customrecord_motus_cc_token', data.id, 'custrecord_sd_motus_is_default_card', 'T');
+                                
+                                this.resetTokenDefaults(nlapiGetUser(),data.id);
+                                
+                                return{
+                                    status: 'Success'
+                                }
+                            }
+                        },
+                    });
+                    
                 });
-                
-            });
     define("SuiteDynamics.MotusPayments.MotusPayments.ServiceController", ["ServiceController", "MotusPayments.Model", "LiveOrder.Model","underscore"], function(
       ServiceController,
       MotusPaymentsModel,
@@ -1051,21 +1043,21 @@ try{
           common: {}
         },
         get: function get() {
-            nlapiLogExecution('DEBUG', 'get', 'get');
+            nlapiLogExecution('ERROR', 'get', 'get');
           return MotusPaymentsModel.getTokens();
         },
         post: function post() {
-            nlapiLogExecution('DEBUG', 'post', 'post');
+            nlapiLogExecution('ERROR', 'post', 'post');
             //Here we will submit the token to Netsuite and create/update the customer profile in CardPointe
             return MotusPaymentsModel.submitToken(this.data);
         },
         put: function put() {
-            nlapiLogExecution('DEBUG', 'put', JSON.stringify(this.data));
+            nlapiLogExecution('ERROR', 'put', JSON.stringify(this.data));
             //Here we will update the token and submit Authorization
             return MotusPaymentsModel.updateToken(this.data);
         },
         delete: function() {
-            nlapiLogExecution('DEBUG', 'delete', this.request.getParameter('id'));
+            nlapiLogExecution('ERROR', 'delete', this.request.getParameter('id'));
             return MotusPaymentsModel.deleteToken(this.request.getParameter('id'));
         }
       });
@@ -1089,7 +1081,87 @@ try{
         nlapiLogExecution('DEBUG', 'start backend module', 'start backend module');
     });
     };
-    extensions['CXExtensibility.CoreContent.1.0.5'] = function(extensionName){
+    extensions['SuiteDynamics.ZoneSubscriptions.0.0.1'] = function(extensionName){
+      var define = function(moduleName, dependencies, callback) {
+          for (var i = 0; i < dependencies.length; i++){
+              var dep = dependencies[i];
+              if (dep === 'Application' && dep.indexOf(extensionName + '.Plugin!') === -1) {
+                  dependencies[i] = extensionName + '.Plugin!' + dep;
+              }
+          }
+          return srcDefine(moduleName, dependencies, callback);
+      };
+      define(extensionName + '.Plugin', [], function (){
+          return {
+                load: function (name, req, onload, config){
+                  try{
+                        req(
+                          [name],
+                          function (value) {
+                              const proxy = new ProxyPolyfill(value, {
+                                  get: function (target, prop, receiver){
+                                      var targetProp = target[prop];
+                                      if(typeof targetProp === 'function'){
+                                          targetProp = function() {
+                                              var args = Array.prototype.slice.call(arguments)
+                                              if(prop === 'getComponent'){
+                                                  args.push(extensionName);
+                                              }
+                                              return target[prop].apply(target, args);
+                                          }
+                                      }                                  return targetProp;
+                                  }
+                              });
+                              onload(proxy);
+                          },
+                          function () {
+                              onload(null);
+                          });
+                  }catch (e) {}
+              }
+          };
+      });
+    define("SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.ServiceController", ["ServiceController"], function(
+      ServiceController
+    ) {
+      "use strict";
+      return ServiceController.extend({
+        name: "SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.ServiceController",
+        // The values in this object are the validation needed for the current service.
+        options: {
+          common: {}
+        },
+        get: function get() {
+          return JSON.stringify({
+            message: "Hello World I'm an Extension using a Service!"
+          });
+        },
+        post: function post() {
+          // not implemented
+        },
+        put: function put() {
+          // not implemented
+        },
+        delete: function() {
+          // not implemented
+        }
+      });
+    });
+    // SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.js
+    // Load all your starter dependencies in backend for your extension here
+    // ----------------
+    define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions'
+    ,	[
+            'SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.ServiceController'
+        ]
+    ,	function (
+            ZoneSubscriptionsServiceController
+        )
+    {
+        'use strict';
+    });
+    };
+    extensions['CXExtensibility.CoreContent.1.0.6'] = function(extensionName){
       var define = function(moduleName, dependencies, callback) {
           for (var i = 0; i < dependencies.length; i++){
               var dep = dependencies[i];
@@ -1541,13 +1613,13 @@ try{
         return {};
     });
     };
-    var coreLanguages = {"checkout":["cs_CZ","da_DK","de_DE","en_AU","en_CA","en_GB","en_US","es_AR","es_ES","fi_FI","fr_CA","fr_FR","id_ID","it_IT","ja_JP","ko_KR","nb_NO","nl_NL","no_NO","pt_BR","ru_RU","sv_SE","th_TH","tr_TR","vi_VN","zh_CN","zh_TW"],"myaccount":["cs_CZ","da_DK","de_DE","en_AU","en_CA","en_GB","en_US","es_AR","es_ES","fi_FI","fr_CA","fr_FR","id_ID","it_IT","ja_JP","ko_KR","nb_NO","nl_NL","no_NO","pt_BR","ru_RU","sv_SE","th_TH","tr_TR","vi_VN","zh_CN","zh_TW"],"shopping":["cs_CZ","da_DK","de_DE","en_AU","en_CA","en_GB","en_US","es_AR","es_ES","fi_FI","fr_CA","fr_FR","id_ID","it_IT","ja_JP","ko_KR","nb_NO","nl_NL","no_NO","pt_BR","ru_RU","sv_SE","th_TH","tr_TR","vi_VN","zh_CN","zh_TW"]};
+    var coreLanguages = {"checkout":["cs_CZ","da_DK","de_DE","en","en_AU","en_CA","en_GB","en_US","es_AR","es_ES","fi_FI","fr_CA","fr_FR","id_ID","it_IT","ja_JP","ko_KR","nb_NO","nl_NL","no_NO","pt_BR","ru_RU","sv_SE","th_TH","tr_TR","vi_VN","zh_CN","zh_TW"],"myaccount":["cs_CZ","da_DK","de_DE","en","en_AU","en_CA","en_GB","en_US","es_AR","es_ES","fi_FI","fr_CA","fr_FR","id_ID","it_IT","ja_JP","ko_KR","nb_NO","nl_NL","no_NO","pt_BR","ru_RU","sv_SE","th_TH","tr_TR","vi_VN","zh_CN","zh_TW"],"shopping":["cs_CZ","da_DK","de_DE","en","en_AU","en_CA","en_GB","en_US","es_AR","es_ES","fi_FI","fr_CA","fr_FR","id_ID","it_IT","ja_JP","ko_KR","nb_NO","nl_NL","no_NO","pt_BR","ru_RU","sv_SE","th_TH","tr_TR","vi_VN","zh_CN","zh_TW"]};
      
     var SiteSettings = require('SiteSettings.Model').get();
     var website_id = SiteSettings.siteid;
     var key_mapping = {
-        '2': {
-            'www.suitedynamics.co': '1'
+        '3': {
+            'www.suitedynamics.co': '2'
         }
     };
     var key;
@@ -1556,7 +1628,7 @@ try{
     var location = ctx.getLocation();
     var subsidiary_key = current_domain + '-' + subsidiary;
     var location_key = subsidiary_key + '-' + location;
-    if(website_id === 2 && key_mapping[website_id]){
+    if(website_id === 3 && key_mapping[website_id]){
         var mapping = key_mapping[website_id];
         if(mapping[location_key]){
             key = mapping[location_key];
@@ -1571,9 +1643,9 @@ try{
             key = mapping['activation_id'];
         }
     }
-    if(key === '1'){
+    if(key === '2'){
     try{
-        extensions['CXExtensibility.CoreContent.1.0.5']('CXExtensibility.CoreContent.1.0.5');
+        extensions['CXExtensibility.CoreContent.1.0.6']('CXExtensibility.CoreContent.1.0.6');
         require('CXExtensibility.CoreContent.CoreContentModule');
     }
     catch(error){
@@ -1614,20 +1686,27 @@ try{
     catch(error){
         nlapiLogExecution('ERROR', 'ERROR_SSP_LIBRARIES_EXT', JSON.stringify(error));
     }
+    try{
+        extensions['SuiteDynamics.ZoneSubscriptions.0.0.1']('SuiteDynamics.ZoneSubscriptions.0.0.1');
+        require('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions');
+    }
+    catch(error){
+        nlapiLogExecution('ERROR', 'ERROR_SSP_LIBRARIES_EXT', JSON.stringify(error));
+    }
     }
     var include_mapping = {
-        "2": {
-            "1": {
+        "3": {
+            "2": {
                 "shopping": {
                     "templates": [
-                        "extensions/shopping-templates_1.js"
+                        "extensions/shopping-templates_2.js"
                     ],
                     "js": [
                         "javascript/shopping.js",
-                        "extensions/shopping_1.js"
+                        "extensions/shopping_2.js"
                     ],
                     "css": [
-                        "extensions/shopping_1.css"
+                        "extensions/shopping_2.css"
                     ],
                     "translations": {},
                     "core": {},
@@ -1635,14 +1714,14 @@ try{
                 },
                 "myaccount": {
                     "templates": [
-                        "extensions/myaccount-templates_1.js"
+                        "extensions/myaccount-templates_2.js"
                     ],
                     "js": [
                         "javascript/myaccount.js",
-                        "extensions/myaccount_1.js"
+                        "extensions/myaccount_2.js"
                     ],
                     "css": [
-                        "extensions/myaccount_1.css"
+                        "extensions/myaccount_2.css"
                     ],
                     "translations": {},
                     "core": {},
@@ -1650,14 +1729,14 @@ try{
                 },
                 "checkout": {
                     "templates": [
-                        "extensions/checkout-templates_1.js"
+                        "extensions/checkout-templates_2.js"
                     ],
                     "js": [
                         "javascript/checkout.js",
-                        "extensions/checkout_1.js"
+                        "extensions/checkout_2.js"
                     ],
                     "css": [
-                        "extensions/checkout_1.css"
+                        "extensions/checkout_2.css"
                     ],
                     "translations": {},
                     "core": {},
@@ -1667,7 +1746,7 @@ try{
         }
     };
     var theme_assets_paths = {
-        "1": "extensions/SuiteDynamics/SuiteDynamics_Custom_Theme/1.2.0/"
+        "2": "extensions/SuiteDynamics/SuiteDynamics_Custom_Theme/1.6.0/"
     };
     var Application = require('Application');
     var app_includes;
