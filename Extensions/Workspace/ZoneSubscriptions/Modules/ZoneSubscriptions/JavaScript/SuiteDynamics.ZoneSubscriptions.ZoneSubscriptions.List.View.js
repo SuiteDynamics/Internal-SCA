@@ -46,13 +46,6 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 					self.render();
 				});
 
-				// this.on('afterViewRender', function () {
-
-				// 	$("#zab-item").find("p").hide();
-				// 	$("#zab-item").find("div").hide();
-
-				// });
-
 				this.savedSearchId = (options.routerArguments && options.routerArguments[0]);
 				var urlOptions = Utils.parseUrlOptions(options.routerArguments && options.routerArguments[1]);
 				var page = urlOptions['page'] || '1';
@@ -202,6 +195,7 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 				this.formattedResults = formattedResults;
 			}
 			, showDetails: function showDetails(e) {
+
 				var data = this.model.attributes
 				var subscriptionId = this.$(e.currentTarget).attr('data-group');
 				var subscriptionDetailed = []
@@ -257,6 +251,7 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.List.View'
 
 			//@method getContext @return SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 			, getContext: function getContext() {
+
 
 				//@class SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.View.Context
 				// this.message = this.message || 'Hello World!!'

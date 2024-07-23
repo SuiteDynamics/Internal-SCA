@@ -7,14 +7,13 @@
       return {
          service: function (ctx) {
 
-            log.error('ctx',ctx)
 
                //Retrieve Subscriptions for customer
                var customrecordzab_subscriptionSearchObj = search.create({
                   type: "customrecordzab_subscription",
                   filters:
                   [
-                  //    ["custrecordzab_s_customer","anyof", runtime.getCurrentUser()]
+                   ["custrecordzab_s_customer","anyof", runtime.getCurrentUser().id]
                   ],
                   columns:
                   [
@@ -31,7 +30,8 @@
                      search.createColumn({name: "custrecordzab_s_charge_schedule", label: "Charge Schedule"}),
                      search.createColumn({name: "id", label: "Internal ID"}),
                      search.createColumn('custrecordzab_s_amount_forecast'),
-                     search.createColumn({name: "custrecord_sd_zab_original_so", label: "Original Sales Order"})
+                     search.createColumn({name: "custrecord_sd_zab_original_so", label: "Original Sales Order"}),
+                     search.createColumn({name: "name", label: "Name"})
                      
                   ]
                });
@@ -56,7 +56,7 @@
                   subscriptionsObj.billTo = result.getValue("custrecordzab_s_bill_to_customer");
                   subscriptionsObj.startDate = result.getValue("custrecordzab_s_start_date");
                   subscriptionsObj.endDate = result.getValue("custrecordzab_s_end_date");
-                  subscriptionsObj.idNumber = result.getValue("custrecordzab_s_identification_number");
+                  subscriptionsObj.idNumber = result.getValue("custrecordzab_s_identification_number") || result.getValue({name: "name", label: "Name"});
                   subscriptionsObj.chargeSchedule = result.getText("custrecordzab_s_charge_schedule");
                   subscriptionsObj.subscriptionStatus ='Active';
                   subscriptionsObj.orderDate = orderDate;
