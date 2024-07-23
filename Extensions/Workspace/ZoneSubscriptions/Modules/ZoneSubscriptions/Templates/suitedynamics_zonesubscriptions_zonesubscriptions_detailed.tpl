@@ -69,10 +69,10 @@
                 <div class="zab-item-name">{{name}}</div>
               </td>
               <td>
-                <p>qty: {{itemQuantity}}</p>
+                <p>{{itemQuantity}}</p>
               </td>
               <td>
-                <p>Total: $ {{itemTotal}}</p>
+                <p>{{itemTotal}}</p>
               </td>
               
             </tr>

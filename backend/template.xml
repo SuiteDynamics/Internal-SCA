@@ -1,0 +1,219 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+	<link name="NotoSans" type="font" subtype="truetype" src="${nsfont.NotoSans_Regular}" src-bold="${nsfont.NotoSans_Bold}" src-italic="${nsfont.NotoSans_Italic}" src-bolditalic="${nsfont.NotoSans_BoldItalic}" bytes="2" />
+	<#if .locale == "zh_CN">
+		<link name="NotoSansCJKsc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKsc_Regular}" src-bold="${nsfont.NotoSansCJKsc_Bold}" bytes="2" />
+	<#elseif .locale == "zh_TW">
+		<link name="NotoSansCJKtc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKtc_Regular}" src-bold="${nsfont.NotoSansCJKtc_Bold}" bytes="2" />
+	<#elseif .locale == "ja_JP">
+		<link name="NotoSansCJKjp" type="font" subtype="opentype" src="${nsfont.NotoSansCJKjp_Regular}" src-bold="${nsfont.NotoSansCJKjp_Bold}" bytes="2" />
+	<#elseif .locale == "ko_KR">
+		<link name="NotoSansCJKkr" type="font" subtype="opentype" src="${nsfont.NotoSansCJKkr_Regular}" src-bold="${nsfont.NotoSansCJKkr_Bold}" bytes="2" />
+	<#elseif .locale == "th_TH">
+		<link name="NotoSansThai" type="font" subtype="opentype" src="${nsfont.NotoSansThai_Regular}" src-bold="${nsfont.NotoSansThai_Bold}" bytes="2" />
+	</#if>
+    <macrolist>
+        <macro id="nlheader">
+            <table class="header" style="width:90%;"><tr>
+	<td rowspan="3" style="height: 84px;"><img src="http://7050356-sb1.shop.netsuite.com/core/media/media.nl?id=11366&amp;c=7050356_SB1&amp;h=P6fqPlGkMOY1mfbJcoR4R47l9UkFPJdzB-raKnnXOiU54IcH" style="width: 270px; height: 60px;" /><br /><br />&nbsp;</td>
+	<td align="right" style="height: 22px;">&nbsp;</td>
+
+	<td style="text-align: right; margin-top:25px">
+	<table align="right" border="0" cellpadding="1" cellspacing="1" style="margin-right: -70px; width: 300px;"><tr style="text-align: right;">
+		<td align="right" style="text-align: right; width: 200px;"><span class="number"><strong><span id="cke_bm_1048S" style="display: none;">&nbsp;</span>INVOICE&nbsp;<span class="number"><strong>${record.tranid}</strong></span><span id="cke_bm_1048E" style="display: none;">&nbsp;</span></strong></span></td>
+		</tr>
+    </table>
+	</td>
+	</tr>
+	<tr>
+	<td align="right">&nbsp;</td>
+	</tr></table>
+        </macro>
+        <macro id="nlfooter">
+            <br />&nbsp;
+        </macro>
+    </macrolist>
+    <style type="text/css">* {
+		<#if .locale == "zh_CN">
+			font-family: NotoSans, NotoSansCJKsc, sans-serif;
+		<#elseif .locale == "zh_TW">
+			font-family: NotoSans, NotoSansCJKtc, sans-serif;
+		<#elseif .locale == "ja_JP">
+			font-family: NotoSans, NotoSansCJKjp, sans-serif;
+		<#elseif .locale == "ko_KR">
+			font-family: NotoSans, NotoSansCJKkr, sans-serif;
+		<#elseif .locale == "th_TH">
+			font-family: NotoSans, NotoSansThai, sans-serif;
+		<#else>
+			font-family: NotoSans, sans-serif;
+		</#if>
+		}
+		table {
+			font-size: 9pt;
+			table-layout: fixed;
+		}
+        th {
+            font-weight: bold;
+            font-size: 8pt;
+            vertical-align: middle;
+            padding: 5px 6px 3px;
+            background-color: #AAAAAA;
+            color: #ffffff;
+        }
+        td {
+            padding: 4px 6px;
+        }
+		td p { align:left }
+        b {
+            font-weight: bold;
+            color: #333333;
+        }
+        table.header td {
+            padding: 0px;
+            font-size: 10pt;
+        }
+        table.footer td {
+            padding: 0px;
+            font-size: 8pt;
+        }
+        table.itemtable th {
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+		table.itemtable td {
+            border: gray 1px solid;
+        }
+        table.body td {
+            padding-top: 2px;
+        }
+        table.total {
+            page-break-inside: avoid;
+        }
+        tr.totalrow {
+            background-color: #e3e3e3;
+            line-height: 200%;
+        }
+        td.totalboxtop {
+            font-size: 12pt;
+            background-color: #e3e3e3;
+        }
+        td.addressheader {
+            font-size: 8pt;
+            padding-top: 6px;
+            padding-bottom: 2px;
+        }
+        td.address {
+            padding-top: 0px;
+        }
+        td.totalboxmid {
+            font-size: 28pt;
+            padding-top: 20px;
+            background-color: #e3e3e3;
+        }
+        td.totalboxbot {
+            background-color: #e3e3e3;
+            font-weight: bold;
+        }
+        span.title {
+            font-size: 28pt;
+        }
+        span.number {
+            font-size: 16pt;
+        }
+        span.itemname {
+            line-height: 150%;
+        }
+        hr {
+            width: 100%;
+            color: #d3d3d3;
+            background-color: #d3d3d3;
+            height: 1px;
+        }
+</style>
+</head>
+<body header="nlheader" header-height="10%" footer="nlfooter" footer-height="20pt" padding="0.5in 0.5in 0.5in 0.5in" size="Letter">
+    <table border="0" cellpadding="1" cellspacing="1" style="margin-right: -70px; width:90%;"><tr>
+	<td>${companyinformation.mainaddress_text}
+      <br/>
+      <br/>
+      <b>${record.billaddress@label}</b>
+      <br/>
+      ${record.billaddress}
+      
+    </td>
+	<td>
+	<table align="right" border="0" cellpadding="1" cellspacing="1" style="margin: 0 auto; margin-top: -40px; width:250px;">
+        <tr align="right" style="text-align: center; margin: 0 auto; padding:20px; background-color: #d3d3d3;">
+            <td align="right" style="width:250px; font-weight: bold; font-size: 20px; margin: 0 auto; padding:20px; background-color: #d3d3d3; text-align: center;"><p>Amount Due : ${record.amountremaining}</p></td>
+        </tr>
+    </table>
+    <table style="margin-top: 20px;" align="right">
+        <tr>
+		<td align="right"><strong>${record.trandate@label}</strong></td>
+		<td align="right">${record.trandate}</td>
+		</tr>
+		<tr>
+		<td align="right"><strong>${record.terms@label}</strong></td>
+		<td align="right">${record.terms}</td>
+		</tr>
+		<tr style="text-align: right;">
+		<td align="right"><strong>${record.job@label}</strong></td>
+		<td style="text-align: right;" align="right">${record.job}</td>
+		</tr>
+		<tr>
+		<td align="right"><strong>${record.duedate@label}</strong></td>
+		<td align="right">${record.duedate}</td>
+		</tr>
+        <tr>
+        <td align="right"><strong>${record.otherrefnum@label}</strong></td>
+        <td align="right">${record.otherrefnum}</td>
+        </tr></table>
+	</td>
+	</tr></table>
+&nbsp;
+<br />
+  <#if record.item?has_content>
+<table border="0" class="itemtable" style="margin-top:10px;width:100%;"><!-- start items --><#list record.item as item><#if item_index==0>
+<thead>
+	<tr>
+	<th colspan="12" style="height: 5px;">${item.item@label}</th>
+    <th align="right" colspan="3" style="height: 5px;">${item.billeddate@label}</th>
+	<th align="right" colspan="2" style="height: 5px;">${item.quantity@label}</th>
+	<th align="right" colspan="3" style="height: 5px;">${item.rate@label}</th>
+	<th align="right" colspan="3" style="height: 5px;">${item.amount@label}</th>
+	</tr>
+</thead>
+</#if><tr>
+	<td colspan="12"><span class="itemname"> ${item.custcol_task_display_column}</span><br />${item.description}</td>
+    <td align="right" colspan="3" line-height="150%">${item.billeddate}</td>
+	<td align="right" colspan="2" line-height="150%">${item.quantity}</td>
+	<td align="right" colspan="3">${item.rate}</td>
+	<td align="right" colspan="3">${item.amount}</td>
+	</tr>
+	</#list><!-- end items --></table>
+
+<hr /></#if>
+<table align="right" border="0" cellpadding="1" cellspacing="1" style="width:100%;">
+    <tr>
+		<td colspan="2" style="white-space: nowrap; font-size: 10pt; padding-left: 0px; padding-right: 0px; line-height: 16px;"><b text-align="right">Subtotal:<br />Amount Paid/Credited:</b><br /><br /><b>Amount Due:</b></td>
+        <td></td>
+		<td style="font-size: 10pt; padding-left: 0px; padding-right: 0px; line-height: 16px;"><p align="right">${record.subtotal}<br />${record.amountpaid}<br /><br /><b>${record.amountremaining}</b></p></td>
+    </tr>
+</table>
+&nbsp;
+
+<table style="display:table;height:50px;overflow:hidden;">
+    <tr>
+        <td colspan="4" style="font-size: 10pt; background-color: white; line-height: 16px;"><b>Electronic Funds Transfer</b><br /><br /><b>Bank Name: </b>US Bank<br /><b>Routing Number: </b>075000022<br /><b>Account Number: </b>182379699578<br /><b>Bank Address: </b>609 University Ave, Madison, WI 53705</td>
+	</tr>
+    <tr style="margin-top:20px">
+        <td><br /><span style="font-size:12px;"><strong>Please contact receivables@suitedynamics.io with any billing questions.</strong></span></td>
+    </tr>
+</table>
+<br />&nbsp;&nbsp;
+<table align="left" style="display:table;height:50px;overflow:hidden;width:342.6px;"><tr>
+	<td style="width: 322px;"><span style="font-size:16px;">Thank you for your continued business!</span></td>
+	</tr></table>
+</body>
+</pdf>
