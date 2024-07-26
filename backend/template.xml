@@ -151,23 +151,27 @@
     <table style="margin-top: 20px;" align="right">
         <tr>
 		<td align="right"><strong>${record.trandate@label}</strong></td>
-		<td align="right">${record.trandate}</td>
+		<td align="right" colspan="12" style="width: 400px;"> ${record.trandate}</td>
 		</tr>
 		<tr>
 		<td align="right"><strong>${record.terms@label}</strong></td>
-		<td align="right">${record.terms}</td>
+		<td align="right" colspan="12" style="width: 400px;">${record.terms}</td>
 		</tr>
-		<tr style="text-align: right;">
+		<tr>
 		<td align="right"><strong>${record.job@label}</strong></td>
-		<td style="text-align: right;" align="right">${record.job}</td>
+		<td align="right" colspan="12" style="width: 400px;">
+    ${record.job}
+</td>
+
+
 		</tr>
 		<tr>
 		<td align="right"><strong>${record.duedate@label}</strong></td>
-		<td align="right">${record.duedate}</td>
+		<td align="right" colspan="12" style="width: 400px;">${record.duedate}</td>
 		</tr>
         <tr>
         <td align="right"><strong>${record.otherrefnum@label}</strong></td>
-        <td align="right">${record.otherrefnum}</td>
+        <td align="right" colspan="12" style="width: 400px;">${record.otherrefnum}</td>
         </tr></table>
 	</td>
 	</tr></table>
@@ -179,15 +183,15 @@
 	<tr>
 	<th colspan="12" style="height: 5px;">${item.item@label}</th>
     <th align="right" colspan="3" style="height: 5px;">${item.billeddate@label}</th>
-	<th align="right" colspan="2" style="height: 5px;">${item.quantity@label}</th>
+	<th align="right" colspan="5" style="height: 5px;">Total Hours Consumed</th>
 	<th align="right" colspan="3" style="height: 5px;">${item.rate@label}</th>
 	<th align="right" colspan="3" style="height: 5px;">${item.amount@label}</th>
 	</tr>
 </thead>
 </#if><tr>
-	<td colspan="12"><span class="itemname"> ${item.custcol_task_display_column}</span><br />${item.description}</td>
+	<td colspan="12"><span class="itemname"> ${item.custcol_task_display_column}</span></td>
     <td align="right" colspan="3" line-height="150%">${item.billeddate}</td>
-	<td align="right" colspan="2" line-height="150%">${item.quantity}</td>
+	<td align="right" colspan="5" line-height="150%">${item.custcol_sd_total_hours_consumed}</td>
 	<td align="right" colspan="3">${item.rate}</td>
 	<td align="right" colspan="3">${item.amount}</td>
 	</tr>
