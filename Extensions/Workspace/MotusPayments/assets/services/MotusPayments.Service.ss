@@ -5,11 +5,11 @@ function service(request, response)
 	try 
 	{
 		
-		require('SuiteDynamics.MotusPayments.MotusPayments.ServiceController').handle(request, response);
+		require('SuiteDynamics.StitchPayments.StitchPayments.ServiceController').handle(request, response);
 	} 
 	catch(ex)
 	{
-		console.log('SuiteDynamics.MotusPayments.MotusPayments.ServiceController ', ex);
+		console.log('SuiteDynamics.StitchPayments.StitchPayments.ServiceController ', ex);
 		var controller = require('ServiceController');
 		controller.response = response;
 		controller.request = request;

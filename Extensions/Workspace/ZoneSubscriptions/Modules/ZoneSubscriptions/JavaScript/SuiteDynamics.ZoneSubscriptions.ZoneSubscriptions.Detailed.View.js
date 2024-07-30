@@ -23,11 +23,14 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed.View', [
         showModalPageHeader: true,
 
         initialize: function initialize(options) {
-            console.log('DetailedView28', options)
             try {
                 this.options = options;
                 this.application = options.application;
                 this.model = this.options && this.options.model ? this.options.model : this.model;
+
+
+
+
                 // this.template = suitedynamics_zonesubscriptions_zonesubscriptions_detailed
 
                 // this.render();
@@ -35,11 +38,20 @@ define('SuiteDynamics.ZoneSubscriptions.ZoneSubscriptions.Detailed.View', [
                 console.log("error:", error.message);
             }
         },
+        events: {
+            'click [data-action="requestCancellation"]': 'requestCancellation'
+            // ,
+            // 'click [data-action="expand-table"]': 'expandTable',
+        },
+        requestCancellation: function requestCancellation(e) {
+            console.log('click')
+
+        },
         getContext: function getContext() {
 
-
             return {
-                subscriptions: this.subscriptions
+                hasResults: this.options.hasResults,
+                subscriptions: this.options.subscriptions
             };
         }
     });

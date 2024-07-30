@@ -18,7 +18,7 @@ define(
 
 				/** @type {LayoutComponent} */
 
-				console.log('zone', this)
+
 				var pageType = container.getComponent('PageType');
 				var environment = container.getComponent("Environment");
 				var MyAccountMenu = container.getComponent("MyAccountMenu");

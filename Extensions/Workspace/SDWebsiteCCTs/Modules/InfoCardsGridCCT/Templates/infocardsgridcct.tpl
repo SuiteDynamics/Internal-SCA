@@ -4,14 +4,11 @@
             <h2 class="cms-card-grid-section-title">{{sectionTitle}}</h2>
         </div>
     {{/if}}
-<<<<<<< HEAD
-=======
     {{#if sectionSubtitle}}
         <div class="cms-card-grid-section-subtitle-wrapper">
             <div class="cms-card-grid-section-subtitle">{{{sectionSubtitle}}}</div>
         </div>
     {{/if}}
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
     <div class="cms-card-grid-container {{gridStyleClass}}" style="{{#if sectionBackgroundColor}}background-color: {{sectionBackgroundColor}};{{/if}}">
         <div class="cms-cct-card-grid {{gridStyleClass}}">
             {{#each infoCards}}
@@ -40,8 +37,6 @@
                     <div class="cms-cct-card-content-wrapper {{../gridStyleClass}}">
                         <p class="cms-cct-card-content {{../gridStyleClass}}">{{{cardBody}}}</p>
                     </div>
-<<<<<<< HEAD
-=======
                     {{#if cardCtaLink}}
                         <div class="cms-cct-card-cta-btn-wrapper">
                             <a
@@ -51,7 +46,6 @@
                             >{{cardCtaText}}</a>
                         </div>
                     {{/if}}
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
                 </div>
             {{/each}}
         </div>

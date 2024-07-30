@@ -1,5 +1,5 @@
 <section class="cms-cct-split-content-block-container" {{#if sectionBackgroundColor}}style="background: {{sectionBackgroundColor}};"{{/if}}>
-    <div class="cms-cct-split-content-block-wrapper {{#if fullWidth}}cms-cct-split-content-block-full-width{{/if}}">
+    <div class="cms-cct-split-content-block-wrapper {{#if fullWidth}}cms-cct-split-content-block-full-width{{/if}} {{#if flipContent}}cms-cct-split-content-block-flip-content{{/if}}">
         <div class="cms-cct-split-content-block-left {{leftColumnClasses}}">
             <div class="cms-cct-split-content-block-left-interior">
                 <div class="cms-cct-split-content-block-left-interior-img-wrapper {{#if centerContent}}cms-cct-split-content-block-centered{{/if}}">
@@ -16,8 +16,6 @@
                         style="{{#if titleColor}}color: {{titleColor}};{{/if}}"
                 >{{{title}}}</h2>
 
-<<<<<<< HEAD
-=======
                 {{#if imageSrc}}
                     {{#unless hideMobileImage}}
                         <div class="cms-cct-split-content-block-right-interior-mobile-img-wrapper {{#if centerMobileImage}} cms-cct-split-content-block-right-interior-mobile-img-centered{{/if}}">
@@ -26,7 +24,6 @@
                     {{/unless}}
                 {{/if}}
 
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
                 {{#if sectionIntro}}
                     <div class="cms-cct-split-content-block-right-interior-text {{#if centerContent}}cms-cct-split-content-block-centered{{/if}}">{{{sectionIntro}}}</div>
                 {{/if}}

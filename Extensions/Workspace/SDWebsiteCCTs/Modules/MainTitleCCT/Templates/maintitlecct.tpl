@@ -8,10 +8,6 @@
                 {{else}}
                     <h1 class="cms-cct-maintitle-content-left-interior-subtitle" style="{{#if titleColor}}color: {{titleColor}};{{/if}}">{{{title}}}</h1>
                 {{/if}}
-<<<<<<< HEAD
-                <div class="cms-cct-maintitle-content-left-interior-img-wrapper">
-                    <img src="https://www.suitedynamics.co/SiteImages/Icons/SD_Icons_Final/Blue Icons/SD_Arrow_Icon.png" alt="Scroll down icon" class="cms-cct-maintitle-content-left-interior-img">
-=======
                 <div class="cms-cct-maintitle-content-left-interior-row">
                     {{#unless hideArrowImage}}
                         <div class="cms-cct-maintitle-content-left-interior-row-img-wrapper">
@@ -27,7 +23,6 @@
                             >{{ctaText}}</a>
                         </div>
                     {{/if}}
->>>>>>> 253f3e79cf9df74faabb7c955a21cfcaa04ee6af
                 </div>
             </div>
         </div>

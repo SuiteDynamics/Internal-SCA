@@ -2,7 +2,14 @@
     "name": "SDWebsiteCCTs",
     "fantasyName": "SuiteDynamics Website CCTs",
     "vendor": "SuiteDynamics",
+    "version": "1.0.0",
     "type": "extension",
+    "target": "SCA,SCS",
+    "target_version": {
+        "SCA": ">=19.1.0",
+        "SCS": ">=19.1.0"
+    },
+    "description": "A set of CCTs to be used on the SuiteDynamics website",
     "cct": [
         {
             "icon": "img/cct_suitedynamics_maintitlecct_icon.svg",
@@ -40,13 +47,7 @@
             "description": "Adds a customizable section that includes a title, subtitle, body, and CTA button"
         }
     ],
-    "target": "SCA,SCS",
-    "target_version": {
-        "SCA": ">=19.1.0",
-        "SCS": ">=19.1.0"
-    },
-    "version": "1.0.0",
-    "description": "A set of CCTs to be used on the SuiteDynamics website",
+    "skins": [],
     "assets": {
         "img": {
             "files": [
@@ -65,19 +66,6 @@
             "files": []
         }
     },
-    "templates": {
-        "application": {
-            "shopping": {
-                "files": [
-                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
-                    "Modules/SplitContentCCT/Templates/splitcontentcct.tpl",
-                    "Modules/TextBannerCCT/Templates/textbannercct.tpl",
-                    "Modules/InfoCardsGridCCT/Templates/infocardsgridcct.tpl",
-                    "Modules/CTABlockCCT/Templates/ctablockcct.tpl"
-                ]
-            }
-        }
-    },
     "sass": {
         "entry_points": {
             "shopping": "Modules/Entrypoint/Sass/_suitedynamics-sdwebsiteccts-entrypoint.scss"
@@ -90,6 +78,19 @@
             "Modules/InfoCardsGridCCT/Sass/_infocardsgridcct.scss",
             "Modules/CTABlockCCT/Sass/_ctablockcct.scss"
         ]
+    },
+    "templates": {
+        "application": {
+            "shopping": {
+                "files": [
+                    "Modules/MainTitleCCT/Templates/maintitlecct.tpl",
+                    "Modules/SplitContentCCT/Templates/splitcontentcct.tpl",
+                    "Modules/TextBannerCCT/Templates/textbannercct.tpl",
+                    "Modules/InfoCardsGridCCT/Templates/infocardsgridcct.tpl",
+                    "Modules/CTABlockCCT/Templates/ctablockcct.tpl"
+                ]
+            }
+        }
     },
     "javascript": {
         "entry_points": {
@@ -113,6 +114,7 @@
             }
         }
     },
+    "local_folder": "Workspace\\SDWebsiteCCTs",
     "suitescript2": {
         "files": []
     }
