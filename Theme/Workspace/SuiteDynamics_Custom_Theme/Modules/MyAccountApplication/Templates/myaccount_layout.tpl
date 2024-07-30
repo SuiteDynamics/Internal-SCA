@@ -11,7 +11,7 @@
 		<div class="myaccount-layout-error-placeholder"></div>
 
         <div id="main-content" tabindex="-1">
-            <h2 class="myaccount-layout-title">{{translate 'My Account'}}</h2>
+
             <div class="myaccount-layout-row">
                 <nav id="side-nav" class="myaccount-layout-side-nav" data-view="MenuTree"></nav>
 
