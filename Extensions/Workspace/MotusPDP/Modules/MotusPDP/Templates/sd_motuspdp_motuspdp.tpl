@@ -1,12 +1,13 @@
-<div>
-  <span>
-    <img class="motus-pdp-img" src="https://www.suitedynamics.co/SiteImages/motus.JPG">
-  </span>
+{{#if isMotus}}
+  <div>
     <span>
-    <img class="motus-pdp-img" src="https://www.suitedynamics.co/SiteImages/paytrace.png">
-  </span>
-</div>
-
+      <img class="motus-pdp-img" src="https://www.suitedynamics.co/SiteImages/motus.JPG">
+    </span>
+      <span>
+      <img class="motus-pdp-img" src="https://www.suitedynamics.co/SiteImages/paytrace.png">
+    </span>
+  </div>
+{{/if}}
 
 <!--
   Available helpers:

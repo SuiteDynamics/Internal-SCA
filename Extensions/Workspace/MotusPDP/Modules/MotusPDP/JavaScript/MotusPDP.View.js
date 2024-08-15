@@ -3,14 +3,10 @@ define('SD.MotusPDP.MotusPDP.View'
 ,	[
 	'sd_motuspdp_motuspdp.tpl'
 	
-	,	'SD.MotusPDP.MotusPDP.SS2Model'
-	
 	,	'Backbone'
     ]
 , function (
 	sd_motuspdp_motuspdp_tpl
-	
-	,	MotusPDPSS2Model
 	
 	,	Backbone
 )
@@ -24,25 +20,19 @@ define('SD.MotusPDP.MotusPDP.View'
 
 	,	initialize: function (options) {
 		var self = this
+
+		this.itemInfo = self.options.container.getComponent("PDP").getItemInfo();
+
 		this.on('afterViewRender',function(){
 
 		   jQuery(document).ready(function(){
 
-			   if(self.options.motusItem == true){
+			   if(self.itemInfo.item.displayname.includes('Motus')){
 					$('#product-views-price').after( '<span style="margin-left:5px; font-size:12pt; font-style: italic;">Price includes one-time install fee and 1st month of service</span>' );
 			   }
 			})
 	   })
-			/*  Uncomment to test backend communication with an example service
-				(you'll need to deploy and activate the extension first)
-			*/
 
-			// this.model = new MotusPDPModel();
-			// var self = this;
-         	// this.model.fetch().done(function(result) {
-			// 	self.message = result.message;
-			// 	self.render();
-      		// });
 		}
 
 	,	events: {
@@ -59,9 +49,8 @@ define('SD.MotusPDP.MotusPDP.View'
 	,	getContext: function getContext()
 		{
 			//@class SD.MotusPDP.MotusPDP.View.Context
-			this.message = this.message || 'Hello World!!'
 			return {
-				message: this.message
+				isMotus: this.itemInfo.item.displayname.includes('Motus')
 			};
 		}
 	});

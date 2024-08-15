@@ -20,24 +20,11 @@ define(
 			
 			/** @type {LayoutComponent} */
 			var layout = container.getComponent('Layout');
-			console.log('motus PDP');
 
-			var pdp = container.getComponent("PDP");
-			var motusItem = false;
-            // var iteminfo = pdp.getItemInfo();
-			// console.log(iteminfo)
 			if(layout)
 			{
-				layout.addToViewContextDefinition('ProductDetails.Full.View', 'showMotusQuantity', 'string', function(context) {
-					if(context.model.item.displayname.includes("Motus")){
-						motusItem = true;
-						return true;
-					}else{
-						return false;
-					}
-				});
 				layout.registerView('Motus.PDP', function() { 
-					return new MotusPDPView({ container: container, motusItem:motusItem});
+					return new MotusPDPView({ container: container});
 				});
 			}
 
