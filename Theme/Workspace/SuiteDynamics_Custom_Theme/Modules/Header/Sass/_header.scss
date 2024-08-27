@@ -21,7 +21,7 @@ $sc-sidebar-size: 246px;
 }
 
 .header-main-wrapper {
-	position: relative;
+    position: relative;
 	background-color: $sc-header-background-color;
 	box-shadow: none;
 
@@ -32,6 +32,10 @@ $sc-sidebar-size: 246px;
 
 	@media (min-width: $screen-md-min) {
 		border-bottom: $sc-header-border-width solid $sc-header-border-color;
+		position: fixed;
+		top: 0;
+		z-index: 999;
+		width: 100%;
 	}
 
 	@media (max-width: $screen-sm-min) {
