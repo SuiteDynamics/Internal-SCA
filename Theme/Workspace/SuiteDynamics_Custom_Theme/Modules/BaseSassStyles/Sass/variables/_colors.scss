@@ -23,7 +23,7 @@ $sc-color-primary: #e03100; /* editable({"type": "color", "label": "Highlight Co
 // $sc-color-secondary: #15607b
 //
 // Styleguide 1.1.3
-$sc-color-secondary: #121212; /* editable({"type": "color", "label": "Alternate Color", "description": "Used mainly for secondary action elements such as 'Subscribe to newsletter' buttons."}) */
+$sc-color-secondary: #002535; /* editable({"type": "color", "label": "Alternate Color", "description": "Used mainly for secondary action elements such as 'Subscribe to newsletter' buttons."}) */
 
 // Neutral shades
 //
@@ -58,7 +58,7 @@ $sc-neutral-shade-0: lighten($sc-neutral-shade, 100); /* editable({"type": "colo
 // $sc-color-theme-100: #F1F8FA - Used mainly for borders (also referenced as $sc-color-theme-border)
 //
 // Styleguide 1.1.5
-$sc-color-theme: #ffffff; /* editable({"type": "color", "label": "Theme color", "description": "This is the base theme color. If only this color is changed the rest of the theme color variants will be derived from this one using the preset theme shading definition: 900, 700, 500, 300, 100."}) */
+$sc-color-theme: #ADC5CF; /* editable({"type": "color", "label": "Theme color", "description": "This is the base theme color. If only this color is changed the rest of the theme color variants will be derived from this one using the preset theme shading definition: 900, 700, 500, 300, 100."}) */
 $sc-color-theme-900: saturate(darken($sc-color-theme, 55), 18); /* editable({"type": "color", "label": "Shade 900"}) */
 $sc-color-theme-700: saturate(darken($sc-color-theme, 45), 17); /* editable({"type": "color", "label": "Shade 700"}) */
 $sc-color-theme-500: $sc-color-theme; /* editable({"type": "color", "label": "Shade 500"}) */

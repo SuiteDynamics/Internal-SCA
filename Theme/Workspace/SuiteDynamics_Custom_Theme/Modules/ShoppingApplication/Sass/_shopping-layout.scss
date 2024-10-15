@@ -23,5 +23,11 @@
     @extend .skip-to-main-content;
 }
 
+@media (min-width: 992px) {
+	.shopping-layout-main-container{
+		margin-top: 75px;
+	}
+}
+
 
 

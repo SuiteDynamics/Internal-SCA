@@ -1,7 +1,7 @@
 <div id="layout" class="shopping-layout">
 	<a class="shopping-layout-skip-to-main-content" data-action="skip-to-main-content" href="#content">{{translate 'Skip to main content' 'Jumps to the main content section'}}</a>
 	<header id="site-header" class="shopping-layout-header" data-view="Header" aria-label="{{translate 'Header' 'Name of the entire header of the website'}}"></header>
-	<div id="main-container">
+	<div class="shopping-layout-main-container" id="main-container">
 		<!-- <div class="shopping-layout-breadcrumb">
 			<div data-view="Global.Breadcrumb" data-type="breadcrumb"></div>
 		</div> -->
