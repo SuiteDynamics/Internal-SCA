@@ -52,14 +52,29 @@ $sc-font-charter: 'Charter', serif !default;
     @media (min-width: $screen-md-min) {
         grid-template-columns: repeat(3, minmax(290px, 1fr));
         padding: 120px 15px;
+
+        &.cms-cct-card-grid-style-detailed-service {
+            padding: 90px 25px;
+            gap: 16px;
+        }
     }
 
     @media (min-width: $screen-lg-min) {
+        &.cms-cct-card-grid-style-detailed-service {
+            padding: 90px 65px;
+            gap: 45px;
+        }
+
         &.cms-cct-card-grid-style-team {
         }
     }
 
     @media (min-width: 1400px) {
+        &.cms-cct-card-grid-style-detailed-service {
+            padding: 80px 115px;
+            gap: 50px;
+        }
+
         &.cms-cct-card-grid-style-team {
         }
     }
