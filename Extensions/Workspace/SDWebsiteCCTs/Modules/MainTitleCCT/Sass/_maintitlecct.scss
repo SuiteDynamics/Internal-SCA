@@ -124,6 +124,12 @@ $sc-font-charter: 'Charter', serif !default;
     align-items: flex-end;
 }
 
+.cms-cct-maintitle-content-left-interior-row-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .cms-cct-maintitle-content-right {
     @include flex-center;
     @extend .col-xs-12;
