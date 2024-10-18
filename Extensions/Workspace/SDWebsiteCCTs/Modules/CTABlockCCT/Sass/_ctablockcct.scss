@@ -109,6 +109,9 @@ $sc-font-charter: 'Charter', serif !default;
     padding: 15px 40px;
     text-decoration: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.cms-cct-cta-block-cta-btn-large {
         min-width: 325px;
