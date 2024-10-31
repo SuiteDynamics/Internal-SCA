@@ -28,7 +28,7 @@
         </div>
         <div class="cms-cct-maintitle-content-right {{#unless imageSrc}}cms-cct-maintitle-content-right-hidden{{/unless}}">
             {{#if imageSrc}}
-                <img src="{{imageSrc}}" alt="{{imageAlt}}" class="cms-cct-maintitle-content-right-img img-responsive">
+                <img sizes="(max-width: 1400px)" src="{{imageSrc}}" alt="{{imageAlt}}" class="cms-cct-maintitle-content-right-img img-responsive">
             {{/if}}
         </div>
     </div>

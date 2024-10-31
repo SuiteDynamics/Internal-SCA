@@ -19,7 +19,7 @@
                 {{#if imageSrc}}
                     {{#unless hideMobileImage}}
                         <div class="cms-cct-split-content-block-right-interior-mobile-img-wrapper {{#if centerMobileImage}} cms-cct-split-content-block-right-interior-mobile-img-centered{{/if}}">
-                            <img src="{{imageSrc}}" class="cms-cct-split-content-block-right-interior-mobile-img {{#if centerMobileImage}} cms-cct-split-content-block-right-interior-mobile-img-centered{{/if}}" alt="{{imageAltText}}">
+                            <img sizes="(max-width: 1400px)" src="{{imageSrc}}" class="cms-cct-split-content-block-right-interior-mobile-img {{#if centerMobileImage}} cms-cct-split-content-block-right-interior-mobile-img-centered{{/if}}" alt="{{imageAltText}}">
                         </div>
                     {{/unless}}
                 {{/if}}
