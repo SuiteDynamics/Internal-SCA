@@ -35,6 +35,7 @@
 **/.DS_Store
 **/.env
 **/SCA_Help.md
+**/@sc-utils/
 Theme/Workspace/Suite_Commerce_Base_Theme/manifest.json
 Theme/Workspace/Horizon/manifest.json
 Extensions/Workspace/smtpagebuilder
